@@ -45,7 +45,7 @@
     "mithril": "^2.0.4",
     "mithril-leaflet": "^0.1.7",
     "mithril-materialized": "^0.15.4",
-    "mithril-ui-form": "^0.4.5"
+    "mithril-ui-form": "^0.4.6"
   },
   "devDependencies": {
     "@types/file-saver": "^2.0.1",
