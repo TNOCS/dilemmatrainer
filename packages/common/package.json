@@ -1,0 +1,29 @@
+{
+  "name": "dilemmatrainermodellen",
+  "version": "0.0.1",
+  "description": "Models for the location register.",
+  "scripts": {
+    "clean": "rimraf ./dist",
+    "cleanup": "npm run clean",
+    "dev": "tsc -w",
+    "start": "tsc -w",
+    "build:domain": "tsc -b"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erikvullings/dilemmatrainer.git"
+  },
+  "keywords": [
+    "SPA",
+    "mithril"
+  ],
+  "author": "Erik Vullings <erik.vullings@gmail.com> (http://www.tno.nl)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/erikvullings/dilemmatrainer/issues"
+  },
+  "homepage": "https://github.com/erikvullings/dilemmatrainer#readme",
+  "devDependencies": {
+    "typescript": "^3.7.2"
+  }
+}
