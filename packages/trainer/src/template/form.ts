@@ -10,7 +10,7 @@ export const characteristicsForm = (
     type: characteristics.map(c => ({
       id: c.id,
       label: c.title,
-      options: c.values.map(v => ({ id: v.id, label: v.title })),
+      options: c.values && c.values.map(v => ({ id: v.id, label: v.title })),
       type: 'radio',
       inline: true,
       className: 'col s12',
