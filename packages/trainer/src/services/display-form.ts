@@ -33,7 +33,7 @@ export const DisplayForm: FactoryComponent<IFormattedEvent> = () => {
           m(LayoutForm, {
             form,
             obj: scenario,
-            disabled: true,
+            readonly: true,
           })
         ),
       ]);

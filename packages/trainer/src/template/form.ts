@@ -2,15 +2,13 @@ import { Form, IInputField } from 'mithril-ui-form';
 import { IScenario } from '../../../common/dist';
 import { ICharacteristic } from '../../../common/dist/models/characteristic';
 
-export const characteristicsForm = (
-  characteristics = [] as ICharacteristic[]
-): IInputField =>
+export const characteristicsForm = (characteristics = [] as ICharacteristic[]): IInputField =>
   ({
     id: 'characteristics',
     type: characteristics.map(c => ({
       id: c.id,
       label: c.title,
-      options: c.values.map(v => ({ id: v.id, label: v.title })),
+      options: c.values && c.values.map(v => ({ id: v.id, label: v.title })),
       type: 'radio',
       inline: true,
       className: 'col s12',
@@ -98,10 +96,7 @@ export const scenarioFormGenerator = (scenario: Partial<IScenario>): Form => {
           type: [
             {
               id: 'id',
-              label: 'Id',
-              type: 'text',
-              max: 16,
-              className: 'col s12 m3',
+              autogenerate: 'id',
             },
             {
               id: 'title',
@@ -215,7 +210,13 @@ export const scenarioFormGenerator = (scenario: Partial<IScenario>): Form => {
       type: [
         { id: 'title', label: 'Title', type: 'text' },
         { id: 'description', label: 'Description', type: 'textarea' },
-        { id: 'roles', label: 'Roles that have made this agreement', roles: roleOptions, type: 'options', multiple: true },
+        {
+          id: 'roles',
+          label: 'Roles that have made this agreement',
+          roles: roleOptions,
+          type: 'options',
+          multiple: true,
+        },
       ],
     },
 
@@ -232,6 +233,5 @@ export const scenarioFormGenerator = (scenario: Partial<IScenario>): Form => {
         { id: 'description', label: 'Description', type: 'textarea' },
       ],
     },
-
   ] as Form;
 };
