@@ -1,0 +1,83 @@
+body{
+    background-color: #FBFAF9;
+    font-family: 'Roboto', sans-serif;
+}
+
+span{
+    color: #FBFAF9;
+    text-align: center;
+    font-family: 'Roboto Slab', serif;
+}
+
+hr{
+    background-color: #FBFAF9;
+    border-top: solid 1px #FBFAF9;
+}
+
+#help{
+    position: fixed;
+    margin-top: 5%;
+}
+
+.container{
+    min-width: 100%;
+    margin: 0px;
+}
+
+.btn{
+    width: 100%;
+    background-color: #4E77A0;
+}
+
+#helpButton{
+    margin-left: 50%;
+}
+
+#hud{
+    margin-top: -4%;
+    margin-bottom: 0;
+    z-index: 1;
+}
+
+#displayArea{
+    min-height: 60%;
+}
+
+#controlAreaBG{
+    position: relative;
+    background-color: #80A2CC;
+    min-width: 100%;
+    min-height: 37%;
+    overflow: hidden;
+    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.5);
+}
+
+#controlAreaTop{
+    position: absolute;
+    background-color: #80A2CC;
+    box-shadow: inset 0px 4px 4px #494769;
+    min-width: 104%;
+    top: 10%;
+    left: -2%;
+    min-height: 2%
+}
+
+#controlAreaBG2{
+    background-color: #80A2CC;
+    min-width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+}
+
+#controlAreaTop2{
+    background-color: #80A2CC;
+    box-shadow: inset 0px 4px 4px #494769;
+    min-width: 100%;
+    margin-top: 2%;
+    min-height: 2%;
+}
+
+.dilemmaText{
+    text-align: center;
+    color: #FBFAF9;
+}

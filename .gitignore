@@ -35,12 +35,14 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+/packages/trainee/node_modules
 
 # TypeScript v1 declaration files
 typings/
 
 # Optional npm cache directory
 .npm
+/packages/trainee/npm
 
 # Optional eslint cache
 .eslintcache
