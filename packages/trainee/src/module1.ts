@@ -1,16 +1,30 @@
 import m from 'mithril';
 import 'materialize-css/dist/css/materialize.min.css';
 import 'material-icons/iconfont/material-icons.css';
+import state from './global';
 
 import { Button } from 'mithril-materialized';
 import hud from './hud';
 import help from './help';
 
+var dilemmas:Array<any>;
+var currentDilemma = 0
+
+m.request({
+        method: "GET",
+        url: "http://localhost:3030/api/scenarios/view", //put domain in config
+        params: {props: "dilemmas"},
+        body: {}
+    })
+    .then(function(result) {
+        dilemmas = result[0].dilemmas
+    })
+
+
 const MODULE1 = {
     view: () => {
-        // generate list of dilemmas
-        //lock them during help
-        
+        //lock action during help
+
         var interactionArea = m('div', [
             m('div'),
         ]);
@@ -24,9 +38,14 @@ const MODULE1 = {
 
 const displayArea = {
     view: () => {
-        return m('div', {class: "row", id: "displayArea"}, [
-            m(help, {title:"Title", desc: ["Lorem Ipsum et dono", "This is the second page", "this is the final page"]}),
-            m('div', {class: "topic"}),
+        return m('div', {class: "row valign-wrapper", id: "displayArea"}, [
+            state.showHelp ? 
+                m(help, {title:"Title", desc: ["Lorem Ipsum et dono", "This is the second page", "this is the final page"]})
+            :
+                m('div', {class: "topic col s6 offset-s3"}, [
+                    m('h1', {class: "topicTitle"} ,dilemmas ? dilemmas[currentDilemma].title : "loading..."),
+                    m('p', {class: "topicText"} ,dilemmas ? dilemmas[currentDilemma].description : "loading...")
+                ]),
         ]);
     }  
 }

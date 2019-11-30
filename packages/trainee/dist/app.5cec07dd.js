@@ -2295,7 +2295,17 @@ module.exports = reloadCSS;
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
-},{"./MaterialIcons-Regular.eot":[["MaterialIcons-Regular.bcffbc15.eot","node_modules/material-icons/iconfont/MaterialIcons-Regular.eot"],"node_modules/material-icons/iconfont/MaterialIcons-Regular.eot"],"./MaterialIcons-Regular.woff2":[["MaterialIcons-Regular.11799939.woff2","node_modules/material-icons/iconfont/MaterialIcons-Regular.woff2"],"node_modules/material-icons/iconfont/MaterialIcons-Regular.woff2"],"./MaterialIcons-Regular.woff":[["MaterialIcons-Regular.6924d4ac.woff","node_modules/material-icons/iconfont/MaterialIcons-Regular.woff"],"node_modules/material-icons/iconfont/MaterialIcons-Regular.woff"],"./MaterialIcons-Regular.ttf":[["MaterialIcons-Regular.a71f6b9a.ttf","node_modules/material-icons/iconfont/MaterialIcons-Regular.ttf"],"node_modules/material-icons/iconfont/MaterialIcons-Regular.ttf"],"_css_loader":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/materialize-css/dist/js/materialize.js":[function(require,module,exports) {
+},{"./MaterialIcons-Regular.eot":[["MaterialIcons-Regular.bcffbc15.eot","node_modules/material-icons/iconfont/MaterialIcons-Regular.eot"],"node_modules/material-icons/iconfont/MaterialIcons-Regular.eot"],"./MaterialIcons-Regular.woff2":[["MaterialIcons-Regular.11799939.woff2","node_modules/material-icons/iconfont/MaterialIcons-Regular.woff2"],"node_modules/material-icons/iconfont/MaterialIcons-Regular.woff2"],"./MaterialIcons-Regular.woff":[["MaterialIcons-Regular.6924d4ac.woff","node_modules/material-icons/iconfont/MaterialIcons-Regular.woff"],"node_modules/material-icons/iconfont/MaterialIcons-Regular.woff"],"./MaterialIcons-Regular.ttf":[["MaterialIcons-Regular.a71f6b9a.ttf","node_modules/material-icons/iconfont/MaterialIcons-Regular.ttf"],"node_modules/material-icons/iconfont/MaterialIcons-Regular.ttf"],"_css_loader":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/global.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var state = {
+  showHelp: true
+};
+exports.default = state;
+},{}],"node_modules/materialize-css/dist/js/materialize.js":[function(require,module,exports) {
 var define;
 var global = arguments[3];
 /*!
@@ -16784,17 +16794,7 @@ var Me = function () {
 };
 
 exports.Timeline = Te;
-},{"mithril":"node_modules/mithril/index.js","materialize-css":"node_modules/materialize-css/dist/js/materialize.js"}],"src/global.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var state = {
-  showHelp: true
-};
-exports.default = state;
-},{}],"src/hud.ts":[function(require,module,exports) {
+},{"mithril":"node_modules/mithril/index.js","materialize-css":"node_modules/materialize-css/dist/js/materialize.js"}],"src/hud.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -16951,12 +16951,26 @@ require("materialize-css/dist/css/materialize.min.css");
 
 require("material-icons/iconfont/material-icons.css");
 
+var global_1 = __importDefault(require("./global"));
+
 var mithril_materialized_1 = require("mithril-materialized");
 
 var hud_1 = __importDefault(require("./hud"));
 
 var help_1 = __importDefault(require("./help"));
 
+var dilemmas;
+var currentDilemma = 0;
+mithril_1.default.request({
+  method: "GET",
+  url: "http://localhost:3030/api/scenarios/view",
+  params: {
+    props: "dilemmas"
+  },
+  body: {}
+}).then(function (result) {
+  dilemmas = result[0].dilemmas;
+});
 var MODULE1 = {
   view: function view() {
     var interactionArea = mithril_1.default('div', [mithril_1.default('div')]);
@@ -16968,14 +16982,18 @@ var MODULE1 = {
 var displayArea = {
   view: function view() {
     return mithril_1.default('div', {
-      class: "row",
+      class: "row valign-wrapper",
       id: "displayArea"
-    }, [mithril_1.default(help_1.default, {
+    }, [global_1.default.showHelp ? mithril_1.default(help_1.default, {
       title: "Title",
       desc: ["Lorem Ipsum et dono", "This is the second page", "this is the final page"]
-    }), mithril_1.default('div', {
-      class: "topic"
-    })]);
+    }) : mithril_1.default('div', {
+      class: "topic col s6 offset-s3"
+    }, [mithril_1.default('h1', {
+      class: "topicTitle"
+    }, dilemmas ? dilemmas[currentDilemma].title : "loading..."), mithril_1.default('p', {
+      class: "topicText"
+    }, dilemmas ? dilemmas[currentDilemma].description : "loading...")])]);
   }
 };
 var controlAreaSolo = {
@@ -16996,7 +17014,7 @@ var controlAreaSolo = {
   }
 };
 exports.default = MODULE1;
-},{"mithril":"node_modules/mithril/index.js","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","mithril-materialized":"node_modules/mithril-materialized/dist/index.esm.js","./hud":"src/hud.ts","./help":"src/help.ts"}],"src/module2.ts":[function(require,module,exports) {
+},{"mithril":"node_modules/mithril/index.js","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","./global":"src/global.ts","mithril-materialized":"node_modules/mithril-materialized/dist/index.esm.js","./hud":"src/hud.ts","./help":"src/help.ts"}],"src/module2.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -17180,7 +17198,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54237" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59314" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,7 +1,6 @@
 import m from 'mithril';
 import 'materialize-css/dist/css/materialize.min.css';
 import 'material-icons/iconfont/material-icons.css';
-
 import state from './global';
 
 var pages:Array<string> = [];
