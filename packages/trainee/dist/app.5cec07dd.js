@@ -2298,14 +2298,34 @@ module.exports = reloadCSS;
 },{"./MaterialIcons-Regular.eot":[["MaterialIcons-Regular.bcffbc15.eot","node_modules/material-icons/iconfont/MaterialIcons-Regular.eot"],"node_modules/material-icons/iconfont/MaterialIcons-Regular.eot"],"./MaterialIcons-Regular.woff2":[["MaterialIcons-Regular.11799939.woff2","node_modules/material-icons/iconfont/MaterialIcons-Regular.woff2"],"node_modules/material-icons/iconfont/MaterialIcons-Regular.woff2"],"./MaterialIcons-Regular.woff":[["MaterialIcons-Regular.6924d4ac.woff","node_modules/material-icons/iconfont/MaterialIcons-Regular.woff"],"node_modules/material-icons/iconfont/MaterialIcons-Regular.woff"],"./MaterialIcons-Regular.ttf":[["MaterialIcons-Regular.a71f6b9a.ttf","node_modules/material-icons/iconfont/MaterialIcons-Regular.ttf"],"node_modules/material-icons/iconfont/MaterialIcons-Regular.ttf"],"_css_loader":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/global.ts":[function(require,module,exports) {
 "use strict";
 
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var mithril_1 = __importDefault(require("mithril"));
+
 var state = {
-  showHelp: true
+  showHelp: true,
+  dilemmas: []
 };
+mithril_1.default.request({
+  method: "GET",
+  url: "http://localhost:3030/api/scenarios/view",
+  params: {
+    props: "dilemmas"
+  },
+  body: {}
+}).then(function (result) {
+  state.dilemmas = result[0].dilemmas;
+});
 exports.default = state;
-},{}],"node_modules/materialize-css/dist/js/materialize.js":[function(require,module,exports) {
+},{"mithril":"node_modules/mithril/index.js"}],"node_modules/materialize-css/dist/js/materialize.js":[function(require,module,exports) {
 var define;
 var global = arguments[3];
 /*!
@@ -16941,6 +16961,8 @@ var __importDefault = this && this.__importDefault || function (mod) {
   };
 };
 
+var _this = this;
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -16959,18 +16981,7 @@ var hud_1 = __importDefault(require("./hud"));
 
 var help_1 = __importDefault(require("./help"));
 
-var dilemmas;
 var currentDilemma = 0;
-mithril_1.default.request({
-  method: "GET",
-  url: "http://localhost:3030/api/scenarios/view",
-  params: {
-    props: "dilemmas"
-  },
-  body: {}
-}).then(function (result) {
-  dilemmas = result[0].dilemmas;
-});
 var MODULE1 = {
   view: function view() {
     var interactionArea = mithril_1.default('div', [mithril_1.default('div')]);
@@ -16987,13 +16998,15 @@ var displayArea = {
     }, [global_1.default.showHelp ? mithril_1.default(help_1.default, {
       title: "Title",
       desc: ["Lorem Ipsum et dono", "This is the second page", "this is the final page"]
-    }) : mithril_1.default('div', {
+    }) : global_1.default.dilemmas.length >= currentDilemma + 1 ? mithril_1.default('div', {
       class: "topic col s6 offset-s3"
     }, [mithril_1.default('h1', {
       class: "topicTitle"
-    }, dilemmas ? dilemmas[currentDilemma].title : "loading..."), mithril_1.default('p', {
+    }, global_1.default.dilemmas ? global_1.default.dilemmas[currentDilemma].title : "loading..."), mithril_1.default('p', {
       class: "topicText"
-    }, dilemmas ? dilemmas[currentDilemma].description : "loading...")])]);
+    }, global_1.default.dilemmas ? global_1.default.dilemmas[currentDilemma].description : "loading...")]) : mithril_1.default('p', {
+      class: "col s6 offset-s3"
+    }, "[ insert big green animated checkmark to show the user he is done ]")]);
   }
 };
 var controlAreaSolo = {
@@ -17005,14 +17018,27 @@ var controlAreaSolo = {
     }), mithril_1.default('div', {
       id: "trashMod1Cont"
     }, [mithril_1.default(mithril_materialized_1.Button, {
-      id: "trashMod1Button"
+      id: "trashMod1Button",
+      onclick: accept.bind(_this, false)
     })]), mithril_1.default('div', {
       id: "personMod1Cont"
     }, [mithril_1.default(mithril_materialized_1.Button, {
-      id: "personMod1Button"
+      id: "personMod1Button",
+      onclick: accept.bind(_this, true)
     })])]);
   }
 };
+
+function accept(choice) {
+  if (!global_1.default.showHelp) {
+    global_1.default.dilemmas[currentDilemma]["accepted"] = choice;
+
+    if (global_1.default.dilemmas.length >= currentDilemma + 1) {
+      currentDilemma += 1;
+    }
+  }
+}
+
 exports.default = MODULE1;
 },{"mithril":"node_modules/mithril/index.js","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","./global":"src/global.ts","mithril-materialized":"node_modules/mithril-materialized/dist/index.esm.js","./hud":"src/hud.ts","./help":"src/help.ts"}],"src/module2.ts":[function(require,module,exports) {
 "use strict";
@@ -17198,7 +17224,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59314" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60597" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
