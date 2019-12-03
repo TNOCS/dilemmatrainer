@@ -2312,7 +2312,9 @@ var mithril_1 = __importDefault(require("mithril"));
 
 var state = {
   showHelp: true,
-  dilemmas: []
+  dilemmas: [],
+  currentDilemma: 0,
+  acceptDilemma: acceptDilemma
 };
 mithril_1.default.request({
   method: "GET",
@@ -2324,6 +2326,17 @@ mithril_1.default.request({
 }).then(function (result) {
   state.dilemmas = result[0].dilemmas;
 });
+
+function acceptDilemma(choice) {
+  if (!state.showHelp) {
+    state.dilemmas[state.currentDilemma]["accepted"] = choice;
+
+    if (state.dilemmas.length >= state.currentDilemma + 1) {
+      state.currentDilemma += 1;
+    }
+  }
+}
+
 exports.default = state;
 },{"mithril":"node_modules/mithril/index.js"}],"node_modules/materialize-css/dist/js/materialize.js":[function(require,module,exports) {
 var define;
@@ -16838,7 +16851,7 @@ var mithril_materialized_1 = require("mithril-materialized");
 var global_1 = __importDefault(require("./global"));
 
 var hud = {
-  view: function view() {
+  view: function view(vnode) {
     return mithril_1.default('div', {
       class: "row",
       id: "hud"
@@ -16846,7 +16859,10 @@ var hud = {
       class: "col offset-s1 s1"
     }, [mithril_1.default(mithril_materialized_1.Button, {
       label: 'BACK',
-      style: 'background-color: #4E77A0;'
+      style: 'background-color: #4E77A0;',
+      onclick: function onclick() {
+        back;
+      }
     })]), mithril_1.default('div', {
       class: "col s1"
     }, [mithril_1.default(mithril_materialized_1.Button, {
@@ -16860,10 +16876,18 @@ var hud = {
       class: "col offset-s7  s1"
     }, [mithril_1.default(mithril_materialized_1.Button, {
       label: 'DONE',
+      href: vnode.attrs.done,
       style: 'background-color: #4E77A0;'
     })])]);
   }
 };
+
+function back() {
+  if (global_1.default.currentDilemma != 0) {
+    global_1.default.currentDilemma -= 1;
+  }
+}
+
 exports.default = hud;
 },{"mithril":"node_modules/mithril/index.js","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","mithril-materialized":"node_modules/mithril-materialized/dist/index.esm.js","./global":"src/global.ts"}],"src/help.ts":[function(require,module,exports) {
 "use strict";
@@ -16915,7 +16939,9 @@ var help = {
       }, "PREVIOUS"), mithril_1.default('a', {
         href: "#!/hello",
         style: "color:#4E77A0; float:right;",
-        onclick: function onclick() {
+        onclick: function onclick(e) {
+          e.preventDefault();
+          currentPage = 0;
           global_1.default.showHelp = false;
         }
       }, "START")];
@@ -16928,7 +16954,7 @@ var help = {
       helpCard = mithril_1.default('div', {
         class: "row col offset-s4 s4",
         id: "help"
-      }, [mithril_1.default('div', {
+      }, mithril_1.default('div', {
         class: "card"
       }, [mithril_1.default('div', {
         class: "card-content"
@@ -16936,18 +16962,20 @@ var help = {
         class: "card-title"
       }, vnode.attrs.title), mithril_1.default('p', currentPageText)]), mithril_1.default('div', {
         class: "card-action"
-      }, cardActions)])]);
+      }, cardActions)]));
     }
 
     return helpCard;
   }
 };
 
-function nextPage() {
+function nextPage(e) {
+  e.preventDefault();
   currentPage += 1;
 }
 
-function prevPage() {
+function prevPage(e) {
+  e.preventDefault();
   currentPage -= 1;
 }
 
@@ -16981,13 +17009,14 @@ var hud_1 = __importDefault(require("./hud"));
 
 var help_1 = __importDefault(require("./help"));
 
-var currentDilemma = 0;
 var MODULE1 = {
   view: function view() {
     var interactionArea = mithril_1.default('div', [mithril_1.default('div')]);
     return mithril_1.default('div', {
       class: "container"
-    }, [mithril_1.default(displayArea), mithril_1.default(controlAreaSolo), mithril_1.default(hud_1.default)]);
+    }, [mithril_1.default(displayArea), mithril_1.default(controlAreaSolo), mithril_1.default(hud_1.default, {
+      done: "#!/module2"
+    })]);
   }
 };
 var displayArea = {
@@ -16998,15 +17027,15 @@ var displayArea = {
     }, [global_1.default.showHelp ? mithril_1.default(help_1.default, {
       title: "Title",
       desc: ["Lorem Ipsum et dono", "This is the second page", "this is the final page"]
-    }) : global_1.default.dilemmas.length >= currentDilemma + 1 ? mithril_1.default('div', {
+    }) : global_1.default.dilemmas.length >= global_1.default.currentDilemma + 1 ? mithril_1.default('div', {
       class: "topic col s6 offset-s3"
     }, [mithril_1.default('h1', {
       class: "topicTitle"
-    }, global_1.default.dilemmas ? global_1.default.dilemmas[currentDilemma].title : "loading..."), mithril_1.default('p', {
+    }, global_1.default.dilemmas ? global_1.default.dilemmas[global_1.default.currentDilemma].title : "loading..."), mithril_1.default('p', {
       class: "topicText"
-    }, global_1.default.dilemmas ? global_1.default.dilemmas[currentDilemma].description : "loading...")]) : mithril_1.default('p', {
+    }, global_1.default.dilemmas ? global_1.default.dilemmas[global_1.default.currentDilemma].description : "loading...")]) : mithril_1.default('p', {
       class: "col s6 offset-s3"
-    }, "[ insert big green animated checkmark to show the user he is done ]")]);
+    }, "[ insert big purple animated checkmark to show the user is done ]")]);
   }
 };
 var controlAreaSolo = {
@@ -17019,26 +17048,15 @@ var controlAreaSolo = {
       id: "trashMod1Cont"
     }, [mithril_1.default(mithril_materialized_1.Button, {
       id: "trashMod1Button",
-      onclick: accept.bind(_this, false)
+      onclick: global_1.default.acceptDilemma.bind(_this, false)
     })]), mithril_1.default('div', {
       id: "personMod1Cont"
     }, [mithril_1.default(mithril_materialized_1.Button, {
       id: "personMod1Button",
-      onclick: accept.bind(_this, true)
+      onclick: global_1.default.acceptDilemma.bind(_this, true)
     })])]);
   }
 };
-
-function accept(choice) {
-  if (!global_1.default.showHelp) {
-    global_1.default.dilemmas[currentDilemma]["accepted"] = choice;
-
-    if (global_1.default.dilemmas.length >= currentDilemma + 1) {
-      currentDilemma += 1;
-    }
-  }
-}
-
 exports.default = MODULE1;
 },{"mithril":"node_modules/mithril/index.js","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","./global":"src/global.ts","mithril-materialized":"node_modules/mithril-materialized/dist/index.esm.js","./hud":"src/hud.ts","./help":"src/help.ts"}],"src/module2.ts":[function(require,module,exports) {
 "use strict";
@@ -17049,6 +17067,8 @@ var __importDefault = this && this.__importDefault || function (mod) {
   };
 };
 
+var _this = this;
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -17058,6 +17078,8 @@ var mithril_1 = __importDefault(require("mithril"));
 require("materialize-css/dist/css/materialize.min.css");
 
 require("material-icons/iconfont/material-icons.css");
+
+var global_1 = __importDefault(require("./global"));
 
 var mithril_materialized_1 = require("mithril-materialized");
 
@@ -17152,11 +17174,16 @@ var controlArea = {
       label: "NEXT",
       class: "col offset-s1 s6",
       id: "nextDilemmaButton"
+    })]), mithril_1.default('div', {
+      id: "trashMod2Cont"
+    }, [mithril_1.default(mithril_materialized_1.Button, {
+      id: "trashMod1Button",
+      onclick: global_1.default.acceptDilemma.bind(_this, false)
     })])])]);
   }
 };
 exports.default = MODULE2;
-},{"mithril":"node_modules/mithril/index.js","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","mithril-materialized":"node_modules/mithril-materialized/dist/index.esm.js","./hud":"src/hud.ts"}],"src/router.ts":[function(require,module,exports) {
+},{"mithril":"node_modules/mithril/index.js","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","./global":"src/global.ts","mithril-materialized":"node_modules/mithril-materialized/dist/index.esm.js","./hud":"src/hud.ts"}],"src/router.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {

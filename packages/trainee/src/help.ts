@@ -26,7 +26,7 @@ const help = {
         else{
             var cardActions = [
                 m('a', {href: "#!/hello", style: "color:#4E77A0; visibility:" + visP + ";",  onclick: prevPage}, "PREVIOUS"),
-                m('a', {href: "#!/hello", style: "color:#4E77A0; float:right;",  onclick:()=>{state.showHelp = false}}, "START")
+                m('a', {href: "#!/hello", style: "color:#4E77A0; float:right;",  onclick:(e)=>{e.preventDefault();currentPage = 0; state.showHelp = false}}, "START")
             ]
         }
 
@@ -35,7 +35,7 @@ const help = {
             currentPage = 0;
         }
         else{
-            helpCard = m('div', {class: "row col offset-s4 s4", id:"help"}, [
+            helpCard = m('div', {class: "row col offset-s4 s4", id:"help"}, 
                 m('div', {class: "card"}, [
                     m('div', {class: "card-content"}, [
                         m('h6', {class: "card-title"}, vnode.attrs.title),
@@ -43,17 +43,20 @@ const help = {
                     ]),
                     m('div', {class: "card-action"}, cardActions) 
                 ])
+            )
         }
 
         return helpCard;
     } 
 }
 
-function nextPage(){
+function nextPage(e){
+    e.preventDefault()
     currentPage += 1;
 }
 
-function prevPage(){
+function prevPage(e){
+    e.preventDefault()
     currentPage -= 1;
 }
 

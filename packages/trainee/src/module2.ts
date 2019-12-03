@@ -1,6 +1,7 @@
 import m from 'mithril';
 import 'materialize-css/dist/css/materialize.min.css';
 import 'material-icons/iconfont/material-icons.css';
+import state from './global';
 
 import { Button } from 'mithril-materialized';
 import hud from './hud';
@@ -18,6 +19,7 @@ var controlArea = {
     view: () => {
         return m('div', {id:"controlAreaBG2"},[
             m('div', {id:"controlAreaTop2"}),
+            
             m('div', {class:"row", id:"controlArea"}, [
                 m('div', {class: "currentDilemma col offset-s1 s3"}, [m("p", {class: "dilemmaText"},"communicatie naar bevolking media")]),
                 m('div', {class: "propertySelection col s5"},[
@@ -45,10 +47,14 @@ var controlArea = {
                     ]),
                     m('div', {class: "row"},[]),
                 ]),
-                m('div', {id: "nextDilemmaCont", class: "col s2"}, [m(Button, {label:"NEXT", class:"col offset-s1 s6", id:"nextDilemmaButton"})])
+                
+                m('div', {id: "nextDilemmaCont", class: "col s2"}, [m(Button, {label:"NEXT", class:"col offset-s1 s6", id:"nextDilemmaButton"})]),
+            
+                m('div', {id:"trashMod2Cont"}, [ m(Button, {id:"trashMod1Button", onclick:state.acceptDilemma.bind(this,false)})]),
             ]),
         ])
     }  
 }
+
 
 export default MODULE2;

@@ -7,8 +7,6 @@ import { Button } from 'mithril-materialized';
 import hud from './hud';
 import help from './help';
 
-var currentDilemma = 0
-
 const MODULE1 = {
     view: () => {
         //lock action during help
@@ -19,7 +17,7 @@ const MODULE1 = {
         return m('div', {class: "container"},  [
             m(displayArea),
             m(controlAreaSolo),
-            m(hud)
+            m(hud, {done: "#!/module2"})
         ]);
     }
 }
@@ -30,13 +28,13 @@ const displayArea = {
             state.showHelp ? 
                 m(help, {title:"Title", desc: ["Lorem Ipsum et dono", "This is the second page", "this is the final page"]})
             :
-                state.dilemmas.length >= (currentDilemma + 1) ? 
+                state.dilemmas.length >= (state.currentDilemma + 1) ? 
                     m('div', {class: "topic col s6 offset-s3"}, [
-                        m('h1', {class: "topicTitle"} ,state.dilemmas ? state.dilemmas[currentDilemma].title : "loading..."),
-                        m('p', {class: "topicText"} ,state.dilemmas ? state.dilemmas[currentDilemma].description : "loading...")
+                        m('h1', {class: "topicTitle"} ,state.dilemmas ? state.dilemmas[state.currentDilemma].title : "loading..."),
+                        m('p', {class: "topicText"} ,state.dilemmas ? state.dilemmas[state.currentDilemma].description : "loading...")
                     ])
                 :
-                    m('p', {class: "col s6 offset-s3"}, "[ insert big green animated checkmark to show the user he is done ]")
+                    m('p', {class: "col s6 offset-s3"}, "[ insert big purple animated checkmark to show the user is done ]")
         ]);
     }  
 }
@@ -45,24 +43,11 @@ const controlAreaSolo = {
     view: () => {
         return m('div', {id:"controlAreaBG"},[
             m('div', {id:"controlAreaTop"}),
-            m('div', {id:"trashMod1Cont"}, [ m(Button, {id:"trashMod1Button", onclick:accept.bind(this,false)})]),
-            m('div', {id:"personMod1Cont"}, [ m(Button, {id:"personMod1Button", onclick:accept.bind(this,true)})]),
+            m('div', {id:"trashMod1Cont"}, [ m(Button, {id:"trashMod1Button", onclick:state.acceptDilemma.bind(this,false)})]),
+            m('div', {id:"personMod1Cont"}, [ m(Button, {id:"personMod1Button", onclick:state.acceptDilemma.bind(this,true)})]),
         ])
     }  
 }
-
-function accept(choice){
-    if (!state.showHelp){
-        state.dilemmas[currentDilemma]["accepted"] = choice;
-        if (state.dilemmas.length >= (currentDilemma + 1)){
-            currentDilemma +=1;
-        }
-    }
-    //check if we are on the last dilemma
-    //go to the next dillema if not
-    //show done if you are 
-}
-
 
 //score circle in the top right.
 
