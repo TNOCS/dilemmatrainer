@@ -6,7 +6,7 @@ import { Button } from 'mithril-materialized';
 import state from './global';
 
 var hud = {
-    view: (vnode) => {//visibility: hidden;
+    view: (vnode) => {
         return m('div', {class: "row", id:"hud"}, [
             state.currentDilemma != 0 ? 
                 m('div', {class: "col offset-s1 s1"}, [ m(Button, {label:'BACK', style:'background-color: #4E77A0;', onclick: back})]) 
@@ -19,10 +19,8 @@ var hud = {
 }
 
 function back(){
-    console.log(state.currentDilemma);
     if (state.currentDilemma != 0){
         state.currentDilemma -=1;
-        console.log(state.currentDilemma);
     }
 }
 

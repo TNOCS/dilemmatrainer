@@ -16886,11 +16886,8 @@ var hud = {
 };
 
 function back() {
-  console.log(global_1.default.currentDilemma);
-
   if (global_1.default.currentDilemma != 0) {
     global_1.default.currentDilemma -= 1;
-    console.log(global_1.default.currentDilemma);
   }
 }
 
@@ -17112,12 +17109,16 @@ var controlArea = {
     }, global_1.default.showHelp ? mithril_1.default(help_1.default, {
       title: "Title",
       desc: ["Lorem Ipsum et dono", "This is the second page", "this is the final page"]
-    }) : [mithril_1.default('div', {
-      class: "currentDilemma col offset-s1 s3"
-    }, [mithril_1.default("p", {
-      class: "dilemmaText"
-    }, "communicatie naar bevolking media")]), mithril_1.default('div', {
-      class: "propertySelection col offset-s1 s6"
+    }) : [global_1.default.dilemmas.length >= global_1.default.currentDilemma + 1 ? mithril_1.default('div', {
+      class: "pickedTopic col s4"
+    }, [mithril_1.default('h1', {
+      class: "topicTitle"
+    }, global_1.default.dilemmas ? global_1.default.dilemmas[global_1.default.currentDilemma].title : "loading..."), mithril_1.default('p', {
+      class: "topicText"
+    }, global_1.default.dilemmas ? global_1.default.dilemmas[global_1.default.currentDilemma].description : "loading...")]) : mithril_1.default('p', {
+      class: "col s4"
+    }, "done"), mithril_1.default('div', {
+      class: "propertySelection col s6"
     }, [mithril_1.default('div', {
       class: "row"
     }, [mithril_1.default('span', {

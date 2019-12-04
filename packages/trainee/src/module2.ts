@@ -25,8 +25,15 @@ var controlArea = {
             state.showHelp ? 
                 m(help, {title:"Title", desc: ["Lorem Ipsum et dono", "This is the second page", "this is the final page"]})
             :[
-                m('div', {class: "currentDilemma col offset-s1 s3"}, [m("p", {class: "dilemmaText"},"communicatie naar bevolking media")]),
-                m('div', {class: "propertySelection col offset-s1 s6"},[
+                state.dilemmas.length >= (state.currentDilemma + 1) ? 
+                    m('div', {class: "pickedTopic col s4"}, [
+                        m('h1', {class: "topicTitle"} ,state.dilemmas ? state.dilemmas[state.currentDilemma].title : "loading..."),
+                        m('p', {class: "topicText"} ,state.dilemmas ? state.dilemmas[state.currentDilemma].description : "loading...")
+                    ])
+                :
+                    m('p', {class: "col s4"}, "done"),
+
+                m('div', {class: "propertySelection col s6"},[
                     m('div', {class: "row"},[
                         m('span',{class: "col s4"}, 'TIME'),
                         m('span',{class: "col s4"}, 'INFORMATION'),
