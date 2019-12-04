@@ -34,7 +34,7 @@ const displayArea = {
                         m('p', {class: "topicText"} ,state.dilemmas ? state.dilemmas[state.currentDilemma].description : "loading...")
                     ])
                 :
-                    m('p', {class: "col s6 offset-s3"}, "[ insert big purple animated checkmark to show the user is done ]")
+                    m('p', {class: "col s6 offset-s3"}, "[ insert big animated checkmark to show the user is done ]")
         ]);
     }  
 }

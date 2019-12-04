@@ -3,9 +3,11 @@ import m from 'mithril';
 const state = {
     showHelp : true,
     dilemmas: [],
+    pickedDilemmas: [],
     currentDilemma: 0,
     acceptDilemma: acceptDilemma,
-    getPickedDilemmas : getPickedDilemmas
+    getPickedDilemmas : getPickedDilemmas,
+    rejectPickedDilemma : rejectPickedDilemma
 }
 
 m.request({
@@ -29,14 +31,20 @@ function acceptDilemma(choice){
 }
 
 function getPickedDilemmas(){
-    var picked = []
     state.dilemmas.forEach(topic => {
         if (topic.accepted){
-            picked.push(topic)
+            state.pickedDilemmas.push(topic)
         }
     });
+}
 
-    return picked
+function rejectPickedDilemma(){
+    if (!state.showHelp){
+        state.pickedDilemmas[state.currentDilemma]["accepted"] = false;
+        if (state.pickedDilemmas.length >= (state.currentDilemma + 1)){
+            state.currentDilemma +=1;
+        }
+    }
 }
 
 export default state;

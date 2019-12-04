@@ -2313,9 +2313,11 @@ var mithril_1 = __importDefault(require("mithril"));
 var state = {
   showHelp: true,
   dilemmas: [],
+  pickedDilemmas: [],
   currentDilemma: 0,
   acceptDilemma: acceptDilemma,
-  getPickedDilemmas: getPickedDilemmas
+  getPickedDilemmas: getPickedDilemmas,
+  rejectPickedDilemma: rejectPickedDilemma
 };
 mithril_1.default.request({
   method: "GET",
@@ -2339,13 +2341,21 @@ function acceptDilemma(choice) {
 }
 
 function getPickedDilemmas() {
-  var picked = [];
   state.dilemmas.forEach(function (topic) {
     if (topic.accepted) {
-      picked.push(topic);
+      state.pickedDilemmas.push(topic);
     }
   });
-  return picked;
+}
+
+function rejectPickedDilemma() {
+  if (!state.showHelp) {
+    state.pickedDilemmas[state.currentDilemma]["accepted"] = false;
+
+    if (state.pickedDilemmas.length >= state.currentDilemma + 1) {
+      state.currentDilemma += 1;
+    }
+  }
 }
 
 exports.default = state;
@@ -17049,7 +17059,7 @@ var displayArea = {
       class: "topicText"
     }, global_1.default.dilemmas ? global_1.default.dilemmas[global_1.default.currentDilemma].description : "loading...")]) : mithril_1.default('p', {
       class: "col s6 offset-s3"
-    }, "[ insert big purple animated checkmark to show the user is done ]")]);
+    }, "[ insert big animated checkmark to show the user is done ]")]);
   }
 };
 var controlAreaSolo = {
@@ -17081,8 +17091,6 @@ var __importDefault = this && this.__importDefault || function (mod) {
   };
 };
 
-var _this = this;
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -17104,6 +17112,7 @@ var help_1 = __importDefault(require("./help"));
 var MODULE2 = {
   oninit: function oninit() {
     global_1.default.currentDilemma = 0;
+    global_1.default.getPickedDilemmas();
   },
   view: function view() {
     return mithril_1.default('div', {
@@ -17113,7 +17122,7 @@ var MODULE2 = {
 };
 var controlArea = {
   view: function view() {
-    console.log(global_1.default.getPickedDilemmas().length);
+    console.log(global_1.default.pickedDilemmas.length);
     console.log(global_1.default.currentDilemma + 1);
     return mithril_1.default('div', {
       id: "controlAreaBG2"
@@ -17125,13 +17134,13 @@ var controlArea = {
     }, global_1.default.showHelp ? mithril_1.default(help_1.default, {
       title: "Title",
       desc: ["Lorem Ipsum et dono", "This is the second page", "this is the final page"]
-    }) : [global_1.default.getPickedDilemmas().length >= global_1.default.currentDilemma + 1 ? mithril_1.default('div', {
+    }) : [global_1.default.pickedDilemmas.length >= global_1.default.currentDilemma + 1 ? mithril_1.default('div', {
       class: "pickedTopic col s4"
     }, [mithril_1.default('h1', {
       class: "topicTitle"
-    }, global_1.default.getPickedDilemmas() ? global_1.default.getPickedDilemmas()[global_1.default.currentDilemma].title : "loading..."), mithril_1.default('p', {
+    }, global_1.default.pickedDilemmas ? global_1.default.pickedDilemmas[global_1.default.currentDilemma].title : "loading..."), mithril_1.default('p', {
       class: "topicText"
-    }, global_1.default.getPickedDilemmas() ? global_1.default.getPickedDilemmas()[global_1.default.currentDilemma].description : "loading...")]) : mithril_1.default('p', {
+    }, global_1.default.pickedDilemmas ? global_1.default.pickedDilemmas[global_1.default.currentDilemma].description : "loading...")]) : mithril_1.default('p', {
       class: "col s4"
     }, "done"), mithril_1.default('div', {
       class: "propertySelection col s6"
@@ -17191,7 +17200,7 @@ var controlArea = {
       id: "trashMod2Cont"
     }, [mithril_1.default(mithril_materialized_1.Button, {
       id: "trashMod1Button",
-      onclick: global_1.default.acceptDilemma.bind(_this, false)
+      onclick: global_1.default.rejectPickedDilemma
     })])])]);
   }
 };

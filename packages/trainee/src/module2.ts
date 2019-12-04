@@ -10,6 +10,7 @@ import help from './help';
 const MODULE2 = {
     oninit: () => {
         state.currentDilemma = 0;
+        state.getPickedDilemmas()
     },
     view: () => {
         return m('div', {class: "container"},  [
@@ -21,7 +22,7 @@ const MODULE2 = {
 
 var controlArea = {
     view: () => {
-        console.log(state.getPickedDilemmas().length);
+        console.log(state.pickedDilemmas.length);
         console.log(state.currentDilemma + 1);
         return m('div', {id:"controlAreaBG2"},[
             m('div', {id:"controlAreaTop2"}),
@@ -30,10 +31,10 @@ var controlArea = {
             state.showHelp ? 
                 m(help, {title:"Title", desc: ["Lorem Ipsum et dono", "This is the second page", "this is the final page"]})
             :[
-                state.getPickedDilemmas().length >= (state.currentDilemma + 1) ? 
+                state.pickedDilemmas.length >= (state.currentDilemma + 1) ? 
                     m('div', {class: "pickedTopic col s4"}, [
-                        m('h1', {class: "topicTitle"} , state.getPickedDilemmas() ? state.getPickedDilemmas()[state.currentDilemma].title : "loading..."),
-                        m('p', {class: "topicText"} , state.getPickedDilemmas() ? state.getPickedDilemmas()[state.currentDilemma].description : "loading...")
+                        m('h1', {class: "topicTitle"} , state.pickedDilemmas ? state.pickedDilemmas[state.currentDilemma].title : "loading..."),
+                        m('p', {class: "topicText"} , state.pickedDilemmas ? state.pickedDilemmas[state.currentDilemma].description : "loading...")
                     ])
                 :
                     m('p', {class: "col s4"}, "done"),
@@ -63,7 +64,7 @@ var controlArea = {
                     ]),
                 ]),
             
-                m('div', {id:"trashMod2Cont"}, [ m(Button, {id:"trashMod1Button", onclick:state.acceptDilemma.bind(this,false)})]),
+                m('div', {id:"trashMod2Cont"}, [ m(Button, {id:"trashMod1Button", onclick:state.rejectPickedDilemma})]), 
             ]),
         ])
     }  
