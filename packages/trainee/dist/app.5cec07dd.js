@@ -16855,14 +16855,17 @@ var hud = {
     return mithril_1.default('div', {
       class: "row",
       id: "hud"
-    }, [mithril_1.default('div', {
+    }, [global_1.default.currentDilemma != 0 ? mithril_1.default('div', {
       class: "col offset-s1 s1"
     }, [mithril_1.default(mithril_materialized_1.Button, {
       label: 'BACK',
       style: 'background-color: #4E77A0;',
-      onclick: function onclick() {
-        back;
-      }
+      onclick: back
+    })]) : mithril_1.default('div', {
+      class: "col offset-s1 s1"
+    }, [mithril_1.default(mithril_materialized_1.Button, {
+      label: 'BACK',
+      style: 'background-color: rgba(78, 119, 160, 0.733); box-shadow:none'
     })]), mithril_1.default('div', {
       class: "col s1"
     }, [mithril_1.default(mithril_materialized_1.Button, {
@@ -16883,8 +16886,11 @@ var hud = {
 };
 
 function back() {
+  console.log(global_1.default.currentDilemma);
+
   if (global_1.default.currentDilemma != 0) {
     global_1.default.currentDilemma -= 1;
+    console.log(global_1.default.currentDilemma);
   }
 }
 
@@ -17085,6 +17091,8 @@ var mithril_materialized_1 = require("mithril-materialized");
 
 var hud_1 = __importDefault(require("./hud"));
 
+var help_1 = __importDefault(require("./help"));
+
 var MODULE2 = {
   view: function view() {
     return mithril_1.default('div', {
@@ -17099,14 +17107,17 @@ var controlArea = {
     }, [mithril_1.default('div', {
       id: "controlAreaTop2"
     }), mithril_1.default('div', {
-      class: "row",
+      class: "row valign-wrapper",
       id: "controlArea"
-    }, [mithril_1.default('div', {
+    }, global_1.default.showHelp ? mithril_1.default(help_1.default, {
+      title: "Title",
+      desc: ["Lorem Ipsum et dono", "This is the second page", "this is the final page"]
+    }) : [mithril_1.default('div', {
       class: "currentDilemma col offset-s1 s3"
     }, [mithril_1.default("p", {
       class: "dilemmaText"
     }, "communicatie naar bevolking media")]), mithril_1.default('div', {
-      class: "propertySelection col s5"
+      class: "propertySelection col offset-s1 s6"
     }, [mithril_1.default('div', {
       class: "row"
     }, [mithril_1.default('span', {
@@ -17121,60 +17132,45 @@ var controlArea = {
       class: "col s4 propertyCol"
     }, [mithril_1.default('div', {
       class: "propertyButtonCont col s12"
-    }, [mithril_1.default(mithril_materialized_1.Button, {
+    }, mithril_1.default("button", {
       label: "+",
-      class: "propertyButtons col offset-s1 s10",
-      style: 'background-color: #7F7DBB;'
-    })]), mithril_1.default('hr', {
+      class: "propertyButtons col offset-s1 s10"
+    }, "+")), mithril_1.default('hr', {
       class: "propertyHr col s12"
     }), mithril_1.default('div', {
       class: "propertyButtonCont col s12"
-    }, [mithril_1.default(mithril_materialized_1.Button, {
+    }, mithril_1.default("button", {
       label: "-",
-      class: "propertyButtons col offset-s1 s10",
-      style: 'background-color: #7F7DBB;'
-    })])]), mithril_1.default('div', {
+      class: "propertyButtons col offset-s1 s10"
+    }, "-"))]), mithril_1.default('div', {
       class: "col s4 propertyCol"
     }, [mithril_1.default('div', {
       class: "propertyButtonCont col s12"
-    }, [mithril_1.default(mithril_materialized_1.Button, {
+    }, mithril_1.default("button", {
       label: "+",
-      class: "propertyButtons col offset-s1 s10",
-      style: 'background-color: #7F7DBB;'
-    })]), mithril_1.default('hr', {
+      class: "propertyButtons col offset-s1 s10"
+    }, "+")), mithril_1.default('hr', {
       class: "propertyHr col s12"
     }), mithril_1.default('div', {
       class: "propertyButtonCont col s12"
-    }, [mithril_1.default(mithril_materialized_1.Button, {
+    }, mithril_1.default("button", {
       label: "-",
-      class: "propertyButtons col offset-s1 s10",
-      style: 'background-color: #7F7DBB;'
-    })])]), mithril_1.default('div', {
+      class: "propertyButtons col offset-s1 s10"
+    }, "-"))]), mithril_1.default('div', {
       class: "col s4 propertyCol"
     }, [mithril_1.default('div', {
       class: "propertyButtonCont col s12"
-    }, [mithril_1.default(mithril_materialized_1.Button, {
+    }, mithril_1.default("button", {
       label: "+",
-      class: "propertyButtons col offset-s1 s10",
-      style: 'background-color: #7F7DBB;'
-    })]), mithril_1.default('hr', {
+      class: "propertyButtons col offset-s1 s10"
+    }, "+")), mithril_1.default('hr', {
       class: "propertyHr col s12"
     }), mithril_1.default('div', {
       class: "propertyButtonCont col s12"
-    }, [mithril_1.default(mithril_materialized_1.Button, {
+    }, mithril_1.default("button", {
       label: "-",
-      class: "propertyButtons col offset-s1 s10",
-      style: 'background-color: #7F7DBB;'
-    })])])]), mithril_1.default('div', {
-      class: "row"
-    }, [])]), mithril_1.default('div', {
-      id: "nextDilemmaCont",
-      class: "col s2"
-    }, [mithril_1.default(mithril_materialized_1.Button, {
-      label: "NEXT",
-      class: "col offset-s1 s6",
-      id: "nextDilemmaButton"
-    })]), mithril_1.default('div', {
+      class: "propertyButtons col offset-s1 s10"
+    }, "-"))])])]), mithril_1.default('div', {
       id: "trashMod2Cont"
     }, [mithril_1.default(mithril_materialized_1.Button, {
       id: "trashMod1Button",
@@ -17183,7 +17179,7 @@ var controlArea = {
   }
 };
 exports.default = MODULE2;
-},{"mithril":"node_modules/mithril/index.js","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","./global":"src/global.ts","mithril-materialized":"node_modules/mithril-materialized/dist/index.esm.js","./hud":"src/hud.ts"}],"src/router.ts":[function(require,module,exports) {
+},{"mithril":"node_modules/mithril/index.js","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","./global":"src/global.ts","mithril-materialized":"node_modules/mithril-materialized/dist/index.esm.js","./hud":"src/hud.ts","./help":"src/help.ts"}],"src/router.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -17251,7 +17247,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60597" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51538" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
