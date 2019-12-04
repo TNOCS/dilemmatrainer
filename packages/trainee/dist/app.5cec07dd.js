@@ -2315,7 +2315,6 @@ var state = {
   dilemmas: [],
   pickedDilemmas: [],
   currentDilemma: 0,
-  acceptDilemma: acceptDilemma,
   getPickedDilemmas: getPickedDilemmas,
   rejectPickedDilemma: rejectPickedDilemma
 };
@@ -2329,16 +2328,6 @@ mithril_1.default.request({
 }).then(function (result) {
   state.dilemmas = result[0].dilemmas;
 });
-
-function acceptDilemma(choice) {
-  if (!state.showHelp) {
-    state.dilemmas[state.currentDilemma]["accepted"] = choice;
-
-    if (state.dilemmas.length >= state.currentDilemma + 1) {
-      state.currentDilemma += 1;
-    }
-  }
-}
 
 function getPickedDilemmas() {
   state.dilemmas.forEach(function (topic) {
@@ -17072,15 +17061,26 @@ var controlAreaSolo = {
       id: "trashMod1Cont"
     }, [mithril_1.default(mithril_materialized_1.Button, {
       id: "trashMod1Button",
-      onclick: global_1.default.acceptDilemma.bind(_this, false)
+      onclick: acceptDilemma.bind(_this, false)
     })]), mithril_1.default('div', {
       id: "personMod1Cont"
     }, [mithril_1.default(mithril_materialized_1.Button, {
       id: "personMod1Button",
-      onclick: global_1.default.acceptDilemma.bind(_this, true)
+      onclick: acceptDilemma.bind(_this, true)
     })])]);
   }
 };
+
+function acceptDilemma(choice) {
+  if (!global_1.default.showHelp) {
+    global_1.default.dilemmas[global_1.default.currentDilemma]["accepted"] = choice;
+
+    if (global_1.default.dilemmas.length >= global_1.default.currentDilemma + 1) {
+      global_1.default.currentDilemma += 1;
+    }
+  }
+}
+
 exports.default = MODULE1;
 },{"mithril":"node_modules/mithril/index.js","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","./global":"src/global.ts","mithril-materialized":"node_modules/mithril-materialized/dist/index.esm.js","./hud":"src/hud.ts","./help":"src/help.ts"}],"src/module2.ts":[function(require,module,exports) {
 "use strict";
@@ -17090,6 +17090,8 @@ var __importDefault = this && this.__importDefault || function (mod) {
     "default": mod
   };
 };
+
+var _this = this;
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -17109,6 +17111,8 @@ var hud_1 = __importDefault(require("./hud"));
 
 var help_1 = __importDefault(require("./help"));
 
+var propertyButtons = [false, false, false];
+var properties = [false, false, false];
 var MODULE2 = {
   oninit: function oninit() {
     global_1.default.currentDilemma = 0;
@@ -17122,8 +17126,6 @@ var MODULE2 = {
 };
 var controlArea = {
   view: function view() {
-    console.log(global_1.default.pickedDilemmas.length);
-    console.log(global_1.default.currentDilemma + 1);
     return mithril_1.default('div', {
       id: "controlAreaBG2"
     }, [mithril_1.default('div', {
@@ -17160,42 +17162,48 @@ var controlArea = {
       class: "propertyButtonCont col s12"
     }, mithril_1.default("button", {
       label: "+",
-      class: "propertyButtons col offset-s1 s10"
+      class: "propertyButtons col offset-s1 s10",
+      onclick: propertyAdd.bind(_this, 0, true)
     }, "+")), mithril_1.default('hr', {
       class: "propertyHr col s12"
     }), mithril_1.default('div', {
       class: "propertyButtonCont col s12"
     }, mithril_1.default("button", {
       label: "-",
-      class: "propertyButtons col offset-s1 s10"
+      class: "propertyButtons col offset-s1 s10",
+      onclick: propertyAdd.bind(_this, 0, false)
     }, "-"))]), mithril_1.default('div', {
       class: "col s4 propertyCol"
     }, [mithril_1.default('div', {
       class: "propertyButtonCont col s12"
     }, mithril_1.default("button", {
       label: "+",
-      class: "propertyButtons col offset-s1 s10"
+      class: "propertyButtons col offset-s1 s10",
+      onclick: propertyAdd.bind(_this, 1, true)
     }, "+")), mithril_1.default('hr', {
       class: "propertyHr col s12"
     }), mithril_1.default('div', {
       class: "propertyButtonCont col s12"
     }, mithril_1.default("button", {
       label: "-",
-      class: "propertyButtons col offset-s1 s10"
+      class: "propertyButtons col offset-s1 s10",
+      onclick: propertyAdd.bind(_this, 1, false)
     }, "-"))]), mithril_1.default('div', {
       class: "col s4 propertyCol"
     }, [mithril_1.default('div', {
       class: "propertyButtonCont col s12"
     }, mithril_1.default("button", {
       label: "+",
-      class: "propertyButtons col offset-s1 s10"
+      class: "propertyButtons col offset-s1 s10",
+      onclick: propertyAdd.bind(_this, 2, true)
     }, "+")), mithril_1.default('hr', {
       class: "propertyHr col s12"
     }), mithril_1.default('div', {
       class: "propertyButtonCont col s12"
     }, mithril_1.default("button", {
       label: "-",
-      class: "propertyButtons col offset-s1 s10"
+      class: "propertyButtons col offset-s1 s10",
+      onclick: propertyAdd.bind(_this, 2, false)
     }, "-"))])])]), mithril_1.default('div', {
       id: "trashMod2Cont"
     }, [mithril_1.default(mithril_materialized_1.Button, {
@@ -17204,6 +17212,22 @@ var controlArea = {
     })])])]);
   }
 };
+
+function propertyAdd(pressed, value) {
+  propertyButtons[pressed] = true;
+  properties[pressed] = value;
+
+  if (JSON.stringify(propertyButtons) == JSON.stringify([true, true, true])) {
+    global_1.default.pickedDilemmas[global_1.default.currentDilemma]["time"] = properties[0];
+    global_1.default.pickedDilemmas[global_1.default.currentDilemma]["info"] = properties[1];
+    global_1.default.pickedDilemmas[global_1.default.currentDilemma]["accordance"] = properties[2];
+    propertyButtons = [false, false, false];
+    console.log(global_1.default.pickedDilemmas[global_1.default.currentDilemma]);
+    global_1.default.currentDilemma += 1;
+    console.log(global_1.default.pickedDilemmas[global_1.default.currentDilemma]);
+  }
+}
+
 exports.default = MODULE2;
 },{"mithril":"node_modules/mithril/index.js","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","./global":"src/global.ts","mithril-materialized":"node_modules/mithril-materialized/dist/index.esm.js","./hud":"src/hud.ts","./help":"src/help.ts"}],"src/router.ts":[function(require,module,exports) {
 "use strict";

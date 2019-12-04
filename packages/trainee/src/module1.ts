@@ -43,10 +43,20 @@ const controlAreaSolo = {
     view: () => {
         return m('div', {id:"controlAreaBG"},[
             m('div', {id:"controlAreaTop"}),
-            m('div', {id:"trashMod1Cont"}, [ m(Button, {id:"trashMod1Button", onclick:state.acceptDilemma.bind(this,false)})]),
-            m('div', {id:"personMod1Cont"}, [ m(Button, {id:"personMod1Button", onclick:state.acceptDilemma.bind(this,true)})]),
+            m('div', {id:"trashMod1Cont"}, [ m(Button, {id:"trashMod1Button", onclick:acceptDilemma.bind(this,false)})]),
+            m('div', {id:"personMod1Cont"}, [ m(Button, {id:"personMod1Button", onclick:acceptDilemma.bind(this,true)})]),
         ])
     }  
+}
+
+
+function acceptDilemma(choice){
+    if (!state.showHelp){
+        state.dilemmas[state.currentDilemma]["accepted"] = choice;
+        if (state.dilemmas.length >= (state.currentDilemma + 1)){
+            state.currentDilemma +=1;
+        }
+    }
 }
 
 //score circle in the top right.

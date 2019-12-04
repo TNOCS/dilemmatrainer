@@ -5,7 +5,6 @@ const state = {
     dilemmas: [],
     pickedDilemmas: [],
     currentDilemma: 0,
-    acceptDilemma: acceptDilemma,
     getPickedDilemmas : getPickedDilemmas,
     rejectPickedDilemma : rejectPickedDilemma
 }
@@ -19,16 +18,6 @@ m.request({
 .then(function(result) {
     state.dilemmas = result[0].dilemmas
 })
-
-
-function acceptDilemma(choice){
-    if (!state.showHelp){
-        state.dilemmas[state.currentDilemma]["accepted"] = choice;
-        if (state.dilemmas.length >= (state.currentDilemma + 1)){
-            state.currentDilemma +=1;
-        }
-    }
-}
 
 function getPickedDilemmas(){
     state.dilemmas.forEach(topic => {

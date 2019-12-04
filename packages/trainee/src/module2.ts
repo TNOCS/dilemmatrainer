@@ -7,6 +7,9 @@ import { Button } from 'mithril-materialized';
 import hud from './hud';
 import help from './help';
 
+var propertyButtons:Array<boolean> = [false,false,false]
+var properties:Array<boolean> = [false,false,false]
+
 const MODULE2 = {
     oninit: () => {
         state.currentDilemma = 0;
@@ -22,8 +25,6 @@ const MODULE2 = {
 
 var controlArea = {
     view: () => {
-        console.log(state.pickedDilemmas.length);
-        console.log(state.currentDilemma + 1);
         return m('div', {id:"controlAreaBG2"},[
             m('div', {id:"controlAreaTop2"}),
             
@@ -47,19 +48,19 @@ var controlArea = {
                     ]),
                     m('div', {class: "row"},[
                         m('div',{class: "col s4 propertyCol"}, [
-                            m('div', {class:"propertyButtonCont col s12"}, m("button", {label:"+", class:"propertyButtons col offset-s1 s10"}, "+")),
+                            m('div', {class:"propertyButtonCont col s12"}, m("button", {label:"+", class:"propertyButtons col offset-s1 s10", onclick:propertyAdd.bind(this,0,true)}, "+")),
                             m('hr', {class: "propertyHr col s12"}),
-                            m('div', {class:"propertyButtonCont col s12"}, m("button", {label:"-", class:"propertyButtons col offset-s1 s10"}, "-")),
+                            m('div', {class:"propertyButtonCont col s12"}, m("button", {label:"-", class:"propertyButtons col offset-s1 s10", onclick:propertyAdd.bind(this,0,false)}, "-")),
                         ]),
                         m('div',{class: "col s4 propertyCol"}, [
-                            m('div', {class:"propertyButtonCont col s12"}, m("button", {label:"+", class:"propertyButtons col offset-s1 s10"}, "+")),
+                            m('div', {class:"propertyButtonCont col s12"}, m("button", {label:"+", class:"propertyButtons col offset-s1 s10", onclick:propertyAdd.bind(this,1,true)}, "+")),
                             m('hr', {class: "propertyHr col s12"}),
-                            m('div', {class:"propertyButtonCont col s12"}, m("button", {label:"-", class:"propertyButtons col offset-s1 s10"}, "-")),
+                            m('div', {class:"propertyButtonCont col s12"}, m("button", {label:"-", class:"propertyButtons col offset-s1 s10", onclick:propertyAdd.bind(this,1,false)}, "-")),
                         ]),
                         m('div',{class: "col s4 propertyCol"}, [
-                            m('div', {class:"propertyButtonCont col s12"}, m("button", {label:"+", class:"propertyButtons col offset-s1 s10"}, "+")),
+                            m('div', {class:"propertyButtonCont col s12"}, m("button", {label:"+", class:"propertyButtons col offset-s1 s10", onclick:propertyAdd.bind(this,2,true)}, "+")),
                             m('hr', {class: "propertyHr col s12"}),
-                            m('div', {class:"propertyButtonCont col s12"}, m("button", {label:"-", class:"propertyButtons col offset-s1 s10"}, "-")),
+                            m('div', {class:"propertyButtonCont col s12"}, m("button", {label:"-", class:"propertyButtons col offset-s1 s10", onclick:propertyAdd.bind(this,2,false)}, "-")),
                         ]),
                     ]),
                 ]),
@@ -70,5 +71,21 @@ var controlArea = {
     }  
 }
 
+function propertyAdd(pressed, value){
+    
+    propertyButtons[pressed] = true;
+    properties[pressed] = value
+    if (JSON.stringify(propertyButtons) == JSON.stringify([true,true,true])){
+        state.pickedDilemmas[state.currentDilemma]["time"] = properties[0];
+        state.pickedDilemmas[state.currentDilemma]["info"] = properties[1];
+        state.pickedDilemmas[state.currentDilemma]["accordance"] = properties[2];
+
+        propertyButtons = [false, false, false];
+        console.log(state.pickedDilemmas[state.currentDilemma])
+        state.currentDilemma += 1;
+
+        console.log(state.pickedDilemmas[state.currentDilemma])
+    }
+}
 
 export default MODULE2;
