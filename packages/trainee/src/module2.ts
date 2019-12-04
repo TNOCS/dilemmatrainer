@@ -8,6 +8,9 @@ import hud from './hud';
 import help from './help';
 
 const MODULE2 = {
+    oninit: () => {
+        state.currentDilemma = 0;
+    },
     view: () => {
         return m('div', {class: "container"},  [
             m(controlArea),
@@ -18,6 +21,8 @@ const MODULE2 = {
 
 var controlArea = {
     view: () => {
+        console.log(state.getPickedDilemmas().length);
+        console.log(state.currentDilemma + 1);
         return m('div', {id:"controlAreaBG2"},[
             m('div', {id:"controlAreaTop2"}),
             
@@ -25,10 +30,10 @@ var controlArea = {
             state.showHelp ? 
                 m(help, {title:"Title", desc: ["Lorem Ipsum et dono", "This is the second page", "this is the final page"]})
             :[
-                state.dilemmas.length >= (state.currentDilemma + 1) ? 
+                state.getPickedDilemmas().length >= (state.currentDilemma + 1) ? 
                     m('div', {class: "pickedTopic col s4"}, [
-                        m('h1', {class: "topicTitle"} ,state.dilemmas ? state.dilemmas[state.currentDilemma].title : "loading..."),
-                        m('p', {class: "topicText"} ,state.dilemmas ? state.dilemmas[state.currentDilemma].description : "loading...")
+                        m('h1', {class: "topicTitle"} , state.getPickedDilemmas() ? state.getPickedDilemmas()[state.currentDilemma].title : "loading..."),
+                        m('p', {class: "topicText"} , state.getPickedDilemmas() ? state.getPickedDilemmas()[state.currentDilemma].description : "loading...")
                     ])
                 :
                     m('p', {class: "col s4"}, "done"),

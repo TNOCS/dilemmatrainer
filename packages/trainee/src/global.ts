@@ -4,7 +4,8 @@ const state = {
     showHelp : true,
     dilemmas: [],
     currentDilemma: 0,
-    acceptDilemma: acceptDilemma
+    acceptDilemma: acceptDilemma,
+    getPickedDilemmas : getPickedDilemmas
 }
 
 m.request({
@@ -25,9 +26,17 @@ function acceptDilemma(choice){
             state.currentDilemma +=1;
         }
     }
-    //check if we are on the last dilemma
-    //go to the next dillema if not
-    //show done if you are 
+}
+
+function getPickedDilemmas(){
+    var picked = []
+    state.dilemmas.forEach(topic => {
+        if (topic.accepted){
+            picked.push(topic)
+        }
+    });
+
+    return picked
 }
 
 export default state;

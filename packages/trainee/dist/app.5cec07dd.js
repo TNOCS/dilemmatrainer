@@ -2314,7 +2314,8 @@ var state = {
   showHelp: true,
   dilemmas: [],
   currentDilemma: 0,
-  acceptDilemma: acceptDilemma
+  acceptDilemma: acceptDilemma,
+  getPickedDilemmas: getPickedDilemmas
 };
 mithril_1.default.request({
   method: "GET",
@@ -2335,6 +2336,16 @@ function acceptDilemma(choice) {
       state.currentDilemma += 1;
     }
   }
+}
+
+function getPickedDilemmas() {
+  var picked = [];
+  state.dilemmas.forEach(function (topic) {
+    if (topic.accepted) {
+      picked.push(topic);
+    }
+  });
+  return picked;
 }
 
 exports.default = state;
@@ -17091,6 +17102,9 @@ var hud_1 = __importDefault(require("./hud"));
 var help_1 = __importDefault(require("./help"));
 
 var MODULE2 = {
+  oninit: function oninit() {
+    global_1.default.currentDilemma = 0;
+  },
   view: function view() {
     return mithril_1.default('div', {
       class: "container"
@@ -17099,6 +17113,8 @@ var MODULE2 = {
 };
 var controlArea = {
   view: function view() {
+    console.log(global_1.default.getPickedDilemmas().length);
+    console.log(global_1.default.currentDilemma + 1);
     return mithril_1.default('div', {
       id: "controlAreaBG2"
     }, [mithril_1.default('div', {
@@ -17109,13 +17125,13 @@ var controlArea = {
     }, global_1.default.showHelp ? mithril_1.default(help_1.default, {
       title: "Title",
       desc: ["Lorem Ipsum et dono", "This is the second page", "this is the final page"]
-    }) : [global_1.default.dilemmas.length >= global_1.default.currentDilemma + 1 ? mithril_1.default('div', {
+    }) : [global_1.default.getPickedDilemmas().length >= global_1.default.currentDilemma + 1 ? mithril_1.default('div', {
       class: "pickedTopic col s4"
     }, [mithril_1.default('h1', {
       class: "topicTitle"
-    }, global_1.default.dilemmas ? global_1.default.dilemmas[global_1.default.currentDilemma].title : "loading..."), mithril_1.default('p', {
+    }, global_1.default.getPickedDilemmas() ? global_1.default.getPickedDilemmas()[global_1.default.currentDilemma].title : "loading..."), mithril_1.default('p', {
       class: "topicText"
-    }, global_1.default.dilemmas ? global_1.default.dilemmas[global_1.default.currentDilemma].description : "loading...")]) : mithril_1.default('p', {
+    }, global_1.default.getPickedDilemmas() ? global_1.default.getPickedDilemmas()[global_1.default.currentDilemma].description : "loading...")]) : mithril_1.default('p', {
       class: "col s4"
     }, "done"), mithril_1.default('div', {
       class: "propertySelection col s6"
