@@ -1,0 +1,24 @@
+.input-field{
+    background: rgba(51, 51, 51, 0.06); border-radius: 4px 4px 0px 0px;
+    
+    
+}
+
+.input-field .materialize-textarea{
+    margin-bottom: 0px;
+    padding-bottom: 80%;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    
+    color: rgba(251, 250, 249, 0.87);
+}
+
+.character-counter{
+    margin-top: -8%;
+}
+
+/*# sourceMappingURL=/module3.d78aa7db.css.map */

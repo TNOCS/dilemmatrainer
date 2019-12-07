@@ -1,0 +1,27 @@
+#explAreas{
+    display: flex;
+    width: 83%;
+    margin-top: 40px;
+    margin-left: 8.3%;
+    justify-content: space-between;
+}
+
+.explanationArea{
+    background-color: #6F8CB0;
+    box-shadow: inset 0px 4px 4px #617A99;
+    width: 37.5%;
+    height: 143px;
+}
+
+.explanationArea p, .explanationArea h6{
+    font-family: Roboto;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.0357143em;
+    margin-left: 5%;
+    color: #FBFAF9;
+}
+
+/*# sourceMappingURL=/module4.41659420.css.map */

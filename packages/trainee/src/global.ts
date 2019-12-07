@@ -2,6 +2,7 @@ import m from 'mithril';
 
 const state = {
     showHelp : true,
+    phases: [],
     dilemmas: [],
     pickedDilemmas: [],
     currentDilemma: 0,
@@ -18,6 +19,17 @@ m.request({
 .then(function(result) {
     state.dilemmas = result[0].dilemmas
 })
+
+m.request({
+    method: "GET",
+    url: "http://localhost:3030/api/scenarios/view", //put domain in config
+    params: {props: "phases"},
+    body: {}
+})
+.then(function(result) {
+    state.phases = result[0].phases
+})
+
 
 function getPickedDilemmas(){
     state.dilemmas.forEach(topic => {

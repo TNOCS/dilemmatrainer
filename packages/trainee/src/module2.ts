@@ -18,17 +18,17 @@ const MODULE2 = {
     view: () => {
         return m('div', {class: "container"},  [
             m(controlArea),
-            m(hud)
+            m(hud, {done: "#!/module3"})
         ]);
     }
 }
 
-var controlArea = {
+const controlArea = {
     view: () => {
         return m('div', {id:"controlAreaBG2"},[
             m('div', {id:"controlAreaTop2"}),
             
-            m('div', {class:"row valign-wrapper", id:"controlArea"},             
+            m('div', {class:"row valign-wrapper", id:"propertyControlArea"},             
             state.showHelp ? 
                 m(help, {title:"Title", desc: ["Lorem Ipsum et dono", "This is the second page", "this is the final page"]})
             :[

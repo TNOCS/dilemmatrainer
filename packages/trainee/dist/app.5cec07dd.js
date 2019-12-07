@@ -2312,6 +2312,7 @@ var mithril_1 = __importDefault(require("mithril"));
 
 var state = {
   showHelp: true,
+  phases: [],
   dilemmas: [],
   pickedDilemmas: [],
   currentDilemma: 0,
@@ -2327,6 +2328,16 @@ mithril_1.default.request({
   body: {}
 }).then(function (result) {
   state.dilemmas = result[0].dilemmas;
+});
+mithril_1.default.request({
+  method: "GET",
+  url: "http://localhost:3030/api/scenarios/view",
+  params: {
+    props: "phases"
+  },
+  body: {}
+}).then(function (result) {
+  state.phases = result[0].phases;
 });
 
 function getPickedDilemmas() {
@@ -17121,7 +17132,9 @@ var MODULE2 = {
   view: function view() {
     return mithril_1.default('div', {
       class: "container"
-    }, [mithril_1.default(controlArea), mithril_1.default(hud_1.default)]);
+    }, [mithril_1.default(controlArea), mithril_1.default(hud_1.default, {
+      done: "#!/module3"
+    })]);
   }
 };
 var controlArea = {
@@ -17132,7 +17145,7 @@ var controlArea = {
       id: "controlAreaTop2"
     }), mithril_1.default('div', {
       class: "row valign-wrapper",
-      id: "controlArea"
+      id: "propertyControlArea"
     }, global_1.default.showHelp ? mithril_1.default(help_1.default, {
       title: "Title",
       desc: ["Lorem Ipsum et dono", "This is the second page", "this is the final page"]
@@ -17229,7 +17242,142 @@ function propertyAdd(pressed, value) {
 }
 
 exports.default = MODULE2;
-},{"mithril":"node_modules/mithril/index.js","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","./global":"src/global.ts","mithril-materialized":"node_modules/mithril-materialized/dist/index.esm.js","./hud":"src/hud.ts","./help":"src/help.ts"}],"src/router.ts":[function(require,module,exports) {
+},{"mithril":"node_modules/mithril/index.js","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","./global":"src/global.ts","mithril-materialized":"node_modules/mithril-materialized/dist/index.esm.js","./hud":"src/hud.ts","./help":"src/help.ts"}],"src/module3.ts":[function(require,module,exports) {
+"use strict";
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var mithril_1 = __importDefault(require("mithril"));
+
+require("materialize-css/dist/css/materialize.min.css");
+
+require("material-icons/iconfont/material-icons.css");
+
+var global_1 = __importDefault(require("./global"));
+
+var mithril_materialized_1 = require("mithril-materialized");
+
+var hud_1 = __importDefault(require("./hud"));
+
+var help_1 = __importDefault(require("./help"));
+
+var propertyButtons = [false, false, false];
+var properties = [false, false, false];
+var MODULE3 = {
+  oninit: function oninit() {
+    global_1.default.currentDilemma = 0;
+    global_1.default.getPickedDilemmas();
+  },
+  view: function view() {
+    return mithril_1.default('div', {
+      class: "container"
+    }, [mithril_1.default(controlArea), mithril_1.default(hud_1.default, {
+      done: "#!/module4"
+    })]);
+  }
+};
+var controlArea = {
+  view: function view() {
+    return mithril_1.default('div', {
+      id: "controlAreaBG2"
+    }, [mithril_1.default('div', {
+      id: "controlAreaTop2"
+    }), mithril_1.default('div', {
+      class: "row"
+    }, global_1.default.showHelp ? mithril_1.default('div', {
+      id: "helpWrapper valign-wrapper"
+    }, mithril_1.default(help_1.default, {
+      title: "Title",
+      desc: ["Lorem Ipsum et dono", "This is the second page", "this is the final page"]
+    })) : [mithril_1.default('div', {
+      class: "agreements col s10 offset-s1"
+    }, [mithril_1.default('div', {
+      class: "row"
+    }, [mithril_1.default('span', {
+      class: "col s4"
+    }, [mithril_1.default('p', 'AGREEMENT'), mithril_1.default('p', '1'), mithril_1.default(mithril_materialized_1.TextArea, {
+      maxLength: 200
+    })]), mithril_1.default('span', {
+      class: "col s4"
+    }, [mithril_1.default('p', 'AGREEMENT'), mithril_1.default('p', '2'), mithril_1.default(mithril_materialized_1.TextArea, {
+      maxLength: 200
+    })]), mithril_1.default('span', {
+      class: "col s4"
+    }, [mithril_1.default('p', 'AGREEMENT'), mithril_1.default('p', '3'), mithril_1.default(mithril_materialized_1.TextArea, {
+      maxLength: 200
+    })])])])])]);
+  }
+};
+exports.default = MODULE3;
+},{"mithril":"node_modules/mithril/index.js","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","./global":"src/global.ts","mithril-materialized":"node_modules/mithril-materialized/dist/index.esm.js","./hud":"src/hud.ts","./help":"src/help.ts"}],"src/module4.ts":[function(require,module,exports) {
+"use strict";
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var mithril_1 = __importDefault(require("mithril"));
+
+require("materialize-css/dist/css/materialize.min.css");
+
+require("material-icons/iconfont/material-icons.css");
+
+var global_1 = __importDefault(require("./global"));
+
+var hud_1 = __importDefault(require("./hud"));
+
+var currentPhase = 0;
+var MODULE4 = {
+  view: function view() {
+    var interactionArea = mithril_1.default('div', [mithril_1.default('div')]);
+    return mithril_1.default('div', {
+      class: "container"
+    }, [mithril_1.default(displayArea), mithril_1.default(controlAreaSolo), mithril_1.default(hud_1.default, {
+      done: "#!/module2"
+    })]);
+  }
+};
+var displayArea = {
+  view: function view() {
+    return mithril_1.default('div', {
+      class: "row",
+      id: "displayArea"
+    }, []);
+  }
+};
+var controlAreaSolo = {
+  view: function view() {
+    return mithril_1.default('div', {
+      id: "controlAreaBG"
+    }, [mithril_1.default('div', {
+      id: "controlAreaTop"
+    }), mithril_1.default('div', {
+      id: "explAreas"
+    }, [mithril_1.default('div', {
+      id: "scenarioExpl",
+      class: "explanationArea"
+    }, [mithril_1.default('h6', "The scenario"), mithril_1.default('p', global_1.default.phases[currentPhase].description)]), mithril_1.default('div', {
+      id: "roleExpl",
+      class: "explanationArea"
+    }, [mithril_1.default('h6', "Your role"), mithril_1.default('p', 'placeholder')])])]);
+  }
+};
+exports.default = MODULE4;
+},{"mithril":"node_modules/mithril/index.js","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","./global":"src/global.ts","./hud":"src/hud.ts"}],"src/router.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -17246,12 +17394,18 @@ var module1_1 = __importDefault(require("./module1"));
 
 var module2_1 = __importDefault(require("./module2"));
 
+var module3_1 = __importDefault(require("./module3"));
+
+var module4_1 = __importDefault(require("./module4"));
+
 var router = {
   "/module1": module1_1.default,
-  "/module2": module2_1.default
+  "/module2": module2_1.default,
+  "/module3": module3_1.default,
+  "/module4": module4_1.default
 };
 exports.default = router;
-},{"./module1":"src/module1.ts","./module2":"src/module2.ts"}],"src/app.ts":[function(require,module,exports) {
+},{"./module1":"src/module1.ts","./module2":"src/module2.ts","./module3":"src/module3.ts","./module4":"src/module4.ts"}],"src/app.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -17297,7 +17451,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51538" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56154" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

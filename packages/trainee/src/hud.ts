@@ -5,7 +5,7 @@ import 'material-icons/iconfont/material-icons.css';
 import { Button } from 'mithril-materialized';
 import state from './global';
 
-var hud = {
+ const hud = {
     view: (vnode) => {
         return m('div', {class: "row", id:"hud"}, [
             state.currentDilemma != 0 ? 
