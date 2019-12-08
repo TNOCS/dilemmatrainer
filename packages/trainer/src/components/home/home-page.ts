@@ -1,6 +1,5 @@
 import m from 'mithril';
 import { Button, Icon } from 'mithril-materialized';
-import { SlimdownView } from 'mithril-ui-form';
 import background from '../../assets/dilemma_logo_black.svg';
 import tno from '../../assets/logo_tno.png';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
@@ -33,11 +32,6 @@ export const HomePage = () => ({
       m(
         '.section.white',
         m('.row.container.center', [
-          m(SlimdownView, {
-            md: `## Dilemma trainer
-
-What direction do you want to turn? Left or right?`,
-          }),
           m('.row', [
             m(
               '.col.s12.m4',
@@ -75,5 +69,5 @@ What direction do you want to turn? Left or right?`,
         m('.clearfix', [m('.white-text', 'Footer text'), m('span', '©2019 VWS, v0.1, Oktober 2019')])
       )
     ),
-  ],
+  ]
 });

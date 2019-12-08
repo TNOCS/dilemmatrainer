@@ -2298,20 +2298,12 @@ module.exports = reloadCSS;
 },{"./MaterialIcons-Regular.eot":[["MaterialIcons-Regular.bcffbc15.eot","node_modules/material-icons/iconfont/MaterialIcons-Regular.eot"],"node_modules/material-icons/iconfont/MaterialIcons-Regular.eot"],"./MaterialIcons-Regular.woff2":[["MaterialIcons-Regular.11799939.woff2","node_modules/material-icons/iconfont/MaterialIcons-Regular.woff2"],"node_modules/material-icons/iconfont/MaterialIcons-Regular.woff2"],"./MaterialIcons-Regular.woff":[["MaterialIcons-Regular.6924d4ac.woff","node_modules/material-icons/iconfont/MaterialIcons-Regular.woff"],"node_modules/material-icons/iconfont/MaterialIcons-Regular.woff"],"./MaterialIcons-Regular.ttf":[["MaterialIcons-Regular.a71f6b9a.ttf","node_modules/material-icons/iconfont/MaterialIcons-Regular.ttf"],"node_modules/material-icons/iconfont/MaterialIcons-Regular.ttf"],"_css_loader":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/global.ts":[function(require,module,exports) {
 "use strict";
 
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var mithril_1 = __importDefault(require("mithril"));
-
 var state = {
   showHelp: true,
+  roles: [],
   phases: [],
   dilemmas: [],
   pickedDilemmas: [],
@@ -2319,26 +2311,6 @@ var state = {
   getPickedDilemmas: getPickedDilemmas,
   rejectPickedDilemma: rejectPickedDilemma
 };
-mithril_1.default.request({
-  method: "GET",
-  url: "http://localhost:3030/api/scenarios/view",
-  params: {
-    props: "dilemmas"
-  },
-  body: {}
-}).then(function (result) {
-  state.dilemmas = result[0].dilemmas;
-});
-mithril_1.default.request({
-  method: "GET",
-  url: "http://localhost:3030/api/scenarios/view",
-  params: {
-    props: "phases"
-  },
-  body: {}
-}).then(function (result) {
-  state.phases = result[0].phases;
-});
 
 function getPickedDilemmas() {
   state.dilemmas.forEach(function (topic) {
@@ -2359,7 +2331,7 @@ function rejectPickedDilemma() {
 }
 
 exports.default = state;
-},{"mithril":"node_modules/mithril/index.js"}],"node_modules/materialize-css/dist/js/materialize.js":[function(require,module,exports) {
+},{}],"node_modules/materialize-css/dist/js/materialize.js":[function(require,module,exports) {
 var define;
 var global = arguments[3];
 /*!
@@ -31834,6 +31806,8 @@ var __importDefault = this && this.__importDefault || function (mod) {
   };
 };
 
+var _this = this;
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -31844,15 +31818,63 @@ require("materialize-css/dist/css/materialize.min.css");
 
 require("material-icons/iconfont/material-icons.css");
 
+var global_1 = __importDefault(require("./global"));
+
+var mithril_materialized_1 = require("mithril-materialized");
+
+var scenarios = [];
 var SELECTION = {
+  oninit: function oninit() {
+    getScenarios();
+  },
   view: function view() {
     return mithril_1.default('div', {
       class: "container"
-    }, []);
+    }, mithril_1.default('div', {
+      class: "row"
+    }, [JSON.stringify(global_1.default.roles) == JSON.stringify([]) ? mithril_1.default(mithril_materialized_1.Collection, {
+      header: 'Select a Scenario',
+      class: 'col s6 offset-s3',
+      mode: mithril_materialized_1.CollectionMode.LINKS,
+      items: scenarios.map(function (scenario) {
+        return {
+          title: scenario.title,
+          onclick: getRoles.bind(_this, scenario)
+        };
+      })
+    }) : mithril_1.default(mithril_materialized_1.Collection, {
+      header: 'Select your role',
+      class: 'col s6 offset-s3',
+      mode: mithril_materialized_1.CollectionMode.AVATAR,
+      items: global_1.default.roles.map(function (role) {
+        return {
+          title: role.title,
+          content: role.description,
+          onclick: mithril_1.default.route.set("#!/module1")
+        };
+      })
+    })]));
   }
 };
+
+function getScenarios() {
+  mithril_1.default.request({
+    method: "GET",
+    url: "http://localhost:3030/api/scenarios",
+    body: {}
+  }).then(function (result) {
+    scenarios = result;
+  });
+}
+
+function getRoles(scene) {
+  global_1.default.roles = scene.roles;
+}
+
+function setScenario() {}
+
 exports.default = SELECTION;
-},{"mithril":"node_modules/mithril/index.js","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css"}],"src/router.ts":[function(require,module,exports) {
+},{"mithril":"node_modules/mithril/index.js","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","./global":"src/global.ts","mithril-materialized":"node_modules/mithril-materialized/dist/index.esm.js"}],"src/router.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -31900,7 +31922,7 @@ var mithril_1 = __importDefault(require("mithril"));
 
 var router_1 = __importDefault(require("./router"));
 
-mithril_1.default.route(document.body, '/module1', router_1.default);
+mithril_1.default.route(document.body, '/selection', router_1.default);
 },{"mithril":"node_modules/mithril/index.js","./router":"src/router.ts"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -31929,7 +31951,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56346" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62056" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
