@@ -23,3 +23,15 @@
     margin-left: 5%;
     color: #FBFAF9;
 }
+
+#displayLeaflet{
+    min-height: 63%;
+    margin-bottom: 0px;
+}
+
+.leaflet-container{
+    width: 100%;
+    min-height: 63%;
+}
+
+

@@ -12,12 +12,12 @@ const state = {
 
 m.request({
     method: "GET",
-    url: "http://localhost:3030/api/scenarios/view", //put domain in config
+    url: "http://localhost:3030/api/scenarios/view", //put domain in config 
     params: {props: "dilemmas"},
     body: {}
 })
 .then(function(result) {
-    state.dilemmas = result[0].dilemmas
+    state.dilemmas = result[0].dilemmas //get result that corresponds with game title
 })
 
 m.request({

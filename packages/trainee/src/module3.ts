@@ -30,9 +30,8 @@ const controlArea = {
             
             m('div', {class:"row"},             
             state.showHelp ? 
-                m('div', {id:"helpWrapper valign-wrapper"},
-                    m(help, {title:"Title", desc: ["Lorem Ipsum et dono", "This is the second page", "this is the final page"]})
-                )
+                m(help, {title:"Title", desc: ["Lorem Ipsum et dono", "This is the second page", "this is the final page"]})
+                
             :[
                 m('div', {class: "agreements col s10 offset-s1"},[
                     m('div', {class: "row"},[

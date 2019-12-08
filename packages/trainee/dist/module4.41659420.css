@@ -24,4 +24,17 @@
     color: #FBFAF9;
 }
 
+#displayLeaflet{
+    min-height: 63%;
+    margin-bottom: 0px;
+}
+
+.leaflet-container{
+    width: 100%;
+    min-height: 63%;
+}
+
+
+
+
 /*# sourceMappingURL=/module4.41659420.css.map */
