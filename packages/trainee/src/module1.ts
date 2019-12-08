@@ -9,11 +9,6 @@ import help from './help';
 
 const MODULE1 = {
     view: () => {
-        //lock action during help
-
-        var interactionArea = m('div', [
-            m('div'),
-        ]);
         return m('div', {class: "container"},  [
             m(displayArea),
             m(controlAreaSolo),

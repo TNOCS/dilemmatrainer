@@ -52,3 +52,10 @@
     background-color: rgb(191, 189, 231);
     box-shadow: none;
 }
+
+@media screen and (max-height:600px){
+    #trashMod2Cont{
+        margin-top: 5%;
+        height: 70px;
+    }
+}

@@ -53,4 +53,11 @@
     box-shadow: none;
 }
 
+@media screen and (max-height:600px){
+    #trashMod2Cont{
+        margin-top: 5%;
+        height: 70px;
+    }
+}
+
 /*# sourceMappingURL=/module2.a3426802.css.map */

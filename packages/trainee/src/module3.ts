@@ -11,10 +11,6 @@ var propertyButtons:Array<boolean> = [false,false,false]
 var properties:Array<boolean> = [false,false,false]
 
 const MODULE3 = {
-    oninit: () => {
-        state.currentDilemma = 0;
-        state.getPickedDilemmas()
-    },
     view: () => {
         return m('div', {class: "container"},  [
             m(controlArea),

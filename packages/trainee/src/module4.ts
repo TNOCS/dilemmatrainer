@@ -14,11 +14,6 @@ var currentPhase = 0
 
 const MODULE4 = {
     view: () => {
-        //lock action during help
-
-        var interactionArea = m('div', [
-            m('div'),
-        ]);
         return m('div', {class: "container"},  [
             m(displayArea),
             m(controlAreaSolo),

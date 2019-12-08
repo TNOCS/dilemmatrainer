@@ -17035,7 +17035,6 @@ var help_1 = __importDefault(require("./help"));
 
 var MODULE1 = {
   view: function view() {
-    var interactionArea = mithril_1.default('div', [mithril_1.default('div')]);
     return mithril_1.default('div', {
       class: "container"
     }, [mithril_1.default(displayArea), mithril_1.default(controlAreaSolo), mithril_1.default(hud_1.default, {
@@ -17272,10 +17271,6 @@ var help_1 = __importDefault(require("./help"));
 var propertyButtons = [false, false, false];
 var properties = [false, false, false];
 var MODULE3 = {
-  oninit: function oninit() {
-    global_1.default.currentDilemma = 0;
-    global_1.default.getPickedDilemmas();
-  },
   view: function view() {
     return mithril_1.default('div', {
       class: "container"
@@ -31782,7 +31777,6 @@ var help_1 = __importDefault(require("./help"));
 var currentPhase = 0;
 var MODULE4 = {
   view: function view() {
-    var interactionArea = mithril_1.default('div', [mithril_1.default('div')]);
     return mithril_1.default('div', {
       class: "container"
     }, [mithril_1.default(displayArea), mithril_1.default(controlAreaSolo), mithril_1.default(hud_1.default, {
@@ -31831,7 +31825,34 @@ var controlAreaSolo = {
   }
 };
 exports.default = MODULE4;
-},{"mithril":"node_modules/mithril/index.js","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","./global":"src/global.ts","mithril-leaflet":"node_modules/mithril-leaflet/dist/index.js","./hud":"src/hud.ts","./help":"src/help.ts"}],"src/router.ts":[function(require,module,exports) {
+},{"mithril":"node_modules/mithril/index.js","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","./global":"src/global.ts","mithril-leaflet":"node_modules/mithril-leaflet/dist/index.js","./hud":"src/hud.ts","./help":"src/help.ts"}],"src/selection.ts":[function(require,module,exports) {
+"use strict";
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var mithril_1 = __importDefault(require("mithril"));
+
+require("materialize-css/dist/css/materialize.min.css");
+
+require("material-icons/iconfont/material-icons.css");
+
+var SELECTION = {
+  view: function view() {
+    return mithril_1.default('div', {
+      class: "container"
+    }, []);
+  }
+};
+exports.default = SELECTION;
+},{"mithril":"node_modules/mithril/index.js","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css"}],"src/router.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -31852,14 +31873,17 @@ var module3_1 = __importDefault(require("./module3"));
 
 var module4_1 = __importDefault(require("./module4"));
 
+var selection_1 = __importDefault(require("./selection"));
+
 var router = {
+  "/selection": selection_1.default,
   "/module1": module1_1.default,
   "/module2": module2_1.default,
   "/module3": module3_1.default,
   "/module4": module4_1.default
 };
 exports.default = router;
-},{"./module1":"src/module1.ts","./module2":"src/module2.ts","./module3":"src/module3.ts","./module4":"src/module4.ts"}],"src/app.ts":[function(require,module,exports) {
+},{"./module1":"src/module1.ts","./module2":"src/module2.ts","./module3":"src/module3.ts","./module4":"src/module4.ts","./selection":"src/selection.ts"}],"src/app.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -31905,7 +31929,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53726" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56346" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
