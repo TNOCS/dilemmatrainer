@@ -1,8 +1,11 @@
-import m from 'mithril';
-
 const state = {
     showHelp : true,
     roles: [],
+    userRole: {
+        id: "",
+        title: "",
+        description: ""
+    },
     phases: [],
     dilemmas: [],
     pickedDilemmas: [],

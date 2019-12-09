@@ -2304,6 +2304,11 @@ Object.defineProperty(exports, "__esModule", {
 var state = {
   showHelp: true,
   roles: [],
+  userRole: {
+    id: "",
+    title: "",
+    description: ""
+  },
   phases: [],
   dilemmas: [],
   pickedDilemmas: [],
@@ -17006,6 +17011,9 @@ var hud_1 = __importDefault(require("./hud"));
 var help_1 = __importDefault(require("./help"));
 
 var MODULE1 = {
+  oninit: function oninit() {
+    global_1.default.currentDilemma = 0;
+  },
   view: function view() {
     return mithril_1.default('div', {
       class: "container"
@@ -31793,7 +31801,7 @@ var controlAreaSolo = {
     }, [mithril_1.default('h6', "The scenario"), mithril_1.default('p', global_1.default.phases[currentPhase] ? global_1.default.phases[currentPhase].description : "loading...")]), mithril_1.default('div', {
       id: "roleExpl",
       class: "explanationArea"
-    }, [mithril_1.default('h6', "Your role"), mithril_1.default('p', 'placeholder')])])]);
+    }, [mithril_1.default('h6', "Your role: " + global_1.default.userRole.title), mithril_1.default('p', global_1.default.userRole.description)])])]);
   }
 };
 exports.default = MODULE4;
@@ -31850,9 +31858,8 @@ var SELECTION = {
         return {
           title: role.title,
           content: role.description,
-          onclick: function onclick() {
-            return mithril_1.default.route.set("module1");
-          }
+          id: role.id,
+          onclick: setRole
         };
       })
     })]));
@@ -31869,11 +31876,17 @@ function getScenarios() {
   });
 }
 
-function setScenario(scene) {
-  global_1.default.dilemmas = scene.dilemmas;
-  global_1.default.currentDilemma = 0;
-  global_1.default.phases = scene.phases;
-  global_1.default.roles = scene.roles;
+function setScenario(scenario) {
+  global_1.default.dilemmas = scenario.dilemmas;
+  global_1.default.phases = scenario.phases;
+  global_1.default.roles = scenario.roles;
+}
+
+function setRole(e) {
+  global_1.default.userRole.id = e.id;
+  global_1.default.userRole.title = e.title;
+  global_1.default.userRole.description = e.content;
+  mithril_1.default.route.set("module1");
 }
 
 exports.default = SELECTION;

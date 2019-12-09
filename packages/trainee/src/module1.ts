@@ -8,6 +8,9 @@ import hud from './hud';
 import help from './help';
 
 const MODULE1 = {
+    oninit: () => {
+        state.currentDilemma = 0;
+    },
     view: () => {
         return m('div', {class: "container"},  [
             m(displayArea),

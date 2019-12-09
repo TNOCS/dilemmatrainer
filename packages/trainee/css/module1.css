@@ -39,7 +39,8 @@
 .topic{
     background-color: #7F7DBB;
     border-radius: 3px;
-    height: 214px;
+    min-height: 214px;
+    margin-bottom: -5%;
 }
 
 .topicTitle{

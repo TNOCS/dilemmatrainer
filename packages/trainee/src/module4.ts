@@ -51,8 +51,8 @@ const controlAreaSolo = {
                     m('p', state.phases[currentPhase] ? state.phases[currentPhase].description : "loading...")
                 ]),
                 m('div', {id:"roleExpl" , class:"explanationArea"}, [
-                    m('h6', "Your role"),
-                    m('p', 'placeholder')
+                    m('h6', "Your role: " + state.userRole.title),
+                    m('p', state.userRole.description)
                 ])
             ])
         ])
