@@ -48,19 +48,19 @@ const controlArea = {
                     ]),
                     m('div', {class: "row"},[
                         m('div',{class: "col s4 propertyCol"}, [
-                            m('div', {class:"propertyButtonCont col s12"}, m("button", {label:"+", class:"propertyButtons col offset-s1 s10", onclick:propertyAdd.bind(this,0,true)}, "+")),
+                            m('div', {class:"propertyButtonCont col s12"}, m("button", {label:"+", id:"0true", class:"propertyButtons col offset-s1 s10", onclick:propertyAdd.bind(this,0,true)}, "+")),
                             m('hr', {class: "propertyHr col s12"}),
-                            m('div', {class:"propertyButtonCont col s12"}, m("button", {label:"-", class:"propertyButtons col offset-s1 s10", onclick:propertyAdd.bind(this,0,false)}, "-")),
+                            m('div', {class:"propertyButtonCont col s12"}, m("button", {label:"-", id:"0false", class:"propertyButtons col offset-s1 s10", onclick:propertyAdd.bind(this,0,false)}, "-")),
                         ]),
                         m('div',{class: "col s4 propertyCol"}, [
-                            m('div', {class:"propertyButtonCont col s12"}, m("button", {label:"+", class:"propertyButtons col offset-s1 s10", onclick:propertyAdd.bind(this,1,true)}, "+")),
+                            m('div', {class:"propertyButtonCont col s12"}, m("button", {label:"+", id:"1true", class:"propertyButtons col offset-s1 s10", onclick:propertyAdd.bind(this,1,true)}, "+")),
                             m('hr', {class: "propertyHr col s12"}),
-                            m('div', {class:"propertyButtonCont col s12"}, m("button", {label:"-", class:"propertyButtons col offset-s1 s10", onclick:propertyAdd.bind(this,1,false)}, "-")),
+                            m('div', {class:"propertyButtonCont col s12"}, m("button", {label:"-", id:"1false", class:"propertyButtons col offset-s1 s10", onclick:propertyAdd.bind(this,1,false)}, "-")),
                         ]),
                         m('div',{class: "col s4 propertyCol"}, [
-                            m('div', {class:"propertyButtonCont col s12"}, m("button", {label:"+", class:"propertyButtons col offset-s1 s10", onclick:propertyAdd.bind(this,2,true)}, "+")),
+                            m('div', {class:"propertyButtonCont col s12"}, m("button", {label:"+", id:"2true", class:"propertyButtons col offset-s1 s10", onclick:propertyAdd.bind(this,2,true)}, "+")),
                             m('hr', {class: "propertyHr col s12"}),
-                            m('div', {class:"propertyButtonCont col s12"}, m("button", {label:"-", class:"propertyButtons col offset-s1 s10", onclick:propertyAdd.bind(this,2,false)}, "-")),
+                            m('div', {class:"propertyButtonCont col s12"}, m("button", {label:"-", id:"2false", class:"propertyButtons col offset-s1 s10", onclick:propertyAdd.bind(this,2,false)}, "-")),
                         ]),
                     ]),
                 ]),
@@ -75,16 +75,21 @@ function propertyAdd(pressed, value){
     
     propertyButtons[pressed] = true;
     properties[pressed] = value
+
+
+    var target = <HTMLTextAreaElement>event.target;
+    target.className += " propertyButtonsPressed";
+
+    document.getElementById(String(pressed) + String(!value)).className = "propertyButtons col offset-s1 s10";
+    
+
     if (JSON.stringify(propertyButtons) == JSON.stringify([true,true,true])){
         state.pickedDilemmas[state.currentDilemma]["time"] = properties[0];
         state.pickedDilemmas[state.currentDilemma]["info"] = properties[1];
         state.pickedDilemmas[state.currentDilemma]["accordance"] = properties[2];
 
         propertyButtons = [false, false, false];
-        console.log(state.pickedDilemmas[state.currentDilemma])
         state.currentDilemma += 1;
-
-        console.log(state.pickedDilemmas[state.currentDilemma])
     }
 }
 

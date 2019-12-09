@@ -17154,6 +17154,7 @@ var controlArea = {
       class: "propertyButtonCont col s12"
     }, mithril_1.default("button", {
       label: "+",
+      id: "0true",
       class: "propertyButtons col offset-s1 s10",
       onclick: propertyAdd.bind(_this, 0, true)
     }, "+")), mithril_1.default('hr', {
@@ -17162,6 +17163,7 @@ var controlArea = {
       class: "propertyButtonCont col s12"
     }, mithril_1.default("button", {
       label: "-",
+      id: "0false",
       class: "propertyButtons col offset-s1 s10",
       onclick: propertyAdd.bind(_this, 0, false)
     }, "-"))]), mithril_1.default('div', {
@@ -17170,6 +17172,7 @@ var controlArea = {
       class: "propertyButtonCont col s12"
     }, mithril_1.default("button", {
       label: "+",
+      id: "1true",
       class: "propertyButtons col offset-s1 s10",
       onclick: propertyAdd.bind(_this, 1, true)
     }, "+")), mithril_1.default('hr', {
@@ -17178,6 +17181,7 @@ var controlArea = {
       class: "propertyButtonCont col s12"
     }, mithril_1.default("button", {
       label: "-",
+      id: "1false",
       class: "propertyButtons col offset-s1 s10",
       onclick: propertyAdd.bind(_this, 1, false)
     }, "-"))]), mithril_1.default('div', {
@@ -17186,6 +17190,7 @@ var controlArea = {
       class: "propertyButtonCont col s12"
     }, mithril_1.default("button", {
       label: "+",
+      id: "2true",
       class: "propertyButtons col offset-s1 s10",
       onclick: propertyAdd.bind(_this, 2, true)
     }, "+")), mithril_1.default('hr', {
@@ -17194,6 +17199,7 @@ var controlArea = {
       class: "propertyButtonCont col s12"
     }, mithril_1.default("button", {
       label: "-",
+      id: "2false",
       class: "propertyButtons col offset-s1 s10",
       onclick: propertyAdd.bind(_this, 2, false)
     }, "-"))])])]), mithril_1.default('div', {
@@ -17208,15 +17214,16 @@ var controlArea = {
 function propertyAdd(pressed, value) {
   propertyButtons[pressed] = true;
   properties[pressed] = value;
+  var target = event.target;
+  target.className += " propertyButtonsPressed";
+  document.getElementById(String(pressed) + String(!value)).className = "propertyButtons col offset-s1 s10";
 
   if (JSON.stringify(propertyButtons) == JSON.stringify([true, true, true])) {
     global_1.default.pickedDilemmas[global_1.default.currentDilemma]["time"] = properties[0];
     global_1.default.pickedDilemmas[global_1.default.currentDilemma]["info"] = properties[1];
     global_1.default.pickedDilemmas[global_1.default.currentDilemma]["accordance"] = properties[2];
     propertyButtons = [false, false, false];
-    console.log(global_1.default.pickedDilemmas[global_1.default.currentDilemma]);
     global_1.default.currentDilemma += 1;
-    console.log(global_1.default.pickedDilemmas[global_1.default.currentDilemma]);
   }
 }
 

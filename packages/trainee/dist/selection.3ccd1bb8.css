@@ -9,6 +9,7 @@
 
 .row .with-header .collection-item{
     color: #80A2CC;
+    cursor: pointer;
 }
 
 .title{

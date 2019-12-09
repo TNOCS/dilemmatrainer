@@ -51,6 +51,7 @@
 .propertyButtonsPressed{
     background-color: rgb(191, 189, 231);
     box-shadow: none;
+    width: 100%;
 }
 
 @media screen and (max-height:600px){
