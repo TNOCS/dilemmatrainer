@@ -1,1 +1,1 @@
-{"version":3,"sources":["css/selection.css"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA;AACA","file":"selection.3ccd1bb8.css","sourceRoot":"..","sourcesContent":[".title{\r\n    color: black;\r\n}\r\n/* \r\n.collection-item a{\r\n    visibility: hidden;\r\n} */"]}
+{"version":3,"sources":["css/selection.css"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA;AACA","file":"selection.3ccd1bb8.css","sourceRoot":"..","sourcesContent":[".title{\r\n    color: black;\r\n}\r\n\r\n.collection-item a{\r\n    visibility: hidden;\r\n} "]}

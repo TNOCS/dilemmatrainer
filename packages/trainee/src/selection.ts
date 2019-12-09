@@ -20,7 +20,7 @@ const SELECTION = {
                     class: 'col s6 offset-s3',
                     mode: CollectionMode.LINKS,
                     items: scenarios.map( scenario => {
-                        return { title: scenario.title , onclick: getRoles.bind(this, scenario) }
+                        return { title: scenario.title , onclick: setScenario.bind(this, scenario) }
                     }) 
                 })
             :
@@ -29,7 +29,7 @@ const SELECTION = {
                     class: 'col s6 offset-s3',
                     mode: CollectionMode.AVATAR,
                     items: state.roles.map( role => {
-                        return { title: role.title, content: role.description, onclick: m.route.set("#!/module1") }
+                        return { title: role.title, content: role.description, onclick: () => m.route.set("module1") }
                     }) 
                 })
             ])
@@ -48,12 +48,11 @@ function getScenarios(){
     })
 }
 
-function getRoles(scene){
+function setScenario(scene){
+    state.dilemmas = scene.dilemmas
+    state.currentDilemma = 0;
+    state.phases = scene.phases
     state.roles = scene.roles
-}
-
-function setScenario(){
-
 }
 
 export default SELECTION;

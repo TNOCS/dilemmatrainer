@@ -31839,7 +31839,7 @@ var SELECTION = {
       items: scenarios.map(function (scenario) {
         return {
           title: scenario.title,
-          onclick: getRoles.bind(_this, scenario)
+          onclick: setScenario.bind(_this, scenario)
         };
       })
     }) : mithril_1.default(mithril_materialized_1.Collection, {
@@ -31850,7 +31850,9 @@ var SELECTION = {
         return {
           title: role.title,
           content: role.description,
-          onclick: mithril_1.default.route.set("#!/module1")
+          onclick: function onclick() {
+            return mithril_1.default.route.set("module1");
+          }
         };
       })
     })]));
@@ -31867,11 +31869,12 @@ function getScenarios() {
   });
 }
 
-function getRoles(scene) {
+function setScenario(scene) {
+  global_1.default.dilemmas = scene.dilemmas;
+  global_1.default.currentDilemma = 0;
+  global_1.default.phases = scene.phases;
   global_1.default.roles = scene.roles;
 }
-
-function setScenario() {}
 
 exports.default = SELECTION;
 },{"mithril":"node_modules/mithril/index.js","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","./global":"src/global.ts","mithril-materialized":"node_modules/mithril-materialized/dist/index.esm.js"}],"src/router.ts":[function(require,module,exports) {
