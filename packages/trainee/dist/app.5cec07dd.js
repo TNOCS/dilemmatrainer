@@ -31838,7 +31838,7 @@ var SELECTION = {
   view: function view() {
     return mithril_1.default('div', {
       class: "container"
-    }, mithril_1.default('div', {
+    }, [mithril_1.default('div', {
       class: "row"
     }, [JSON.stringify(global_1.default.roles) == JSON.stringify([]) ? mithril_1.default(mithril_materialized_1.Collection, {
       header: 'Select a Scenario',
@@ -31862,7 +31862,15 @@ var SELECTION = {
           onclick: setRole
         };
       })
-    })]));
+    })]), mithril_1.default('div', {
+      class: "row"
+    }, mithril_1.default(mithril_materialized_1.Button, {
+      label: "Back",
+      onclick: function onclick() {
+        return global_1.default.roles = [];
+      },
+      class: 'col s1 offset-s3'
+    }))]);
   }
 };
 

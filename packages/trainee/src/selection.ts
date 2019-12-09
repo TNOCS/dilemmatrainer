@@ -3,7 +3,7 @@ import 'materialize-css/dist/css/materialize.min.css';
 import 'material-icons/iconfont/material-icons.css';
 import state from './global';
 
-import { Collection, CollectionMode } from 'mithril-materialized';
+import { Collection, CollectionMode, Button } from 'mithril-materialized';
 
 var scenarios: any = [];
 
@@ -12,7 +12,7 @@ const SELECTION = {
         getScenarios()
     },
     view: () => {
-        return m('div', {class: "container"},
+        return m('div', {class: "container"}, [
             m('div', {class: "row"}, [ //Collection doesn't work well with valign-wrapper
             (JSON.stringify(state.roles) == JSON.stringify([]) ) ? 
                 m(Collection, {
@@ -32,8 +32,9 @@ const SELECTION = {
                         return { title: role.title, content: role.description, id: role.id, onclick: setRole  }
                     }) 
                 })
-            ])
-        );
+            ]),
+            m('div', {class: "row"}, m(Button,{label: "Back" , onclick: () => state.roles = [], class: 'col s1 offset-s3',}) ) 
+        ]);
     }
 }
 
