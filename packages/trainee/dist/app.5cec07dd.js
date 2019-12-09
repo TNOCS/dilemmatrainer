@@ -31869,7 +31869,8 @@ var SELECTION = {
       onclick: function onclick() {
         return global_1.default.roles = [];
       },
-      class: 'col s1 offset-s3'
+      class: 'col s1 offset-s3',
+      style: "background-color: #4E77A0"
     }))]);
   }
 };

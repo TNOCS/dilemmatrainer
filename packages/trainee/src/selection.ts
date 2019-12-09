@@ -33,7 +33,7 @@ const SELECTION = {
                     }) 
                 })
             ]),
-            m('div', {class: "row"}, m(Button,{label: "Back" , onclick: () => state.roles = [], class: 'col s1 offset-s3',}) ) 
+            m('div', {class: "row"}, m(Button,{label: "Back" , onclick: () => state.roles = [], class: 'col s1 offset-s3', style: "background-color: #4E77A0"}) ) 
         ]);
     }
 }
