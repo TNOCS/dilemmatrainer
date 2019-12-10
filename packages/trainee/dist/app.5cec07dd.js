@@ -2312,6 +2312,7 @@ var state = {
   phases: [],
   dilemmas: [],
   pickedDilemmas: [],
+  assigned: [],
   currentDilemma: 0,
   getPickedDilemmas: getPickedDilemmas,
   rejectPickedDilemma: rejectPickedDilemma
@@ -17024,9 +17025,10 @@ var MODULE1 = {
 };
 var displayArea = {
   view: function view() {
+    var display = global_1.default.roles.length < 2 ? "displayArea" : "displayAreaMulti";
     return mithril_1.default('div', {
       class: "row valign-wrapper",
-      id: "displayArea"
+      id: display
     }, [global_1.default.showHelp ? mithril_1.default(help_1.default, {
       title: "Title",
       desc: ["Lorem Ipsum et dono", "This is the second page", "this is the final page"]
@@ -17043,27 +17045,65 @@ var displayArea = {
 };
 var controlAreaSolo = {
   view: function view() {
-    return mithril_1.default('div', {
+    return global_1.default.roles.length < 2 ? mithril_1.default('div', {
+      id: "soloMod1"
+    }, [mithril_1.default('div', {
       id: "controlAreaBG"
     }, [mithril_1.default('div', {
       id: "controlAreaTop"
     }), mithril_1.default('div', {
       id: "trashMod1Cont"
-    }, [mithril_1.default(mithril_materialized_1.Button, {
+    }, mithril_1.default(mithril_materialized_1.Button, {
       id: "trashMod1Button",
       onclick: acceptDilemma.bind(_this, false)
-    })]), mithril_1.default('div', {
+    })), mithril_1.default('div', {
       id: "personMod1Cont"
-    }, [mithril_1.default(mithril_materialized_1.Button, {
+    }, mithril_1.default(mithril_materialized_1.Button, {
       id: "personMod1Button",
       onclick: acceptDilemma.bind(_this, true)
-    })])]);
+    }))])]) : mithril_1.default('div', {
+      id: "multiMod1"
+    }, [mithril_1.default('div', {
+      id: "controlAreaMod1Mutli"
+    }, [mithril_1.default('div', {
+      id: "controlAreaTopMod1Multi"
+    }), mithril_1.default('div', {
+      id: "trashMod1ContMulti"
+    }, mithril_1.default(mithril_materialized_1.Button, {
+      id: "trashMod1ButtonMulti",
+      onclick: acceptDilemma.bind(_this, false)
+    })), mithril_1.default('div', {
+      id: "usersCont"
+    }, [global_1.default.roles.map(function (role) {
+      return mithril_1.default(mithril_materialized_1.Button, {
+        class: "userButton",
+        label: role.title,
+        onclick: sortDilemma.bind(_this, role),
+        style: "background-color: #BEC4D9; height: 80px;"
+      });
+    })]), mithril_1.default('div', {
+      id: "groupMod1Cont"
+    }, mithril_1.default(mithril_materialized_1.Button, {
+      id: "groupMod1Button",
+      onclick: acceptDilemma.bind(_this, true)
+    }))])]);
   }
 };
 
 function acceptDilemma(choice) {
   if (!global_1.default.showHelp) {
     global_1.default.dilemmas[global_1.default.currentDilemma]["accepted"] = choice;
+
+    if (global_1.default.dilemmas.length >= global_1.default.currentDilemma + 1) {
+      global_1.default.currentDilemma += 1;
+    }
+  }
+}
+
+function sortDilemma(role) {
+  if (!global_1.default.showHelp) {
+    global_1.default.dilemmas[global_1.default.currentDilemma]["accepted"] = true;
+    global_1.default.dilemmas[global_1.default.currentDilemma]["assignedTo"] = role.title;
 
     if (global_1.default.dilemmas.length >= global_1.default.currentDilemma + 1) {
       global_1.default.currentDilemma += 1;
@@ -31983,7 +32023,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62056" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56554" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -9,6 +9,7 @@ const state = {
     phases: [],
     dilemmas: [],
     pickedDilemmas: [],
+    assigned: [],
     currentDilemma: 0,
     getPickedDilemmas : getPickedDilemmas,
     rejectPickedDilemma : rejectPickedDilemma
