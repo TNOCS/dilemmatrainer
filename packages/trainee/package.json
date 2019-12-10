@@ -20,7 +20,8 @@
     "materialize-css": "^1.0.0",
     "mithril": "^2.0.4",
     "mithril-leaflet": "^0.1.7",
-    "mithril-materialized": "^0.15.4"
+    "mithril-materialized": "^0.15.4",
+    "tslint": "^5.20.1"
   },
   "devDependencies": {
     "@types/geojson": "^7946.0.7",

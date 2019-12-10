@@ -2301,42 +2301,43 @@ module.exports = reloadCSS;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var state = {
+exports.state = {
+  trainerAPI: 'http://localhost:3030/api',
   showHelp: true,
   roles: [],
   userRole: {
-    id: "",
-    title: "",
-    description: ""
+    id: '',
+    title: '',
+    description: ''
   },
   phases: [],
   dilemmas: [],
   pickedDilemmas: [],
   assigned: [],
-  currentDilemma: 0,
-  getPickedDilemmas: getPickedDilemmas,
-  rejectPickedDilemma: rejectPickedDilemma
+  currentDilemma: 0
 };
 
-function getPickedDilemmas() {
-  state.dilemmas.forEach(function (topic) {
+exports.getPickedDilemmas = function () {
+  exports.state.dilemmas.forEach(function (topic) {
     if (topic.accepted) {
-      state.pickedDilemmas.push(topic);
+      exports.state.pickedDilemmas.push(topic);
     }
   });
-}
+};
 
-function rejectPickedDilemma() {
-  if (!state.showHelp) {
-    state.pickedDilemmas[state.currentDilemma]["accepted"] = false;
+exports.rejectPickedDilemma = function () {
+  var showHelp = exports.state.showHelp,
+      pickedDilemmas = exports.state.pickedDilemmas,
+      currentDilemma = exports.state.currentDilemma;
 
-    if (state.pickedDilemmas.length >= state.currentDilemma + 1) {
-      state.currentDilemma += 1;
+  if (!showHelp) {
+    pickedDilemmas[currentDilemma]['accepted'] = false;
+
+    if (pickedDilemmas.length >= currentDilemma + 1) {
+      exports.state.currentDilemma += 1;
     }
   }
-}
-
-exports.default = state;
+};
 },{}],"node_modules/materialize-css/dist/js/materialize.js":[function(require,module,exports) {
 var define;
 var global = arguments[3];
@@ -16847,35 +16848,35 @@ require("material-icons/iconfont/material-icons.css");
 
 var mithril_materialized_1 = require("mithril-materialized");
 
-var global_1 = __importDefault(require("./global"));
+var global_1 = require("./global");
 
 var hud = {
   view: function view(vnode) {
     return mithril_1.default('div', {
-      class: "row",
-      id: "hud"
-    }, [global_1.default.currentDilemma != 0 ? mithril_1.default('div', {
-      class: "col offset-s1 s1"
+      class: 'row',
+      id: 'hud'
+    }, [global_1.state.currentDilemma != 0 ? mithril_1.default('div', {
+      class: 'col offset-s1 s1'
     }, [mithril_1.default(mithril_materialized_1.Button, {
       label: 'BACK',
       style: 'background-color: #4E77A0;',
       onclick: back
     })]) : mithril_1.default('div', {
-      class: "col offset-s1 s1"
+      class: 'col offset-s1 s1'
     }, [mithril_1.default(mithril_materialized_1.Button, {
       label: 'BACK',
       style: 'background-color: rgba(78, 119, 160, 0.733); box-shadow:none'
     })]), mithril_1.default('div', {
-      class: "col s1"
+      class: 'col s1'
     }, [mithril_1.default(mithril_materialized_1.Button, {
       label: 'HELP',
-      id: "helpButton",
+      id: 'helpButton',
       style: 'background-color: #4E77A0;',
       onclick: function onclick() {
-        global_1.default.showHelp = !global_1.default.showHelp;
+        global_1.state.showHelp = !global_1.state.showHelp;
       }
     })]), mithril_1.default('div', {
-      class: "col offset-s7  s1"
+      class: 'col offset-s7  s1'
     }, [mithril_1.default(mithril_materialized_1.Button, {
       label: 'DONE',
       href: vnode.attrs.done,
@@ -16885,8 +16886,8 @@ var hud = {
 };
 
 function back() {
-  if (global_1.default.currentDilemma != 0) {
-    global_1.default.currentDilemma -= 1;
+  if (global_1.state.currentDilemma !== 0) {
+    global_1.state.currentDilemma -= 1;
   }
 }
 
@@ -16910,60 +16911,61 @@ require("materialize-css/dist/css/materialize.min.css");
 
 require("material-icons/iconfont/material-icons.css");
 
-var global_1 = __importDefault(require("./global"));
+var global_1 = require("./global");
 
 var pages = [];
 var currentPage = 0;
 var currentPageText;
 var helpCard;
+var cardActions;
 var help = {
   view: function view(vnode) {
     pages = vnode.attrs.desc;
     currentPageText = pages[currentPage];
-    var visP = pages.length > 2 && currentPage != 0 ? "visible" : "hidden";
-    var visN = pages.length > 2 && currentPage != pages.length - 1 ? true : false;
+    var visP = pages.length > 2 && currentPage !== 0 ? 'visible' : 'hidden';
+    var visN = pages.length > 2 && currentPage !== pages.length - 1 ? true : false;
 
     if (visN) {
-      var cardActions = [mithril_1.default('a', {
-        href: "#!/hello",
-        style: "color:#4E77A0; visibility:" + visP + ";",
+      cardActions = [mithril_1.default('a', {
+        href: '#!/hello',
+        style: 'color:#4E77A0; visibility:' + visP + ';',
         onclick: prevPage
-      }, "PREVIOUS"), mithril_1.default('a', {
-        href: "#!/hello",
-        style: "color:#4E77A0; float:right;",
+      }, 'PREVIOUS'), mithril_1.default('a', {
+        href: '#!/hello',
+        style: 'color:#4E77A0; float:right;',
         onclick: nextPage
-      }, "NEXT")];
+      }, 'NEXT')];
     } else {
-      var cardActions = [mithril_1.default('a', {
-        href: "#!/hello",
-        style: "color:#4E77A0; visibility:" + visP + ";",
+      cardActions = [mithril_1.default('a', {
+        href: '#!/hello',
+        style: 'color:#4E77A0; visibility:' + visP + ';',
         onclick: prevPage
-      }, "PREVIOUS"), mithril_1.default('a', {
-        href: "#!/hello",
-        style: "color:#4E77A0; float:right;",
+      }, 'PREVIOUS'), mithril_1.default('a', {
+        href: '#!/hello',
+        style: 'color:#4E77A0; float:right;',
         onclick: function onclick(e) {
           e.preventDefault();
           currentPage = 0;
-          global_1.default.showHelp = false;
+          global_1.state.showHelp = false;
         }
-      }, "START")];
+      }, 'START')];
     }
 
-    if (!global_1.default.showHelp) {
+    if (!global_1.state.showHelp) {
       helpCard = null;
       currentPage = 0;
     } else {
       helpCard = mithril_1.default('div', {
-        class: "row col offset-s4 s4",
-        id: "help"
+        class: 'row col offset-s4 s4',
+        id: 'help'
       }, mithril_1.default('div', {
-        class: "card"
+        class: 'card'
       }, [mithril_1.default('div', {
-        class: "card-content"
+        class: 'card-content'
       }, [mithril_1.default('h6', {
-        class: "card-title"
+        class: 'card-title'
       }, vnode.attrs.title), mithril_1.default('p', currentPageText)]), mithril_1.default('div', {
-        class: "card-action"
+        class: 'card-action'
       }, cardActions)]));
     }
 
@@ -17003,7 +17005,7 @@ require("materialize-css/dist/css/materialize.min.css");
 
 require("material-icons/iconfont/material-icons.css");
 
-var global_1 = __importDefault(require("./global"));
+var global_1 = require("./global");
 
 var mithril_materialized_1 = require("mithril-materialized");
 
@@ -17013,100 +17015,100 @@ var help_1 = __importDefault(require("./help"));
 
 var MODULE1 = {
   oninit: function oninit() {
-    global_1.default.currentDilemma = 0;
+    global_1.state.currentDilemma = 0;
   },
   view: function view() {
     return mithril_1.default('div', {
-      class: "container"
+      class: 'container'
     }, [mithril_1.default(displayArea), mithril_1.default(controlAreaSolo), mithril_1.default(hud_1.default, {
-      done: "#!/module2"
+      done: '#!/module2'
     })]);
   }
 };
 var displayArea = {
   view: function view() {
-    var display = global_1.default.roles.length < 2 ? "displayArea" : "displayAreaMulti";
+    var display = global_1.state.roles.length < 2 ? 'displayArea' : 'displayAreaMulti';
     return mithril_1.default('div', {
-      class: "row valign-wrapper",
+      class: 'row valign-wrapper',
       id: display
-    }, [global_1.default.showHelp ? mithril_1.default(help_1.default, {
-      title: "Title",
-      desc: ["Lorem Ipsum et dono", "This is the second page", "this is the final page"]
-    }) : global_1.default.dilemmas.length >= global_1.default.currentDilemma + 1 ? mithril_1.default('div', {
-      class: "topic col s6 offset-s3"
+    }, [global_1.state.showHelp ? mithril_1.default(help_1.default, {
+      title: 'Title',
+      desc: ['Lorem Ipsum et dono', 'This is the second page', 'this is the final page']
+    }) : global_1.state.dilemmas.length >= global_1.state.currentDilemma + 1 ? mithril_1.default('div', {
+      class: 'topic col s6 offset-s3'
     }, [mithril_1.default('h1', {
-      class: "topicTitle"
-    }, global_1.default.dilemmas ? global_1.default.dilemmas[global_1.default.currentDilemma].title : "loading..."), mithril_1.default('p', {
-      class: "topicText"
-    }, global_1.default.dilemmas ? global_1.default.dilemmas[global_1.default.currentDilemma].description : "loading...")]) : mithril_1.default('p', {
-      class: "col s6 offset-s3"
-    }, "[ insert big animated checkmark to show the user is done ]")]);
+      class: 'topicTitle'
+    }, global_1.state.dilemmas ? global_1.state.dilemmas[global_1.state.currentDilemma].title : 'loading...'), mithril_1.default('p', {
+      class: 'topicText'
+    }, global_1.state.dilemmas ? global_1.state.dilemmas[global_1.state.currentDilemma].description : 'loading...')]) : mithril_1.default('p', {
+      class: 'col s6 offset-s3'
+    }, '[ insert big animated checkmark to show the user is done ]')]);
   }
 };
 var controlAreaSolo = {
   view: function view() {
-    return global_1.default.roles.length < 2 ? mithril_1.default('div', {
-      id: "soloMod1"
+    return global_1.state.roles.length < 2 ? mithril_1.default('div', {
+      id: 'soloMod1'
     }, [mithril_1.default('div', {
-      id: "controlAreaBG"
+      id: 'controlAreaBG'
     }, [mithril_1.default('div', {
-      id: "controlAreaTop"
+      id: 'controlAreaTop'
     }), mithril_1.default('div', {
-      id: "trashMod1Cont"
+      id: 'trashMod1Cont'
     }, mithril_1.default(mithril_materialized_1.Button, {
-      id: "trashMod1Button",
+      id: 'trashMod1Button',
       onclick: acceptDilemma.bind(_this, false)
     })), mithril_1.default('div', {
-      id: "personMod1Cont"
+      id: 'personMod1Cont'
     }, mithril_1.default(mithril_materialized_1.Button, {
-      id: "personMod1Button",
+      id: 'personMod1Button',
       onclick: acceptDilemma.bind(_this, true)
     }))])]) : mithril_1.default('div', {
-      id: "multiMod1"
+      id: 'multiMod1'
     }, [mithril_1.default('div', {
-      id: "controlAreaMod1Mutli"
+      id: 'controlAreaMod1Mutli'
     }, [mithril_1.default('div', {
-      id: "controlAreaTopMod1Multi"
+      id: 'controlAreaTopMod1Multi'
     }), mithril_1.default('div', {
-      id: "trashMod1ContMulti"
+      id: 'trashMod1ContMulti'
     }, mithril_1.default(mithril_materialized_1.Button, {
-      id: "trashMod1ButtonMulti",
+      id: 'trashMod1ButtonMulti',
       onclick: acceptDilemma.bind(_this, false)
     })), mithril_1.default('div', {
-      id: "usersCont"
-    }, [global_1.default.roles.map(function (role) {
+      id: 'usersCont'
+    }, [global_1.state.roles.map(function (role) {
       return mithril_1.default(mithril_materialized_1.Button, {
-        class: "userButton",
+        class: 'userButton',
         label: role.title,
         onclick: sortDilemma.bind(_this, role),
-        style: "background-color: #BEC4D9; height: 80px;"
+        style: 'background-color: #BEC4D9; height: 80px;'
       });
     })]), mithril_1.default('div', {
-      id: "groupMod1Cont"
+      id: 'groupMod1Cont'
     }, mithril_1.default(mithril_materialized_1.Button, {
-      id: "groupMod1Button",
+      id: 'groupMod1Button',
       onclick: acceptDilemma.bind(_this, true)
     }))])]);
   }
 };
 
 function acceptDilemma(choice) {
-  if (!global_1.default.showHelp) {
-    global_1.default.dilemmas[global_1.default.currentDilemma]["accepted"] = choice;
+  if (!global_1.state.showHelp) {
+    global_1.state.dilemmas[global_1.state.currentDilemma]['accepted'] = choice;
 
-    if (global_1.default.dilemmas.length >= global_1.default.currentDilemma + 1) {
-      global_1.default.currentDilemma += 1;
+    if (global_1.state.dilemmas.length >= global_1.state.currentDilemma + 1) {
+      global_1.state.currentDilemma += 1;
     }
   }
 }
 
 function sortDilemma(role) {
-  if (!global_1.default.showHelp) {
-    global_1.default.dilemmas[global_1.default.currentDilemma]["accepted"] = true;
-    global_1.default.dilemmas[global_1.default.currentDilemma]["assignedTo"] = role.title;
+  if (!global_1.state.showHelp) {
+    global_1.state.dilemmas[global_1.state.currentDilemma]['accepted'] = true;
+    global_1.state.dilemmas[global_1.state.currentDilemma]['assignedTo'] = role.title;
 
-    if (global_1.default.dilemmas.length >= global_1.default.currentDilemma + 1) {
-      global_1.default.currentDilemma += 1;
+    if (global_1.state.dilemmas.length >= global_1.state.currentDilemma + 1) {
+      global_1.state.currentDilemma += 1;
     }
   }
 }
@@ -17133,7 +17135,7 @@ require("materialize-css/dist/css/materialize.min.css");
 
 require("material-icons/iconfont/material-icons.css");
 
-var global_1 = __importDefault(require("./global"));
+var global_1 = require("./global");
 
 var mithril_materialized_1 = require("mithril-materialized");
 
@@ -17145,108 +17147,108 @@ var propertyButtons = [false, false, false];
 var properties = [false, false, false];
 var MODULE2 = {
   oninit: function oninit() {
-    global_1.default.currentDilemma = 0;
-    global_1.default.getPickedDilemmas();
+    global_1.state.currentDilemma = 0;
+    global_1.getPickedDilemmas();
   },
   view: function view() {
     return mithril_1.default('div', {
-      class: "container"
+      class: 'container'
     }, [mithril_1.default(controlArea), mithril_1.default(hud_1.default, {
-      done: "#!/module3"
+      done: '#!/module3'
     })]);
   }
 };
 var controlArea = {
   view: function view() {
     return mithril_1.default('div', {
-      id: "controlAreaBG2"
+      id: 'controlAreaBG2'
     }, [mithril_1.default('div', {
-      id: "controlAreaTop2"
+      id: 'controlAreaTop2'
     }), mithril_1.default('div', {
-      class: "row valign-wrapper",
-      id: "propertyControlArea"
-    }, global_1.default.showHelp ? mithril_1.default(help_1.default, {
-      title: "Title",
-      desc: ["Lorem Ipsum et dono", "This is the second page", "this is the final page"]
-    }) : [global_1.default.pickedDilemmas.length >= global_1.default.currentDilemma + 1 ? mithril_1.default('div', {
-      class: "pickedTopic col s4"
+      class: 'row valign-wrapper',
+      id: 'propertyControlArea'
+    }, global_1.state.showHelp ? mithril_1.default(help_1.default, {
+      title: 'Title',
+      desc: ['Lorem Ipsum et dono', 'This is the second page', 'this is the final page']
+    }) : [global_1.state.pickedDilemmas.length >= global_1.state.currentDilemma + 1 ? mithril_1.default('div', {
+      class: 'pickedTopic col s4'
     }, [mithril_1.default('h1', {
-      class: "topicTitle"
-    }, global_1.default.pickedDilemmas ? global_1.default.pickedDilemmas[global_1.default.currentDilemma].title : "loading..."), mithril_1.default('p', {
-      class: "topicText"
-    }, global_1.default.pickedDilemmas ? global_1.default.pickedDilemmas[global_1.default.currentDilemma].description : "loading...")]) : mithril_1.default('p', {
-      class: "col s4"
-    }, "done"), mithril_1.default('div', {
-      class: "propertySelection col s6"
+      class: 'topicTitle'
+    }, global_1.state.pickedDilemmas ? global_1.state.pickedDilemmas[global_1.state.currentDilemma].title : 'loading...'), mithril_1.default('p', {
+      class: 'topicText'
+    }, global_1.state.pickedDilemmas ? global_1.state.pickedDilemmas[global_1.state.currentDilemma].description : 'loading...')]) : mithril_1.default('p', {
+      class: 'col s4'
+    }, 'done'), mithril_1.default('div', {
+      class: 'propertySelection col s6'
     }, [mithril_1.default('div', {
-      class: "row"
+      class: 'row'
     }, [mithril_1.default('span', {
-      class: "col s4"
+      class: 'col s4'
     }, 'TIME'), mithril_1.default('span', {
-      class: "col s4"
+      class: 'col s4'
     }, 'INFORMATION'), mithril_1.default('span', {
-      class: "col s4"
+      class: 'col s4'
     }, 'ACCORDANCE OF INTERESTS')]), mithril_1.default('div', {
-      class: "row"
+      class: 'row'
     }, [mithril_1.default('div', {
-      class: "col s4 propertyCol"
+      class: 'col s4 propertyCol'
     }, [mithril_1.default('div', {
-      class: "propertyButtonCont col s12"
-    }, mithril_1.default("button", {
-      label: "+",
-      id: "0true",
-      class: "propertyButtons col offset-s1 s10",
+      class: 'propertyButtonCont col s12'
+    }, mithril_1.default('button', {
+      label: '+',
+      id: '0true',
+      class: 'propertyButtons col offset-s1 s10',
       onclick: propertyAdd.bind(_this, 0, true)
-    }, "+")), mithril_1.default('hr', {
-      class: "propertyHr col s12"
+    }, '+')), mithril_1.default('hr', {
+      class: 'propertyHr col s12'
     }), mithril_1.default('div', {
-      class: "propertyButtonCont col s12"
-    }, mithril_1.default("button", {
-      label: "-",
-      id: "0false",
-      class: "propertyButtons col offset-s1 s10",
+      class: 'propertyButtonCont col s12'
+    }, mithril_1.default('button', {
+      label: '-',
+      id: '0false',
+      class: 'propertyButtons col offset-s1 s10',
       onclick: propertyAdd.bind(_this, 0, false)
-    }, "-"))]), mithril_1.default('div', {
-      class: "col s4 propertyCol"
+    }, '-'))]), mithril_1.default('div', {
+      class: 'col s4 propertyCol'
     }, [mithril_1.default('div', {
-      class: "propertyButtonCont col s12"
-    }, mithril_1.default("button", {
-      label: "+",
-      id: "1true",
-      class: "propertyButtons col offset-s1 s10",
+      class: 'propertyButtonCont col s12'
+    }, mithril_1.default('button', {
+      label: '+',
+      id: '1true',
+      class: 'propertyButtons col offset-s1 s10',
       onclick: propertyAdd.bind(_this, 1, true)
-    }, "+")), mithril_1.default('hr', {
-      class: "propertyHr col s12"
+    }, '+')), mithril_1.default('hr', {
+      class: 'propertyHr col s12'
     }), mithril_1.default('div', {
-      class: "propertyButtonCont col s12"
-    }, mithril_1.default("button", {
-      label: "-",
-      id: "1false",
-      class: "propertyButtons col offset-s1 s10",
+      class: 'propertyButtonCont col s12'
+    }, mithril_1.default('button', {
+      label: '-',
+      id: '1false',
+      class: 'propertyButtons col offset-s1 s10',
       onclick: propertyAdd.bind(_this, 1, false)
-    }, "-"))]), mithril_1.default('div', {
-      class: "col s4 propertyCol"
+    }, '-'))]), mithril_1.default('div', {
+      class: 'col s4 propertyCol'
     }, [mithril_1.default('div', {
-      class: "propertyButtonCont col s12"
-    }, mithril_1.default("button", {
-      label: "+",
-      id: "2true",
-      class: "propertyButtons col offset-s1 s10",
+      class: 'propertyButtonCont col s12'
+    }, mithril_1.default('button', {
+      label: '+',
+      id: '2true',
+      class: 'propertyButtons col offset-s1 s10',
       onclick: propertyAdd.bind(_this, 2, true)
-    }, "+")), mithril_1.default('hr', {
-      class: "propertyHr col s12"
+    }, '+')), mithril_1.default('hr', {
+      class: 'propertyHr col s12'
     }), mithril_1.default('div', {
-      class: "propertyButtonCont col s12"
-    }, mithril_1.default("button", {
-      label: "-",
-      id: "2false",
-      class: "propertyButtons col offset-s1 s10",
+      class: 'propertyButtonCont col s12'
+    }, mithril_1.default('button', {
+      label: '-',
+      id: '2false',
+      class: 'propertyButtons col offset-s1 s10',
       onclick: propertyAdd.bind(_this, 2, false)
-    }, "-"))])])]), mithril_1.default('div', {
-      id: "trashMod2Cont"
+    }, '-'))])])]), mithril_1.default('div', {
+      id: 'trashMod2Cont'
     }, [mithril_1.default(mithril_materialized_1.Button, {
-      id: "trashMod1Button",
-      onclick: global_1.default.rejectPickedDilemma
+      id: 'trashMod1Button',
+      onclick: global_1.rejectPickedDilemma
     })])])]);
   }
 };
@@ -17255,15 +17257,15 @@ function propertyAdd(pressed, value) {
   propertyButtons[pressed] = true;
   properties[pressed] = value;
   var target = event.target;
-  target.className += " propertyButtonsPressed";
-  document.getElementById(String(pressed) + String(!value)).className = "propertyButtons col offset-s1 s10";
+  target.className += ' propertyButtonsPressed';
+  document.getElementById(String(pressed) + String(!value)).className = 'propertyButtons col offset-s1 s10';
 
   if (JSON.stringify(propertyButtons) == JSON.stringify([true, true, true])) {
-    global_1.default.pickedDilemmas[global_1.default.currentDilemma]["time"] = properties[0];
-    global_1.default.pickedDilemmas[global_1.default.currentDilemma]["info"] = properties[1];
-    global_1.default.pickedDilemmas[global_1.default.currentDilemma]["accordance"] = properties[2];
+    global_1.state.pickedDilemmas[global_1.state.currentDilemma]['time'] = properties[0];
+    global_1.state.pickedDilemmas[global_1.state.currentDilemma]['info'] = properties[1];
+    global_1.state.pickedDilemmas[global_1.state.currentDilemma]['accordance'] = properties[2];
     propertyButtons = [false, false, false];
-    global_1.default.currentDilemma += 1;
+    global_1.state.currentDilemma += 1;
   }
 }
 
@@ -17287,7 +17289,7 @@ require("materialize-css/dist/css/materialize.min.css");
 
 require("material-icons/iconfont/material-icons.css");
 
-var global_1 = __importDefault(require("./global"));
+var global_1 = require("./global");
 
 var mithril_materialized_1 = require("mithril-materialized");
 
@@ -17299,7 +17301,7 @@ var propertyButtons = [false, false, false];
 var properties = [false, false, false];
 var MODULE3 = {
   view: function view() {
-    return mithril_1.default('div', {
+    return mithril_1.default("div", {
       class: "container"
     }, [mithril_1.default(controlArea), mithril_1.default(hud_1.default, {
       done: "#!/module4"
@@ -17308,30 +17310,30 @@ var MODULE3 = {
 };
 var controlArea = {
   view: function view() {
-    return mithril_1.default('div', {
+    return mithril_1.default("div", {
       id: "controlAreaBG2"
-    }, [mithril_1.default('div', {
+    }, [mithril_1.default("div", {
       id: "controlAreaTop2"
-    }), mithril_1.default('div', {
+    }), mithril_1.default("div", {
       class: "row"
-    }, global_1.default.showHelp ? mithril_1.default(help_1.default, {
+    }, global_1.state.showHelp ? mithril_1.default(help_1.default, {
       title: "Title",
       desc: ["Lorem Ipsum et dono", "This is the second page", "this is the final page"]
-    }) : [mithril_1.default('div', {
+    }) : [mithril_1.default("div", {
       class: "agreements col s10 offset-s1"
-    }, [mithril_1.default('div', {
+    }, [mithril_1.default("div", {
       class: "row"
-    }, [mithril_1.default('span', {
+    }, [mithril_1.default("span", {
       class: "col s4"
-    }, [mithril_1.default('p', 'AGREEMENT'), mithril_1.default('p', '1'), mithril_1.default(mithril_materialized_1.TextArea, {
+    }, [mithril_1.default("p", "AGREEMENT"), mithril_1.default("p", "1"), mithril_1.default(mithril_materialized_1.TextArea, {
       maxLength: 200
-    })]), mithril_1.default('span', {
+    })]), mithril_1.default("span", {
       class: "col s4"
-    }, [mithril_1.default('p', 'AGREEMENT'), mithril_1.default('p', '2'), mithril_1.default(mithril_materialized_1.TextArea, {
+    }, [mithril_1.default("p", "AGREEMENT"), mithril_1.default("p", "2"), mithril_1.default(mithril_materialized_1.TextArea, {
       maxLength: 200
-    })]), mithril_1.default('span', {
+    })]), mithril_1.default("span", {
       class: "col s4"
-    }, [mithril_1.default('p', 'AGREEMENT'), mithril_1.default('p', '3'), mithril_1.default(mithril_materialized_1.TextArea, {
+    }, [mithril_1.default("p", "AGREEMENT"), mithril_1.default("p", "3"), mithril_1.default(mithril_materialized_1.TextArea, {
       maxLength: 200
     })])])])])]);
   }
@@ -31787,40 +31789,40 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var mithril_1 = __importDefault(require("mithril"));
+require("material-icons/iconfont/material-icons.css");
 
 require("materialize-css/dist/css/materialize.min.css");
 
-require("material-icons/iconfont/material-icons.css");
+var mithril_1 = __importDefault(require("mithril"));
 
-var global_1 = __importDefault(require("./global"));
+var global_1 = require("./global");
 
 var mithril_leaflet_1 = require("mithril-leaflet");
 
-var hud_1 = __importDefault(require("./hud"));
-
 var help_1 = __importDefault(require("./help"));
+
+var hud_1 = __importDefault(require("./hud"));
 
 var currentPhase = 0;
 var MODULE4 = {
   view: function view() {
     return mithril_1.default('div', {
-      class: "container"
+      class: 'container'
     }, [mithril_1.default(displayArea), mithril_1.default(controlAreaSolo), mithril_1.default(hud_1.default, {
-      done: "#!/module2"
+      done: '#!/selection'
     })]);
   }
 };
 var displayArea = {
   view: function view() {
     return mithril_1.default('div', {
-      class: "row",
-      id: "displayleaflet"
-    }, [global_1.default.showHelp ? mithril_1.default(help_1.default, {
-      title: "Title",
-      desc: ["Lorem Ipsum et dono", "This is the second page", "this is the final page"]
+      class: 'row',
+      id: 'displayleaflet'
+    }, [global_1.state.showHelp ? mithril_1.default(help_1.default, {
+      title: 'Title',
+      desc: ['Lorem Ipsum et dono', 'This is the second page', 'this is the final page']
     }) : mithril_1.default(mithril_leaflet_1.LeafletMap, {
-      class: "col s12",
+      class: 'col s12',
       view: [51.505, -0.09],
       zoom: 13,
       editable: ['test', 'pois'],
@@ -31837,22 +31839,22 @@ var displayArea = {
 var controlAreaSolo = {
   view: function view() {
     return mithril_1.default('div', {
-      id: "controlAreaBG"
+      id: 'controlAreaBG'
     }, [mithril_1.default('div', {
-      id: "controlAreaTop"
+      id: 'controlAreaTop'
     }), mithril_1.default('div', {
-      id: "explAreas"
+      id: 'explAreas'
     }, [mithril_1.default('div', {
-      id: "scenarioExpl",
-      class: "explanationArea"
-    }, [mithril_1.default('h6', "The scenario"), mithril_1.default('p', global_1.default.phases[currentPhase] ? global_1.default.phases[currentPhase].description : "loading...")]), mithril_1.default('div', {
-      id: "roleExpl",
-      class: "explanationArea"
-    }, [mithril_1.default('h6', "Your role: " + global_1.default.userRole.title), mithril_1.default('p', global_1.default.userRole.description)])])]);
+      id: 'scenarioExpl',
+      class: 'explanationArea'
+    }, [mithril_1.default('h6', 'The scenario'), mithril_1.default('p', global_1.state.phases[currentPhase] ? global_1.state.phases[currentPhase].description : 'loading...')]), mithril_1.default('div', {
+      id: 'roleExpl',
+      class: 'explanationArea'
+    }, [mithril_1.default('h6', 'Your role: ' + global_1.state.userRole.title), mithril_1.default('p', global_1.state.userRole.description)])])]);
   }
 };
 exports.default = MODULE4;
-},{"mithril":"node_modules/mithril/index.js","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","./global":"src/global.ts","mithril-leaflet":"node_modules/mithril-leaflet/dist/index.js","./hud":"src/hud.ts","./help":"src/help.ts"}],"src/selection.ts":[function(require,module,exports) {
+},{"material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","mithril":"node_modules/mithril/index.js","./global":"src/global.ts","mithril-leaflet":"node_modules/mithril-leaflet/dist/index.js","./help":"src/help.ts","./hud":"src/hud.ts"}],"src/selection.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -31873,7 +31875,7 @@ require("materialize-css/dist/css/materialize.min.css");
 
 require("material-icons/iconfont/material-icons.css");
 
-var global_1 = __importDefault(require("./global"));
+var global_1 = require("./global");
 
 var mithril_materialized_1 = require("mithril-materialized");
 
@@ -31884,10 +31886,10 @@ var SELECTION = {
   },
   view: function view() {
     return mithril_1.default('div', {
-      class: "container"
+      class: 'container'
     }, [mithril_1.default('div', {
-      class: "row"
-    }, [JSON.stringify(global_1.default.roles) == JSON.stringify([]) ? mithril_1.default(mithril_materialized_1.Collection, {
+      class: 'row'
+    }, [JSON.stringify(global_1.state.roles) === JSON.stringify([]) ? mithril_1.default(mithril_materialized_1.Collection, {
       header: 'Select a Scenario',
       class: 'col s6 offset-s3',
       mode: mithril_materialized_1.CollectionMode.LINKS,
@@ -31901,7 +31903,7 @@ var SELECTION = {
       header: 'Select your role',
       class: 'col s6 offset-s3',
       mode: mithril_materialized_1.CollectionMode.AVATAR,
-      items: global_1.default.roles.map(function (role) {
+      items: global_1.state.roles.map(function (role) {
         return {
           title: role.title,
           content: role.description,
@@ -31910,22 +31912,22 @@ var SELECTION = {
         };
       })
     })]), mithril_1.default('div', {
-      class: "row"
+      class: 'row'
     }, mithril_1.default(mithril_materialized_1.Button, {
-      label: "Back",
+      label: 'Back',
       onclick: function onclick() {
-        return global_1.default.roles = [];
+        return global_1.state.roles = [];
       },
       class: 'col s1 offset-s3',
-      style: "background-color: #4E77A0"
+      style: 'background-color: #4E77A0'
     }))]);
   }
 };
 
 function getScenarios() {
   mithril_1.default.request({
-    method: "GET",
-    url: "http://localhost:3030/api/scenarios",
+    method: 'GET',
+    url: global_1.state.trainerAPI + '/scenarios',
     body: {}
   }).then(function (result) {
     scenarios = result;
@@ -31933,16 +31935,16 @@ function getScenarios() {
 }
 
 function setScenario(scenario) {
-  global_1.default.dilemmas = scenario.dilemmas;
-  global_1.default.phases = scenario.phases;
-  global_1.default.roles = scenario.roles;
+  global_1.state.dilemmas = scenario.dilemmas;
+  global_1.state.phases = scenario.phases;
+  global_1.state.roles = scenario.roles;
 }
 
 function setRole(e) {
-  global_1.default.userRole.id = e.id;
-  global_1.default.userRole.title = e.title;
-  global_1.default.userRole.description = e.content;
-  mithril_1.default.route.set("module1");
+  global_1.state.userRole.id = e.id;
+  global_1.state.userRole.title = e.title;
+  global_1.state.userRole.description = e.content;
+  mithril_1.default.route.set('module1');
 }
 
 exports.default = SELECTION;
@@ -31970,11 +31972,11 @@ var module4_1 = __importDefault(require("./module4"));
 var selection_1 = __importDefault(require("./selection"));
 
 var router = {
-  "/selection": selection_1.default,
-  "/module1": module1_1.default,
-  "/module2": module2_1.default,
-  "/module3": module3_1.default,
-  "/module4": module4_1.default
+  '/selection': selection_1.default,
+  '/module1': module1_1.default,
+  '/module2': module2_1.default,
+  '/module3': module3_1.default,
+  '/module4': module4_1.default
 };
 exports.default = router;
 },{"./module1":"src/module1.ts","./module2":"src/module2.ts","./module3":"src/module3.ts","./module4":"src/module4.ts","./selection":"src/selection.ts"}],"src/app.ts":[function(require,module,exports) {
@@ -32023,7 +32025,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56554" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59475" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

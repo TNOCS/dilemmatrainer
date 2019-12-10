@@ -113,9 +113,13 @@
         "version": "d4639f2b59467bf76e036a287077f4f0dc10bdb723a58dae4502406c369f4456",
         "signature": "cef88b53b2435bc923002c0618176a095cbd88ac505a6bee729f896334e8edce"
       },
+      "./src/models/session.ts": {
+        "version": "09a1e4b66804582346300887049bc4b26759f4d77c1f2e3d63be71f2c60ef72b",
+        "signature": "107a53aacd100c68f286c882f5f85dec049e6c5126c86506eba2038b3dc21f4c"
+      },
       "./src/models/index.ts": {
-        "version": "6a94d3f45e7ad0fb23c95720a379ad42021b5035b885455e68d8d94b55be5c3e",
-        "signature": "6a94d3f45e7ad0fb23c95720a379ad42021b5035b885455e68d8d94b55be5c3e"
+        "version": "40d7f13f28378abd858aa65540656975c99cfa30ba1b550fc48137eafdb0a7b0",
+        "signature": "40d7f13f28378abd858aa65540656975c99cfa30ba1b550fc48137eafdb0a7b0"
       },
       "./src/index.ts": {
         "version": "45339de4e901bd6564f13bef27fae4456618d25c232f164727ffb3bd6c19c6f8",
@@ -172,12 +176,22 @@
         "./src/models/scenario-phase.ts",
         "./src/models/work-agreement.ts"
       ],
+      "./src/models/session.ts": [
+        "./src/models/characteristic.ts",
+        "./src/models/content.ts",
+        "./src/models/dilemma.ts",
+        "./src/models/role.ts",
+        "./src/models/scenario-phase.ts",
+        "./src/models/work-agreement.ts",
+        "./src/models/scenario.ts"
+      ],
       "./src/models/index.ts": [
         "./src/models/content.ts",
         "./src/models/dilemma.ts",
         "./src/models/role.ts",
         "./src/models/scenario-phase.ts",
-        "./src/models/scenario.ts"
+        "./src/models/scenario.ts",
+        "./src/models/session.ts"
       ],
       "./src/index.ts": [
         "./src/utils/index.ts",
@@ -208,12 +222,22 @@
         "./src/models/scenario-phase.ts",
         "./src/models/work-agreement.ts"
       ],
+      "./src/models/session.ts": [
+        "./src/models/scenario.ts",
+        "./src/models/content.ts",
+        "./src/models/dilemma.ts",
+        "./src/models/characteristic.ts",
+        "./src/models/role.ts",
+        "./src/models/scenario-phase.ts",
+        "./src/models/work-agreement.ts"
+      ],
       "./src/models/index.ts": [
         "./src/models/content.ts",
         "./src/models/dilemma.ts",
         "./src/models/role.ts",
         "./src/models/scenario-phase.ts",
-        "./src/models/scenario.ts"
+        "./src/models/scenario.ts",
+        "./src/models/session.ts"
       ],
       "./src/index.ts": [
         "./src/utils/index.ts",
@@ -249,6 +273,7 @@
       "./src/models/characteristic.ts",
       "./src/models/work-agreement.ts",
       "./src/models/scenario.ts",
+      "./src/models/session.ts",
       "./src/models/index.ts",
       "./src/index.ts"
     ]

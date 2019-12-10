@@ -1,35 +1,36 @@
-const state = {
-    showHelp : true,
-    roles: [],
-    userRole: {
-        id: "",
-        title: "",
-        description: ""
-    },
-    phases: [],
-    dilemmas: [],
-    pickedDilemmas: [],
-    assigned: [],
-    currentDilemma: 0,
-    getPickedDilemmas : getPickedDilemmas,
-    rejectPickedDilemma : rejectPickedDilemma
-}
+export const state = {
+  trainerAPI: 'http://localhost:3030/api',
+  showHelp: true,
+  roles: [],
+  userRole: {
+    id: '',
+    title: '',
+    description: '',
+  },
+  phases: [],
+  dilemmas: [],
+  pickedDilemmas: [],
+  assigned: [],
+  currentDilemma: 0,
+};
 
-function getPickedDilemmas(){
-    state.dilemmas.forEach(topic => {
-        if (topic.accepted){
-            state.pickedDilemmas.push(topic)
-        }
-    });
-}
-
-function rejectPickedDilemma(){
-    if (!state.showHelp){
-        state.pickedDilemmas[state.currentDilemma]["accepted"] = false;
-        if (state.pickedDilemmas.length >= (state.currentDilemma + 1)){
-            state.currentDilemma +=1;
-        }
+export const getPickedDilemmas = () => {
+  state.dilemmas.forEach(topic => {
+    if (topic.accepted) {
+      state.pickedDilemmas.push(topic);
     }
-}
+  });
+};
 
-export default state;
+export const rejectPickedDilemma = () => {
+  const { showHelp, pickedDilemmas, currentDilemma } = state;
+
+  if (!showHelp) {
+    pickedDilemmas[currentDilemma]['accepted'] = false;
+    if (pickedDilemmas.length >= currentDilemma + 1) {
+      state.currentDilemma += 1;
+    }
+  }
+};
+
+//shift + alt + F
