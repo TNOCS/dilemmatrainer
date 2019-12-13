@@ -1,14 +1,15 @@
-import m from 'mithril';
-import 'materialize-css/dist/css/materialize.min.css';
 import 'material-icons/iconfont/material-icons.css';
-import { state, getPickedDilemmas, rejectPickedDilemma } from './global';
+import 'materialize-css/dist/css/materialize.min.css';
+import m from 'mithril';
+
+import { getPickedDilemmas, rejectPickedDilemma, state } from '../global';
 
 import { Button } from 'mithril-materialized';
-import hud from './hud';
-import help from './help';
+import help from './components/help';
+import hud from './components/hud';
 
-var propertyButtons: Array<boolean> = [false, false, false];
-var properties: Array<boolean> = [false, false, false];
+let propertyButtons: Array<boolean> = [false, false, false];
+let properties: Array<boolean> = [false, false, false];
 
 const MODULE2 = {
   oninit: () => {
@@ -179,13 +180,13 @@ function propertyAdd(pressed, value) {
   propertyButtons[pressed] = true;
   properties[pressed] = value;
 
-  var target = <HTMLTextAreaElement>event.target;
+  const target = event.target as HTMLTextAreaElement;
   target.className += ' propertyButtonsPressed';
 
   document.getElementById(String(pressed) + String(!value)).className =
     'propertyButtons col offset-s1 s10';
 
-  if (JSON.stringify(propertyButtons) == JSON.stringify([true, true, true])) {
+  if (JSON.stringify(propertyButtons) === JSON.stringify([true, true, true])) {
     state.pickedDilemmas[state.currentDilemma]['time'] = properties[0];
     state.pickedDilemmas[state.currentDilemma]['info'] = properties[1];
     state.pickedDilemmas[state.currentDilemma]['accordance'] = properties[2];

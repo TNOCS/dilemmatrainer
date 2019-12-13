@@ -1,6 +1,7 @@
 export const state = {
   trainerAPI: 'http://localhost:3030/api',
   showHelp: true,
+  reflecting: false,
   roles: [],
   userRole: {
     id: '',

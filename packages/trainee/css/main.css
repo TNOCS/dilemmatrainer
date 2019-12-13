@@ -3,6 +3,10 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 
+a{
+    cursor: pointer;
+}
+
 span{
     color: #FBFAF9;
     text-align: center;

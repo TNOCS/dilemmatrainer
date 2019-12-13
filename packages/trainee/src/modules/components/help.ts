@@ -1,11 +1,12 @@
-import m from 'mithril';
-import 'materialize-css/dist/css/materialize.min.css';
 import 'material-icons/iconfont/material-icons.css';
-import { state } from './global';
+import 'materialize-css/dist/css/materialize.min.css';
+import m from 'mithril';
 
-let pages: Array<string> = [];
+import { state } from '../../global';
+
+let pages: string[] = [];
 let currentPage: number = 0;
-let currentPageText: String;
+let currentPageText: string;
 let helpCard: any;
 let cardActions;
 
@@ -23,7 +24,6 @@ const help = {
         m(
           'a',
           {
-            href: '#!/hello',
             style: 'color:#4E77A0; visibility:' + visP + ';',
             onclick: prevPage,
           },
@@ -32,7 +32,6 @@ const help = {
         m(
           'a',
           {
-            href: '#!/hello',
             style: 'color:#4E77A0; float:right;',
             onclick: nextPage,
           },
@@ -44,7 +43,6 @@ const help = {
         m(
           'a',
           {
-            href: '#!/hello',
             style: 'color:#4E77A0; visibility:' + visP + ';',
             onclick: prevPage,
           },
@@ -53,7 +51,6 @@ const help = {
         m(
           'a',
           {
-            href: '#!/hello',
             style: 'color:#4E77A0; float:right;',
             onclick: e => {
               e.preventDefault();

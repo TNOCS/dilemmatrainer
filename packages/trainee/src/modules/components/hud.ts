@@ -1,14 +1,14 @@
-import m from 'mithril';
-import 'materialize-css/dist/css/materialize.min.css';
 import 'material-icons/iconfont/material-icons.css';
+import 'materialize-css/dist/css/materialize.min.css';
+import m from 'mithril';
 
 import { Button } from 'mithril-materialized';
-import { state } from './global';
+import { state } from '../../global';
 
 const hud = {
   view: vnode => {
     return m('div', { class: 'row', id: 'hud' }, [
-      state.currentDilemma != 0
+      state.currentDilemma !== 0
         ? m('div', { class: 'col offset-s1 s1' }, [
             m(Button, {
               label: 'BACK',

@@ -1,11 +1,12 @@
-import m from 'mithril';
-import 'materialize-css/dist/css/materialize.min.css';
 import 'material-icons/iconfont/material-icons.css';
-import { state } from './global';
+import 'materialize-css/dist/css/materialize.min.css';
+import m from 'mithril';
+import { state } from '../global';
 
 import { Button } from 'mithril-materialized';
-import hud from './hud';
-import help from './help';
+import dilemmaReflection from './components/dilemma-reflection';
+import help from './components/help';
+import hud from './components/hud';
 
 const MODULE1 = {
   oninit: () => {
@@ -22,7 +23,7 @@ const MODULE1 = {
 
 const displayArea = {
   view: () => {
-    var display = state.roles.length < 2 ? 'displayArea' : 'displayAreaMulti';
+    let display = state.roles.length < 2 ? 'displayArea' : 'displayAreaMulti';
 
     return m('div', { class: 'row valign-wrapper', id: display }, [
       state.showHelp
@@ -34,7 +35,10 @@ const displayArea = {
               'this is the final page',
             ],
           })
-        : state.dilemmas.length >= state.currentDilemma + 1
+        : 
+        state.reflecting ? m(dilemmaReflection) : 
+
+        state.dilemmas.length >= state.currentDilemma + 1
         ? m('div', { class: 'topic col s6 offset-s3' }, [
             m(
               'h1',
@@ -122,7 +126,7 @@ function acceptDilemma(choice) {
   if (!state.showHelp) {
     state.dilemmas[state.currentDilemma]['accepted'] = choice;
     if (state.dilemmas.length >= state.currentDilemma + 1) {
-      state.currentDilemma += 1;
+      state.reflecting = true;
     }
   }
 }
@@ -132,7 +136,7 @@ function sortDilemma(role) {
     state.dilemmas[state.currentDilemma]['accepted'] = true;
     state.dilemmas[state.currentDilemma]['assignedTo'] = role.title;
     if (state.dilemmas.length >= state.currentDilemma + 1) {
-      state.currentDilemma += 1;
+      state.reflecting = true;
     }
   }
 }

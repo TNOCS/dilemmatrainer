@@ -1,14 +1,14 @@
 import 'material-icons/iconfont/material-icons.css';
 import 'materialize-css/dist/css/materialize.min.css';
 import m from 'mithril';
-import { state } from './global';
+import { state } from '../global';
 
 import { Feature, Geometry } from 'geojson';
 import { FeatureGroup, geoJSON, LatLngExpression, LeafletEvent } from 'leaflet';
 import { LeafletMap } from 'mithril-leaflet';
 
-import help from './help';
-import hud from './hud';
+import help from './components/help';
+import hud from './components/hud';
 
 let currentPhase = 0;
 

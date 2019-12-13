@@ -143,3 +143,41 @@
 #displayAreaMulti{
     min-height: 50%;
 }
+
+#reflection{
+    background-color: white;
+    border-radius: 3px;
+}
+
+.reflectionLabel{
+    text-align: left;
+    color: #4E77A0;
+}
+
+.reflectionData{
+    color:black; 
+    text-align: left;
+}
+
+
+#reflectionExpl{
+    text-align: center;
+    font-style: italic;
+}
+
+.reflectActions{
+    text-align: center;
+    border-top: solid 5px#7F7DBB;
+    align-items: center;
+    padding-top: 1%;
+    cursor: pointer;
+}
+
+
+#continue{
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 23px;
+    letter-spacing: 0.02em;
+    color: #4E77A0;
+}

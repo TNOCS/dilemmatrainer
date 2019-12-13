@@ -60,7 +60,7 @@ function getScenarios() {
     method: 'GET',
     url: state.trainerAPI + '/scenarios',
     body: {},
-  }).then(function(result) {
+  }).then((result) => {
     scenarios = result;
   });
 }

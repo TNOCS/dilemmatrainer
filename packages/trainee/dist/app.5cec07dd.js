@@ -2283,19 +2283,19 @@ function reloadCSS() {
 }
 
 module.exports = reloadCSS;
-},{"./bundle-url":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"node_modules/materialize-css/dist/css/materialize.min.css":[function(require,module,exports) {
+},{"./bundle-url":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"node_modules/material-icons/iconfont/material-icons.css":[function(require,module,exports) {
 
         var reloadCSS = require('_css_loader');
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
-},{"_css_loader":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/material-icons/iconfont/material-icons.css":[function(require,module,exports) {
+},{"./MaterialIcons-Regular.eot":[["MaterialIcons-Regular.bcffbc15.eot","node_modules/material-icons/iconfont/MaterialIcons-Regular.eot"],"node_modules/material-icons/iconfont/MaterialIcons-Regular.eot"],"./MaterialIcons-Regular.woff2":[["MaterialIcons-Regular.11799939.woff2","node_modules/material-icons/iconfont/MaterialIcons-Regular.woff2"],"node_modules/material-icons/iconfont/MaterialIcons-Regular.woff2"],"./MaterialIcons-Regular.woff":[["MaterialIcons-Regular.6924d4ac.woff","node_modules/material-icons/iconfont/MaterialIcons-Regular.woff"],"node_modules/material-icons/iconfont/MaterialIcons-Regular.woff"],"./MaterialIcons-Regular.ttf":[["MaterialIcons-Regular.a71f6b9a.ttf","node_modules/material-icons/iconfont/MaterialIcons-Regular.ttf"],"node_modules/material-icons/iconfont/MaterialIcons-Regular.ttf"],"_css_loader":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/materialize-css/dist/css/materialize.min.css":[function(require,module,exports) {
 
         var reloadCSS = require('_css_loader');
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
-},{"./MaterialIcons-Regular.eot":[["MaterialIcons-Regular.bcffbc15.eot","node_modules/material-icons/iconfont/MaterialIcons-Regular.eot"],"node_modules/material-icons/iconfont/MaterialIcons-Regular.eot"],"./MaterialIcons-Regular.woff2":[["MaterialIcons-Regular.11799939.woff2","node_modules/material-icons/iconfont/MaterialIcons-Regular.woff2"],"node_modules/material-icons/iconfont/MaterialIcons-Regular.woff2"],"./MaterialIcons-Regular.woff":[["MaterialIcons-Regular.6924d4ac.woff","node_modules/material-icons/iconfont/MaterialIcons-Regular.woff"],"node_modules/material-icons/iconfont/MaterialIcons-Regular.woff"],"./MaterialIcons-Regular.ttf":[["MaterialIcons-Regular.a71f6b9a.ttf","node_modules/material-icons/iconfont/MaterialIcons-Regular.ttf"],"node_modules/material-icons/iconfont/MaterialIcons-Regular.ttf"],"_css_loader":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/global.ts":[function(require,module,exports) {
+},{"_css_loader":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/global.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2304,6 +2304,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.state = {
   trainerAPI: 'http://localhost:3030/api',
   showHelp: true,
+  reflecting: false,
   roles: [],
   userRole: {
     id: '',
@@ -16827,7 +16828,7 @@ var Me = function () {
 };
 
 exports.Timeline = Te;
-},{"mithril":"node_modules/mithril/index.js","materialize-css":"node_modules/materialize-css/dist/js/materialize.js"}],"src/hud.ts":[function(require,module,exports) {
+},{"mithril":"node_modules/mithril/index.js","materialize-css":"node_modules/materialize-css/dist/js/materialize.js"}],"src/modules/components/dilemma-reflection.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -16840,59 +16841,56 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var mithril_1 = __importDefault(require("mithril"));
+require("material-icons/iconfont/material-icons.css");
 
 require("materialize-css/dist/css/materialize.min.css");
 
-require("material-icons/iconfont/material-icons.css");
+var mithril_1 = __importDefault(require("mithril"));
 
-var mithril_materialized_1 = require("mithril-materialized");
+var global_1 = require("../../global");
 
-var global_1 = require("./global");
-
-var hud = {
-  view: function view(vnode) {
-    return mithril_1.default('div', {
-      class: 'row',
-      id: 'hud'
-    }, [global_1.state.currentDilemma != 0 ? mithril_1.default('div', {
-      class: 'col offset-s1 s1'
-    }, [mithril_1.default(mithril_materialized_1.Button, {
-      label: 'BACK',
-      style: 'background-color: #4E77A0;',
-      onclick: back
-    })]) : mithril_1.default('div', {
-      class: 'col offset-s1 s1'
-    }, [mithril_1.default(mithril_materialized_1.Button, {
-      label: 'BACK',
-      style: 'background-color: rgba(78, 119, 160, 0.733); box-shadow:none'
-    })]), mithril_1.default('div', {
-      class: 'col s1'
-    }, [mithril_1.default(mithril_materialized_1.Button, {
-      label: 'HELP',
-      id: 'helpButton',
-      style: 'background-color: #4E77A0;',
-      onclick: function onclick() {
-        global_1.state.showHelp = !global_1.state.showHelp;
-      }
-    })]), mithril_1.default('div', {
-      class: 'col offset-s7  s1'
-    }, [mithril_1.default(mithril_materialized_1.Button, {
-      label: 'DONE',
-      href: vnode.attrs.done,
-      style: 'background-color: #4E77A0;'
-    })])]);
+var dilemmaReflection = {
+  view: function view() {
+    var dilemmas = global_1.state.dilemmas,
+        currentDilemma = global_1.state.currentDilemma;
+    var reflection = mithril_1.default('div', {
+      class: 'row col offset-s1 s10',
+      id: 'reflection'
+    }, [mithril_1.default('div', {
+      class: 'reflectionContent'
+    }, [mithril_1.default('div', {
+      class: 'row'
+    }, [mithril_1.default('span', {
+      class: 'reflectionLabel col s2'
+    }, 'Dilemma:'), mithril_1.default('span', {
+      class: 'reflectionData col s4'
+    }, dilemmas[currentDilemma].title)]), mithril_1.default('div', {
+      class: 'row'
+    }, [mithril_1.default('span', {
+      class: 'reflectionLabel col s2'
+    }, 'Intended for:'), mithril_1.default('span', {
+      class: 'reflectionData col s4'
+    }, 'get role name')]), mithril_1.default('div', {
+      class: 'row'
+    }, [mithril_1.default('p', {
+      id: 'reflectionExpl'
+    }, dilemmas[currentDilemma].forTeam)])]), mithril_1.default('div', {
+      class: 'card-action row reflectActions',
+      onclick: nextDilemma
+    }, mithril_1.default('a', {
+      id: 'continue'
+    }, 'CONTINUE'))]);
+    return reflection;
   }
 };
 
-function back() {
-  if (global_1.state.currentDilemma !== 0) {
-    global_1.state.currentDilemma -= 1;
-  }
+function nextDilemma() {
+  global_1.state.currentDilemma += 1;
+  global_1.state.reflecting = false;
 }
 
-exports.default = hud;
-},{"mithril":"node_modules/mithril/index.js","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","mithril-materialized":"node_modules/mithril-materialized/dist/index.esm.js","./global":"src/global.ts"}],"src/help.ts":[function(require,module,exports) {
+exports.default = dilemmaReflection;
+},{"material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","mithril":"node_modules/mithril/index.js","../../global":"src/global.ts"}],"src/modules/components/help.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -16905,13 +16903,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var mithril_1 = __importDefault(require("mithril"));
+require("material-icons/iconfont/material-icons.css");
 
 require("materialize-css/dist/css/materialize.min.css");
 
-require("material-icons/iconfont/material-icons.css");
+var mithril_1 = __importDefault(require("mithril"));
 
-var global_1 = require("./global");
+var global_1 = require("../../global");
 
 var pages = [];
 var currentPage = 0;
@@ -16927,21 +16925,17 @@ var help = {
 
     if (visN) {
       cardActions = [mithril_1.default('a', {
-        href: '#!/hello',
         style: 'color:#4E77A0; visibility:' + visP + ';',
         onclick: prevPage
       }, 'PREVIOUS'), mithril_1.default('a', {
-        href: '#!/hello',
         style: 'color:#4E77A0; float:right;',
         onclick: nextPage
       }, 'NEXT')];
     } else {
       cardActions = [mithril_1.default('a', {
-        href: '#!/hello',
         style: 'color:#4E77A0; visibility:' + visP + ';',
         onclick: prevPage
       }, 'PREVIOUS'), mithril_1.default('a', {
-        href: '#!/hello',
         style: 'color:#4E77A0; float:right;',
         onclick: function onclick(e) {
           e.preventDefault();
@@ -16984,7 +16978,72 @@ function prevPage(e) {
 }
 
 exports.default = help;
-},{"mithril":"node_modules/mithril/index.js","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","./global":"src/global.ts"}],"src/module1.ts":[function(require,module,exports) {
+},{"material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","mithril":"node_modules/mithril/index.js","../../global":"src/global.ts"}],"src/modules/components/hud.ts":[function(require,module,exports) {
+"use strict";
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+require("material-icons/iconfont/material-icons.css");
+
+require("materialize-css/dist/css/materialize.min.css");
+
+var mithril_1 = __importDefault(require("mithril"));
+
+var mithril_materialized_1 = require("mithril-materialized");
+
+var global_1 = require("../../global");
+
+var hud = {
+  view: function view(vnode) {
+    return mithril_1.default('div', {
+      class: 'row',
+      id: 'hud'
+    }, [global_1.state.currentDilemma !== 0 ? mithril_1.default('div', {
+      class: 'col offset-s1 s1'
+    }, [mithril_1.default(mithril_materialized_1.Button, {
+      label: 'BACK',
+      style: 'background-color: #4E77A0;',
+      onclick: back
+    })]) : mithril_1.default('div', {
+      class: 'col offset-s1 s1'
+    }, [mithril_1.default(mithril_materialized_1.Button, {
+      label: 'BACK',
+      style: 'background-color: rgba(78, 119, 160, 0.733); box-shadow:none'
+    })]), mithril_1.default('div', {
+      class: 'col s1'
+    }, [mithril_1.default(mithril_materialized_1.Button, {
+      label: 'HELP',
+      id: 'helpButton',
+      style: 'background-color: #4E77A0;',
+      onclick: function onclick() {
+        global_1.state.showHelp = !global_1.state.showHelp;
+      }
+    })]), mithril_1.default('div', {
+      class: 'col offset-s7  s1'
+    }, [mithril_1.default(mithril_materialized_1.Button, {
+      label: 'DONE',
+      href: vnode.attrs.done,
+      style: 'background-color: #4E77A0;'
+    })])]);
+  }
+};
+
+function back() {
+  if (global_1.state.currentDilemma !== 0) {
+    global_1.state.currentDilemma -= 1;
+  }
+}
+
+exports.default = hud;
+},{"material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","mithril":"node_modules/mithril/index.js","mithril-materialized":"node_modules/mithril-materialized/dist/index.esm.js","../../global":"src/global.ts"}],"src/modules/module1.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -16999,19 +17058,21 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var mithril_1 = __importDefault(require("mithril"));
+require("material-icons/iconfont/material-icons.css");
 
 require("materialize-css/dist/css/materialize.min.css");
 
-require("material-icons/iconfont/material-icons.css");
+var mithril_1 = __importDefault(require("mithril"));
 
-var global_1 = require("./global");
+var global_1 = require("../global");
 
 var mithril_materialized_1 = require("mithril-materialized");
 
-var hud_1 = __importDefault(require("./hud"));
+var dilemma_reflection_1 = __importDefault(require("./components/dilemma-reflection"));
 
-var help_1 = __importDefault(require("./help"));
+var help_1 = __importDefault(require("./components/help"));
+
+var hud_1 = __importDefault(require("./components/hud"));
 
 var MODULE1 = {
   oninit: function oninit() {
@@ -17034,7 +17095,7 @@ var displayArea = {
     }, [global_1.state.showHelp ? mithril_1.default(help_1.default, {
       title: 'Title',
       desc: ['Lorem Ipsum et dono', 'This is the second page', 'this is the final page']
-    }) : global_1.state.dilemmas.length >= global_1.state.currentDilemma + 1 ? mithril_1.default('div', {
+    }) : global_1.state.reflecting ? mithril_1.default(dilemma_reflection_1.default) : global_1.state.dilemmas.length >= global_1.state.currentDilemma + 1 ? mithril_1.default('div', {
       class: 'topic col s6 offset-s3'
     }, [mithril_1.default('h1', {
       class: 'topicTitle'
@@ -17097,7 +17158,7 @@ function acceptDilemma(choice) {
     global_1.state.dilemmas[global_1.state.currentDilemma]['accepted'] = choice;
 
     if (global_1.state.dilemmas.length >= global_1.state.currentDilemma + 1) {
-      global_1.state.currentDilemma += 1;
+      global_1.state.reflecting = true;
     }
   }
 }
@@ -17108,13 +17169,13 @@ function sortDilemma(role) {
     global_1.state.dilemmas[global_1.state.currentDilemma]['assignedTo'] = role.title;
 
     if (global_1.state.dilemmas.length >= global_1.state.currentDilemma + 1) {
-      global_1.state.currentDilemma += 1;
+      global_1.state.reflecting = true;
     }
   }
 }
 
 exports.default = MODULE1;
-},{"mithril":"node_modules/mithril/index.js","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","./global":"src/global.ts","mithril-materialized":"node_modules/mithril-materialized/dist/index.esm.js","./hud":"src/hud.ts","./help":"src/help.ts"}],"src/module2.ts":[function(require,module,exports) {
+},{"material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","mithril":"node_modules/mithril/index.js","../global":"src/global.ts","mithril-materialized":"node_modules/mithril-materialized/dist/index.esm.js","./components/dilemma-reflection":"src/modules/components/dilemma-reflection.ts","./components/help":"src/modules/components/help.ts","./components/hud":"src/modules/components/hud.ts"}],"src/modules/module2.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -17129,19 +17190,19 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var mithril_1 = __importDefault(require("mithril"));
+require("material-icons/iconfont/material-icons.css");
 
 require("materialize-css/dist/css/materialize.min.css");
 
-require("material-icons/iconfont/material-icons.css");
+var mithril_1 = __importDefault(require("mithril"));
 
-var global_1 = require("./global");
+var global_1 = require("../global");
 
 var mithril_materialized_1 = require("mithril-materialized");
 
-var hud_1 = __importDefault(require("./hud"));
+var help_1 = __importDefault(require("./components/help"));
 
-var help_1 = __importDefault(require("./help"));
+var hud_1 = __importDefault(require("./components/hud"));
 
 var propertyButtons = [false, false, false];
 var properties = [false, false, false];
@@ -17260,7 +17321,7 @@ function propertyAdd(pressed, value) {
   target.className += ' propertyButtonsPressed';
   document.getElementById(String(pressed) + String(!value)).className = 'propertyButtons col offset-s1 s10';
 
-  if (JSON.stringify(propertyButtons) == JSON.stringify([true, true, true])) {
+  if (JSON.stringify(propertyButtons) === JSON.stringify([true, true, true])) {
     global_1.state.pickedDilemmas[global_1.state.currentDilemma]['time'] = properties[0];
     global_1.state.pickedDilemmas[global_1.state.currentDilemma]['info'] = properties[1];
     global_1.state.pickedDilemmas[global_1.state.currentDilemma]['accordance'] = properties[2];
@@ -17270,7 +17331,7 @@ function propertyAdd(pressed, value) {
 }
 
 exports.default = MODULE2;
-},{"mithril":"node_modules/mithril/index.js","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","./global":"src/global.ts","mithril-materialized":"node_modules/mithril-materialized/dist/index.esm.js","./hud":"src/hud.ts","./help":"src/help.ts"}],"src/module3.ts":[function(require,module,exports) {
+},{"material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","mithril":"node_modules/mithril/index.js","../global":"src/global.ts","mithril-materialized":"node_modules/mithril-materialized/dist/index.esm.js","./components/help":"src/modules/components/help.ts","./components/hud":"src/modules/components/hud.ts"}],"src/modules/module3.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -17283,19 +17344,19 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var mithril_1 = __importDefault(require("mithril"));
+require("material-icons/iconfont/material-icons.css");
 
 require("materialize-css/dist/css/materialize.min.css");
 
-require("material-icons/iconfont/material-icons.css");
+var mithril_1 = __importDefault(require("mithril"));
 
-var global_1 = require("./global");
+var global_1 = require("../global");
 
 var mithril_materialized_1 = require("mithril-materialized");
 
-var hud_1 = __importDefault(require("./hud"));
+var hud_1 = __importDefault(require("./components/hud"));
 
-var help_1 = __importDefault(require("./help"));
+var help_1 = __importDefault(require("./components/help"));
 
 var propertyButtons = [false, false, false];
 var properties = [false, false, false];
@@ -17339,7 +17400,7 @@ var controlArea = {
   }
 };
 exports.default = MODULE3;
-},{"mithril":"node_modules/mithril/index.js","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","./global":"src/global.ts","mithril-materialized":"node_modules/mithril-materialized/dist/index.esm.js","./hud":"src/hud.ts","./help":"src/help.ts"}],"node_modules/leaflet/dist/leaflet-src.js":[function(require,module,exports) {
+},{"material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","mithril":"node_modules/mithril/index.js","../global":"src/global.ts","mithril-materialized":"node_modules/mithril-materialized/dist/index.esm.js","./components/hud":"src/modules/components/hud.ts","./components/help":"src/modules/components/help.ts"}],"node_modules/leaflet/dist/leaflet-src.js":[function(require,module,exports) {
 var define;
 var global = arguments[3];
 /* @preserve
@@ -31776,7 +31837,7 @@ var define;
 
   var d, c;
 });
-},{"leaflet":"node_modules/leaflet/dist/leaflet-src.js","mithril":"node_modules/mithril/index.js","leaflet/dist/leaflet.css":"node_modules/leaflet/dist/leaflet.css","leaflet-draw/dist/leaflet.draw.css":"node_modules/leaflet-draw/dist/leaflet.draw.css","leaflet-draw":"node_modules/leaflet-draw/dist/leaflet.draw.js","leaflet/dist/images/marker-icon-2x.png":"node_modules/leaflet/dist/images/marker-icon-2x.png","leaflet/dist/images/marker-icon.png":"node_modules/leaflet/dist/images/marker-icon.png","leaflet/dist/images/marker-shadow.png":"node_modules/leaflet/dist/images/marker-shadow.png"}],"src/module4.ts":[function(require,module,exports) {
+},{"leaflet":"node_modules/leaflet/dist/leaflet-src.js","mithril":"node_modules/mithril/index.js","leaflet/dist/leaflet.css":"node_modules/leaflet/dist/leaflet.css","leaflet-draw/dist/leaflet.draw.css":"node_modules/leaflet-draw/dist/leaflet.draw.css","leaflet-draw":"node_modules/leaflet-draw/dist/leaflet.draw.js","leaflet/dist/images/marker-icon-2x.png":"node_modules/leaflet/dist/images/marker-icon-2x.png","leaflet/dist/images/marker-icon.png":"node_modules/leaflet/dist/images/marker-icon.png","leaflet/dist/images/marker-shadow.png":"node_modules/leaflet/dist/images/marker-shadow.png"}],"src/modules/module4.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -31795,13 +31856,13 @@ require("materialize-css/dist/css/materialize.min.css");
 
 var mithril_1 = __importDefault(require("mithril"));
 
-var global_1 = require("./global");
+var global_1 = require("../global");
 
 var mithril_leaflet_1 = require("mithril-leaflet");
 
-var help_1 = __importDefault(require("./help"));
+var help_1 = __importDefault(require("./components/help"));
 
-var hud_1 = __importDefault(require("./hud"));
+var hud_1 = __importDefault(require("./components/hud"));
 
 var currentPhase = 0;
 var MODULE4 = {
@@ -31854,7 +31915,7 @@ var controlAreaSolo = {
   }
 };
 exports.default = MODULE4;
-},{"material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","mithril":"node_modules/mithril/index.js","./global":"src/global.ts","mithril-leaflet":"node_modules/mithril-leaflet/dist/index.js","./help":"src/help.ts","./hud":"src/hud.ts"}],"src/selection.ts":[function(require,module,exports) {
+},{"material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","mithril":"node_modules/mithril/index.js","../global":"src/global.ts","mithril-leaflet":"node_modules/mithril-leaflet/dist/index.js","./components/help":"src/modules/components/help.ts","./components/hud":"src/modules/components/hud.ts"}],"src/selection.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -31961,13 +32022,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var module1_1 = __importDefault(require("./module1"));
+var module1_1 = __importDefault(require("./modules/module1"));
 
-var module2_1 = __importDefault(require("./module2"));
+var module2_1 = __importDefault(require("./modules/module2"));
 
-var module3_1 = __importDefault(require("./module3"));
+var module3_1 = __importDefault(require("./modules/module3"));
 
-var module4_1 = __importDefault(require("./module4"));
+var module4_1 = __importDefault(require("./modules/module4"));
 
 var selection_1 = __importDefault(require("./selection"));
 
@@ -31979,7 +32040,7 @@ var router = {
   '/module4': module4_1.default
 };
 exports.default = router;
-},{"./module1":"src/module1.ts","./module2":"src/module2.ts","./module3":"src/module3.ts","./module4":"src/module4.ts","./selection":"src/selection.ts"}],"src/app.ts":[function(require,module,exports) {
+},{"./modules/module1":"src/modules/module1.ts","./modules/module2":"src/modules/module2.ts","./modules/module3":"src/modules/module3.ts","./modules/module4":"src/modules/module4.ts","./selection":"src/selection.ts"}],"src/app.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -32025,7 +32086,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59475" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49862" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

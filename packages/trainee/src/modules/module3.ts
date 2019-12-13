@@ -1,11 +1,11 @@
-import m from "mithril";
-import "materialize-css/dist/css/materialize.min.css";
-import "material-icons/iconfont/material-icons.css";
-import { state } from "./global";
+import 'material-icons/iconfont/material-icons.css';
+import 'materialize-css/dist/css/materialize.min.css';
+import m from 'mithril';
+import { state } from "../global";
 
 import { TextArea } from "mithril-materialized";
-import hud from "./hud";
-import help from "./help";
+import hud from "./components/hud";
+import help from "./components/help";
 
 var propertyButtons: Array<boolean> = [false, false, false];
 var properties: Array<boolean> = [false, false, false];
