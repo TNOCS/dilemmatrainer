@@ -149,6 +149,13 @@ export const scenarioFormGenerator = (scenario: Partial<IScenario>): Form => {
           className: 'col s12',
         },
         {
+          id: 'shouldAccept',
+          label: 'Should be accepted',
+          type: "checkbox",
+          required: true,
+          className: 'col s12 acceptDilemmaToggle',
+        },
+        {
           id: 'reason',
           label: 'Reason for accepting or rejecting the dilemma',
           type: 'textarea',
@@ -175,13 +182,14 @@ export const scenarioFormGenerator = (scenario: Partial<IScenario>): Form => {
               max: 100,
               className: 'col s12 m6',
             },
+            /*
             {
               id: 'description',
               label: 'Explanation',
               options: roles,
               type: 'textarea',
               className: 'col s12',
-            },
+            },*/
           ],
           repeat: true,
           pageSize: 1,

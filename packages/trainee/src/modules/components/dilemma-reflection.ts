@@ -18,7 +18,7 @@ const dilemmaReflection = {
                     m('span', {class: 'reflectionData col s4'}, 'get role name')
             ]),
             m('div', { class: 'row' }, [
-              m('p', {id:'reflectionExpl'}, dilemmas[currentDilemma].forTeam), //change backend to make for/not for the same key as reason
+              m('p', {id:'reflectionExpl'}, dilemmas[currentDilemma].reason), //change backend to make for/not for the same key as reason
             ])
           ]),
         m('div', { class: 'card-action row reflectActions', onclick: nextDilemma},  m(

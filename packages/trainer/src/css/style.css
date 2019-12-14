@@ -195,3 +195,10 @@ li.clickable {
 .repeat-list .repeat-list .row {
   margin: 0 10px 10px 10px;
 }
+
+/*Figuring out where this goes later*/
+
+.acceptDilemmaToggle, .acceptDilemmaToggle label{
+  margin-bottom: 5%;
+  color: #1a237e;
+}

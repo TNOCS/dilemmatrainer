@@ -16874,7 +16874,7 @@ var dilemmaReflection = {
       class: 'row'
     }, [mithril_1.default('p', {
       id: 'reflectionExpl'
-    }, dilemmas[currentDilemma].forTeam)])]), mithril_1.default('div', {
+    }, dilemmas[currentDilemma].reason)])]), mithril_1.default('div', {
       class: 'card-action row reflectActions',
       onclick: nextDilemma
     }, mithril_1.default('a', {
@@ -32104,7 +32104,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52591" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54374" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
