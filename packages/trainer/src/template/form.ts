@@ -149,14 +149,8 @@ export const scenarioFormGenerator = (scenario: Partial<IScenario>): Form => {
           className: 'col s12',
         },
         {
-          id: 'forTeam',
-          label: 'Reason the dilemma should be picked up by the team',
-          type: 'textarea',
-          className: 'col s12',
-        },
-        {
-          id: 'notForTeam',
-          label: 'Reason the dilemma should be ignored by the team',
+          id: 'reason',
+          label: 'Reason for accepting or rejecting the dilemma',
           type: 'textarea',
           className: 'col s12',
         },
