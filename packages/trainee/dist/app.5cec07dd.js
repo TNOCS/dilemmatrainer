@@ -31856,9 +31856,11 @@ require("materialize-css/dist/css/materialize.min.css");
 
 var mithril_1 = __importDefault(require("mithril"));
 
-var global_1 = require("../global");
-
 var mithril_leaflet_1 = require("mithril-leaflet");
+
+var mithril_materialized_1 = require("mithril-materialized");
+
+var global_1 = require("../global");
 
 var help_1 = __importDefault(require("./components/help"));
 
@@ -31909,13 +31911,29 @@ var controlAreaSolo = {
       id: 'scenarioExpl',
       class: 'explanationArea'
     }, [mithril_1.default('h6', 'The scenario'), mithril_1.default('p', global_1.state.phases[currentPhase] ? global_1.state.phases[currentPhase].description : 'loading...')]), mithril_1.default('div', {
+      id: 'phaseUIcont'
+    }, [mithril_1.default(mithril_materialized_1.Button, {
+      id: 'nextPhaseButton',
+      label: 'NEXT PHASE',
+      class: 'phaseUI',
+      onclick: function onclick() {
+        currentPhase += 1;
+      }
+    }), currentPhase > 0 ? mithril_1.default(mithril_materialized_1.Button, {
+      id: 'previousPhaseButton',
+      label: 'PREVIOUS PHASE',
+      class: 'phaseUI',
+      onclick: function onclick() {
+        currentPhase -= 1;
+      }
+    }) : null]), mithril_1.default('div', {
       id: 'roleExpl',
       class: 'explanationArea'
     }, [mithril_1.default('h6', 'Your role: ' + global_1.state.userRole.title), mithril_1.default('p', global_1.state.userRole.description)])])]);
   }
 };
 exports.default = MODULE4;
-},{"material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","mithril":"node_modules/mithril/index.js","../global":"src/global.ts","mithril-leaflet":"node_modules/mithril-leaflet/dist/index.js","./components/help":"src/modules/components/help.ts","./components/hud":"src/modules/components/hud.ts"}],"src/selection.ts":[function(require,module,exports) {
+},{"material-icons/iconfont/material-icons.css":"node_modules/material-icons/iconfont/material-icons.css","materialize-css/dist/css/materialize.min.css":"node_modules/materialize-css/dist/css/materialize.min.css","mithril":"node_modules/mithril/index.js","mithril-leaflet":"node_modules/mithril-leaflet/dist/index.js","mithril-materialized":"node_modules/mithril-materialized/dist/index.esm.js","../global":"src/global.ts","./components/help":"src/modules/components/help.ts","./components/hud":"src/modules/components/hud.ts"}],"src/selection.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -32086,7 +32104,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49862" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52591" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

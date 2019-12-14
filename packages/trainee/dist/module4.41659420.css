@@ -24,6 +24,15 @@
     color: #FBFAF9;
 }
 
+#scenarioExpl{
+    margin-left: 1%;
+}
+
+#roleExpl{
+    width: 25%;
+    margin-right: 12.5%;
+}
+
 #displayLeaflet{
     min-height: 63%;
     margin-bottom: 0px;
@@ -34,7 +43,14 @@
     min-height: 63%;
 }
 
+#phaseUIcont{
+    width: 20%;
+}
 
+#phaseUIcont .phaseUI{
+    background: #7F7DBB;
+    margin-top: 7%;
+}
 
 
 /*# sourceMappingURL=/module4.41659420.css.map */

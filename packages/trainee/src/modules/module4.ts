@@ -1,11 +1,11 @@
+import { Feature, Geometry } from 'geojson';
+import { FeatureGroup, geoJSON, LatLngExpression, LeafletEvent } from 'leaflet';
 import 'material-icons/iconfont/material-icons.css';
 import 'materialize-css/dist/css/materialize.min.css';
 import m from 'mithril';
-import { state } from '../global';
-
-import { Feature, Geometry } from 'geojson';
-import { FeatureGroup, geoJSON, LatLngExpression, LeafletEvent } from 'leaflet';
 import { LeafletMap } from 'mithril-leaflet';
+import { Button } from 'mithril-materialized';
+import { state } from '../global';
 
 import help from './components/help';
 import hud from './components/hud';
@@ -61,6 +61,26 @@ const controlAreaSolo = {
               ? state.phases[currentPhase].description
               : 'loading...'
           ),
+        ]),
+        m('div', { id: 'phaseUIcont'}, [
+          m(Button, {
+            id: 'nextPhaseButton',
+            label: 'NEXT PHASE',
+            class: 'phaseUI',
+            onclick: () => {
+              currentPhase += 1;
+            },
+          }),
+          currentPhase > 0
+            ? m(Button, {
+                id: 'previousPhaseButton',
+                label: 'PREVIOUS PHASE',
+                class: 'phaseUI',
+                onclick: () => {
+                  currentPhase -= 1;
+                },
+              })
+            : null,
         ]),
         m('div', { id: 'roleExpl', class: 'explanationArea' }, [
           m('h6', 'Your role: ' + state.userRole.title),
