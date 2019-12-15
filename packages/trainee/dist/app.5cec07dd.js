@@ -31926,7 +31926,7 @@ var displayArea = {
       desc: ['Lorem Ipsum et dono', 'This is the second page', 'this is the final page']
     }) : mithril_1.default(mithril_leaflet_1.LeafletMap, {
       class: 'col s12',
-      view: [51.505, -0.09],
+      view: [global_1.state.phases[currentPhase].lat, global_1.state.phases[currentPhase].long],
       zoom: 13,
       editable: ['test', 'pois'],
       onMapClicked: console.log,
@@ -32144,7 +32144,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55334" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56576" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

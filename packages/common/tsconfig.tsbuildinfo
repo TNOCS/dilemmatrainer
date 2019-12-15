@@ -98,8 +98,8 @@
         "signature": "4c12dac6b17760415e765ecccc2ff104d7b4a8283f24b24b96fc4ef36e957a80"
       },
       "./src/models/scenario-phase.ts": {
-        "version": "51f214420af4062164fea58cccb8d0d1a240d377c1f3236080eaee598165de09",
-        "signature": "1e9b0880ec55b053c539dfe7d980440e2c4a9793c89a47d2f1b62ab7f98d215f"
+        "version": "75752717fe08f331c6204ee3264376073be0d5cf52471d1afe1afb1bb2f94ebd",
+        "signature": "27cdcb57747bf9dd3463c3c0d588658844b881c59b39d374dfacbaa9d0cc0a36"
       },
       "./src/models/characteristic.ts": {
         "version": "86ddf4bb399cb059ae9afeecec9465a61eb260e101805eda775871ae9b3ab2c3",
@@ -267,11 +267,11 @@
       "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2017.typedarrays.d.ts",
       "./src/utils/index.ts",
       "./src/models/content.ts",
+      "./src/models/dilemma.ts",
       "./src/models/role.ts",
-      "./src/models/scenario-phase.ts",
       "./src/models/characteristic.ts",
       "./src/models/work-agreement.ts",
-      "./src/models/dilemma.ts",
+      "./src/models/scenario-phase.ts",
       "./src/models/index.ts",
       "./src/models/session.ts",
       "./src/models/scenario.ts",

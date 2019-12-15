@@ -36,7 +36,7 @@ const displayArea = {
           })
         : m(LeafletMap, {
             class: 'col s12',
-            view: [51.505, -0.09] as LatLngExpression,
+            view: [state.phases[currentPhase].lat, state.phases[currentPhase].long] as LatLngExpression,
             zoom: 13,
             editable: ['test', 'pois'],
             onMapClicked: console.log,

@@ -1,19 +1,21 @@
-import { Form, IInputField } from 'mithril-ui-form';
-import { IScenario } from '../../../common/dist';
-import { ICharacteristic } from '../../../common/dist/models/characteristic';
+import { Form, IInputField } from "mithril-ui-form";
+import { IScenario } from "../../../common/dist";
+import { ICharacteristic } from "../../../common/dist/models/characteristic";
 
-export const characteristicsForm = (characteristics = [] as ICharacteristic[]): IInputField =>
+export const characteristicsForm = (
+  characteristics = [] as ICharacteristic[]
+): IInputField =>
   ({
-    id: 'characteristics',
+    id: "characteristics",
     type: characteristics.map(c => ({
       id: c.id,
       label: c.title,
       options: c.values && c.values.map(v => ({ id: v.id, label: v.title })),
-      type: 'radio',
+      type: "radio",
       inline: true,
-      className: 'col s12',
+      className: "col s12"
     })),
-    className: 'row',
+    className: "row"
   } as IInputField);
 
 export const scenarioFormGenerator = (scenario: Partial<IScenario>): Form => {
@@ -22,166 +24,166 @@ export const scenarioFormGenerator = (scenario: Partial<IScenario>): Form => {
   const roleOptions = roles.map(r => ({ id: r.id, label: r.title }));
   // console.log(JSON.stringify(characteristicsForm(characteristics), null, 2));
   return [
-    { id: 'Overview', type: 'section' },
-    { type: 'md', value: '##### General information about the game.' },
+    { id: "Overview", type: "section" },
+    { type: "md", value: "##### General information about the game." },
     {
-      id: 'title',
-      label: 'Title',
-      type: 'text',
+      id: "title",
+      label: "Title",
+      type: "text",
       required: true,
-      className: 'col s12',
+      className: "col s12"
     },
     {
-      id: 'description',
-      label: 'Description',
-      type: 'textarea',
+      id: "description",
+      label: "Description",
+      type: "textarea",
       required: true,
-      className: 'col s12',
+      className: "col s12"
     },
 
-    { id: 'settings', label: 'Roles & Characteristics', type: 'section' },
+    { id: "settings", label: "Roles & Characteristics", type: "section" },
     {
-      id: 'roles',
-      label: 'Add role',
+      id: "roles",
+      label: "Add role",
       type: [
         {
-          id: 'id',
-          autogenerate: 'id',
+          id: "id",
+          autogenerate: "id"
         },
         {
-          id: 'title',
-          label: 'Role',
-          type: 'text',
+          id: "title",
+          label: "Role",
+          type: "text",
           required: true,
-          className: 'col s12',
+          className: "col s12"
         },
         {
-          id: 'description',
-          label: 'Description',
-          type: 'textarea',
+          id: "description",
+          label: "Description",
+          type: "textarea",
           required: true,
-          className: 'col s12',
-        },
+          className: "col s12"
+        }
       ],
       repeat: true,
       pageSize: 1,
-      propertyFilter: 'title',
-      filterLabel: 'Filter by role',
+      propertyFilter: "title",
+      filterLabel: "Filter by role"
     },
     {
-      id: 'characteristics',
-      label: 'Add characteristic',
+      id: "characteristics",
+      label: "Add characteristic",
       type: [
         {
-          id: 'id',
-          autogenerate: 'id',
+          id: "id",
+          autogenerate: "id"
         },
         {
-          id: 'title',
-          label: 'Characteristic',
-          type: 'text',
+          id: "title",
+          label: "Characteristic",
+          type: "text",
           required: true,
-          className: 'col s12 m12',
+          className: "col s12 m12"
         },
         {
-          id: 'description',
-          label: 'Description',
-          type: 'textarea',
+          id: "description",
+          label: "Description",
+          type: "textarea",
           required: true,
-          className: 'col s12',
+          className: "col s12"
         },
         {
-          id: 'values',
-          label: 'Specify qualifiers',
+          id: "values",
+          label: "Specify qualifiers",
           type: [
             {
-              id: 'id',
-              autogenerate: 'id',
+              id: "id",
+              autogenerate: "id"
             },
             {
-              id: 'title',
-              label: 'Label',
-              type: 'text',
-              className: 'col s12 m9',
+              id: "title",
+              label: "Label",
+              type: "text",
+              className: "col s12 m9"
             },
             {
-              id: 'description',
-              label: 'Description',
-              type: 'text',
-              className: 'col s12',
-            },
+              id: "description",
+              label: "Description",
+              type: "text",
+              className: "col s12"
+            }
           ],
           repeat: true,
-          pageSize: 3,
-        },
+          pageSize: 3
+        }
       ],
       repeat: true,
       pageSize: 1,
-      propertyFilter: 'title',
-      filterLabel: 'Filter by characteristic',
+      propertyFilter: "title",
+      filterLabel: "Filter by characteristic"
     },
 
-    { id: 'Dilemmas', type: 'section' },
+    { id: "Dilemmas", type: "section" },
     {
-      id: 'dilemmas',
-      label: 'Add dilemma',
+      id: "dilemmas",
+      label: "Add dilemma",
       type: [
         {
-          id: 'title',
-          label: 'Title',
-          type: 'text',
+          id: "title",
+          label: "Title",
+          type: "text",
           required: true,
-          className: 'col s12 m9',
+          className: "col s12 m9"
         },
         {
-          id: 'score',
-          label: 'Belongs to team [%] ',
-          type: 'number',
+          id: "score",
+          label: "Belongs to team [%] ",
+          type: "number",
           min: 0,
           max: 100,
-          className: 'col s12 m3',
+          className: "col s12 m3"
         },
         {
-          id: 'description',
-          label: 'Dilemma',
-          type: 'textarea',
+          id: "description",
+          label: "Dilemma",
+          type: "textarea",
           required: true,
-          className: 'col s12',
+          className: "col s12"
         },
         {
-          id: 'shouldAccept',
-          label: 'Should be accepted',
+          id: "shouldAccept",
+          label: "Should be accepted",
           type: "checkbox",
           required: true,
-          className: 'col s12 acceptDilemmaToggle',
+          className: "col s12 acceptDilemmaToggle"
         },
         {
-          id: 'reason',
-          label: 'Reason for accepting or rejecting the dilemma',
-          type: 'textarea',
-          className: 'col s12',
+          id: "reason",
+          label: "Reason for accepting or rejecting the dilemma",
+          type: "textarea",
+          className: "col s12"
         },
-        { type: 'md', value: 'Characteristics of the dilemma' },
+        { type: "md", value: "Characteristics of the dilemma" },
         characteristicsForm(characteristics),
         {
-          id: 'forRoles',
-          label: 'Add role that should perform this job',
+          id: "forRoles",
+          label: "Add role that should perform this job",
           type: [
             {
-              id: 'roleId',
-              label: 'Role',
+              id: "roleId",
+              label: "Role",
               options: roleOptions,
-              type: 'select',
-              className: 'col s12 m6',
+              type: "select",
+              className: "col s12 m6"
             },
             {
-              id: 'score',
-              label: 'Score [%]',
-              type: 'number',
+              id: "score",
+              label: "Score [%]",
+              type: "number",
               min: 0,
               max: 100,
-              className: 'col s12 m6',
-            },
+              className: "col s12 m6"
+            }
             /*
             {
               id: 'description',
@@ -192,48 +194,58 @@ export const scenarioFormGenerator = (scenario: Partial<IScenario>): Form => {
             },*/
           ],
           repeat: true,
-          pageSize: 1,
-        },
+          pageSize: 1
+        }
       ],
       repeat: true,
       pageSize: 1,
-      propertyFilter: 'title',
-      filterLabel: 'Filter by title',
+      propertyFilter: "title",
+      filterLabel: "Filter by title"
     },
 
-    { id: 'agreements', label: 'Work agreements', type: 'section' },
+    { id: "agreements", label: "Work agreements", type: "section" },
     {
-      id: 'workAgreements',
-      label: 'Add work agreement',
+      id: "workAgreements",
+      label: "Add work agreement",
       repeat: true,
       pageSize: 1,
-      propertyFilter: 'title',
-      filterLabel: 'Filter by title',
+      propertyFilter: "title",
+      filterLabel: "Filter by title",
       type: [
-        { id: 'title', label: 'Title', type: 'text' },
-        { id: 'description', label: 'Description', type: 'textarea' },
+        { id: "title", label: "Title", type: "text" },
+        { id: "description", label: "Description", type: "textarea" },
         {
-          id: 'roles',
-          label: 'Roles that have made this agreement',
+          id: "roles",
+          label: "Roles that have made this agreement",
           roles: roleOptions,
-          type: 'options',
-          multiple: true,
-        },
-      ],
+          type: "options",
+          multiple: true
+        }
+      ]
     },
 
-    { id: 'phases', label: 'Scenario phases', type: 'section' },
+    { id: "phases", label: "Scenario phases", type: "section" },
     {
-      id: 'phases',
-      label: 'Add scenario phase',
+      id: "phases",
+      label: "Add scenario phase",
       repeat: true,
       pageSize: 1,
-      propertyFilter: 'title',
-      filterLabel: 'Filter by title',
+      propertyFilter: "title",
+      filterLabel: "Filter by title",
       type: [
-        { id: 'title', label: 'Title', type: 'text' },
-        { id: 'description', label: 'Description', type: 'textarea' },
-      ],
-    },
+        { id: "title", label: "Title", type: "text" },
+        { id: "description", label: "Description", type: "textarea" },
+        {
+          id: "lat",
+          label: "Add latitude of location",
+          type: "text"
+        },
+        {
+          id: "long",
+          label: "Add longitude of location",
+          type: "text"
+        }
+      ]
+    }
   ] as Form;
 };
