@@ -1,14 +1,14 @@
 # Dilemma trainer
 
-Dilemma trainer (game) for the Dutch Regional Management Team (Regionaal Beleidsteam, RBT).
+Dilemma training tool for the Dutch Regional Management Team (Regionaal Beleidsteam, RBT).
 
 ## Installation
 
-The application is a mono-repository, developed in node.js and TypeScript, consisting of the following packages:
+The application is a mono-repository, developed in node.js, TypeScript and Mitril. It consistes of the following packages:
 
-- Server: to serve and store the games
-- Trainer: to create the games
-- Trainee: to select and play the game with a group of people or alone
+- Server: to serve and store the scenarios
+- Trainer: to create the scenarios
+- Trainee: to select and play the scenarios with a group of people or alone
 - Common: common functionality and data models (interfaces)
 
 ```bash
