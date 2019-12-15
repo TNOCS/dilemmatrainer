@@ -16849,10 +16849,16 @@ var mithril_1 = __importDefault(require("mithril"));
 
 var global_1 = require("../../global");
 
+var forRoles = [];
+var correct;
 var dilemmaReflection = {
+  oninit: function oninit() {
+    setReflection();
+  },
   view: function view() {
     var dilemmas = global_1.state.dilemmas,
         currentDilemma = global_1.state.currentDilemma;
+    var reasonColor = correct ? 'color: #379200;' : 'color: #920034;';
     var reflection = mithril_1.default('div', {
       class: 'row col offset-s1 s10',
       id: 'reflection'
@@ -16868,13 +16874,16 @@ var dilemmaReflection = {
       class: 'row'
     }, [mithril_1.default('span', {
       class: 'reflectionLabel col s2'
-    }, 'Intended for:'), mithril_1.default('span', {
-      class: 'reflectionData col s4'
-    }, 'get role name')]), mithril_1.default('div', {
+    }, 'Intended for:'), forRoles.map(function () {
+      return mithril_1.default('span', {
+        class: 'reflectionData col s4'
+      }, forRoles);
+    })]), mithril_1.default('div', {
       class: 'row'
-    }, [mithril_1.default('p', {
-      id: 'reflectionExpl'
-    }, dilemmas[currentDilemma].reason)])]), mithril_1.default('div', {
+    }, mithril_1.default('p', {
+      id: 'reflectionExpl',
+      style: reasonColor
+    }, dilemmas[currentDilemma].reason))]), mithril_1.default('div', {
       class: 'card-action row reflectActions',
       onclick: nextDilemma
     }, mithril_1.default('a', {
@@ -16887,6 +16896,26 @@ var dilemmaReflection = {
 function nextDilemma() {
   global_1.state.currentDilemma += 1;
   global_1.state.reflecting = false;
+  setReflection();
+}
+
+function setReflection() {
+  var dilemmas = global_1.state.dilemmas,
+      currentDilemma = global_1.state.currentDilemma,
+      roles = global_1.state.roles;
+  correct = dilemmas[currentDilemma].accepted === dilemmas[currentDilemma].shouldAccept;
+
+  if (dilemmas[currentDilemma].forRoles.length > 0) {
+    roles.map(function (role) {
+      dilemmas[currentDilemma].forRoles.map(function (forRole) {
+        if (forRole.roleId === role.id) {
+          forRoles.push(role.title);
+        }
+      });
+    });
+  } else {
+    forRoles = dilemmas[currentDilemma].shouldAccept === true ? ['everyone'] : ['no one'];
+  }
 }
 
 exports.default = dilemmaReflection;
@@ -32104,7 +32133,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54374" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55334" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
