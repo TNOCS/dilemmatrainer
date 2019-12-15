@@ -23,7 +23,7 @@ const dilemmaReflection = {
             ]),
             m('div', { class: 'row' }, [
                     m('span', {class: 'reflectionLabel col s2'}, 'Intended for:'),
-                    forRoles.map( () => m('span', {class: 'reflectionData col s4'}, forRoles))
+                    forRoles.map( (title) => m('span', {class: 'reflectionData col s1'}, title))
             ]),
             m('div', { class: 'row' },
               m('p', {id:'reflectionExpl', style: reasonColor}, dilemmas[currentDilemma].reason)
@@ -45,6 +45,7 @@ const dilemmaReflection = {
 function nextDilemma(){
   state.currentDilemma += 1;
   state.reflecting = false;
+  forRoles = [];
   setReflection();
 }
 

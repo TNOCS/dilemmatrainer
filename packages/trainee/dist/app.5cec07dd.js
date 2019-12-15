@@ -16874,10 +16874,10 @@ var dilemmaReflection = {
       class: 'row'
     }, [mithril_1.default('span', {
       class: 'reflectionLabel col s2'
-    }, 'Intended for:'), forRoles.map(function () {
+    }, 'Intended for:'), forRoles.map(function (title) {
       return mithril_1.default('span', {
-        class: 'reflectionData col s4'
-      }, forRoles);
+        class: 'reflectionData col s1'
+      }, title);
     })]), mithril_1.default('div', {
       class: 'row'
     }, mithril_1.default('p', {
@@ -16896,6 +16896,7 @@ var dilemmaReflection = {
 function nextDilemma() {
   global_1.state.currentDilemma += 1;
   global_1.state.reflecting = false;
+  forRoles = [];
   setReflection();
 }
 
