@@ -16895,10 +16895,14 @@ var dilemmaReflection = {
 };
 
 function nextDilemma() {
-  global_1.state.currentDilemma += 1;
-  global_1.state.reflecting = false;
   forRoles = [];
-  setReflection();
+
+  if (global_1.state.dilemmas.length >= global_1.state.currentDilemma + 1) {
+    global_1.state.currentDilemma += 1;
+    setReflection();
+  }
+
+  global_1.state.reflecting = false;
 }
 
 function setReflection() {

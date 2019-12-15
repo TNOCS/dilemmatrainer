@@ -64,10 +64,15 @@ const dilemmaReflection = {
 };
 
 function nextDilemma() {
-  state.currentDilemma += 1;
-  state.reflecting = false;
   forRoles = [];
-  setReflection();
+
+  if (state.dilemmas.length >= state.currentDilemma + 1) {
+    state.currentDilemma += 1;
+
+    setReflection();
+  }
+
+  state.reflecting = false;
 }
 
 function setReflection() {
