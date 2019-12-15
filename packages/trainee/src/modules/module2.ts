@@ -59,7 +59,7 @@ const controlArea = {
                         : 'loading...'
                     ),
                   ])
-                : m('p', { class: 'col s4' }, 'done'),
+                :  m('div', { class: 'col s6', id: 'greencheck' }),
 
               m('div', { class: 'propertySelection col s6' }, [
                 m('div', { class: 'row' }, [

@@ -35,10 +35,9 @@ const displayArea = {
               'this is the final page',
             ],
           })
-        :
-        state.reflecting ? m(dilemmaReflection) :
-
-        state.dilemmas.length >= state.currentDilemma + 1
+        : state.reflecting
+        ? m(dilemmaReflection)
+        : state.dilemmas.length >= state.currentDilemma + 1
         ? m('div', { class: 'topic col s6 offset-s3' }, [
             m(
               'h1',
@@ -55,11 +54,11 @@ const displayArea = {
                 : 'loading...'
             ),
           ])
-        : m(
-            'p',
-            { class: 'col s6 offset-s3' },
-            '[ insert big animated checkmark to show the user is done ]'
-          ),
+        : /*m(
+          'img',
+          { class: 'col s6 offset-s3 responsive-img', src: '', id: 'greencheck' },
+        ),*/
+          m('div', { class: 'col s6', id: 'greencheck' }),
     ]);
   },
 };

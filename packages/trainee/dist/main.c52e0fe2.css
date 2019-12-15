@@ -1,88 +1,97 @@
-body{
-    background-color: #FBFAF9;
-    font-family: 'Roboto', sans-serif;
+body {
+  background-color: #fbfaf9;
+  font-family: 'Roboto', sans-serif;
 }
 
-a{
-    cursor: pointer;
+a {
+  cursor: pointer;
 }
 
-span{
-    color: #FBFAF9;
-    text-align: center;
-    font-family: 'Roboto Slab', serif;
+span {
+  color: #fbfaf9;
+  text-align: center;
+  font-family: 'Roboto Slab', serif;
 }
 
-hr{
-    background-color: #FBFAF9;
-    border-top: solid 1px #FBFAF9;
+hr {
+  background-color: #fbfaf9;
+  border-top: solid 1px #fbfaf9;
 }
 
-#help{
-    position: fixed;
+#help {
+  position: fixed;
 }
 
-.container{
-    min-width: 100%;
-    margin: 0px;
+.container {
+  min-width: 100%;
+  margin: 0px;
 }
 
-.btn{
-    width: 100%;
-    background-color: #4E77A0;
+.btn {
+  width: 100%;
+  background-color: #4e77a0;
 }
 
-#helpButton{
-    margin-left: 50%;
+#helpButton {
+  margin-left: 50%;
 }
 
-#hud{
-    margin-top: -4%;
-    margin-bottom: 0;
-    z-index: 1;
+#hud {
+  margin-top: -4%;
+  margin-bottom: 0;
+  z-index: 1;
 }
 
-#displayArea{
-    min-height: 60%;
+#displayArea {
+  min-height: 60%;
 }
 
-#controlAreaBG{
-    position: relative;
-    background-color: #80A2CC;
-    min-width: 100%;
-    min-height: 37%;
-    overflow: hidden;
-    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.5);
+#controlAreaBG {
+  position: relative;
+  background-color: #80a2cc;
+  min-width: 100%;
+  min-height: 37%;
+  overflow: hidden;
+  box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.5);
 }
 
-#controlAreaTop{
-    position: absolute;
-    background-color: #80A2CC;
-    box-shadow: inset 0px 4px 4px #494769;
-    min-width: 104%;
-    top: 10%;
-    left: -2%;
-    min-height: 2%
+#controlAreaTop {
+  position: absolute;
+  background-color: #80a2cc;
+  box-shadow: inset 0px 4px 4px #494769;
+  min-width: 104%;
+  top: 10%;
+  left: -2%;
+  min-height: 2%;
 }
 
-#controlAreaBG2{
-    background-color: #80A2CC;
-    min-width: 100%;
-    min-height: 100%;
-    overflow: hidden;
+#controlAreaBG2 {
+  background-color: #80a2cc;
+  min-width: 100%;
+  min-height: 100%;
+  overflow: hidden;
 }
 
-#controlAreaTop2{
-    background-color: #80A2CC;
-    box-shadow: inset 0px 4px 4px #494769;
-    min-width: 100%;
-    margin-top: 2%;
-    min-height: 2%;
+#controlAreaTop2 {
+  background-color: #80a2cc;
+  box-shadow: inset 0px 4px 4px #494769;
+  min-width: 100%;
+  margin-top: 2%;
+  min-height: 2%;
 }
 
-.dilemmaText{
-    text-align: center;
-    color: #FBFAF9;
+.dilemmaText {
+  text-align: center;
+  color: #fbfaf9;
+}
+
+#greencheck{
+  width: 100%;
+  height: 200px;
+  background-image: url('/greencheck.d6bde5cc.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 10%;
 }
 
 /*# sourceMappingURL=/main.c52e0fe2.css.map */

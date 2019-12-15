@@ -17141,9 +17141,10 @@ var displayArea = {
       class: 'topicTitle'
     }, global_1.state.dilemmas ? global_1.state.dilemmas[global_1.state.currentDilemma].title : 'loading...'), mithril_1.default('p', {
       class: 'topicText'
-    }, global_1.state.dilemmas ? global_1.state.dilemmas[global_1.state.currentDilemma].description : 'loading...')]) : mithril_1.default('p', {
-      class: 'col s6 offset-s3'
-    }, '[ insert big animated checkmark to show the user is done ]')]);
+    }, global_1.state.dilemmas ? global_1.state.dilemmas[global_1.state.currentDilemma].description : 'loading...')]) : mithril_1.default('div', {
+      class: 'col s6',
+      id: 'greencheck'
+    })]);
   }
 };
 var controlAreaSolo = {
@@ -17277,9 +17278,10 @@ var controlArea = {
       class: 'topicTitle'
     }, global_1.state.pickedDilemmas ? global_1.state.pickedDilemmas[global_1.state.currentDilemma].title : 'loading...'), mithril_1.default('p', {
       class: 'topicText'
-    }, global_1.state.pickedDilemmas ? global_1.state.pickedDilemmas[global_1.state.currentDilemma].description : 'loading...')]) : mithril_1.default('p', {
-      class: 'col s4'
-    }, 'done'), mithril_1.default('div', {
+    }, global_1.state.pickedDilemmas ? global_1.state.pickedDilemmas[global_1.state.currentDilemma].description : 'loading...')]) : mithril_1.default('div', {
+      class: 'col s6',
+      id: 'greencheck'
+    }), mithril_1.default('div', {
       class: 'propertySelection col s6'
     }, [mithril_1.default('div', {
       class: 'row'
@@ -32144,7 +32146,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56576" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58320" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
