@@ -35,8 +35,8 @@ const displayArea = {
               'this is the final page',
             ],
           })
-        : 
-        state.reflecting ? m(dilemmaReflection) : 
+        :
+        state.reflecting ? m(dilemmaReflection) :
 
         state.dilemmas.length >= state.currentDilemma + 1
         ? m('div', { class: 'topic col s6 offset-s3' }, [
@@ -134,7 +134,7 @@ function acceptDilemma(choice) {
 function sortDilemma(role) {
   if (!state.showHelp) {
     state.dilemmas[state.currentDilemma]['accepted'] = true;
-    state.dilemmas[state.currentDilemma]['assignedTo'] = role.title;
+    state.dilemmas[state.currentDilemma]['assignedTo'] = role;
     if (state.dilemmas.length >= state.currentDilemma + 1) {
       state.reflecting = true;
     }

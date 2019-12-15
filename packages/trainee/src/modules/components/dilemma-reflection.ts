@@ -9,62 +9,95 @@ let correct: boolean;
 
 const dilemmaReflection = {
   oninit: () => {
+    forRoles = [];
     setReflection();
   },
   view: () => {
-      const { dilemmas, currentDilemma } = state;
-      const reasonColor = correct ? 'color: #379200;' : 'color: #920034;';
+    const { dilemmas, currentDilemma } = state;
+    const reasonColor = correct ? 'color: #379200;' : 'color: #920034;';
 
-      const reflection = m('div', { class: 'row col offset-s1 s10', id: 'reflection' }, [
+    const reflection = m(
+      'div',
+      { class: 'row col offset-s1 s10', id: 'reflection' },
+      [
         m('div', { class: 'reflectionContent' }, [
-            m('div', { class: 'row' }, [
-                m('span', {class: 'reflectionLabel col s2'}, 'Dilemma:'),
-                m('span', {class: 'reflectionData col s4'}, dilemmas[currentDilemma].title)
-            ]),
-            m('div', { class: 'row' }, [
-                    m('span', {class: 'reflectionLabel col s2'}, 'Intended for:'),
-                    forRoles.map( (title) => m('span', {class: 'reflectionData col s1'}, title))
-            ]),
-            m('div', { class: 'row' },
-              m('p', {id:'reflectionExpl', style: reasonColor}, dilemmas[currentDilemma].reason)
-            )
+          m('div', { class: 'row' }, [
+            m('span', { class: 'reflectionLabel col s2' }, 'Dilemma:'),
+            m(
+              'span',
+              { class: 'reflectionData col s4' },
+              dilemmas[currentDilemma].title
+            ),
           ]),
-        m('div', { class: 'card-action row reflectActions', onclick: nextDilemma},  m(
-          'a',
-          {
-            id: 'continue',
-          },
-          'CONTINUE'
-        )),
-        ]);
+          m('div', { class: 'row' }, [
+            m('span', { class: 'reflectionLabel col s2' }, 'Intended for:'),
+            forRoles.map(title =>
+              m('span', { class: 'reflectionData col s1' }, title)
+            ),
+          ]),
+          m(
+            'div',
+            { class: 'row' },
+            m(
+              'p',
+              { id: 'reflectionExpl', style: reasonColor },
+              dilemmas[currentDilemma].reason
+            )
+          ),
+        ]),
+        m(
+          'div',
+          { class: 'card-action row reflectActions', onclick: nextDilemma },
+          m(
+            'a',
+            {
+              id: 'continue',
+            },
+            'CONTINUE'
+          )
+        ),
+      ]
+    );
 
-      return reflection;
+    return reflection;
   },
 };
 
-function nextDilemma(){
+function nextDilemma() {
   state.currentDilemma += 1;
   state.reflecting = false;
   forRoles = [];
   setReflection();
 }
 
-function setReflection(){
-  const {dilemmas, currentDilemma, roles} = state;
-  correct = (dilemmas[currentDilemma].accepted === dilemmas[currentDilemma].shouldAccept);
+function setReflection() {
+  const { dilemmas, currentDilemma, roles } = state;
+  correct =
+    dilemmas[currentDilemma].accepted === dilemmas[currentDilemma].shouldAccept;
+
+  if (dilemmas[currentDilemma].assignedTo) {
+    correct = false;
+    dilemmas[currentDilemma].forRoles.map(forRole => {
+      if (forRole.roleId === dilemmas[currentDilemma].assignedTo.id) {
+        correct = true;
+      }
+    });
+  }
 
   if (dilemmas[currentDilemma].forRoles.length > 0) {
-    roles.map((role) => {
-      dilemmas[currentDilemma].forRoles.map((forRole) => {
+    roles.map(role => {
+      dilemmas[currentDilemma].forRoles.map(forRole => {
         if (forRole.roleId === role.id) {
           forRoles.push(role.title);
         }
       });
     });
-  } else{
-    forRoles = (dilemmas[currentDilemma].shouldAccept === true) ?
-        ['everyone'] : ['no one']
-    }
+  } else {
+    forRoles =
+      dilemmas[currentDilemma].shouldAccept === true
+        ? ['everyone']
+        : ['no one'];
+  }
 }
 
 export default dilemmaReflection;

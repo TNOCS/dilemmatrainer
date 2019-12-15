@@ -16853,6 +16853,7 @@ var forRoles = [];
 var correct;
 var dilemmaReflection = {
   oninit: function oninit() {
+    forRoles = [];
     setReflection();
   },
   view: function view() {
@@ -16905,6 +16906,15 @@ function setReflection() {
       currentDilemma = global_1.state.currentDilemma,
       roles = global_1.state.roles;
   correct = dilemmas[currentDilemma].accepted === dilemmas[currentDilemma].shouldAccept;
+
+  if (dilemmas[currentDilemma].assignedTo) {
+    correct = false;
+    dilemmas[currentDilemma].forRoles.map(function (forRole) {
+      if (forRole.roleId === dilemmas[currentDilemma].assignedTo.id) {
+        correct = true;
+      }
+    });
+  }
 
   if (dilemmas[currentDilemma].forRoles.length > 0) {
     roles.map(function (role) {
@@ -17196,7 +17206,7 @@ function acceptDilemma(choice) {
 function sortDilemma(role) {
   if (!global_1.state.showHelp) {
     global_1.state.dilemmas[global_1.state.currentDilemma]['accepted'] = true;
-    global_1.state.dilemmas[global_1.state.currentDilemma]['assignedTo'] = role.title;
+    global_1.state.dilemmas[global_1.state.currentDilemma]['assignedTo'] = role;
 
     if (global_1.state.dilemmas.length >= global_1.state.currentDilemma + 1) {
       global_1.state.reflecting = true;
