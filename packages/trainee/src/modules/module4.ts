@@ -13,6 +13,9 @@ import hud from './components/hud';
 let currentPhase = 0;
 
 const MODULE4 = {
+  oninit: () => {
+    state.showHelp = true;
+  },
   view: () => {
     return m('div', { class: 'container' }, [
       m(displayArea),

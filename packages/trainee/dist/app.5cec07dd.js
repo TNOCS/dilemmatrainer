@@ -17255,6 +17255,7 @@ var MODULE2 = {
   oninit: function oninit() {
     global_1.state.currentDilemma = 0;
     global_1.getPickedDilemmas();
+    global_1.state.showHelp = true;
   },
   view: function view() {
     return mithril_1.default('div', {
@@ -17407,6 +17408,9 @@ var help_1 = __importDefault(require("./components/help"));
 var propertyButtons = [false, false, false];
 var properties = [false, false, false];
 var MODULE3 = {
+  oninit: function oninit() {
+    global_1.state.showHelp = true;
+  },
   view: function view() {
     return mithril_1.default("div", {
       class: "container"
@@ -31914,6 +31918,9 @@ var hud_1 = __importDefault(require("./components/hud"));
 
 var currentPhase = 0;
 var MODULE4 = {
+  oninit: function oninit() {
+    global_1.state.showHelp = true;
+  },
   view: function view() {
     return mithril_1.default('div', {
       class: 'container'

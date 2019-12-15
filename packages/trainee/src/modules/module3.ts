@@ -11,6 +11,9 @@ var propertyButtons: Array<boolean> = [false, false, false];
 var properties: Array<boolean> = [false, false, false];
 
 const MODULE3 = {
+  oninit: () => {
+    state.showHelp = true;
+  },
   view: () => {
     return m("div", { class: "container" }, [
       m(controlArea),

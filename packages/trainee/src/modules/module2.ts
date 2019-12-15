@@ -15,6 +15,7 @@ const MODULE2 = {
   oninit: () => {
     state.currentDilemma = 0;
     getPickedDilemmas();
+    state.showHelp = true;
   },
   view: () => {
     return m('div', { class: 'container' }, [
