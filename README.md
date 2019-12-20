@@ -14,10 +14,14 @@ The application is a mono-repository, developed in node.js, TypeScript and Mitri
 ```bash
 # If you want to start the server and the trainer 
 pnpm m i   # If you don't have pnpm installed, you can install it using `npm i -g pnpm`
+cd packages/server
+pnpm i
+cd ../..
 npm start  # Note that the first time, you may have to run it twice, since the models haven't been built yet
 
 # If you want to start the trainee 
-cd packages/trainee 
+cd packages/trainee
+pnpm i
 npm start # Trainer and server need to be runnning for it to be used.
 ```
 
