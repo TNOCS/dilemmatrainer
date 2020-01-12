@@ -5,6 +5,5 @@ export interface ICharacteristicValue extends IContent {
 }
 
 export interface ICharacteristic extends IContent {
-  id: string;
   values: ICharacteristicValue[];
 }

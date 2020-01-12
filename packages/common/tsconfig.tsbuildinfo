@@ -1,83 +1,83 @@
 {
   "program": {
     "fileInfos": {
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es5.d.ts": {
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es5.d.ts": {
         "version": "fc43680ad3a1a4ec8c7b8d908af1ec9ddff87845346de5f02c735c9171fa98ea",
         "signature": "fc43680ad3a1a4ec8c7b8d908af1ec9ddff87845346de5f02c735c9171fa98ea"
       },
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2015.d.ts": {
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2015.d.ts": {
         "version": "7994d44005046d1413ea31d046577cdda33b8b2470f30281fd9c8b3c99fe2d96",
         "signature": "7994d44005046d1413ea31d046577cdda33b8b2470f30281fd9c8b3c99fe2d96"
       },
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2016.d.ts": {
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2016.d.ts": {
         "version": "5f217838d25704474d9ef93774f04164889169ca31475fe423a9de6758f058d1",
         "signature": "5f217838d25704474d9ef93774f04164889169ca31475fe423a9de6758f058d1"
       },
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2017.d.ts": {
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2017.d.ts": {
         "version": "459097c7bdd88fc5731367e56591e4f465f2c9de81a35427a7bd473165c34743",
         "signature": "459097c7bdd88fc5731367e56591e4f465f2c9de81a35427a7bd473165c34743"
       },
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.dom.d.ts": {
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.dom.d.ts": {
         "version": "d93de5e8a7275cb9d47481410e13b3b1debb997e216490954b5d106e37e086de",
         "signature": "d93de5e8a7275cb9d47481410e13b3b1debb997e216490954b5d106e37e086de"
       },
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2015.core.d.ts": {
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2015.core.d.ts": {
         "version": "734ddc145e147fbcd55f07d034f50ccff1086f5a880107665ec326fb368876f6",
         "signature": "734ddc145e147fbcd55f07d034f50ccff1086f5a880107665ec326fb368876f6"
       },
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2015.collection.d.ts": {
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2015.collection.d.ts": {
         "version": "4a0862a21f4700de873db3b916f70e41570e2f558da77d2087c9490f5a0615d8",
         "signature": "4a0862a21f4700de873db3b916f70e41570e2f558da77d2087c9490f5a0615d8"
       },
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2015.generator.d.ts": {
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2015.generator.d.ts": {
         "version": "765e0e9c9d74cf4d031ca8b0bdb269a853e7d81eda6354c8510218d03db12122",
         "signature": "765e0e9c9d74cf4d031ca8b0bdb269a853e7d81eda6354c8510218d03db12122"
       },
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2015.iterable.d.ts": {
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2015.iterable.d.ts": {
         "version": "285958e7699f1babd76d595830207f18d719662a0c30fac7baca7df7162a9210",
         "signature": "285958e7699f1babd76d595830207f18d719662a0c30fac7baca7df7162a9210"
       },
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2015.promise.d.ts": {
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2015.promise.d.ts": {
         "version": "d4deaafbb18680e3143e8b471acd650ed6f72a408a33137f0a0dd104fbe7f8ca",
         "signature": "d4deaafbb18680e3143e8b471acd650ed6f72a408a33137f0a0dd104fbe7f8ca"
       },
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2015.proxy.d.ts": {
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2015.proxy.d.ts": {
         "version": "5e72f949a89717db444e3bd9433468890068bb21a5638d8ab15a1359e05e54fe",
         "signature": "5e72f949a89717db444e3bd9433468890068bb21a5638d8ab15a1359e05e54fe"
       },
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2015.reflect.d.ts": {
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2015.reflect.d.ts": {
         "version": "f5b242136ae9bfb1cc99a5971cccc44e99947ae6b5ef6fd8aa54b5ade553b976",
         "signature": "f5b242136ae9bfb1cc99a5971cccc44e99947ae6b5ef6fd8aa54b5ade553b976"
       },
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2015.symbol.d.ts": {
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2015.symbol.d.ts": {
         "version": "9ae2860252d6b5f16e2026d8a2c2069db7b2a3295e98b6031d01337b96437230",
         "signature": "9ae2860252d6b5f16e2026d8a2c2069db7b2a3295e98b6031d01337b96437230"
       },
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts": {
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts": {
         "version": "3e0a459888f32b42138d5a39f706ff2d55d500ab1031e0988b5568b0f67c2303",
         "signature": "3e0a459888f32b42138d5a39f706ff2d55d500ab1031e0988b5568b0f67c2303"
       },
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2016.array.include.d.ts": {
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2016.array.include.d.ts": {
         "version": "3f96f1e570aedbd97bf818c246727151e873125d0512e4ae904330286c721bc0",
         "signature": "3f96f1e570aedbd97bf818c246727151e873125d0512e4ae904330286c721bc0"
       },
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2017.object.d.ts": {
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2017.object.d.ts": {
         "version": "c2d60b2e558d44384e4704b00e6b3d154334721a911f094d3133c35f0917b408",
         "signature": "c2d60b2e558d44384e4704b00e6b3d154334721a911f094d3133c35f0917b408"
       },
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2017.sharedmemory.d.ts": {
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2017.sharedmemory.d.ts": {
         "version": "b8667586a618c5cf64523d4e500ae39e781428abfb28f3de441fc66b56144b6f",
         "signature": "b8667586a618c5cf64523d4e500ae39e781428abfb28f3de441fc66b56144b6f"
       },
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2017.string.d.ts": {
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2017.string.d.ts": {
         "version": "21df2e0059f14dcb4c3a0e125859f6b6ff01332ee24b0065a741d121250bc71c",
         "signature": "21df2e0059f14dcb4c3a0e125859f6b6ff01332ee24b0065a741d121250bc71c"
       },
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2017.intl.d.ts": {
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2017.intl.d.ts": {
         "version": "c1759cb171c7619af0d2234f2f8fb2a871ee88e956e2ed91bb61778e41f272c6",
         "signature": "c1759cb171c7619af0d2234f2f8fb2a871ee88e956e2ed91bb61778e41f272c6"
       },
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2017.typedarrays.d.ts": {
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2017.typedarrays.d.ts": {
         "version": "28569d59e07d4378cb3d54979c4c60f9f06305c9bb6999ffe6cab758957adc46",
         "signature": "28569d59e07d4378cb3d54979c4c60f9f06305c9bb6999ffe6cab758957adc46"
       },
@@ -86,24 +86,28 @@
         "signature": "2c85b9fbfc285e9ee9a9dca0a65a54d1964d91041636b4b6642f2e67f5d59419"
       },
       "./src/models/content.ts": {
-        "version": "53a10c65f823afc1c65ccca4960871463c15d0f3016eecf23d18c4d9f3c718fe",
-        "signature": "93409180db46cfb64dfd94d33d1a53f1fe2dfd7aabb8e771f1924d6f2c3f0a44"
+        "version": "02f360f932cb62f5344dc675bcd46c14096a61d24f9781dc79ee2cd148444b09",
+        "signature": "bcac8ee1835465cc0cb96f7f390c06b3babe460eb32dfe15248fefae66a0335b"
+      },
+      "./src/models/claim.ts": {
+        "version": "42ed87d47029720086cfb503aaa4ed6cf2336c5ddc44acdf1a4a9a4692b8c4d9",
+        "signature": "cc3e0220d87c387ac4a8b8a578d7e8221e60ed01b9fd64b4afaf1b4884bc16fc"
       },
       "./src/models/dilemma.ts": {
-        "version": "f4b0f133ab526c0ca13f9ac5114a3c8166b49a72a61bc1a4d4fd4ec0d13cdc1d",
-        "signature": "1c37150e4a7263adb5d95220d2574f9f82da30e719bf5ec202d558f9a4236a9e"
+        "version": "64078046c5a9838ca00575fb85ccdc1b1220b26be46db9cbfd0618197fd7f2b0",
+        "signature": "9b46d6c1d9bebf6671f2d87f31333c0e327c780a25f728fdc49c0bf5f45978e9"
       },
       "./src/models/role.ts": {
-        "version": "34e68e9a0b659f1c51ceb0dcf06b76a11dd701b8d81fdacc7c9c1630fd5354ff",
-        "signature": "4c12dac6b17760415e765ecccc2ff104d7b4a8283f24b24b96fc4ef36e957a80"
+        "version": "77529bfad4f31dc4a4fbd2210a257589dcf8e9950460838f360cd7494a691b28",
+        "signature": "13007e9575aa7b6ca8f590dadd78c9ddd34b7967f6f4883fee3c221ede939928"
       },
       "./src/models/scenario-phase.ts": {
         "version": "75752717fe08f331c6204ee3264376073be0d5cf52471d1afe1afb1bb2f94ebd",
         "signature": "27cdcb57747bf9dd3463c3c0d588658844b881c59b39d374dfacbaa9d0cc0a36"
       },
       "./src/models/characteristic.ts": {
-        "version": "86ddf4bb399cb059ae9afeecec9465a61eb260e101805eda775871ae9b3ab2c3",
-        "signature": "0e5492218395fbf9b4df65ccb0ae96101873b190b38239693e7faf499d610e82"
+        "version": "c9e8382791906be5f349870bea6628ca0517dac9a0717ba7e31af471cbce9280",
+        "signature": "3e9437424596cedb309e362a7cd3856121cf1e7f95c9ae43c662bbca05355040"
       },
       "./src/models/work-agreement.ts": {
         "version": "1b7c82cc7c02f4001eeb84cd53fa8b9dec7232e01305403ec5dc4087c8bbcb94",
@@ -113,13 +117,13 @@
         "version": "d4639f2b59467bf76e036a287077f4f0dc10bdb723a58dae4502406c369f4456",
         "signature": "cef88b53b2435bc923002c0618176a095cbd88ac505a6bee729f896334e8edce"
       },
-      "./src/models/session.ts": {
-        "version": "09a1e4b66804582346300887049bc4b26759f4d77c1f2e3d63be71f2c60ef72b",
-        "signature": "107a53aacd100c68f286c882f5f85dec049e6c5126c86506eba2038b3dc21f4c"
+      "./src/models/game.ts": {
+        "version": "438c5ce41aa475707d11718709fe0552489069de27f8a1d8e9f044637167aba5",
+        "signature": "a48711d94e21f61873b07a9e8c1ef60081f30667b77bc522463a063195feda77"
       },
       "./src/models/index.ts": {
-        "version": "40d7f13f28378abd858aa65540656975c99cfa30ba1b550fc48137eafdb0a7b0",
-        "signature": "40d7f13f28378abd858aa65540656975c99cfa30ba1b550fc48137eafdb0a7b0"
+        "version": "077869e9581e9aada6b221dc361befdcb09703f3299696f3e1fa888310468386",
+        "signature": "d9afc74a7bf2b5b584d69fa7e86c2809d75b9f5264cb2036b13769ccc2805e2f"
       },
       "./src/index.ts": {
         "version": "45339de4e901bd6564f13bef27fae4456618d25c232f164727ffb3bd6c19c6f8",
@@ -153,6 +157,9 @@
       "configFilePath": "./tsconfig.json"
     },
     "referencedMap": {
+      "./src/models/claim.ts": [
+        "./src/models/content.ts"
+      ],
       "./src/models/dilemma.ts": [
         "./src/models/content.ts"
       ],
@@ -176,22 +183,24 @@
         "./src/models/scenario-phase.ts",
         "./src/models/work-agreement.ts"
       ],
-      "./src/models/session.ts": [
+      "./src/models/game.ts": [
         "./src/models/characteristic.ts",
+        "./src/models/claim.ts",
         "./src/models/content.ts",
         "./src/models/dilemma.ts",
         "./src/models/role.ts",
+        "./src/models/scenario.ts",
         "./src/models/scenario-phase.ts",
-        "./src/models/work-agreement.ts",
-        "./src/models/scenario.ts"
+        "./src/models/work-agreement.ts"
       ],
       "./src/models/index.ts": [
         "./src/models/content.ts",
+        "./src/models/claim.ts",
         "./src/models/dilemma.ts",
         "./src/models/role.ts",
         "./src/models/scenario-phase.ts",
         "./src/models/scenario.ts",
-        "./src/models/session.ts"
+        "./src/models/game.ts"
       ],
       "./src/index.ts": [
         "./src/utils/index.ts",
@@ -199,6 +208,9 @@
       ]
     },
     "exportedModulesMap": {
+      "./src/models/claim.ts": [
+        "./src/models/content.ts"
+      ],
       "./src/models/dilemma.ts": [
         "./src/models/content.ts"
       ],
@@ -222,9 +234,10 @@
         "./src/models/scenario-phase.ts",
         "./src/models/work-agreement.ts"
       ],
-      "./src/models/session.ts": [
+      "./src/models/game.ts": [
         "./src/models/scenario.ts",
         "./src/models/content.ts",
+        "./src/models/claim.ts",
         "./src/models/dilemma.ts",
         "./src/models/characteristic.ts",
         "./src/models/role.ts",
@@ -233,11 +246,12 @@
       ],
       "./src/models/index.ts": [
         "./src/models/content.ts",
+        "./src/models/claim.ts",
         "./src/models/dilemma.ts",
         "./src/models/role.ts",
         "./src/models/scenario-phase.ts",
         "./src/models/scenario.ts",
-        "./src/models/session.ts"
+        "./src/models/game.ts"
       ],
       "./src/index.ts": [
         "./src/utils/index.ts",
@@ -245,38 +259,39 @@
       ]
     },
     "semanticDiagnosticsPerFile": [
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es5.d.ts",
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2015.d.ts",
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2016.d.ts",
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2017.d.ts",
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.dom.d.ts",
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2015.core.d.ts",
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2015.collection.d.ts",
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2015.generator.d.ts",
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2015.iterable.d.ts",
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2015.promise.d.ts",
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2015.proxy.d.ts",
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2015.reflect.d.ts",
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2015.symbol.d.ts",
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts",
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2016.array.include.d.ts",
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2017.object.d.ts",
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2017.sharedmemory.d.ts",
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2017.string.d.ts",
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2017.intl.d.ts",
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2017.typedarrays.d.ts",
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es5.d.ts",
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2015.d.ts",
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2016.d.ts",
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2017.d.ts",
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.dom.d.ts",
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2015.core.d.ts",
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2015.collection.d.ts",
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2015.generator.d.ts",
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2015.iterable.d.ts",
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2015.promise.d.ts",
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2015.proxy.d.ts",
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2015.reflect.d.ts",
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2015.symbol.d.ts",
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts",
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2016.array.include.d.ts",
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2017.object.d.ts",
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2017.sharedmemory.d.ts",
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2017.string.d.ts",
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2017.intl.d.ts",
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2017.typedarrays.d.ts",
       "./src/utils/index.ts",
       "./src/models/content.ts",
       "./src/models/dilemma.ts",
       "./src/models/role.ts",
+      "./src/models/scenario-phase.ts",
       "./src/models/characteristic.ts",
       "./src/models/work-agreement.ts",
-      "./src/models/scenario-phase.ts",
-      "./src/models/index.ts",
-      "./src/models/session.ts",
       "./src/models/scenario.ts",
+      "./src/models/claim.ts",
+      "./src/models/index.ts",
+      "./src/models/game.ts",
       "./src/index.ts"
     ]
   },
-  "version": "3.7.2"
+  "version": "3.7.4"
 }
