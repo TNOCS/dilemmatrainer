@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const rest_easy_loki_1 = require("rest-easy-loki");
 exports.collectionName = 'documents';
 const port = process.env.LOKI_PORT || '3030';
-const dbName = process.env.LOKI_DB || './db/locatieregister.db';
+const dbName = process.env.LOKI_DB || './db/dilemmatrainer.db';
 const cors = (process.env.LOKI_CORS || 'true') === 'true';
 const sizeLimit = process.env.LOKI_SIZE_LIMIT || '250mb';
 exports.startService = () => {
