@@ -2,26 +2,26 @@ dependencies:
   base64-js: 1.3.1
   file-saver: 2.0.2
   js-sha256: 0.9.0
-  keycloak-js: 7.0.1
+  keycloak-js: 8.0.1
   leaflet: 1.6.0
   leaflet-draw: 1.0.4
   material-icons: 0.3.1
   materialize-css: 1.0.0
   mithril: 2.0.4
   mithril-leaflet: 0.1.7_540248bce08b6daa8f39770dcc779455
-  mithril-materialized: 0.15.4_f3d9df6f4766fd28b6cfb8072ccbc3ca
-  mithril-ui-form: 0.4.7_0f5c77a15cfb528a22f747c2de331986
+  mithril-materialized: 0.16.0_f3d9df6f4766fd28b6cfb8072ccbc3ca
+  mithril-ui-form: 0.4.7_41e7f33714a8db2eab8931e703bc99bd
 devDependencies:
   '@types/file-saver': 2.0.1
-  '@types/leaflet': 1.5.5
-  '@types/lokijs': 1.5.2
-  '@types/materialize-css': 1.0.6
+  '@types/leaflet': 1.5.7
+  '@types/lokijs': 1.5.3
+  '@types/materialize-css': 1.0.7
   '@types/mithril': 2.0.2
-  autoprefixer: 9.7.2
+  autoprefixer: 9.7.3
   cssnano: 4.1.10
   parcel-bundler: 1.12.4
   rimraf: 3.0.0
-  typescript: 3.7.2
+  typescript: 3.7.4
 lockfileVersion: 5.1
 packages:
   /@babel/code-frame/7.5.5:
@@ -874,23 +874,23 @@ packages:
     dev: true
     resolution:
       integrity: sha512-Lz4BAJihoFw5nRzKvg4nawXPzutkv7wmfQ5121avptaSIXlDNJCUuxZxX/G+9EVidZGuO0UBlk+YjKbwRKJigg==
-  /@types/leaflet/1.5.5:
+  /@types/leaflet/1.5.7:
     dependencies:
       '@types/geojson': 7946.0.7
     dev: true
     resolution:
-      integrity: sha512-Eyh1LMmW4OFgafL6rjLyGkMqFS5IzgwWHMSgTKbrsvwLjLaWH8Ae8CV5liRe8HSM731oOVDwAMIZgg9P0SO9tg==
-  /@types/lokijs/1.5.2:
+      integrity: sha512-FiPU4NQwH+jQ2wc3IjD7+9hgNZ95m4ry8qILO+eS6L4eUUVSXr+472+k4SRVEW+8j18QwqY7PFqudDQzfpRXTQ==
+  /@types/lokijs/1.5.3:
     dev: true
     resolution:
-      integrity: sha512-ZF14v1P1Bjbw8VJRu+p4WS9V926CAOjWF4yq23QmSBWRPe0/GXlUKzSxjP1fi/xi8nrq6zr9ECo8Z/8KsRqroQ==
-  /@types/materialize-css/1.0.6:
+      integrity: sha512-ssiP6F7rpDqlaOzo+0Y/0dkVH2JiAjc+o7n6M4pFnfAMscf+7FthqS0cobvGJEJvxmzp4PWfMOfe0q3VETtrgQ==
+  /@types/materialize-css/1.0.7:
     dependencies:
       '@types/cash': 0.0.3
       '@types/jquery': 3.3.31
     dev: true
     resolution:
-      integrity: sha512-H/QXdgih11880Rx+yhLU5mDCm3SVGF7CYyQjEmRYGrn/fGrPc+s2SQBwbB9gZCw2a/39bDkH/v+wyysj0nWXCQ==
+      integrity: sha512-nKsxFTAjUHK7gxnMcbd+Lynp1v8N+1mvrfleWmy5u0Bxd337l9O0U11FfKX3fKZlxE4hD7N4bw8BFhH5hxhXCQ==
   /@types/mithril/2.0.2:
     dev: true
     resolution:
@@ -1079,10 +1079,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
-  /autoprefixer/9.7.2:
+  /autoprefixer/9.7.3:
     dependencies:
-      browserslist: 4.7.3
-      caniuse-lite: 1.0.30001011
+      browserslist: 4.8.3
+      caniuse-lite: 1.0.30001020
       chalk: 2.4.2
       normalize-range: 0.1.2
       num2fraction: 1.2.2
@@ -1093,7 +1093,7 @@ packages:
       node: '>=6.0.0'
     hasBin: true
     resolution:
-      integrity: sha512-LCAfcdej1182uVvPOZnytbq61AhnOZ/4JelDaJGDeNwewyU1AMaNthcHsyz1NRjTmd2FkurMckLWfkHg3Z//KA==
+      integrity: sha512-8T5Y1C5Iyj6PgkPSFd0ODvK9DIleuPKUPYniNxybS47g2k2wFgLZ46lGQHlBuGKIAEV8fbCDfKCCRS1tvOgc3Q==
   /aws-sign2/0.7.0:
     dev: true
     resolution:
@@ -1283,6 +1283,15 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-jWvmhqYpx+9EZm/FxcZSbUZyDEvDTLDi3nSAKbzEkyWvtI0mNSmUosey+5awDW1RUlrgXbQb5A6qY1xQH9U6MQ==
+  /browserslist/4.8.3:
+    dependencies:
+      caniuse-lite: 1.0.30001020
+      electron-to-chromium: 1.3.331
+      node-releases: 1.1.45
+    dev: true
+    hasBin: true
+    resolution:
+      integrity: sha512-iU43cMMknxG1ClEZ2MDKeonKE1CCrFVkQK2AqO2YWFmvIrx4JWrvQ4w4hQez6EpVI8rHTtqh/ruHHDHSOKxvUg==
   /buffer-equal/0.0.1:
     dev: true
     engines:
@@ -1370,6 +1379,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-h+Eqyn/YA6o6ZTqpS86PyRmNWOs1r54EBDcd2NTwwfsXQ8re1B38SnB+p2RKF8OUsyEIjeDU8XGec1RGO/wYCg==
+  /caniuse-lite/1.0.30001020:
+    dev: true
+    resolution:
+      integrity: sha512-yWIvwA68wRHKanAVS1GjN8vajAv7MBFshullKCeq/eKpK7pJBVDgFFEqvgWTkcP2+wIDeQGYFRXECjKZnLkUjA==
   /caseless/0.12.0:
     dev: true
     resolution:
@@ -2031,6 +2044,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-IwU/0LTzTa03Q0YDzg11RlK8e/V92tmPqFOaTEsdv7JJXtC/+v/H4bT2FmsA/xaFQWJvi0ZVcRppw8o0AD9XJQ==
+  /electron-to-chromium/1.3.331:
+    dev: true
+    resolution:
+      integrity: sha512-GuDv5gkxwRROYnmIVFUohoyrNapWCKLNn80L7Pa+9WRF/oY4t7XLH7wBMsYBgIRwi8BvEvsGKLKh8kOciOp6kA==
   /elliptic/6.5.1:
     dependencies:
       bn.js: 4.11.8
@@ -3053,13 +3070,13 @@ packages:
       '0': node >=0.6.0
     resolution:
       integrity: sha1-MT5mvB5cwG5Di8G3SZwuXFastqI=
-  /keycloak-js/7.0.1:
+  /keycloak-js/8.0.1:
     dependencies:
       base64-js: 1.3.1
       js-sha256: 0.9.0
     dev: false
     resolution:
-      integrity: sha512-gefTlb6DjvqH2wTbXCs3o2d54Ot6lvFb0ynF4aU75ucUq9qQ1p1+lm+1OcRRC34nPCG16joPz2QNxNVXi8Bmng==
+      integrity: sha512-1ABx6ZCk1jrmn9wAX8oMw175M75JHhpKq2bKSmplkhQXErkp0r8Lf+e+91Gr8DixVtT4/IyH9mc/JQuwbkvRbA==
   /kind-of/3.2.2:
     dependencies:
       is-buffer: 1.1.6
@@ -3290,7 +3307,7 @@ packages:
       mithril: ^2.0.4
     resolution:
       integrity: sha512-8f56fJsglSmEpVAjH/4bpgcjXr587+r8ZttLet9gcOl6C78ZXrCwrz5twIo2NLqmLuLGv77vmKyzIf7XVuqoRw==
-  /mithril-materialized/0.15.4_f3d9df6f4766fd28b6cfb8072ccbc3ca:
+  /mithril-materialized/0.16.0_f3d9df6f4766fd28b6cfb8072ccbc3ca:
     dependencies:
       materialize-css: 1.0.0
       mithril: 2.0.4
@@ -3299,14 +3316,14 @@ packages:
       materialize-css: ^1.0.0
       mithril: ^2.0.4
     resolution:
-      integrity: sha512-r2UYWJvpnTGifCGs/YP27TnhBvcwqF7cv+ES6k1WfRTUWwkn6gug3SiJ8yh6/gA3sGCc3+mY28rZYHAC4JQ2mg==
-  /mithril-ui-form/0.4.7_0f5c77a15cfb528a22f747c2de331986:
+      integrity: sha512-exWUe1qMNNUu2sc0VDg06vtnYtcscFtenuzUAIAPPM7t69G7d4lvmvJpV57vNZKRpmfs16TQLBirWDSh9pNn8A==
+  /mithril-ui-form/0.4.7_41e7f33714a8db2eab8931e703bc99bd:
     dependencies:
       leaflet: 1.6.0
       leaflet-draw: 1.0.4
       materialize-css: 1.0.0
       mithril: 2.0.4
-      mithril-materialized: 0.15.4_f3d9df6f4766fd28b6cfb8072ccbc3ca
+      mithril-materialized: 0.16.0_f3d9df6f4766fd28b6cfb8072ccbc3ca
       slimdown-js: 0.1.5
     dev: false
     peerDependencies:
@@ -3419,6 +3436,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-r4LPcC5b/bS8BdtWH1fbeK88ib/wg9aqmg6/s3ngNLn2Ewkn/8J6Iw3P9RTlfIAdSdvYvQl2thCY5Y+qTAQ2iQ==
+  /node-releases/1.1.45:
+    dependencies:
+      semver: 6.3.0
+    dev: true
+    resolution:
+      integrity: sha512-cXvGSfhITKI8qsV116u2FTzH5EWZJfgG7d4cpqwF8I8+1tWpD6AsvvGRKq2onR0DNj1jfqsjkXZsm14JMS7Cyg==
   /normalize-html-whitespace/1.0.0:
     dev: true
     engines:
@@ -5128,13 +5151,13 @@ packages:
     dev: true
     resolution:
       integrity: sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
-  /typescript/3.7.2:
+  /typescript/3.7.4:
     dev: true
     engines:
       node: '>=4.2.0'
     hasBin: true
     resolution:
-      integrity: sha512-ml7V7JfiN2Xwvcer+XAf2csGO1bPBdRbFCkYBczNZggrBZ9c7G3riSUeJmqEU5uOtXNPMhE3n+R4FA/3YOAWOQ==
+      integrity: sha512-A25xv5XCtarLwXpcDNZzCGvW2D1S3/bACratYBx2sax8PefsFhlYmkQicKHvpYflFS8if4zne5zT5kpJ7pzuvw==
   /uncss/0.17.2:
     dependencies:
       commander: 2.20.3
@@ -5429,24 +5452,24 @@ packages:
       integrity: sha512-/4ld+4VV5RnrynMhPZJ/ZpOCGSCeghMykZ3BhdFBDa9Wy/RH6uEGNWDJog+aUlq+9OM1CFTgtYRW5Is1Po9NOA==
 specifiers:
   '@types/file-saver': ^2.0.1
-  '@types/leaflet': ^1.5.5
-  '@types/lokijs': ^1.5.2
-  '@types/materialize-css': ^1.0.6
+  '@types/leaflet': ^1.5.7
+  '@types/lokijs': ^1.5.3
+  '@types/materialize-css': ^1.0.7
   '@types/mithril': ^2.0.2
-  autoprefixer: ^9.7.1
+  autoprefixer: ^9.7.3
   base64-js: ^1.3.1
   cssnano: ^4.1.10
   file-saver: ^2.0.2
   js-sha256: ^0.9.0
-  keycloak-js: ^7.0.1
-  leaflet: ^1.5.1
+  keycloak-js: ^8.0.1
+  leaflet: ^1.6.0
   leaflet-draw: ^1.0.4
   material-icons: ^0.3.1
   materialize-css: ^1.0.0
   mithril: ^2.0.4
   mithril-leaflet: ^0.1.7
-  mithril-materialized: ^0.15.4
-  mithril-ui-form: ^0.4.6
+  mithril-materialized: ^0.16.0
+  mithril-ui-form: ^0.4.7
   parcel-bundler: ^1.12.4
   rimraf: ^3.0.0
-  typescript: ^3.7.2
+  typescript: ^3.7.4

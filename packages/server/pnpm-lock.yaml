@@ -1,15 +1,15 @@
 dependencies:
   dotenv: 8.2.0
-  rest-easy-loki: 0.5.1
+  rest-easy-loki: 0.6.0
 devDependencies:
-  '@types/koa': 2.0.52
+  '@types/koa': 2.11.0
   '@types/koa-compose': 3.2.5
-  '@types/koa-router': 7.0.42
+  '@types/koa-router': 7.4.0
   '@types/koa-static': 4.0.1
-  '@types/node': 12.12.7
+  '@types/node': 13.1.6
   rimraf: 3.0.0
-  tsc-watch: 4.0.0_typescript@3.7.2
-  typescript: 3.7.2
+  tsc-watch: 4.0.0_typescript@3.7.4
+  typescript: 3.7.4
 lockfileVersion: 5.1
 packages:
   /@koa/cors/3.0.0:
@@ -88,12 +88,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-B8nG/OoE1ORZqCkBVsup/AKcvjdgoHnfi4pZMn5UwAPCbhk/96xyv284eBYW8JlQbQ7zDmnpFr68I/40mFoIBQ==
-  /@types/koa-router/7.0.42:
+  /@types/koa-router/7.4.0:
     dependencies:
-      '@types/koa': 2.0.52
+      '@types/koa': 2.11.0
     dev: true
     resolution:
-      integrity: sha512-mggrNY7Ywwjt7QjaMAlbb1ixE+v7AFskOeyKdmZT/NvPVEAo48gYUxIcF8ILlMc3eg1bo6SxNoUcbxhTv7edrA==
+      integrity: sha512-CkNyhGOCJ6rpBEG0rlSQhwHsHNwMzGLE49tV3jE5f0TvMzy/SmoCAIlHWdOLs8Mro+BqtKFH6e/lDaibWkydag==
   /@types/koa-send/4.1.2:
     dependencies:
       '@types/koa': 2.0.52
@@ -118,6 +118,17 @@ packages:
     dev: true
     resolution:
       integrity: sha512-cp/GTOhOYwomlSKqEoG0kaVEVJEzP4ojYmfa7EKaGkmkkRwJ4B/1VBLbQZ49Z+WJNvzXejQB/9GIKqMo9XLgFQ==
+  /@types/koa/2.11.0:
+    dependencies:
+      '@types/accepts': 1.3.5
+      '@types/cookies': 0.7.4
+      '@types/http-assert': 1.5.1
+      '@types/keygrip': 1.0.1
+      '@types/koa-compose': 3.2.5
+      '@types/node': 13.1.6
+    dev: true
+    resolution:
+      integrity: sha512-Hgx/1/rVlJvqYBrdeCsS7PDiR2qbxlMt1RnmNWD4Uxi5FF9nwkYqIldo7urjc+dfNpk+2NRGcnAYd4L5xEhCcQ==
   /@types/mime/2.0.1:
     dev: true
     resolution:
@@ -125,6 +136,10 @@ packages:
   /@types/node/12.12.7:
     resolution:
       integrity: sha512-E6Zn0rffhgd130zbCbAr/JdXfXkoOUFAKNs/rF8qnafSJ8KYaA/j3oz7dcwal+lYjLA7xvdd5J4wdYpCTlP8+w==
+  /@types/node/13.1.6:
+    dev: true
+    resolution:
+      integrity: sha512-Jg1F+bmxcpENHP23sVKkNuU3uaxPnsBMW0cLjleiikFKomJQbsn0Cqk2yDvQArqzZN6ABfBkZ0To7pQ8sLdWDg==
   /@types/range-parser/1.2.3:
     dev: true
     resolution:
@@ -767,7 +782,7 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha1-xL2p9e+y/OZSR4c6s2u02DT+Fvc=
-  /rest-easy-loki/0.5.1:
+  /rest-easy-loki/0.6.0:
     dependencies:
       '@koa/cors': 3.0.0
       command-line-args: 5.1.1
@@ -778,10 +793,15 @@ packages:
       koa-router: 7.4.0
       koa-static: 5.0.0
       lokijs: 1.5.8
+      rfc6902: 3.0.4
     dev: false
     hasBin: true
     resolution:
-      integrity: sha512-fg9pTayy98pR9B5krTj33e0wxUql5Pa2GZyz+vZJ28ivYnWiULeY/FeCu9zyHiGz9pEwrtXrbD6SZB7ggzm2dg==
+      integrity: sha512-eNYguB3VnGCoZKmHphd+FK0gb+o5ddk5a0sJ+zpbziPAOvB/4AS7bAu0sJ0FO196CJNl+x/3jha4WPczwCckRg==
+  /rfc6902/3.0.4:
+    dev: false
+    resolution:
+      integrity: sha512-OnzreaZXrwT5w2ikKXWr5QcuI7NZpL+J3hIkAwozjOnKVUL7fPsB8Vcmu8YBiiou1/r3V0Jc0T1uQDyfAPvLzA==
   /rimraf/3.0.0:
     dependencies:
       glob: 7.1.6
@@ -894,14 +914,14 @@ packages:
       node: '>=0.6'
     resolution:
       integrity: sha512-yaOH/Pk/VEhBWWTlhI+qXxDFXlejDGcQipMlyxda9nthulaxLZUNcUqFxokp0vcYnvteJln5FNQDRrxj3YcbVw==
-  /tsc-watch/4.0.0_typescript@3.7.2:
+  /tsc-watch/4.0.0_typescript@3.7.4:
     dependencies:
       cross-spawn: 5.1.0
       node-cleanup: 2.1.2
       ps-tree: 1.2.0
       string-argv: 0.1.2
       strip-ansi: 4.0.0
-      typescript: 3.7.2
+      typescript: 3.7.4
     dev: true
     engines:
       node: '>=6.4.0'
@@ -925,13 +945,13 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha512-TkRKr9sUTxEH8MdfuCSP7VizJyzRNMjj2J2do2Jr3Kym598JVdEksuzPQCnlFPW4ky9Q+iA+ma9BGm06XQBy8g==
-  /typescript/3.7.2:
+  /typescript/3.7.4:
     dev: true
     engines:
       node: '>=4.2.0'
     hasBin: true
     resolution:
-      integrity: sha512-ml7V7JfiN2Xwvcer+XAf2csGO1bPBdRbFCkYBczNZggrBZ9c7G3riSUeJmqEU5uOtXNPMhE3n+R4FA/3YOAWOQ==
+      integrity: sha512-A25xv5XCtarLwXpcDNZzCGvW2D1S3/bACratYBx2sax8PefsFhlYmkQicKHvpYflFS8if4zne5zT5kpJ7pzuvw==
   /typical/4.0.0:
     dev: false
     engines:
@@ -991,13 +1011,13 @@ packages:
     resolution:
       integrity: sha512-faQrqNMzcPCHGVC2aaOINk13K+aaBDUPjGWl0teOXywElLjyVAB6Oe2jj62jHYtwsU49jXhScYbvPENK+6zAvQ==
 specifiers:
-  '@types/koa': 2.0.52
+  '@types/koa': 2.11.0
   '@types/koa-compose': ^3.2.5
-  '@types/koa-router': ^7.0.42
+  '@types/koa-router': ^7.4.0
   '@types/koa-static': ^4.0.1
-  '@types/node': ^12.12.6
+  '@types/node': ^13.1.6
   dotenv: ^8.2.0
-  rest-easy-loki: ^0.5.1
+  rest-easy-loki: ^0.6.0
   rimraf: ^3.0.0
   tsc-watch: ^4.0.0
-  typescript: ^3.7.2
+  typescript: ^3.7.4
