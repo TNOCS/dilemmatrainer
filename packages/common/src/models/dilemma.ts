@@ -1,19 +1,9 @@
+import { ICharacteristic } from './characteristic';
 import { IContent } from './content';
 
 export interface IDilemma extends IContent {
-  /** Is the dilemma for this team: 100 is completely for the team, 0 is completely not for the team. */
-  score?: number;
-  shouldAccept: boolean;
-  /** Text to show why the team should/shouldn't have picked it up */
+  /** Reason for assigning these characteristics */
   reason?: string;
-  forRoles?: Array<{
-    /** If the score is 100, it is 100% for this role. */
-    score?: number;
-    /** Role ID */
-    roleId?: string;
-    /** Role ID */
-    roleTitle?: string;
-    /** Description why it is for this role */
-    description: string;
-  }>;
+  /** Characteristics of this dilemma */
+  characteristics: ICharacteristic[];
 }

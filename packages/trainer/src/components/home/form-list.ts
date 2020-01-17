@@ -1,19 +1,16 @@
 import { saveAs } from 'file-saver';
 import m from 'mithril';
 import { FlatButton, Icon } from 'mithril-materialized';
-import { IScenario } from '../../../../common/dist';
-import { AppState } from '../../models/app-state';
+import { IGame } from '../../../../common/dist';
 import { Roles } from '../../models/roles';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
 import { Auth } from '../../services/login-service';
 import { scenarioSvc } from '../../services/scenario-service';
 import { careProviderToCSV } from '../../utils';
-import { CircularSpinner } from '../ui/preloader';
-import { SearchComponent } from '../ui/search-component';
 
 export const EventsList = () => {
   const sortByName:
-    | ((a: Partial<IScenario>, b: Partial<IScenario>) => number)
+    | ((a: Partial<IGame>, b: Partial<IGame>) => number)
     | undefined = (a, b) =>
     (a.title || '') > (b.title || '')
       ? 1
@@ -22,7 +19,7 @@ export const EventsList = () => {
       : 0;
 
   const sortByUpdated:
-    | ((a: Partial<IScenario>, b: Partial<IScenario>) => number)
+    | ((a: Partial<IGame>, b: Partial<IGame>) => number)
     | undefined = (a, b) =>
     typeof a.meta === 'undefined' ||
     typeof a.meta.updated === 'undefined' ||
@@ -38,10 +35,10 @@ export const EventsList = () => {
   return {
     oninit: () => scenarioSvc.loadList(),
     view: () => {
-      const scenarios = (scenarioSvc.getList() || ([] as IScenario[]))
+      const scenarios = (scenarioSvc.getList() || ([] as IGame[]))
         .sort(sortByUpdated)
         .sort(sortByName);
-      const filteredCareProviders =
+      const filteredGames =
         scenarios
           .filter(
             scenario =>
@@ -61,32 +58,89 @@ export const EventsList = () => {
             },
           },
           [
-            Auth.isAuthenticated
-              ? m(FlatButton, {
-                  label: 'New game',
-                  iconName: 'add',
-                  class: 'col s11 indigo darken-4 white-text',
-                  style: 'margin: 1em;',
-                  onclick: async () => {
-                    const scenario = await scenarioSvc.save({
-                      title: 'New game',
-                      owner: [Auth.email],
-                      published: false,
+            Auth.isAuthenticated &&
+              m(FlatButton, {
+                label: 'New RBT game (in Dutch)',
+                iconName: 'add',
+                class: 'col s11 indigo darken-4 white-text',
+                style: 'margin: 1em;',
+                onclick: async () => {
+                  const scenario = await scenarioSvc.save({
+                    title: 'Nieuwe RBT game',
+                    owner: [Auth.email],
+                    published: false,
+                    groups: [
+                      { id: 'rbt', title: 'RBT', isMain: true },
+                      { id: 'ncc', title: 'NCC', level: 1 },
+                      { id: 'rot', title: 'ROT', level: -1 },
+                      { id: 'copi', title: 'COPI', level: -1 },
+                    ],
+                    roles: [
+                      { id: 'major', title: 'Burgemeester' },
+                      { id: 'dyke', title: 'Dijkgraaf' },
+                      { id: 'policeChief', title: 'Politiecommisaris' },
+                      { id: 'fireChief', title: 'Brandweercommandant' },
+                      { id: 'secretary', title: 'Secretaris' },
+                    ],
+                    characteristics: [
+                      {
+                        id: 'time',
+                        title: 'Hoge tijdsdruk',
+                        values: [
+                          { id: 'yes', title: 'Ja' },
+                          { id: 'no', title: 'Nee' },
+                        ],
+                      },
+                      {
+                        id: 'uncertainty',
+                        title: 'Hoge onzekerheid',
+                        values: [
+                          { id: 'yes', title: 'Ja' },
+                          { id: 'no', title: 'Nee' },
+                        ],
+                      },
+                      {
+                        id: 'conflicts',
+                        title: 'Tegenstrijdige belangen',
+                        values: [
+                          { id: 'yes', title: 'Ja' },
+                          { id: 'no', title: 'Nee' },
+                        ],
+                      },
+                    ],
+                  });
+                  if (scenario) {
+                    dashboardSvc.switchTo(Dashboards.EDIT, {
+                      id: scenario.$loki,
                     });
-                    if (scenario) {
-                      dashboardSvc.switchTo(Dashboards.EDIT, {
-                        id: scenario.$loki,
-                      });
-                    }
-                  },
-                })
-              : undefined,
+                  }
+                },
+              }),
+            Auth.isAuthenticated &&
+              m(FlatButton, {
+                label: 'New game',
+                iconName: 'add',
+                class: 'col s11 indigo darken-4 white-text',
+                style: 'margin: 1em;',
+                onclick: async () => {
+                  const scenario = await scenarioSvc.save({
+                    title: 'New game',
+                    owner: [Auth.email],
+                    published: false,
+                  });
+                  if (scenario) {
+                    dashboardSvc.switchTo(Dashboards.EDIT, {
+                      id: scenario.$loki,
+                    });
+                  }
+                },
+              }),
           ]
         ),
         m(
           '.contentarea',
-          filteredCareProviders.length > 0
-            ? filteredCareProviders.map(scenario =>
+          filteredGames.length > 0
+            ? filteredGames.map(game =>
                 m('.col.s12', [
                   m(
                     '.card.hoverable',
@@ -97,11 +151,11 @@ export const EventsList = () => {
                           className: 'card-title',
                           href: dashboardSvc
                             .route(Dashboards.READ)
-                            .replace(':id', `${scenario.$loki}`),
+                            .replace(':id', `${game.$loki}`),
                         },
-                        scenario.title || 'Untitled'
+                        game.title || 'Untitled'
                       ),
-                      m('p.light.block-with-text', scenario.description),
+                      m('p.light.block-with-text', game.description),
                     ]),
                     m('.card-action', [
                       m(
@@ -110,11 +164,11 @@ export const EventsList = () => {
                           target: '_blank',
                           style: 'margin-right: 0',
                           onclick: () => {
-                            const csv = careProviderToCSV(scenario);
+                            const csv = careProviderToCSV(game);
                             const blob = new Blob([csv], {
                               type: 'text/plain;charset=utf-8',
                             });
-                            saveAs(blob, `${scenario.title}.csv`, {
+                            saveAs(blob, `${game.title}.csv`, {
                               autoBom: true,
                             });
                           },
@@ -126,9 +180,9 @@ export const EventsList = () => {
                       ),
                       m(
                         'span.badge',
-                        scenario.dilemmas
-                          ? `${scenario.dilemmas.length} dilemma${
-                              scenario.dilemmas.length === 1 ? '' : 's'
+                        game.dilemmasModule && game.dilemmasModule.dilemmas
+                          ? `${game.dilemmasModule.dilemmas.length} dilemma${
+                              game.dilemmasModule.dilemmas.length === 1 ? '' : 's'
                             }`
                           : '0 dilemmas'
                       ),

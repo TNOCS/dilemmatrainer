@@ -2,11 +2,11 @@ import M from 'materialize-css';
 import m from 'mithril';
 import { Button, Chips, ModalPanel } from 'mithril-materialized';
 import { LayoutForm } from 'mithril-ui-form';
-import { IScenario } from '../../../../common/dist';
+import { IGame } from '../../../../common/dist';
 import { scenarioSvc } from '../../services';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
 import { Auth } from '../../services/login-service';
-import { scenarioFormGenerator } from '../../template/form';
+import { gameFormGenerator } from '../../template/form';
 import { capitalizeFirstLetter } from '../../utils';
 import { CircularSpinner } from '../ui/preloader';
 
@@ -20,7 +20,7 @@ const close = async (e?: UIEvent) => {
 
 export const EditForm = () => {
   const state = {
-    scenario: {} as Partial<IScenario>,
+    scenario: {} as Partial<IGame>,
     loaded: false,
     isValid: false,
     error: '',
@@ -41,7 +41,7 @@ export const EditForm = () => {
     }
   };
 
-  const formChanged = (scenario?: Partial<IScenario>, section?: string) => {
+  const formChanged = (scenario?: Partial<IGame>) => {
     state.canSave = true;
     console.log(JSON.stringify(scenario, null, 2));
   };
@@ -50,7 +50,7 @@ export const EditForm = () => {
     oninit: () => {
       return new Promise(async (resolve, reject) => {
         const scenario = await scenarioSvc.load(m.route.param('id')).catch(r => reject(r));
-        state.scenario = scenario || ({} as IScenario);
+        state.scenario = scenario || ({} as IGame);
         state.loaded = true;
         m.redraw();
         resolve();
@@ -58,7 +58,7 @@ export const EditForm = () => {
     },
     view: () => {
       const { scenario, context, loaded } = state;
-      const form = scenarioFormGenerator(scenario);
+      const form = gameFormGenerator(scenario);
       if (!loaded) {
         return m(CircularSpinner, { className: 'center-align', style: 'margin-top: 20%;' });
       }
@@ -163,7 +163,7 @@ export const EditForm = () => {
             form,
             obj: scenario,
             disabled: !canCrud,
-            onchange: () => formChanged(scenario, section),
+            onchange: () => formChanged(scenario),
             context,
             section,
           }),

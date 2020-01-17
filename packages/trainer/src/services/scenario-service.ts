@@ -1,16 +1,16 @@
 import m from 'mithril';
-import { IScenario, stripSpaces } from '../../../common/dist';
+import { IGame, stripSpaces } from '../../../common/dist';
 import { AppState } from '../models/app-state';
 import { ChannelNames } from '../models/channels';
 import { RestService } from './rest-service';
 
-class ScenarioService extends RestService<Partial<IScenario>> {
+class ScenarioService extends RestService<Partial<IGame>> {
   constructor() {
     super('scenarios', ChannelNames.CARE);
   }
 
-  public async loadList(): Promise<Array<Partial<IScenario>> | undefined> {
-    const result = await m.request<IScenario[]>({
+  public async loadList(): Promise<Array<Partial<IGame>> | undefined> {
+    const result = await m.request<IGame[]>({
       method: 'GET',
       url: this.baseUrl,
       withCredentials: this.withCredentials,
@@ -22,7 +22,7 @@ class ScenarioService extends RestService<Partial<IScenario>> {
     return this.list;
   }
 
-  public async search(query: string): Promise<Array<Partial<IScenario>> | undefined> {
+  public async search(query: string): Promise<Array<Partial<IGame>> | undefined> {
     const cleaned = stripSpaces(query).toLowerCase();
     if (cleaned.length <= 2) {
       this.setList(this.filteredList);
@@ -34,7 +34,7 @@ class ScenarioService extends RestService<Partial<IScenario>> {
     // http://localhost:3000/zorgaanbieders?q={"locaties.target":{"$contains":"car"}}
     // http://localhost:3000/zorgaanbieders?q={"$or":[{"target":{"$contains":"car"}},{"locaties.target":{"$contains":"car"}}]}
     AppState.isSearching = true;
-    const result = await m.request<IScenario[]>({
+    const result = await m.request<IGame[]>({
       method: 'GET',
       url: this.baseUrl,
       params: { q: JSON.stringify(q) },
