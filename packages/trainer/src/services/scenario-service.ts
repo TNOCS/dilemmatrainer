@@ -1,10 +1,10 @@
 import m from 'mithril';
-import { IGame, stripSpaces } from '../../../common/dist';
+import { IGame, stripSpaces } from '../../../common/src';
 import { AppState } from '../models/app-state';
 import { ChannelNames } from '../models/channels';
 import { RestService } from './rest-service';
 
-class ScenarioService extends RestService<Partial<IGame>> {
+class GameService extends RestService<Partial<IGame>> {
   constructor() {
     super('scenarios', ChannelNames.CARE);
   }
@@ -64,4 +64,4 @@ class ScenarioService extends RestService<Partial<IGame>> {
   // }
 }
 
-export const scenarioSvc = new ScenarioService();
+export const gameSvc = new GameService();

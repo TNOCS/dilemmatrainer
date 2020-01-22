@@ -2,8 +2,8 @@ import M from 'materialize-css';
 import m from 'mithril';
 import { Button, Chips, ModalPanel } from 'mithril-materialized';
 import { LayoutForm } from 'mithril-ui-form';
-import { IGame } from '../../../../common/dist';
-import { scenarioSvc } from '../../services';
+import { IGame } from '../../../../common/src';
+import { gameSvc } from '../../services';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
 import { Auth } from '../../services/login-service';
 import { gameFormGenerator } from '../../template/form';
@@ -20,7 +20,7 @@ const close = async (e?: UIEvent) => {
 
 export const EditForm = () => {
   const state = {
-    scenario: {} as Partial<IGame>,
+    game: {} as Partial<IGame>,
     loaded: false,
     isValid: false,
     error: '',
@@ -34,10 +34,10 @@ export const EditForm = () => {
   const onsubmit = async () => {
     // log('submitting...');
     state.canSave = false;
-    const { scenario } = state;
-    if (scenario) {
-      await scenarioSvc.save(scenario);
-      state.scenario = scenarioSvc.getCurrent();
+    const { game } = state;
+    if (game) {
+      await gameSvc.save(game);
+      state.game = gameSvc.getCurrent();
     }
   };
 
@@ -49,15 +49,15 @@ export const EditForm = () => {
   return {
     oninit: () => {
       return new Promise(async (resolve, reject) => {
-        const scenario = await scenarioSvc.load(m.route.param('id')).catch(r => reject(r));
-        state.scenario = scenario || ({} as IGame);
+        const scenario = await gameSvc.load(m.route.param('id')).catch(r => reject(r));
+        state.game = scenario || ({} as IGame);
         state.loaded = true;
         m.redraw();
         resolve();
       });
     },
     view: () => {
-      const { scenario, context, loaded } = state;
+      const { game: scenario, context, loaded } = state;
       const form = gameFormGenerator(scenario);
       if (!loaded) {
         return m(CircularSpinner, { className: 'center-align', style: 'margin-top: 20%;' });
@@ -177,7 +177,7 @@ export const EditForm = () => {
             {
               label: 'Verwijder',
               onclick: async () => {
-                scenarioSvc.delete(scenario.$loki);
+                gameSvc.delete(scenario.$loki);
                 close();
               },
             },

@@ -5,7 +5,7 @@ import { IGame } from '../../../../common/dist';
 import { Roles } from '../../models/roles';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
 import { Auth } from '../../services/login-service';
-import { scenarioSvc } from '../../services/scenario-service';
+import { gameSvc } from '../../services/scenario-service';
 import { careProviderToCSV } from '../../utils';
 
 export const EventsList = () => {
@@ -33,9 +33,9 @@ export const EventsList = () => {
       : 0;
 
   return {
-    oninit: () => scenarioSvc.loadList(),
+    oninit: () => gameSvc.loadList(),
     view: () => {
-      const scenarios = (scenarioSvc.getList() || ([] as IGame[]))
+      const scenarios = (gameSvc.getList() || ([] as IGame[]))
         .sort(sortByUpdated)
         .sort(sortByName);
       const filteredGames =
@@ -65,7 +65,7 @@ export const EventsList = () => {
                 class: 'col s11 indigo darken-4 white-text',
                 style: 'margin: 1em;',
                 onclick: async () => {
-                  const scenario = await scenarioSvc.save({
+                  const scenario = await gameSvc.save({
                     title: 'Nieuwe RBT game',
                     owner: [Auth.email],
                     published: false,
@@ -123,7 +123,7 @@ export const EventsList = () => {
                 class: 'col s11 indigo darken-4 white-text',
                 style: 'margin: 1em;',
                 onclick: async () => {
-                  const scenario = await scenarioSvc.save({
+                  const scenario = await gameSvc.save({
                     title: 'New game',
                     owner: [Auth.email],
                     published: false,

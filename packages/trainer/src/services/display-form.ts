@@ -5,7 +5,7 @@ import { IGame } from '../../../common/dist';
 import { gameFormGenerator } from '../template/form';
 
 export interface IFormattedEvent extends Attributes {
-  scenario: Partial<IGame>;
+  game: Partial<IGame>;
   filterValue?: string;
 }
 
@@ -22,17 +22,17 @@ export const DisplayForm: FactoryComponent<IFormattedEvent> = () => {
   // };
 
   return {
-    view: ({ attrs: { scenario } }) => {
-      const { title, /** $loki */ } = scenario;
-      const form = gameFormGenerator(scenario);
+    view: ({ attrs: { game } }) => {
+      const { title /** $loki */ } = game;
+      const form = gameFormGenerator(game);
 
-      return m('.row', { key: scenario.$loki }, [
+      return m('.row', { key: game.$loki }, [
         m('.row', m('h4.col.s12.primary-text', title)),
         m(
           '.row',
           m(LayoutForm, {
             form,
-            obj: scenario,
+            obj: game,
             readonly: true,
           })
         ),

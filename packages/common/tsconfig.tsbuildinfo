@@ -98,8 +98,8 @@
         "signature": "3e9437424596cedb309e362a7cd3856121cf1e7f95c9ae43c662bbca05355040"
       },
       "./src/models/dilemma.ts": {
-        "version": "185fe1f296de9a8e690ba577fef86a7bcab17e113a1b198af686e1af58afaa48",
-        "signature": "145cd21f48e171c445d771a3a0a6fafe12093b7a1fb9002d72c4898126cea095"
+        "version": "b64a8752b3739742b07b2063f37340c97a145257e544017ed765e8484b6458f3",
+        "signature": "d654520c7f4ac5531e3ca936a3671845e15cc76bfb42afeeafe4f2246fa0fcac"
       },
       "./src/models/role.ts": {
         "version": "4fd2e5c32b8bdbba1d23f691b353aa444a859b62ce403af49c2a8f9573abe067",
@@ -273,14 +273,14 @@
       "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2017.typedarrays.d.ts",
       "./src/utils/index.ts",
       "./src/models/content.ts",
+      "./src/models/claim.ts",
+      "./src/models/characteristic.ts",
+      "./src/models/role.ts",
+      "./src/models/scenario-phase.ts",
+      "./src/models/work-agreement.ts",
+      "./src/models/dilemma.ts",
       "./src/models/index.ts",
       "./src/models/game.ts",
-      "./src/models/work-agreement.ts",
-      "./src/models/scenario-phase.ts",
-      "./src/models/role.ts",
-      "./src/models/dilemma.ts",
-      "./src/models/characteristic.ts",
-      "./src/models/claim.ts",
       "./src/models/group.ts",
       "./src/index.ts"
     ]
