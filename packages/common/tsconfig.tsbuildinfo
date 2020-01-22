@@ -98,8 +98,8 @@
         "signature": "3e9437424596cedb309e362a7cd3856121cf1e7f95c9ae43c662bbca05355040"
       },
       "./src/models/dilemma.ts": {
-        "version": "a97b6f5b4a7a03bbd564a0f44536984caa113f4b59080d2559c44777dfd4959d",
-        "signature": "145cd21f48e171c445d771a3a0a6fafe12093b7a1fb9002d72c4898126cea095"
+        "version": "b853c17b631de9843c7f387c03e53d0873d10af2488530a113dadfe781e2fdd9",
+        "signature": "d654520c7f4ac5531e3ca936a3671845e15cc76bfb42afeeafe4f2246fa0fcac"
       },
       "./src/models/role.ts": {
         "version": "66db40450d507eb189002de092916a6d092c06790cb258906ba60c81a4752852",
@@ -108,6 +108,10 @@
       "./src/models/group.ts": {
         "version": "1e498162921c9fa30d268935068cc34dd9194d92cd4850301bff50856c0f3779",
         "signature": "fe5056f9b00b4428d8c07443b743a546dd44c28c90b6f674549b8e40782c8ca5"
+      },
+      "./src/models/session.ts": {
+        "version": "aaa3b311a4fb10b198561728d3469d7ac1d717fc99a94a48ffe1c2f738721746",
+        "signature": "65fc2a3e32dd7886877635746543f708ad2bedd2984ed5c7684eed49e86b2893"
       },
       "./src/models/scenario-phase.ts": {
         "version": "75752717fe08f331c6204ee3264376073be0d5cf52471d1afe1afb1bb2f94ebd",
@@ -122,8 +126,8 @@
         "signature": "0bb827c692d628b4b1d88c1c90270455b94154d893e2e55c40c0228e49b954a0"
       },
       "./src/models/index.ts": {
-        "version": "f3882b6f23f9e8828697fb21e5611e2b6d26b95b862bd46a6c75802ba51f6ef5",
-        "signature": "f3882b6f23f9e8828697fb21e5611e2b6d26b95b862bd46a6c75802ba51f6ef5"
+        "version": "c046b330d2864990ef0dc39fee01ebb50130c6288efd58d89065ef52aea86a22",
+        "signature": "c046b330d2864990ef0dc39fee01ebb50130c6288efd58d89065ef52aea86a22"
       },
       "./src/index.ts": {
         "version": "45339de4e901bd6564f13bef27fae4456618d25c232f164727ffb3bd6c19c6f8",
@@ -173,6 +177,9 @@
       "./src/models/group.ts": [
         "./src/models/index.ts"
       ],
+      "./src/models/session.ts": [
+        "./src/models/index.ts"
+      ],
       "./src/models/scenario-phase.ts": [
         "./src/models/content.ts"
       ],
@@ -192,9 +199,11 @@
       "./src/models/index.ts": [
         "./src/models/content.ts",
         "./src/models/claim.ts",
+        "./src/models/characteristic.ts",
         "./src/models/dilemma.ts",
         "./src/models/role.ts",
         "./src/models/group.ts",
+        "./src/models/session.ts",
         "./src/models/scenario-phase.ts",
         "./src/models/game.ts"
       ],
@@ -204,21 +213,27 @@
       ]
     },
     "exportedModulesMap": {
-      "./src/index.ts": [
-        "./src/utils/index.ts",
-        "./src/models/index.ts"
+      "./src/models/claim.ts": [
+        "./src/models/content.ts"
       ],
-      "./src/models/index.ts": [
+      "./src/models/characteristic.ts": [
+        "./src/models/content.ts"
+      ],
+      "./src/models/dilemma.ts": [
         "./src/models/content.ts",
-        "./src/models/claim.ts",
-        "./src/models/dilemma.ts",
-        "./src/models/role.ts",
-        "./src/models/group.ts",
-        "./src/models/scenario-phase.ts",
-        "./src/models/game.ts"
+        "./src/models/characteristic.ts"
+      ],
+      "./src/models/role.ts": [
+        "./src/models/content.ts"
       ],
       "./src/models/group.ts": [
         "./src/models/index.ts"
+      ],
+      "./src/models/scenario-phase.ts": [
+        "./src/models/content.ts"
+      ],
+      "./src/models/work-agreement.ts": [
+        "./src/models/content.ts"
       ],
       "./src/models/game.ts": [
         "./src/models/content.ts",
@@ -230,43 +245,30 @@
         "./src/models/role.ts",
         "./src/models/group.ts"
       ],
-      "./src/models/work-agreement.ts": [
-        "./src/models/content.ts"
-      ],
-      "./src/models/scenario-phase.ts": [
-        "./src/models/content.ts"
-      ],
-      "./src/models/role.ts": [
-        "./src/models/content.ts"
-      ],
-      "./src/models/dilemma.ts": [
+      "./src/models/index.ts": [
         "./src/models/content.ts",
-        "./src/models/characteristic.ts"
+        "./src/models/claim.ts",
+        "./src/models/characteristic.ts",
+        "./src/models/dilemma.ts",
+        "./src/models/role.ts",
+        "./src/models/group.ts",
+        "./src/models/session.ts",
+        "./src/models/scenario-phase.ts",
+        "./src/models/game.ts"
       ],
-      "./src/models/characteristic.ts": [
-        "./src/models/content.ts"
+      "./src/index.ts": [
+        "./src/utils/index.ts",
+        "./src/models/index.ts"
       ],
-      "./src/models/claim.ts": [
-        "./src/models/content.ts"
+      "./src/models/session.ts": [
+        "./src/models/index.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
-      "./src/utils/index.ts",
-      "./src/models/content.ts",
-      "./src/models/claim.ts",
-      "./src/models/characteristic.ts",
-      "./src/models/dilemma.ts",
-      "./src/models/role.ts",
-      "./src/models/group.ts",
-      "./src/models/scenario-phase.ts",
-      "./src/models/work-agreement.ts",
-      "./src/models/game.ts",
-      "./src/models/index.ts",
-      "./src/index.ts",
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es5.d.ts",
       "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2015.d.ts",
       "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2016.d.ts",
       "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2017.d.ts",
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es5.d.ts",
       "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.dom.d.ts",
       "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2015.core.d.ts",
       "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2015.collection.d.ts",
@@ -282,7 +284,20 @@
       "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2017.sharedmemory.d.ts",
       "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2017.string.d.ts",
       "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2017.intl.d.ts",
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2017.typedarrays.d.ts"
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.2/node_modules/typescript/lib/lib.es2017.typedarrays.d.ts",
+      "./src/utils/index.ts",
+      "./src/models/content.ts",
+      "./src/models/claim.ts",
+      "./src/models/characteristic.ts",
+      "./src/models/role.ts",
+      "./src/models/scenario-phase.ts",
+      "./src/models/work-agreement.ts",
+      "./src/models/dilemma.ts",
+      "./src/models/session.ts",
+      "./src/models/group.ts",
+      "./src/models/game.ts",
+      "./src/models/index.ts",
+      "./src/index.ts"
     ]
   },
   "version": "3.7.2"

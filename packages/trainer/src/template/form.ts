@@ -1,6 +1,5 @@
 import { Form, IInputField } from 'mithril-ui-form';
-import { IGame } from '../../../common/dist';
-import { ICharacteristic } from '../../../common/dist/models/characteristic';
+import { ICharacteristic, IGame } from '../../../common/src';
 
 export const characteristicsForm = (
   characteristics = [] as ICharacteristic[]
@@ -15,7 +14,7 @@ export const characteristicsForm = (
       inline: true,
       className: 'col s12',
     })),
-    className: 'row',
+    className: 'col s12',
   } as IInputField);
 
 const scenarioPhaseForm = [
@@ -184,79 +183,105 @@ export const gameFormGenerator = (game: Partial<IGame>): Form => {
       filterLabel: 'Filter by characteristic',
     },
 
-    { id: 'Claims (module 1)', type: 'section' },
+    { id: 'Claims', type: 'section' },
     {
-      id: 'claims',
-      label: 'Add claim',
+      id: 'claimsModule',
+      label: '##### Claims (module 1)',
       type: [
         {
-          id: 'id',
-          autogenerate: 'id',
+          id: 'show',
+          label: 'Play module',
+          type: 'checkbox',
+          class: 'col s12',
+          value: true,
         },
         {
-          id: 'title',
-          label: 'Claim',
-          type: 'textarea',
-          required: true,
-          className: 'col s12',
-        },
-        {
-          id: 'groupId',
-          label: 'Group or organisation',
-          options: groupOptions,
-          type: 'select',
-          multiple: true,
-          required: true,
-          className: 'col s12 m6',
-        },
-        {
-          id: 'reason',
-          label: 'Reason for assigning it to this group',
-          type: 'textarea',
-          required: false,
-          className: 'col s12',
+          id: 'claims',
+          label: 'Add claim',
+          type: [
+            {
+              id: 'id',
+              autogenerate: 'id',
+            },
+            {
+              id: 'title',
+              label: 'Claim',
+              type: 'textarea',
+              required: true,
+              className: 'col s12',
+            },
+            {
+              id: 'groupId',
+              label: 'Group or organisation',
+              options: groupOptions,
+              type: 'select',
+              multiple: true,
+              required: true,
+              className: 'col s12 m6',
+            },
+            {
+              id: 'reason',
+              label: 'Reason for assigning it to this group',
+              type: 'textarea',
+              required: false,
+              className: 'col s12',
+            },
+          ],
+          repeat: true,
+          pageSize: 1,
+          propertyFilter: 'title',
+          filterLabel: 'Filter by title',
         },
       ],
-      repeat: true,
-      pageSize: 1,
-      propertyFilter: 'title',
-      filterLabel: 'Filter by title',
     },
-    { id: 'Dilemmas (module 2)', type: 'section' },
-    ...scenarioPhaseForm,
+    { id: 'Dilemmas', type: 'section' },
     {
-      id: 'dilemmas',
-      label: 'Add dilemma',
-      type: [
-        {
-          id: 'title',
-          label: 'Title',
-          type: 'text',
-          required: true,
-          className: 'col s12',
-        },
-        {
-          id: 'description',
-          label: 'Dilemma',
-          type: 'textarea',
-          required: true,
-          className: 'col s12',
-        },
-        {
-          id: 'reason',
-          label: 'Reason for accepting or rejecting the dilemma',
-          type: 'textarea',
-          className: 'col s12',
-        },
-        { type: 'md', value: 'Characteristics of the dilemma' },
-        characteristicsForm(characteristics),
-      ],
-      repeat: true,
-      pageSize: 1,
-      propertyFilter: 'title',
-      filterLabel: 'Filter by title',
-    },
+      id: 'dilemmasModule',
+      label: `##### Dilemmas (module 2)
 
+In this module, the trainees need to work together to determine how they are going to deal with the presented situation.`,
+      type: [
+        {
+          id: 'show',
+          label: 'Play module',
+          type: 'checkbox',
+          class: 'col s12',
+          value: true,
+        },
+        ...scenarioPhaseForm,
+        {
+          id: 'dilemmas',
+          label: 'Add dilemma',
+          type: [
+            {
+              id: 'title',
+              label: 'Title',
+              type: 'text',
+              required: true,
+              className: 'col s12',
+            },
+            {
+              id: 'description',
+              label: 'Dilemma',
+              type: 'textarea',
+              required: true,
+              className: 'col s12',
+            },
+            {
+              id: 'notes',
+              label: 'Notes',
+              type: 'textarea',
+              className: 'col s12',
+            },
+            characteristicsForm(characteristics),
+          ],
+          repeat: true,
+          pageSize: 1,
+          propertyFilter: 'title',
+          filterLabel: 'Filter by title',
+        },
+      ],
+    },
     { id: 'agreements', label: 'Work agreements', type: 'section' },
     {
       id: 'workAgreements',

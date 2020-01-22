@@ -1,16 +1,17 @@
 import m, { Attributes, FactoryComponent } from 'mithril';
 import { LayoutForm } from 'mithril-ui-form';
 // import { labelResolver } from 'mithril-ui-form';
-import { IGame } from '../../../common/dist';
+import { IGame } from '../../../common/src';
 import { gameFormGenerator } from '../template/form';
 
 export interface IFormattedEvent extends Attributes {
-  scenario: Partial<IGame>;
+  game: Partial<IGame>;
   filterValue?: string;
 }
 
 /**
  * Display the form in a format that is useful for the end user.
+ * In this case, it will be a trainer interface for controlling a game.
  */
 export const DisplayForm: FactoryComponent<IFormattedEvent> = () => {
   // const state = {
@@ -22,17 +23,17 @@ export const DisplayForm: FactoryComponent<IFormattedEvent> = () => {
   // };
 
   return {
-    view: ({ attrs: { scenario } }) => {
-      const { title, /** $loki */ } = scenario;
-      const form = gameFormGenerator(scenario);
+    view: ({ attrs: { game } }) => {
+      const { title /** $loki */ } = game;
+      const form = gameFormGenerator(game);
 
-      return m('.row', { key: scenario.$loki }, [
+      return m('.row', { key: game.$loki }, [
         m('.row', m('h4.col.s12.primary-text', title)),
         m(
           '.row',
           m(LayoutForm, {
             form,
-            obj: scenario,
+            obj: game,
             readonly: true,
           })
         ),

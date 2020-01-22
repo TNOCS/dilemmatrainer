@@ -1,8 +1,8 @@
 import m, { FactoryComponent } from 'mithril';
 import { FlatButton, InputCheckbox, TextInput } from 'mithril-materialized';
 import { deepCopy } from 'mithril-ui-form';
-import { IScenario, stripSpaces } from '../../../../common/dist';
-import { scenarioSvc } from '../../services';
+import { IGame, stripSpaces } from '../../../../common/src';
+import { gameSvc } from '../../services';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
 import { DisplayForm } from '../../services/display-form';
 import { Auth } from '../../services/login-service';
@@ -11,26 +11,26 @@ import { CircularSpinner } from '../ui/preloader';
 export const FormView: FactoryComponent = () => {
   const state = {
     filterValue: '',
-    scenario: {} as Partial<IScenario>,
+    game: {} as Partial<IGame>,
     loaded: false,
   };
 
   return {
     oninit: () => {
       return new Promise(async (resolve, reject) => {
-        const event = await scenarioSvc.load(m.route.param('id')).catch(r => reject(r));
-        state.scenario = event ? deepCopy(event) : ({} as IScenario);
+        const event = await gameSvc.load(m.route.param('id')).catch(r => reject(r));
+        state.game = event ? deepCopy(event) : ({} as IGame);
         state.loaded = true;
         resolve();
       });
     },
     view: () => {
-      const { scenario, loaded, filterValue } = state;
+      const { game, loaded, filterValue } = state;
       // console.log(JSON.stringify(careProvider, null, 2));
       if (!loaded) {
         return m(CircularSpinner, { className: 'center-align', style: 'margin-top: 20%;' });
       }
-      if (!scenario) {
+      if (!game) {
         return undefined;
       }
       return m('.row', { style: 'margin-top: 1em;' }, [
@@ -74,7 +74,7 @@ export const FormView: FactoryComponent = () => {
           ]
         ),
         m('.contentarea', [
-          Auth.canEdit(scenario)
+          Auth.canEdit(game)
             ? m('ul.do-not-print', [
                 m(
                   'li',
@@ -82,24 +82,24 @@ export const FormView: FactoryComponent = () => {
                     label: 'Edit game',
                     iconName: 'edit',
                     className: 'right hide-on-small-only',
-                    onclick: () => dashboardSvc.switchTo(Dashboards.EDIT, { id: scenario.$loki }),
+                    onclick: () => dashboardSvc.switchTo(Dashboards.EDIT, { id: game.$loki }),
                   })
                 ),
                 m(
                   'li',
                   m(InputCheckbox, {
                     className: 'left margin-top7',
-                    checked: scenario.published,
+                    checked: game.published,
                     onchange: async checked => {
-                      scenario.published = checked;
-                      await scenarioSvc.save(scenario);
+                      game.published = checked;
+                      await gameSvc.save(game);
                     },
                     label: 'Publish game',
                   })
                 ),
               ])
             : undefined,
-          m(DisplayForm, { scenario: scenario, filterValue }),
+          m(DisplayForm, { game, filterValue }),
         ]),
       ]);
     },

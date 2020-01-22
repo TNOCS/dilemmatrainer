@@ -1,13 +1,8 @@
 import m, { Vnode } from 'mithril';
 import { Icon } from 'mithril-materialized';
-import { stripSpaces } from '../../../common/dist';
 import logo from '../assets/dilemma_logo.svg';
 import { IDashboard } from '../models';
-import { AppState } from '../models/app-state';
-import { scenarioSvc } from '../services';
-import { Dashboards, dashboardSvc } from '../services/dashboard-service';
-import { debounce } from '../utils';
-import { SearchComponent } from './ui/search-component';
+import { dashboardSvc } from '../services/dashboard-service';
 
 const stripRouteParams = (path: string) => path.replace(/:[a-zA-Z]+/, '');
 
@@ -15,11 +10,6 @@ const isActiveRoute = (route = m.route.get()) => (path: string) =>
   path.length > 1 && route.indexOf(stripRouteParams(path)) >= 0
     ? '.active'
     : '';
-
-const search = debounce(
-  (query: string) => scenarioSvc.search(stripSpaces(query)),
-  400
-);
 
 export const Layout = () => ({
   view: (vnode: Vnode) => {
