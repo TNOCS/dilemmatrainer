@@ -6,7 +6,7 @@ import { RestService } from './rest-service';
 
 class GameService extends RestService<Partial<IGame>> {
   constructor() {
-    super('scenarios', ChannelNames.CARE);
+    super('games', ChannelNames.GAME);
   }
 
   public async loadList(): Promise<Array<Partial<IGame>> | undefined> {

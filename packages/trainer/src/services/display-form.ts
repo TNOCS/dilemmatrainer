@@ -11,6 +11,7 @@ export interface IFormattedEvent extends Attributes {
 
 /**
  * Display the form in a format that is useful for the end user.
+ * In this case, it will be a trainer interface for controlling a game.
  */
 export const DisplayForm: FactoryComponent<IFormattedEvent> = () => {
   // const state = {
