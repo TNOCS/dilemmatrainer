@@ -20,7 +20,7 @@ export const characteristicsForm = (
 const scenarioPhaseForm = [
   {
     id: 'title',
-    label: 'Title',
+    label: 'Scenario title',
     type: 'text',
     required: true,
     className: 'col s12',
@@ -254,16 +254,16 @@ In this module, the trainees need to work together to determine how they are goi
           label: 'Add dilemma',
           type: [
             {
-              id: 'title',
-              label: 'Title',
-              type: 'text',
+              id: 'description',
+              label: 'Relevant context',
+              type: 'textarea',
               required: true,
               className: 'col s12',
             },
             {
-              id: 'description',
+              id: 'title',
               label: 'Dilemma',
-              type: 'textarea',
+              type: 'text',
               required: true,
               className: 'col s12',
             },
