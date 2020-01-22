@@ -1,14 +1,14 @@
 import m from 'mithril';
-import { IScenario } from '../../../common/dist';
+import { IGame } from '../../../common/src';
 import { RestService } from './rest-service';
 
-class ScenarioService extends RestService<Partial<IScenario>> {
+class GameService extends RestService<Partial<IGame>> {
   constructor() {
-    super('scenarios');
+    super('games');
   }
 
-  public async loadList(): Promise<Array<Partial<IScenario>> | undefined> {
-    const result = await m.request<IScenario[]>({
+  public async loadList(): Promise<Array<Partial<IGame>> | undefined> {
+    const result = await m.request<IGame[]>({
       method: 'GET',
       url: this.baseUrl,
       withCredentials: this.withCredentials,
@@ -21,4 +21,4 @@ class ScenarioService extends RestService<Partial<IScenario>> {
   }
 }
 
-export const scenarioSvc = new ScenarioService();
+export const gameSvc = new GameService();

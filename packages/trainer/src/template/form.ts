@@ -1,6 +1,5 @@
 import { Form, IInputField } from 'mithril-ui-form';
-import { IGame } from '../../../common/dist';
-import { ICharacteristic } from '../../../common/dist/models/characteristic';
+import { ICharacteristic, IGame } from '../../../common/src';
 
 export const characteristicsForm = (
   characteristics = [] as ICharacteristic[]

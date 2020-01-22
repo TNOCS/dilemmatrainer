@@ -1,7 +1,7 @@
 import { saveAs } from 'file-saver';
 import m from 'mithril';
 import { FlatButton, Icon } from 'mithril-materialized';
-import { IGame } from '../../../../common/dist';
+import { IGame } from '../../../../common/src';
 import { Roles } from '../../models/roles';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
 import { Auth } from '../../services/login-service';

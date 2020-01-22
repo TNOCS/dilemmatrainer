@@ -6,7 +6,7 @@ import {
   Options,
   TextInput,
 } from 'mithril-materialized';
-import { IScenario } from '../../../common/dist';
+import { IGame } from '../../../common/src';
 import { CircularSpinner } from '../components/ui/preloader';
 import { Roles } from '../models/roles';
 import { envSvc } from './env-service';
@@ -38,9 +38,9 @@ export const Auth = {
   roles: ['admin'] as string[],
 
   async init() {
-    if (Auth.keycloak.login) {
-      return;
-    }
+    // if (Auth.keycloak.login) {
+    //   return;
+    // }
     const env = await envSvc.getEnv();
     Auth.keycloak = Keycloak({
       realm: env.LOKI_REALM,
@@ -86,18 +86,18 @@ export const Auth = {
     return Auth.roles.indexOf(Roles.EDITOR) >= 0;
   },
   /** Can edit the document, but also change the persons that have access. */
-  isOwner(doc: Partial<IScenario>) {
+  isOwner(doc: Partial<IGame>) {
     return (
       Auth.isAdmin() ||
       (Auth.isAuthenticated && doc.owner && doc.owner.indexOf(Auth.email) >= 0)
     );
   },
   /** Can edit the document, but also change the persons that have access. */
-  canCRUD(doc: Partial<IScenario>) {
+  canCRUD(doc: Partial<IGame>) {
     return Auth.isAuthenticated && (Auth.isAdmin() || this.isOwner(doc));
   },
   /** Can edit the document and publish it. */
-  canEdit(doc: Partial<IScenario>) {
+  canEdit(doc: Partial<IGame>) {
     return (
       Auth.isAuthenticated &&
       (Auth.canCRUD(doc) ||

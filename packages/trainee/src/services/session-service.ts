@@ -1,5 +1,5 @@
 import m from 'mithril';
-import { ISession } from '../../../common/dist';
+import { ISession } from '../../../common/src';
 import { RestService } from './rest-service';
 
 class SessionService extends RestService<Partial<ISession>> {
