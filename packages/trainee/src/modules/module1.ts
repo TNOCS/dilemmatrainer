@@ -14,9 +14,10 @@ const MODULE1 = {
   },
   view: () => {
     return m('div', { class: 'container' }, [
-      m(displayArea),
-      m(controlAreaSolo),
       m(hud, { done: '#!/module2' }),
+      /*m(displayArea),
+      m(controlAreaSolo),*/
+  
     ]);
   },
 };

@@ -1,6 +1,7 @@
 body {
   background-color: #fbfaf9;
   font-family: 'Roboto', sans-serif;
+  z-index: 0;
 }
 
 a {
@@ -32,15 +33,53 @@ hr {
   background-color: #4e77a0;
 }
 
-#helpButton {
-  margin-left: 50%;
-}
 
+
+/*HUD start*/
 #hud {
-  margin-top: -4%;
-  margin-bottom: 0;
+  position: fixed;
+  width: 100%;
   z-index: 1;
 }
+
+#helpButton {
+  background-image: url("../assets/help.png");
+  height:60px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50%;
+}
+
+#docButton {
+  background-image: url("../assets/folder_4E77A0.png");
+  height:60px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50%;
+}
+
+#backArrow {
+  background-image: url("../assets/keyboard_arrow_4E77A0.png");
+  height:63px;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: fixed;
+  bottom: 20px;
+}
+
+#nextArrow {
+  background-image: url("../assets/keyboard_arrow_4E77A0.png");
+  height:63px;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: rotate(180deg);
+  position: fixed;
+  bottom: 20px;
+}
+
+
+
+/*HUD end*/
 
 #displayArea {
   min-height: 60%;
