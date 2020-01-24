@@ -2,6 +2,7 @@ import 'material-icons/iconfont/material-icons.css';
 import 'materialize-css/dist/css/materialize.min.css';
 import m from 'mithril';
 import { state } from '../global';
+import {sessionSvc} from '../services/session-service';
 
 import { Button } from 'mithril-materialized';
 import dilemmaReflection from './components/dilemma-reflection';
@@ -13,6 +14,7 @@ const MODULE1 = {
     state.currentDilemma = 0;
   },
   view: () => {
+    console.log(sessionSvc);
     return m('div', { class: 'container' }, [
       m(hud, { done: '#!/module2' }),
       /*m(displayArea),
