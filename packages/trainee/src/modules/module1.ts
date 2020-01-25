@@ -10,8 +10,7 @@ import hud from './components/hud';
 
 const MODULE1 = {
   oninit: () => {
-    state.currentDilemma = 0;
-
+    state.currentClaim = 0;
   },
   view: () => {
     return m('div', { class: 'container' }, [
@@ -25,12 +24,48 @@ const MODULE1 = {
 const interaction = {
   view: () => {
     return m('div', {class: 'interactionArea'}, [
-      m('div', {id:'claimBG', class: 'col offset-s1 s7'}, [
-        m('p', )
-      ])
-    ]
-     
-    );
+      m('div', {class: 'row'}, [
+        m('div', {class: 'col offset-s1 s7', id:'upORGrow'}, [
+          m('div', {class: 'upORG'}, [
+            m('div', {class: 'orgBG valign-wrapper'}, [
+              m('p', {class: 'center-align'} , 'ORG+') 
+            ]),
+            m('div', {
+              class: 'upArrow',
+            })
+          ])
+        ])
+      ]),
+
+
+      m('div', {class: 'row'}, [
+        m('div', {id:'claimBG', class: 'col offset-s1 s7 valign-wrapper'}, [
+          m('p', {class: 'center-align'} , 'Communicateren naar de bevolking via de media.') // state.claims[0].title 
+        ]),
+        m('div', {
+          id: 'rightArrow',
+          class: 'col offset-s1',
+        }),
+        m('div', {class: 'orgBG valign-wrapper', id: 'usOrg'}, [
+          m('p', {class: 'center-align'} , 'US') 
+        ])
+      ]),
+
+
+      m('div', {class: 'row'}, [
+        m('div', {class: 'col offset-s1 s7', id:'downORGrow'}, [
+          m('div', {class: 'upORG'}, [
+            m('div', {
+              class: 'downArrow',
+            }),
+            m('div', {class: 'orgBG valign-wrapper'}, [
+              m('p', {class: 'center-align'} , 'ORG-') 
+            ])
+          ])
+        ])
+      ]),
+
+    ]);
   }
 }
 

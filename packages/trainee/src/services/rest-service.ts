@@ -1,5 +1,4 @@
 import m from 'mithril';
-import { state } from '../global';
 
 const log = console.log;
 const error = console.error;

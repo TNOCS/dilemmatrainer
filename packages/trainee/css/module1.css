@@ -1,3 +1,83 @@
+#claimBG{
+    background-color: #7F7DBB;
+    border-radius: 100px;
+    text-align: center;
+    height: 154px;
+}
+
+#claimBG p{
+    color: #FBFAF9;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#upORGrow{
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#downORGrow{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.upORG{
+    width: 20%;
+}
+
+.orgBG{
+    background-color: rgba(190, 196, 217, 0.4);
+    text-align: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    height: 143px;
+}
+
+.orgBG p{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.upArrow{
+    background-image: url("../assets/arrow.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 15%;
+    height: 28px;
+    margin-top: 20px;
+}
+
+#rightArrow{
+    background-image: url("../assets/arrow.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 15%;
+    height: 28px;
+    border: solid 1px black;
+}
+
+#usORG{
+    width: 12.5%;
+}
+
+.downArrow{
+    background-image: url("../assets/arrow.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 15%;
+    transform: rotate(180deg);
+    height: 28px;
+    margin-bottom: 20px;
+}
+
+
+
+/*
 #trashMod1Cont{
     position: absolute;
     top: 20%;
@@ -181,3 +261,4 @@
     letter-spacing: 0.02em;
     color: #4E77A0;
 }
+*/
