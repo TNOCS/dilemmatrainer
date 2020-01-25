@@ -1,15 +1,15 @@
 import m from 'mithril';
 import 'materialize-css/dist/css/materialize.min.css';
 import 'material-icons/iconfont/material-icons.css';
-import { state } from './global';
+import { state, sessionSvc } from './global';
 
 import { Button, Collection, CollectionMode } from 'mithril-materialized';
 
-let scenarios: any = [];
+let games: any = [];
 
 const SELECTION = {
   oninit: () => {
-    getScenarios();
+    getGames();
   },
   view: () => {
     return m('div', { class: 'container' }, [
@@ -20,10 +20,10 @@ const SELECTION = {
               header: 'Select a Scenario',
               class: 'col s6 offset-s3',
               mode: CollectionMode.LINKS,
-              items: scenarios.map(scenario => {
+              items: games.map(game => {
                 return {
-                  title: scenario.title,
-                  onclick: setScenario.bind(this, scenario),
+                  title: game.title,
+                  onclick: setGame.bind(this, game),
                 };
               }),
             })
@@ -55,20 +55,20 @@ const SELECTION = {
   },
 };
 
-function getScenarios() {
-  m.request({
-    method: 'GET',
-    url: state.trainerAPI + '/scenarios',
-    body: {},
-  }).then((result) => {
-    scenarios = result;
-  });
+function getGames() {
+  sessionSvc
+    .loadList()
+    .then(res => {
+      games = res;
+    })
+    .catch(error => console.log(error));
 }
 
-function setScenario(scenario) {
-  state.dilemmas = scenario.dilemmas;
-  state.phases = scenario.phases;
-  state.roles = scenario.roles;
+function setGame(game) {
+  state.claims = game.claims;
+  state.dilemmas = game.dilemmas;
+  state.phases = game.phases;
+  state.roles = game.roles;
 }
 
 function setRole(e) {

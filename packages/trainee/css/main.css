@@ -33,7 +33,9 @@ hr {
   background-color: #4e77a0;
 }
 
-
+.interactionArea{
+  height: 100%;
+}
 
 /*HUD start*/
 #hud {

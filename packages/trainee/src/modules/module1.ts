@@ -1,8 +1,7 @@
 import 'material-icons/iconfont/material-icons.css';
 import 'materialize-css/dist/css/materialize.min.css';
 import m from 'mithril';
-import { state } from '../global';
-import { sessionSvc } from '../services/session-service';
+import { state, sessionSvc } from '../global';
 
 import { Button } from 'mithril-materialized';
 import dilemmaReflection from './components/dilemma-reflection';
@@ -12,21 +11,30 @@ import hud from './components/hud';
 const MODULE1 = {
   oninit: () => {
     state.currentDilemma = 0;
-    sessionSvc.loadList().then(res => {
-      console.log(res);
-      console.log(sessionSvc.getList());
-      console.log(sessionSvc.getCurrent());
-    }).catch(error => console.log(error));
+
   },
   view: () => {
     return m('div', { class: 'container' }, [
       m(hud, { done: '#!/module2' }),
-      /*m(displayArea),
-      m(controlAreaSolo),*/
+      m(interaction)
     ]);
   },
 };
 
+
+const interaction = {
+  view: () => {
+    return m('div', {class: 'interactionArea'}, [
+      m('div', {id:'claimBG', class: 'col offset-s1 s7'}, [
+        m('p', )
+      ])
+    ]
+     
+    );
+  }
+}
+
+/*
 const displayArea = {
   view: () => {
     let display = state.roles.length < 2 ? 'displayArea' : 'displayAreaMulti';
@@ -60,10 +68,10 @@ const displayArea = {
                 : 'loading...'
             ),
           ])
-        : /*m(
+        : m(
           'img',
           { class: 'col s6 offset-s3 responsive-img', src: '', id: 'greencheck' },
-        ),*/
+        ),
           m('div', { class: 'col s6', id: 'greencheck' }),
     ]);
   },
@@ -126,6 +134,7 @@ const controlAreaSolo = {
         ]);
   },
 };
+*/
 
 function acceptDilemma(choice) {
   if (!state.showHelp) {

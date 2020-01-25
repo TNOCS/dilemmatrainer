@@ -20,7 +20,8 @@
     "materialize-css": "^1.0.0",
     "mithril": "^2.0.4",
     "mithril-leaflet": "^0.1.7",
-    "mithril-materialized": "^0.16.0"
+    "mithril-materialized": "^0.16.0",
+    "services": "0.0.3"
   },
   "devDependencies": {
     "@types/geojson": "^7946.0.7",
@@ -30,6 +31,6 @@
     "@types/mithril": "^2.0.2",
     "cssnano": "^4.1.10",
     "parcel-bundler": "^1.12.4",
-    "typescript": "^3.7.4"
+    "typescript": "^3.7.5"
   }
 }
