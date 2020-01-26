@@ -50,6 +50,7 @@ hr {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 50%;
+  cursor: pointer;
 }
 
 #docButton {
@@ -58,6 +59,7 @@ hr {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 50%;
+  cursor: pointer;
 }
 
 #backArrow {
@@ -67,6 +69,7 @@ hr {
   background-position: center;
   position: fixed;
   bottom: 20px;
+  cursor: pointer;
 }
 
 #nextArrow {
@@ -77,6 +80,7 @@ hr {
   transform: rotate(180deg);
   position: fixed;
   bottom: 20px;
+  cursor: pointer;
 }
 
 

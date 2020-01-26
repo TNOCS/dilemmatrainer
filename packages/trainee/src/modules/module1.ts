@@ -26,42 +26,50 @@ const interaction = {
     return m('div', {class: 'interactionArea'}, [
       m('div', {class: 'row'}, [
         m('div', {class: 'col offset-s1 s7', id:'upORGrow'}, [
-          m('div', {class: 'upORG'}, [
-            m('div', {class: 'orgBG valign-wrapper'}, [
-              m('p', {class: 'center-align'} , 'ORG+') 
-            ]),
-            m('div', {
-              class: 'upArrow',
-            })
-          ])
+          state.groups.map(group => {
+            if(group.level == 1){
+              return m('div', {class: 'upORG'}, [
+                m('div', {class: 'orgBG valign-wrapper'}, [
+                  m('p', {class: 'center-align'} , group.title) 
+                ]),
+                m('div', {
+                  class: 'upArrow',
+                })
+              ])
+            }
+          }),
         ])
       ]),
 
 
-      m('div', {class: 'row'}, [
+      m('div', {class: 'row valign-wrapper'}, [
         m('div', {id:'claimBG', class: 'col offset-s1 s7 valign-wrapper'}, [
-          m('p', {class: 'center-align'} , 'Communicateren naar de bevolking via de media.') // state.claims[0].title 
+          m('p', {class: 'center-align'} , state.claims[0].title )
         ]),
         m('div', {
           id: 'rightArrow',
-          class: 'col offset-s1',
+          class: 'col s2',
         }),
         m('div', {class: 'orgBG valign-wrapper', id: 'usOrg'}, [
-          m('p', {class: 'center-align'} , 'US') 
+          m('p', {class: 'center-align'} , state.groups.map(group => {if(group.isMain){return group.title}})) 
         ])
       ]),
 
 
       m('div', {class: 'row'}, [
         m('div', {class: 'col offset-s1 s7', id:'downORGrow'}, [
-          m('div', {class: 'upORG'}, [
-            m('div', {
-              class: 'downArrow',
-            }),
-            m('div', {class: 'orgBG valign-wrapper'}, [
-              m('p', {class: 'center-align'} , 'ORG-') 
-            ])
-          ])
+          state.groups.map(group => {
+            if(group.level == -1){
+              return m('div', {class: 'upORG'}, [
+                m('div', {
+                  class: 'downArrow',
+                }),
+                m('div', {class: 'orgBG valign-wrapper'}, [
+                  m('p', {class: 'center-align'} , group.title) 
+                ])
+              ])
+            }
+          })
         ])
       ]),
 
