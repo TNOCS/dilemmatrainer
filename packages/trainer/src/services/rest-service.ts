@@ -1,4 +1,5 @@
 import m from 'mithril';
+import { ILokiObj } from '../../../common/src';
 import { AppState } from '../models/app-state';
 import { TopicNames } from '../models/channels';
 import { IChannelDefinition, messageBus } from './message-bus-service';
@@ -6,8 +7,7 @@ import { IChannelDefinition, messageBus } from './message-bus-service';
 const log = console.log;
 const error = console.error;
 
-// export class RestService<T extends IBaseModel> {
-export class RestService<T extends { $loki?: number }> {
+export class RestService<T extends ILokiObj> {
   protected current: T = {} as T;
   protected list: T[] = [];
   protected filteredList: T[] = [];

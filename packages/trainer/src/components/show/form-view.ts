@@ -11,7 +11,7 @@ import { CircularSpinner } from '../ui/preloader';
 export const FormView: FactoryComponent = () => {
   const state = {
     filterValue: '',
-    game: {} as Partial<IGame>,
+    game: {} as IGame,
     loaded: false,
   };
 

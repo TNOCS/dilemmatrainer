@@ -4,9 +4,8 @@ import { FlatButton, Icon } from 'mithril-materialized';
 import { IGame } from '../../../../common/src';
 import { Roles } from '../../models/roles';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
+import { gameSvc } from '../../services/game-service';
 import { Auth } from '../../services/login-service';
-import { gameSvc } from '../../services/scenario-service';
-import { careProviderToCSV } from '../../utils';
 
 export const EventsList = () => {
   const sortByName:
@@ -108,7 +107,7 @@ export const EventsList = () => {
                         ],
                       },
                     ],
-                  });
+                  } as IGame);
                   if (scenario) {
                     dashboardSvc.switchTo(Dashboards.EDIT, {
                       id: scenario.$loki,
@@ -127,7 +126,7 @@ export const EventsList = () => {
                     title: 'New game',
                     owner: [Auth.email],
                     published: false,
-                  });
+                  } as IGame);
                   if (scenario) {
                     dashboardSvc.switchTo(Dashboards.EDIT, {
                       id: scenario.$loki,
@@ -164,11 +163,11 @@ export const EventsList = () => {
                           target: '_blank',
                           style: 'margin-right: 0',
                           onclick: () => {
-                            const csv = careProviderToCSV(game);
-                            const blob = new Blob([csv], {
+                            const json = JSON.stringify(game);
+                            const blob = new Blob([json], {
                               type: 'text/plain;charset=utf-8',
                             });
-                            saveAs(blob, `${game.title}.csv`, {
+                            saveAs(blob, `${game.title}.json`, {
                               autoBom: true,
                             });
                           },

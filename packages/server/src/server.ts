@@ -1,4 +1,3 @@
-import Koa from 'koa';
 import { createApi, db } from 'rest-easy-loki';
 
 export const collectionName = 'documents';
@@ -10,9 +9,9 @@ const sizeLimit = process.env.LOKI_SIZE_LIMIT || '250mb';
 
 export const startService = () => {
   db.startDatabase(dbName, () => {
-    const api = createApi({ cors, sizeLimit }) as Koa;
+    const { api, server } = createApi({ cors, sizeLimit, io: true });
 
-    api.listen(port);
+    (server || api).listen(port);
     console.log(`Server running on port ${port}.`);
   });
 };
