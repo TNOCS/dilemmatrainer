@@ -36,8 +36,10 @@ build/Release
 node_modules/
 jspm_packages/
 packages/trainee/dist
+packages/trainee/.cache
 packages/trainee/node_modules
 packages/trainer/dist
+packages/trainer/.cache
 packages/trainer/node_modules
 packages/common/dist
 packages/common/node_modules
