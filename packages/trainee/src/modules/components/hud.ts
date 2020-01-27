@@ -81,8 +81,8 @@ const hud = {
 */
 
 function back() {
-  if (state.currentDilemma !== 0) {
-    state.currentDilemma -= 1;
+  if (state.currentStep !== 0) {
+    state.currentStep -= 1;
   }
 }
 

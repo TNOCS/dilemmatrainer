@@ -14,8 +14,7 @@ export const state = {
   groups: [],
   dilemmas: [],
   assigned: [],
-  currentDilemma: 0,
-  currentClaim: 0,
+  currentStep: 0
 };
 
 /*

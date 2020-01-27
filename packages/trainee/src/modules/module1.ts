@@ -10,7 +10,7 @@ import hud from './components/hud';
 
 const MODULE1 = {
   oninit: () => {
-    state.currentClaim = 0;
+    state.currentStep = 0;
   },
   view: () => {
     return m('div', { class: 'container' }, [
@@ -24,67 +24,8 @@ const MODULE1 = {
 const interaction = {
   view: () => {
     return m('div', {class: 'interactionArea'}, [
-      m('div', {class: 'row'}, [
-        m('div', {class: 'col offset-s1 s7', id:'upORGrow'}, [
-          state.groups.map(group => {
-            if(group.level == 1){
-              return m('div', {class: 'upORG'}, [
-                m('div', {class: 'orgBG valign-wrapper'}, [
-                  m('p', {class: 'center-align'} , group.title) 
-                ]),
-                m('div', {
-                  class: 'upArrow',
-                })
-              ])
-            }
-          }),
-        ])
-      ]),
-
-
-      m('div', {class: 'row valign-wrapper'}, [
-        m('div', {id:'claimBG', class: 'col offset-s1 s7 valign-wrapper'}, [
-          m('p', {class: 'center-align'} , state.claims[0].title )
-        ]),
-        m('div', {
-          id: 'rightArrow',
-          class: 'col s2',
-        }),
-        m('div', {class: 'orgBG valign-wrapper', id: 'usOrg'}, [
-          m('p', {class: 'center-align'} , state.groups.map(group => {if(group.isMain){return group.title}})) 
-        ])
-      ]),
-
-
-      m('div', {class: 'row'}, [
-        m('div', {class: 'col offset-s1 s7', id:'downORGrow'}, [
-          state.groups.map(group => {
-            if(group.level == -1){
-              return m('div', {class: 'upORG'}, [
-                m('div', {
-                  class: 'downArrow',
-                }),
-                m('div', {class: 'orgBG valign-wrapper'}, [
-                  m('p', {class: 'center-align'} , group.title) 
-                ])
-              ])
-            }
-          })
-        ])
-      ]),
-
-    ]);
-  }
-}
-
-/*
-const displayArea = {
-  view: () => {
-    let display = state.roles.length < 2 ? 'displayArea' : 'displayAreaMulti';
-
-    return m('div', { class: 'row valign-wrapper', id: display }, [
-      state.showHelp
-        ? m(help, {
+      state.showHelp ? 
+        m(help, {
             title: 'Title',
             desc: [
               'Lorem Ipsum et dono',
@@ -92,33 +33,78 @@ const displayArea = {
               'this is the final page',
             ],
           })
-        : state.reflecting
-        ? m(dilemmaReflection)
-        : state.dilemmas.length >= state.currentDilemma + 1
-        ? m('div', { class: 'topic col s6 offset-s3' }, [
-            m(
-              'h1',
-              { class: 'topicTitle' },
-              state.dilemmas
-                ? state.dilemmas[state.currentDilemma].title
-                : 'loading...'
-            ),
-            m(
-              'p',
-              { class: 'topicText' },
-              state.dilemmas
-                ? state.dilemmas[state.currentDilemma].description
-                : 'loading...'
-            ),
-          ])
-        : m(
-          'img',
-          { class: 'col s6 offset-s3 responsive-img', src: '', id: 'greencheck' },
-        ),
-          m('div', { class: 'col s6', id: 'greencheck' }),
-    ]);
-  },
-};
+      : 
+        state.reflecting ? 
+          m(dilemmaReflection)
+        : 
+          state.claims.length >= state.currentStep + 1 ?
+            m('div', [
+              m('div', {class: 'row'}, [
+                m('div', {class: 'col offset-s1 s7', id:'upORGrow'}, [
+                  state.groups.map(group => {
+                    if(group.level == 1){
+                      return m('div', {class: 'upORG'}, [
+                        m('div', {class: 'orgBG valign-wrapper', onclick: selectOtherOrg.bind(this, group)}, [
+                          m('p', {class: 'center-align'} , group.title) 
+                        ]),
+                        m('div', {
+                          class: 'upArrow',
+                        })
+                      ])
+                    }
+                  }),
+                ])
+              ]),
+
+
+              m('div', {class: 'row valign-wrapper'}, [
+                m('div', {id:'claimBG', class: 'col offset-s1 s7 valign-wrapper'}, [
+                  m('p', {class: 'center-align'} , state.claims[state.currentStep].title )
+                ]),
+                m('div', {
+                  id: 'rightArrow',
+                  class: 'col s2',
+                }),
+                m('div', {class: 'orgBG valign-wrapper', id: 'usOrg'}, [
+                  m('p', {class: 'center-align'} , state.groups.map(group => {if(group.isMain){return group.title}})) 
+                ])
+              ]),
+
+
+              m('div', {class: 'row'}, [
+                m('div', {class: 'col offset-s1 s7', id:'downORGrow'}, [
+                  state.groups.map(group => {
+                    if(group.level == -1){
+                      return m('div', {class: 'upORG'}, [
+                        m('div', {
+                          class: 'downArrow',
+                        }),
+                        m('div', {class: 'orgBG valign-wrapper', onclick: selectOtherOrg.bind(this, group)}, [
+                          m('p', {class: 'center-align'} , group.title) 
+                        ])
+                      ])
+                    }
+                  })
+                ])
+              ]),
+            ])
+          : 
+            m('div', {class: 'col s6', id: 'greencheck'})
+    ])
+  }
+}
+
+function selectOtherOrg(org){
+  if (!state.showHelp) {
+    state.claims[state.currentStep]["assignedTo"] = org.id;
+    if (state.claims.length >= state.currentStep + 1) {
+      state.reflecting = true;
+    }
+  }
+}
+
+
+/*
 
 const controlAreaSolo = {
   view: () => {
@@ -177,7 +163,7 @@ const controlAreaSolo = {
         ]);
   },
 };
-*/
+
 
 function acceptDilemma(choice) {
   if (!state.showHelp) {
@@ -197,7 +183,7 @@ function sortDilemma(role) {
     }
   }
 }
-
+*/
 //score circle in the top right.
 
 export default MODULE1;
