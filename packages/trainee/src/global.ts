@@ -1,5 +1,6 @@
+export { sessionSvc } from './services/session-service';
+
 export const state = {
-  trainerAPI: 'http://localhost:3030/api',
   showHelp: true,
   reflecting: false,
   roles: [],
@@ -9,12 +10,14 @@ export const state = {
     description: '',
   },
   phases: [],
+  claims: [],
+  groups: [],
   dilemmas: [],
-  pickedDilemmas: [],
   assigned: [],
-  currentDilemma: 0,
+  currentStep: 0
 };
 
+/*
 export const getPickedDilemmas = () => {
   state.dilemmas.forEach(topic => {
     if (topic.accepted) {
@@ -33,5 +36,6 @@ export const rejectPickedDilemma = () => {
     }
   }
 };
+*/
 
 //shift + alt + F

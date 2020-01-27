@@ -1,8 +1,8 @@
 import m from 'mithril';
-import { state } from '~global';
 
 const log = console.log;
 const error = console.error;
+const trainerAPI = 'http://localhost:3030/api'
 
 // export class RestService<T extends IBaseModel> {
 export class RestService<T extends { $loki?: number }> {
@@ -148,7 +148,7 @@ export class RestService<T extends { $loki?: number }> {
   // }
   /** Create the base URL, either using the apiService or the apiDevService */
   protected createBaseUrl(): string {
-    return `${state.trainerAPI}/${this.urlFragment}/`;
+    return `${trainerAPI}/${this.urlFragment}/`;
   }
 
   private setCurrent(value: T) {

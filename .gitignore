@@ -35,8 +35,12 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
-packages/trainee/node_modules
 packages/trainee/dist
+packages/trainee/node_modules
+packages/trainer/dist
+packages/trainer/node_modules
+packages/common/dist
+packages/common/node_modules
 
 # TypeScript v1 declaration files
 typings/
