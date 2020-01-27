@@ -16,8 +16,7 @@ const help = {
     currentPageText = pages[currentPage];
 
     const visP = pages.length > 2 && currentPage !== 0 ? 'visible' : 'hidden';
-    const visN =
-      pages.length > 2 && currentPage !== pages.length - 1 ? true : false;
+    const visN = pages.length > 2 && currentPage !== pages.length - 1 ? true : false;
 
     if (visN) {
       cardActions = [
@@ -72,7 +71,7 @@ const help = {
         m('div', { class: 'card col s8 offset-s2' }, [
           m('div', { class: 'card-content' }, [
             m('h6', { class: 'card-title' }, vnode.attrs.title),
-            m('p', currentPageText),
+            m('p', { class: 'card-info' }, currentPageText),
           ]),
           m('div', { class: 'card-action' }, cardActions),
         ])

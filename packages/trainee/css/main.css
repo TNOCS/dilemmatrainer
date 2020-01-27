@@ -19,9 +19,27 @@ hr {
   border-top: solid 1px #fbfaf9;
 }
 
+
+/*helpcard start*/
+
 #help{
   height: 70%;
 }
+
+.card-title{
+  color: #4e77a0;
+}
+
+.card-info{
+  font-size: 1.4em;
+}
+
+.card-action{
+  font-size: 1.4em;
+}
+
+/*helpcard end*/
+
 
 .container {
   min-width: 100%;

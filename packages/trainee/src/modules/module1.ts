@@ -26,11 +26,11 @@ const interaction = {
     return m('div', {class: 'interactionArea'}, [
       state.showHelp ? 
         m(help, {
-            title: 'Title',
+            title: 'Module 1',
             desc: [
-              'Lorem Ipsum et dono',
-              'This is the second page',
-              'this is the final page',
+              'Each turn you will see a claim.',
+              'Select the organisation which you think is responsible for handling this claim.',
+              'Your organization is to the right of the claim. Organisations above you in the hierarchy, are above the claim. Organisations below you in the hierarchy, are below the claim.',
             ],
           })
       : 
