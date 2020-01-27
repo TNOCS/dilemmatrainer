@@ -114,16 +114,16 @@
         "signature": "65fc2a3e32dd7886877635746543f708ad2bedd2984ed5c7684eed49e86b2893"
       },
       "./src/models/scenario-phase.ts": {
-        "version": "75752717fe08f331c6204ee3264376073be0d5cf52471d1afe1afb1bb2f94ebd",
-        "signature": "27cdcb57747bf9dd3463c3c0d588658844b881c59b39d374dfacbaa9d0cc0a36"
+        "version": "925ac7061eaa59a11c118467f64e8079f45a4458605f3c2e42c48ab3a08da59e",
+        "signature": "ba3496c271d831d52d05b1f00a95c3ca04719a1dd20615e5bb1e87460795dcb8"
       },
       "./src/models/work-agreement.ts": {
         "version": "1b7c82cc7c02f4001eeb84cd53fa8b9dec7232e01305403ec5dc4087c8bbcb94",
         "signature": "104567235d2acfd0259b03729747e325fdfbcaf5eb9de75808753af00ff474c4"
       },
       "./src/models/game.ts": {
-        "version": "8c038dae65897517daeaecc7c61b57d93bb9b3242f55cfe101f9fedf45fd3ce8",
-        "signature": "0bb827c692d628b4b1d88c1c90270455b94154d893e2e55c40c0228e49b954a0"
+        "version": "b88e879f73499a52578f099aaa9111fc60a178d7dbb40b7f2222efa9cc828df5",
+        "signature": "af233663681863b64cdfc87fd885b6c70a04122cb01938e6feea4c87ae2d994a"
       },
       "./src/models/index.ts": {
         "version": "664a1d1536280c08a96319ce8edad2d64eb479a4bbb9a4af38acb3d88c1cf084",
@@ -181,7 +181,8 @@
         "./src/models/index.ts"
       ],
       "./src/models/scenario-phase.ts": [
-        "./src/models/content.ts"
+        "./src/models/content.ts",
+        "./src/models/dilemma.ts"
       ],
       "./src/models/work-agreement.ts": [
         "./src/models/content.ts"
@@ -213,9 +214,41 @@
       ]
     },
     "exportedModulesMap": {
-      "./src/index.ts": [
-        "./src/utils/index.ts",
+      "./src/models/claim.ts": [
+        "./src/models/content.ts"
+      ],
+      "./src/models/characteristic.ts": [
+        "./src/models/content.ts"
+      ],
+      "./src/models/dilemma.ts": [
+        "./src/models/content.ts",
+        "./src/models/characteristic.ts"
+      ],
+      "./src/models/role.ts": [
+        "./src/models/content.ts"
+      ],
+      "./src/models/group.ts": [
         "./src/models/index.ts"
+      ],
+      "./src/models/session.ts": [
+        "./src/models/index.ts"
+      ],
+      "./src/models/scenario-phase.ts": [
+        "./src/models/content.ts",
+        "./src/models/dilemma.ts"
+      ],
+      "./src/models/work-agreement.ts": [
+        "./src/models/content.ts"
+      ],
+      "./src/models/game.ts": [
+        "./src/models/content.ts",
+        "./src/models/claim.ts",
+        "./src/models/dilemma.ts",
+        "./src/models/work-agreement.ts",
+        "./src/models/scenario-phase.ts",
+        "./src/models/characteristic.ts",
+        "./src/models/role.ts",
+        "./src/models/group.ts"
       ],
       "./src/models/index.ts": [
         "./src/models/content.ts",
@@ -228,60 +261,16 @@
         "./src/models/scenario-phase.ts",
         "./src/models/game.ts"
       ],
-      "./src/models/session.ts": [
+      "./src/index.ts": [
+        "./src/utils/index.ts",
         "./src/models/index.ts"
-      ],
-      "./src/models/group.ts": [
-        "./src/models/index.ts"
-      ],
-      "./src/models/game.ts": [
-        "./src/models/content.ts",
-        "./src/models/claim.ts",
-        "./src/models/dilemma.ts",
-        "./src/models/work-agreement.ts",
-        "./src/models/scenario-phase.ts",
-        "./src/models/characteristic.ts",
-        "./src/models/role.ts",
-        "./src/models/group.ts"
-      ],
-      "./src/models/work-agreement.ts": [
-        "./src/models/content.ts"
-      ],
-      "./src/models/scenario-phase.ts": [
-        "./src/models/content.ts"
-      ],
-      "./src/models/role.ts": [
-        "./src/models/content.ts"
-      ],
-      "./src/models/dilemma.ts": [
-        "./src/models/content.ts",
-        "./src/models/characteristic.ts"
-      ],
-      "./src/models/characteristic.ts": [
-        "./src/models/content.ts"
-      ],
-      "./src/models/claim.ts": [
-        "./src/models/content.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
-      "./src/utils/index.ts",
-      "./src/models/content.ts",
-      "./src/models/claim.ts",
-      "./src/models/characteristic.ts",
-      "./src/models/dilemma.ts",
-      "./src/models/role.ts",
-      "./src/models/group.ts",
-      "./src/models/session.ts",
-      "./src/models/scenario-phase.ts",
-      "./src/models/work-agreement.ts",
-      "./src/models/game.ts",
-      "./src/models/index.ts",
-      "./src/index.ts",
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es5.d.ts",
       "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2015.d.ts",
       "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2016.d.ts",
       "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2017.d.ts",
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es5.d.ts",
       "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.dom.d.ts",
       "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2015.core.d.ts",
       "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2015.collection.d.ts",
@@ -297,7 +286,20 @@
       "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2017.sharedmemory.d.ts",
       "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2017.string.d.ts",
       "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2017.intl.d.ts",
-      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2017.typedarrays.d.ts"
+      "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2017.typedarrays.d.ts",
+      "./src/utils/index.ts",
+      "./src/models/content.ts",
+      "./src/models/claim.ts",
+      "./src/models/characteristic.ts",
+      "./src/models/dilemma.ts",
+      "./src/models/role.ts",
+      "./src/models/group.ts",
+      "./src/models/session.ts",
+      "./src/models/scenario-phase.ts",
+      "./src/models/work-agreement.ts",
+      "./src/models/index.ts",
+      "./src/index.ts",
+      "./src/models/game.ts"
     ]
   },
   "version": "3.7.4"

@@ -4,7 +4,7 @@ import { FactoryComponent} from 'mithril';
 import { Button, Chips, ModalPanel } from 'mithril-materialized';
 import { LayoutForm } from 'mithril-ui-form';
 import { IGame } from '../../../../common/src';
-import { IAppModel } from '../../app';
+import { IAppModel } from '../../services';
 import { gameSvc } from '../../services';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
 import { Auth } from '../../services/login-service';

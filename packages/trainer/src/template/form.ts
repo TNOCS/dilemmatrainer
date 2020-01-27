@@ -32,6 +32,18 @@ const scenarioPhaseForm = [
     required: true,
     className: 'col s12',
   },
+  {
+    id: 'mapUrl',
+    label: 'URL to the map',
+    type: 'url',
+    className: 'col s6',
+  },
+  {
+    id: 'legendUrl',
+    label: 'URL to the legend',
+    type: 'url',
+    className: 'col s6',
+  },
 ] as Form;
 
 export const gameFormGenerator = (game: Partial<IGame>): Form => {
@@ -284,45 +296,94 @@ In this module, the trainees need to work together to determine how they are goi
     },
     { id: 'agreements', label: 'Work agreements', type: 'section' },
     {
-      id: 'workAgreements',
-      label: 'Add work agreement',
-      repeat: true,
-      pageSize: 1,
-      propertyFilter: 'title',
-      filterLabel: 'Filter by title',
+      id: 'workAgreementsModule',
+      label: `##### Work agreements (module 3)
+
+Optionally, add some predefined work agreements.`,
       type: [
-        { id: 'title', label: 'Title', type: 'text' },
-        { id: 'description', label: 'Description', type: 'textarea' },
         {
-          id: 'roles',
-          label: 'Roles that have made this agreement',
-          roles: roleOptions,
-          type: 'options',
-          multiple: true,
+          id: 'show',
+          label: 'Play module',
+          type: 'checkbox',
+          class: 'col s12',
+          value: true,
+        },
+        {
+          id: 'workAgreements',
+          label: 'Add work agreement',
+          repeat: true,
+          pageSize: 1,
+          propertyFilter: 'title',
+          filterLabel: 'Filter by title',
+          type: [
+            { id: 'title', label: 'Title', type: 'text' },
+            { id: 'description', label: 'Description', type: 'textarea' },
+            {
+              id: 'roles',
+              label: 'Roles that have made this agreement',
+              options: roleOptions,
+              type: 'select',
+              multiple: true,
+            },
+          ],
         },
       ],
     },
 
-    { id: 'phases', label: 'Scenario phases', type: 'section' },
+    { id: 'scenarioModule', label: 'Scenario module', type: 'section' },
     {
-      id: 'phases',
-      label: 'Add scenario phase',
-      repeat: true,
-      pageSize: 1,
-      propertyFilter: 'title',
-      filterLabel: 'Filter by title',
+      id: 'scenariosModule',
+      label: `##### Scenario module (module 4)
+
+In this module, the trainees will experience multiple dilemmas in the context of a fictive scenario.`,
       type: [
-        { id: 'title', label: 'Title', type: 'text' },
-        { id: 'description', label: 'Description', type: 'textarea' },
         {
-          id: 'lat',
-          label: 'Add latitude of location',
-          type: 'text',
+          id: 'show',
+          label: 'Play module',
+          type: 'checkbox',
+          class: 'col s12',
+          value: true,
         },
         {
-          id: 'long',
-          label: 'Add longitude of location',
-          type: 'text',
+          id: 'scenarios',
+          label: 'Add scenario',
+          repeat: true,
+          pageSize: 5,
+          propertyFilter: 'title',
+          filterLabel: 'Filter by title',
+          type: [
+            ...scenarioPhaseForm,
+            {
+              id: 'dilemmas',
+              label: 'Add dilemma',
+              type: [
+                {
+                  id: 'description',
+                  label: 'Describe the situation',
+                  type: 'textarea',
+                  required: true,
+                  className: 'col s12',
+                },
+                {
+                  id: 'title',
+                  label: 'Dilemma',
+                  type: 'text',
+                  required: true,
+                  className: 'col s12',
+                },
+                {
+                  id: 'notes',
+                  label: 'Notes',
+                  type: 'textarea',
+                  className: 'col s12',
+                },
+              ],
+              repeat: true,
+              pageSize: 1,
+              propertyFilter: 'title',
+              filterLabel: 'Filter by title',
+            },
+          ],
         },
       ],
     },

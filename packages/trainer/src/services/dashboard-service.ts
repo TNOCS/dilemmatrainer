@@ -7,8 +7,7 @@ import { HomePage } from '../components/home/home-page';
 import { Layout } from '../components/layout';
 import { FormView } from '../components/show/form-view';
 import { IDashboard } from '../models/dashboard';
-import { IAppModel } from '../app';
-import Stream from 'mithril/stream';
+import { actions, states } from './';
 
 export const enum Dashboards {
   HOME = 'HOME',
@@ -21,6 +20,8 @@ export const enum Dashboards {
 }
 
 class DashboardService {
+  private actions = actions;
+  private states = states;
   private dashboards!: ReadonlyArray<IDashboard>;
 
   constructor(private layout: ComponentTypes, dashboards: IDashboard[]) {
@@ -52,12 +53,12 @@ class DashboardService {
     }
   }
 
-  public routingTable(states: Stream<IAppModel>, actions: any) {
+  public routingTable() {
     return this.dashboards.reduce(
       (p, c) => {
         p[c.route] = c.hasNavBar === false
-          ? { render: () => m(c.component, { state: states(), actions }) }
-          : { render: () => m(this.layout, m(c.component, { state: states(), actions })) };
+          ? { render: () => m(c.component, { state: this.states(), actions: this.actions }) }
+          : { render: () => m(this.layout, m(c.component, { state: this.states(), actions: this.actions })) };
         return p;
       },
       {} as RouteDefs,

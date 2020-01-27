@@ -1,15 +1,13 @@
 import m from 'mithril';
-import { IGame, stripSpaces } from '../../../common/src';
-import { actions } from '../app';
-import { AppState } from '../models/app-state';
-import { ChannelNames } from '../models/channels';
+import { IGame } from '../../../common/src';
 import { Dashboards, dashboardSvc } from './dashboard-service';
+import { actions } from './meiosis';
 import { RestService } from './rest-service';
 import { socketSvc } from './socket-service';
 
 class GameService extends RestService<IGame> {
   constructor() {
-    super('games', ChannelNames.GAME);
+    super('games');
   }
 
   public async load(id?: number | string) {
@@ -18,15 +16,15 @@ class GameService extends RestService<IGame> {
       socketSvc.off(`games/${this.current.$loki}`);
     }
     if (loadedGame) {
-      actions.refresh(loadedGame);
+      actions.updateGame(loadedGame);
       socketSvc.on(`games/${loadedGame.$loki}`, (game?: IGame) => {
         if (game && game.meta?.updated !== this.current.meta?.updated) {
           this.current = game;
-          actions.refresh(game);
+          actions.updateGame(game);
           M.toast({ html: 'Game updated' });
         } else if (!game) {
           this.current = {} as IGame;
-          actions.refresh({} as IGame);
+          actions.updateGame({} as IGame);
           M.toast({ html: 'Game deleted' });
           dashboardSvc.switchTo(Dashboards.HOME);
         }
@@ -48,54 +46,6 @@ class GameService extends RestService<IGame> {
     this.setList(result || []);
     return this.list;
   }
-
-  public async search(
-    query: string
-  ): Promise<Array<Partial<IGame>> | undefined> {
-    const cleaned = stripSpaces(query).toLowerCase();
-    if (cleaned.length <= 2) {
-      this.setList(this.filteredList);
-      m.redraw();
-      return;
-    }
-    const q = {
-      $or: [
-        { target: { $contains: cleaned } },
-        { 'locaties.target': { $contains: cleaned } },
-      ],
-    };
-    // http://localhost:3000/zorgaanbieders?q={"target":{"$contains":"parn"}}
-    // http://localhost:3000/zorgaanbieders?q={"locaties.target":{"$contains":"car"}}
-    // http://localhost:3000/zorgaanbieders?q={"$or":[{"target":{"$contains":"car"}},{"locaties.target":{"$contains":"car"}}]}
-    AppState.isSearching = true;
-    const result = await m.request<IGame[]>({
-      method: 'GET',
-      url: this.baseUrl,
-      params: { q: JSON.stringify(q) },
-      withCredentials: this.withCredentials,
-    });
-    AppState.isSearching = false;
-    if (!result) {
-      console.warn('No result found at ' + this.baseUrl);
-    }
-    this.setList(result || []);
-    return this.list;
-  }
-
-  // public async loadFilteredList(): Promise<Array<Partial<IScenario>> | undefined> {
-  //   const filter = 'view?props=$loki,naam,kvk,locaties,owner,published,canEdit';
-  //   // http://localhost:3000/events/view?props=name,cmFunctions,incidentType,eventType
-  //   const result = await m.request<IScenario[]>({
-  //     method: 'GET',
-  //     url: this.baseUrl + filter,
-  //     withCredentials: this.withCredentials,
-  //   });
-  //   if (!result) {
-  //     console.warn('No result found at ' + this.baseUrl);
-  //   }
-  //   this.setList(result || []);
-  //   return this.list;
-  // }
 }
 
 export const gameSvc = new GameService();

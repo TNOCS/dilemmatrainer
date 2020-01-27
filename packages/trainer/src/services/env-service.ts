@@ -1,5 +1,5 @@
 import m from 'mithril';
-import { AppState } from '../models/app-state';
+import { apiService } from '../app';
 import { IEnvironment } from '../models/environment';
 
 class EnvironmentService {
@@ -7,10 +7,12 @@ class EnvironmentService {
   private environment = {} as IEnvironment;
 
   constructor() {
-    this.baseUrl = `${AppState.apiService}/api/env`;
+    this.baseUrl = `${apiService()}/api/env`;
   }
 
-  public get env() { return this.environment; }
+  public get env() {
+    return this.environment;
+  }
 
   public async getEnv() {
     this.environment = await m.request<IEnvironment>({

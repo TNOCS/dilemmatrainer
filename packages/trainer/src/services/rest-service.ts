@@ -1,8 +1,6 @@
 import m from 'mithril';
 import { ILokiObj } from '../../../common/src';
-import { AppState } from '../models/app-state';
-import { TopicNames } from '../models/channels';
-import { IChannelDefinition, messageBus } from './message-bus-service';
+import { apiService } from '../app';
 
 const log = console.log;
 const error = console.error;
@@ -12,12 +10,10 @@ export class RestService<T extends ILokiObj> {
   protected list: T[] = [];
   protected filteredList: T[] = [];
   protected baseUrl: string;
-  protected channel: IChannelDefinition<{ list: T[] } | { cur: T; old: T }>;
   protected withCredentials = false;
 
-  constructor(protected urlFragment: string, protected channelName?: string) {
+  constructor(protected urlFragment: string) {
     this.baseUrl = this.createBaseUrl();
-    this.channel = messageBus.channel(channelName || urlFragment);
   }
 
   public getList() {
@@ -144,7 +140,6 @@ export class RestService<T extends ILokiObj> {
 
   protected setList(value: T[]) {
     this.list = value;
-    this.channel.publish(TopicNames.LIST_UPDATE, { list: this.list });
   }
 
   // private createBaseUrl(): string {
@@ -152,13 +147,11 @@ export class RestService<T extends ILokiObj> {
   // }
   /** Create the base URL, either using the apiService or the apiDevService */
   protected createBaseUrl(): string {
-    return `${AppState.apiService}/api/${this.urlFragment}/`;
+    return `${apiService()}/api/${this.urlFragment}/`;
   }
 
   private setCurrent(value: T) {
-    const old = this.current;
     this.current = value;
-    this.channel.publish(TopicNames.ITEM_UPDATE, { old, cur: this.current });
   }
 
   private addItemToList(item: T) {

@@ -62,5 +62,5 @@ export interface IGame extends ILokiObj, IContent {
   /** Work agreements, module 3 */
   workAgreementsModule: IWorkAgreementsModule;
   /** Scenarios, module 4 */
-  scenarioModule: IScenarioModule;
+  scenariosModule: IScenarioModule;
 }
