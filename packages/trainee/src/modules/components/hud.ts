@@ -7,7 +7,6 @@ import { state } from '../../global';
 const hud = {
   view: vnode => {
     return m('div', { id: 'hud' }, [
-
       m('div', {id: 'rightBar', class: 'row'}, [
         m('div', {
           id: 'helpButton',
@@ -28,7 +27,7 @@ const hud = {
           class: 'col s1',
           onclick: back,
         }),
-        m('div', {
+        m(m.route.Link, {
           class: 'col offset-s11 s1',
           href: vnode.attrs.done,
           id: 'nextArrow',

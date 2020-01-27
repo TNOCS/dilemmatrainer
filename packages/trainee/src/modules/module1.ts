@@ -14,7 +14,7 @@ const MODULE1 = {
   },
   view: () => {
     return m('div', { class: 'container' }, [
-      m(hud, { done: '#!/module2' }),
+      m(hud, { done: '/module2' }),
       m(interaction)
     ]);
   },
@@ -34,9 +34,6 @@ const interaction = {
             ],
           })
       : 
-        state.reflecting ? 
-          m(dilemmaReflection)
-        : 
           state.claims.length >= state.currentStep + 1 ?
             m('div', [
               m('div', {class: 'row'}, [
@@ -89,7 +86,7 @@ const interaction = {
               ]),
             ])
           : 
-            m('div', {class: 'col s6', id: 'greencheck'})
+            m.route.set('/module2')
     ])
   }
 }
@@ -98,7 +95,8 @@ function selectOtherOrg(org){
   if (!state.showHelp) {
     state.claims[state.currentStep]["assignedTo"] = org.id;
     if (state.claims.length >= state.currentStep + 1) {
-      state.reflecting = true;
+      //state.reflecting = true;
+      state.currentStep += 1;
     }
   }
 }
@@ -109,38 +107,7 @@ function selectOtherOrg(org){
 const controlAreaSolo = {
   view: () => {
     return state.roles.length < 2
-      ? m('div', { id: 'soloMod1' }, [
-          m('div', { id: 'controlAreaBG' }, [
-            m('div', { id: 'controlAreaTop' }),
-            m(
-              'div',
-              { id: 'trashMod1Cont' },
-              m(Button, {
-                id: 'trashMod1Button',
-                onclick: acceptDilemma.bind(this, false),
-              })
-            ),
-            m(
-              'div',
-              { id: 'personMod1Cont' },
-              m(Button, {
-                id: 'personMod1Button',
-                onclick: acceptDilemma.bind(this, true),
-              })
-            ),
-          ]),
-        ])
-      : m('div', { id: 'multiMod1' }, [
-          m('div', { id: 'controlAreaMod1Mutli' }, [
-            m('div', { id: 'controlAreaTopMod1Multi' }),
-            m(
-              'div',
-              { id: 'trashMod1ContMulti' },
-              m(Button, {
-                id: 'trashMod1ButtonMulti',
-                onclick: acceptDilemma.bind(this, false),
-              })
-            ),
+      ? 
             m('div', { id: 'usersCont' }, [
               state.roles.map(role => {
                 return m(Button, {
@@ -151,28 +118,7 @@ const controlAreaSolo = {
                 });
               }),
             ]),
-            m(
-              'div',
-              { id: 'groupMod1Cont' },
-              m(Button, {
-                id: 'groupMod1Button',
-                onclick: acceptDilemma.bind(this, true),
-              })
-            ),
-          ]),
-        ]);
-  },
-};
 
-
-function acceptDilemma(choice) {
-  if (!state.showHelp) {
-    state.dilemmas[state.currentDilemma]['accepted'] = choice;
-    if (state.dilemmas.length >= state.currentDilemma + 1) {
-      state.reflecting = true;
-    }
-  }
-}
 
 function sortDilemma(role) {
   if (!state.showHelp) {
@@ -184,6 +130,7 @@ function sortDilemma(role) {
   }
 }
 */
+
 //score circle in the top right.
 
 export default MODULE1;
