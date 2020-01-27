@@ -2,7 +2,7 @@ import 'material-icons/iconfont/material-icons.css';
 import 'materialize-css/dist/css/materialize.min.css';
 import m from 'mithril';
 
-import { getPickedDilemmas, rejectPickedDilemma, state } from '../global';
+import { state } from '../global';
 
 import { Button } from 'mithril-materialized';
 import help from './components/help';
@@ -13,18 +13,37 @@ let properties: Array<boolean> = [false, false, false];
 
 const MODULE2 = {
   oninit: () => {
-    state.currentDilemma = 0;
-    getPickedDilemmas();
+    state.currentStep = 0;
     state.showHelp = true;
   },
   view: () => {
     return m('div', { class: 'container' }, [
-      m(controlArea),
-      m(hud, { done: '#!/module3' }),
+      m(hud, { done: '/module3' }),
+      m(interaction),
     ]);
   },
 };
 
+const interaction = {
+  view: () => {
+    return m('div', {class: 'interactionArea'}, [
+      m('div', {class:'row'},[
+        m('div', {class: 'col s10', id:'dilemmaBG'}, [
+          m('h5', {id: 'title', class:"flow-text"} , state.dilemmas[state.currentStep].title),
+          m('p', {id:'description', class:"flow-text"} ,state.dilemmas[state.currentStep].description)
+        ])
+      ]),
+      /*
+      m('div', {class:'row'},[
+        m('div', {class:'row'},[]),
+        m('div', {class:'row'},[]),
+        m('div', {class:'row'},[]),
+      ])*/
+  ])
+  }
+};
+
+/*
 const controlArea = {
   view: () => {
     return m('div', { id: 'controlAreaBG2' }, [
@@ -196,5 +215,5 @@ function propertyAdd(pressed, value) {
     state.currentDilemma += 1;
   }
 }
-
+*/
 export default MODULE2;

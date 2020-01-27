@@ -1,3 +1,33 @@
+#dilemmaBG{
+    background-color: #7F7DBB;
+    border-radius: 70px;
+    height: 323px;
+    margin-left: 4.17%;
+    margin-top: 17px;
+    
+}
+
+#dilemmaBG h5{
+    font-style: normal;
+}
+#dilemmaBG p{
+    text-align: center;
+    font-size: 1.28em;
+}
+
+#dilemmaBG p, #dilemmaBG h5{
+    margin-left: 4%;
+    margin-top: 20px;
+    color: #FBFAF9;
+    font-family: 'Montserrat', sans-serif;
+    font-style: bold;
+    font-weight: 500;
+    letter-spacing: 0.0357143em;
+    
+}
+
+
+/*text-transform: capitalize;
 #propertyControlArea{
     margin-top: 10%;
 }
@@ -60,3 +90,4 @@
         height: 70px;
     }
 }
+/*
