@@ -9,7 +9,7 @@ const sizeLimit = process.env.LOKI_SIZE_LIMIT || '250mb';
 
 export const startService = () => {
   db.startDatabase(dbName, () => {
-    const { api, server } = createApi({ cors, sizeLimit, io: true });
+    const { api, server } = createApi({ cors, sizeLimit, upload: './upload', io: true });
 
     (server || api).listen(port);
     console.log(`Server running on port ${port}.`);

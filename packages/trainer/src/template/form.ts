@@ -1,5 +1,6 @@
 import { Form, IInputField } from 'mithril-ui-form';
 import { ICharacteristic, IGame } from '../../../common/src';
+import { apiService } from '../app';
 
 export const characteristicsForm = (
   characteristics = [] as ICharacteristic[]
@@ -17,7 +18,7 @@ export const characteristicsForm = (
     className: 'col s12',
   } as IInputField);
 
-const scenarioPhaseForm = [
+const scenarioPhaseForm = (game: Partial<IGame>) => [
   {
     id: 'title',
     label: 'Scenario title',
@@ -34,14 +35,16 @@ const scenarioPhaseForm = [
   },
   {
     id: 'mapUrl',
-    label: 'URL to the map',
-    type: 'url',
+    placeholder: 'Upload map',
+    type: 'file',
+    url: `${apiService()}/upload/game_${game.$loki}`,
     className: 'col s6',
   },
   {
     id: 'legendUrl',
-    label: 'URL to the legend',
-    type: 'url',
+    placeholder: 'Upload legend',
+    type: 'file',
+    url: `${apiService()}/upload/game_${game.$loki}`,
     className: 'col s6',
   },
 ] as Form;
@@ -155,7 +158,14 @@ export const gameFormGenerator = (game: Partial<IGame>): Form => {
           label: 'Characteristics of a (module 2) dilemma',
           type: 'text',
           required: true,
-          className: 'col s12 m12',
+          className: 'col s6',
+        },
+        {
+          id: 'iconUrl',
+          placeholder: 'Upload icon',
+          type: 'file',
+          url: `${apiService()}/upload/game_${game.$loki}`,
+          className: 'col s6',
         },
         {
           id: 'description',
@@ -260,7 +270,7 @@ In this module, the trainees need to work together to determine how they are goi
           class: 'col s12',
           value: true,
         },
-        ...scenarioPhaseForm,
+        ...scenarioPhaseForm(game),
         {
           id: 'dilemmas',
           label: 'Add dilemma',
@@ -352,7 +362,7 @@ In this module, the trainees will experience multiple dilemmas in the context of
           propertyFilter: 'title',
           filterLabel: 'Filter by title',
           type: [
-            ...scenarioPhaseForm,
+            ...scenarioPhaseForm(game),
             {
               id: 'dilemmas',
               label: 'Add dilemma',
