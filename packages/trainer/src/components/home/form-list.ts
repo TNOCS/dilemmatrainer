@@ -85,6 +85,7 @@ export const EventsList = () => {
                       {
                         id: 'time',
                         title: 'Hoge tijdsdruk',
+                        iconUrl: '/icons/hourglass.svg',
                         values: [
                           { id: 'yes', title: 'Ja' },
                           { id: 'no', title: 'Nee' },
@@ -93,6 +94,7 @@ export const EventsList = () => {
                       {
                         id: 'uncertainty',
                         title: 'Hoge onzekerheid',
+                        iconUrl: '/icons/uncertain.svg',
                         values: [
                           { id: 'yes', title: 'Ja' },
                           { id: 'no', title: 'Nee' },
@@ -101,6 +103,7 @@ export const EventsList = () => {
                       {
                         id: 'conflicts',
                         title: 'Tegenstrijdige belangen',
+                        iconUrl: '/icons/conflict.svg',
                         values: [
                           { id: 'yes', title: 'Ja' },
                           { id: 'no', title: 'Nee' },

@@ -8,8 +8,8 @@ import { IWorkAgreement } from './work-agreement';
 import { IGroup } from './group';
 
 export interface ILokiObj {
-  $loki: number;
-  meta: {
+  $loki?: number;
+  meta?: {
     created: number; // Date().getTime()
     revision: number;
     updated: number; // Date().getTime()
@@ -42,25 +42,27 @@ export interface IScenarioModule {
   scenarios: IScenarioPhase[];
 }
 
-export interface IGame extends ILokiObj, IContent {
+export interface IGame extends ILokiObj {
+  title?: string;
+  description?: string;
   /** Owner of the game */
   owner: string[];
   /** Editors of the game */
-  canEdit: string[];
+  canEdit?: string[];
   /** Game is published publicly */
-  published: boolean;
+  published?: boolean;
   /** Typical characteristics of a dilemma */
   characteristics?: ICharacteristic[];
   /** Roles in the game */
-  roles: IRole[];
+  roles?: IRole[];
   /** Groups or organisations in the game */
-  groups: IGroup[];
+  groups?: IGroup[];
   /** Claims, module 1 */
-  claimsModule: IClaimsModule;
+  claimsModule?: IClaimsModule;
   /** Dilemmas, module 2 */
-  dilemmasModule: IDilemmasModule;
+  dilemmasModule?: IDilemmasModule;
   /** Work agreements, module 3 */
-  workAgreementsModule: IWorkAgreementsModule;
+  workAgreementsModule?: IWorkAgreementsModule;
   /** Scenarios, module 4 */
-  scenariosModule: IScenarioModule;
+  scenariosModule?: IScenarioModule;
 }

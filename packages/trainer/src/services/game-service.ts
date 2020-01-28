@@ -16,7 +16,7 @@ class GameService extends RestService<IGame> {
       socketSvc.off(`games/${this.current.$loki}`);
     }
     if (loadedGame) {
-      actions.updateGame(loadedGame);
+      actions.updateGame(loadedGame as IGame);
       socketSvc.on(`games/${loadedGame.$loki}`, (game?: IGame) => {
         if (game && game.meta?.updated !== this.current.meta?.updated) {
           this.current = game;
@@ -44,7 +44,7 @@ class GameService extends RestService<IGame> {
       console.warn('No result found at ' + this.baseUrl);
     }
     this.setList(result || []);
-    return this.list;
+    return this.list as IGame[];
   }
 }
 
