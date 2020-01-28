@@ -29,6 +29,10 @@
 
 /* GRID start */
 
+#grid{
+    margin-top: 10px;
+}
+
 .gridItems{
     display: flex;
     justify-content: space-evenly;

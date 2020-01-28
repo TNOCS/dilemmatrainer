@@ -62,7 +62,7 @@ const interaction = {
                   id: 'rightArrow',
                   class: 'col s2',
                 }),
-                m('div', {class: 'orgBG valign-wrapper', id: 'usOrg'}, [
+                m('div', {class: 'orgBG valign-wrapper', id: 'usOrg', onclick: selectOtherOrg.bind(this, 'main')}, [
                   m('p', {class: 'center-align'} , state.groups.map(group => {if(group.isMain){return group.title}})) 
                 ])
               ]),
@@ -93,7 +93,7 @@ const interaction = {
 
 function selectOtherOrg(org){
   if (!state.showHelp) {
-    state.claims[state.currentStep]["assignedTo"] = org.id;
+    //state.claims[state.currentStep]["assignedTo"] = org.id;
     if (state.claims.length >= state.currentStep + 1) {
       //state.reflecting = true;
       state.currentStep += 1;

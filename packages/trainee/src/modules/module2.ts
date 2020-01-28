@@ -39,7 +39,7 @@ const interaction = {
         ])
       ]),
 
-      m('div', {class:'row'},[
+      m('div', {class:'row', id:'grid'},[
         m('div', {class:'row'},[
           m('div', {id:'topItems', class: 'col offset-s4 s7 gridItems'}, [
             m('div', {class: 'gridVbarCont'}, m('div', {class: 'gridVbar'})),
