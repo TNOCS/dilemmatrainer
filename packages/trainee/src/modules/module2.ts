@@ -4,12 +4,14 @@ import m from 'mithril';
 
 import { state } from '../global';
 
-import { Button } from 'mithril-materialized';
 import help from './components/help';
 import hud from './components/hud';
+import { compose } from 'mithril-materialized';
 
-let charaCol: Array<boolean> = [false, false, false];
-let charaValue: Array<number> = [2, 2, 2];
+let charaCol: Array<boolean> = [];
+let charaValue: Array<number> = [];
+let charaNames: Array<string> = [];
+let charaResults: any[] = [];
 
 let hbarSize = 7;
 
@@ -17,6 +19,7 @@ const MODULE2 = {
   oninit: () => {
     state.currentStep = 0;
     state.showHelp = true;
+    setupCharas();
   },
   view: () => {
     return m('div', { class: 'container' }, [
@@ -31,8 +34,8 @@ const interaction = {
     return m('div', {class: 'interactionArea'}, [
       m('div', {class:'row'},[
         m('div', {class: 'col s10', id:'dilemmaBG'}, [
-          m('p', {id:'description', class:"flow-text"} , 'desccription'), //state.dilemmas[state.currentStep].description
-          m('h5', {id: 'title', class:"flow-text"} , 'title?' ) //state.dilemmas[state.currentStep].title
+          m('p', {id:'description', class:"flow-text"} , state.dilemmas[state.currentStep].description),
+          m('h5', {id: 'title', class:"flow-text"} , state.dilemmas[state.currentStep].title)
         ])
       ]),
 
@@ -41,8 +44,9 @@ const interaction = {
           m('div', {id:'topItems', class: 'col offset-s4 s7 gridItems'}, [
             m('div', {class: 'gridVbarCont'}, m('div', {class: 'gridVbar'})),
 
-            m('div', {class: 'charaDis'}, 'ICON/TITLE'),
-            m('div', {class: 'gridVbarCont'}, m('div', {class: 'gridVbar'})),
+            charaNames.map( (char, i) => {
+              return  [m('div', {class: 'charaDis'}, charaNames[i]), m('div', {class: 'gridVbarCont'}, m('div', {class: 'gridVbar'}))]
+            })
           ]),
 
           m('div', {class: 'gridHbarCont col offset-s4 s' + String(hbarSize)}, m('hr', {class: 'gridHbar', id:'firstHBar'}))
@@ -51,7 +55,9 @@ const interaction = {
           m('div', {id: 'yes', class: 'col offset-s3 s1'}),
 
           m('div', {id:'middleItems', class: 'col offset-s4 s7 gridItems'}, [
-            m('div', {class: 'stampPoint', id:'yesChar' + 0 , onclick: stamp.bind(this, 0, 1)}),
+            charaNames.map( (char, i) => {
+              return  m('div', {class: 'stampPoint', id:'yesChar' + i , onclick: stamp.bind(this, i, 1)})
+            })
           ]),
           m('div', {class: 'gridHbarCont col offset-s4 s' + String(hbarSize)}, m('hr', {class: 'gridHbar', id:'secondHBar'}))
 
@@ -60,7 +66,9 @@ const interaction = {
           m('div', {id: 'no', class: 'col offset-s3 s1'}),
 
           m('div', {id:'bottomItems', class: 'col offset-s4 s7 gridItems'}, [
-            m('div', {class: 'stampPoint',id:'noChar' + 0 , onclick: stamp.bind(this, 0, 0)}),
+            charaNames.map( (char, i) => {
+              return  m('div', {class: 'stampPoint', id:'noChar' + i , onclick: stamp.bind(this, i, 0)})
+            })
           ]),
 
 
@@ -77,6 +85,7 @@ function stamp(col, value){
 
   if(charaValue[col] == value){
     target.classList.remove("stamped");
+    charaCol[col] = false;
   }
   else{
     if(charaValue[col] != 2){
@@ -88,10 +97,43 @@ function stamp(col, value){
       }
     }
     target.classList.add("stamped");
+    charaCol[col] = true;
   }
   
-  charaCol[col] = true;
+  
   charaValue[col] = value;
+
+
+  if (charaCol.every( (i) => {return i} )){
+     if (state.dilemmas.length >= state.currentStep + 1) {
+      let stamped = document.getElementsByClassName('stamped');
+
+      while(stamped.length) {  //because shrinking classList
+        stamped[0].classList.remove("stamped");
+      }
+  
+      state.currentStep += 1;
+      setupCharas()
+    }
+  else{
+      m.route.set('/selection');
+    }
+  }
+}
+
+function setupCharas(){
+  charaCol = [];
+  charaValue = [];
+  charaNames = [];
+  charaResults = [];
+
+  for (let char in state.dilemmas[state.currentStep].characteristics){
+    charaCol.push(false);
+    charaValue.push(2);
+  }
+
+  charaNames = Object.keys(state.dilemmas[state.currentStep].characteristics);
+  charaResults = charaNames.map((char) => state.dilemmas[state.currentStep].characteristics[char]);
 }
 
 export default MODULE2;

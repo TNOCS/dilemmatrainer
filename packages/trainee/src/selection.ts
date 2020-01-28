@@ -65,7 +65,6 @@ function getGames() {
 }
 
 function setGame(game) {
-  console.log(game);
   state.claims = game.claims;
   state.groups = game.groups;
   state.dilemmas = game.dilemmas;
