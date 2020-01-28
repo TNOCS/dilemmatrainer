@@ -18,36 +18,37 @@ export const characteristicsForm = (
     className: 'col s12',
   } as IInputField);
 
-const scenarioPhaseForm = (game: Partial<IGame>) => [
-  {
-    id: 'title',
-    label: 'Scenario title',
-    type: 'text',
-    required: true,
-    className: 'col s12',
-  },
-  {
-    id: 'description',
-    label: 'Background information (markdown)',
-    type: 'textarea',
-    required: true,
-    className: 'col s12',
-  },
-  {
-    id: 'mapUrl',
-    placeholder: 'Upload map',
-    type: 'file',
-    url: `${apiService()}/upload/game_${game.$loki}`,
-    className: 'col s6',
-  },
-  {
-    id: 'legendUrl',
-    placeholder: 'Upload legend',
-    type: 'file',
-    url: `${apiService()}/upload/game_${game.$loki}`,
-    className: 'col s6',
-  },
-] as Form;
+const scenarioPhaseForm = (game: Partial<IGame>) =>
+  [
+    {
+      id: 'title',
+      label: 'Scenario title',
+      type: 'text',
+      required: true,
+      className: 'col s12',
+    },
+    {
+      id: 'description',
+      label: 'Background information (markdown)',
+      type: 'textarea',
+      required: true,
+      className: 'col s12',
+    },
+    {
+      id: 'mapUrl',
+      placeholder: 'Upload map',
+      type: 'file',
+      url: `${apiService()}/upload/game_${game.$loki}/maps`,
+      className: 'col s6',
+    },
+    {
+      id: 'legendUrl',
+      placeholder: 'Upload legend',
+      type: 'file',
+      url: `${apiService()}/upload/game_${game.$loki}/maps`,
+      className: 'col s6',
+    },
+  ] as Form;
 
 export const gameFormGenerator = (game: Partial<IGame>): Form => {
   const { roles = [], groups = [], characteristics = [] } = game;
@@ -130,7 +131,14 @@ export const gameFormGenerator = (game: Partial<IGame>): Form => {
           label: 'Role',
           type: 'text',
           required: true,
-          className: 'col s12',
+          className: 'col s6',
+        },
+        {
+          id: 'avatar',
+          placeholder: 'Upload avatar',
+          type: 'file',
+          url: `${apiService()}/upload/game_${game.$loki}/avatars`,
+          className: 'col s6',
         },
         {
           id: 'description',
@@ -164,7 +172,7 @@ export const gameFormGenerator = (game: Partial<IGame>): Form => {
           id: 'iconUrl',
           placeholder: 'Upload icon',
           type: 'file',
-          url: `${apiService()}/upload/game_${game.$loki}`,
+          url: `${apiService()}/upload/game_${game.$loki}/icons`,
           className: 'col s6',
         },
         {
