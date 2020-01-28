@@ -8,8 +8,8 @@ import { Button } from 'mithril-materialized';
 import help from './components/help';
 import hud from './components/hud';
 
-let propertyButtons: Array<boolean> = [false, false, false];
-let properties: Array<boolean> = [false, false, false];
+let charaCol: Array<boolean> = [false, false, false];
+let charaValue: Array<number> = [2, 2, 2];
 
 let hbarSize = 7;
 
@@ -40,6 +40,7 @@ const interaction = {
         m('div', {class:'row'},[
           m('div', {id:'topItems', class: 'col offset-s4 s7 gridItems'}, [
             m('div', {class: 'gridVbarCont'}, m('div', {class: 'gridVbar'})),
+
             m('div', {class: 'charaDis'}, 'ICON/TITLE'),
             m('div', {class: 'gridVbarCont'}, m('div', {class: 'gridVbar'})),
           ]),
@@ -50,7 +51,7 @@ const interaction = {
           m('div', {id: 'yes', class: 'col offset-s3 s1'}),
 
           m('div', {id:'middleItems', class: 'col offset-s4 s7 gridItems'}, [
-            m('div', {class: 'stampPoint stamped'}),
+            m('div', {class: 'stampPoint', id:'yesChar' + 0 , onclick: stamp.bind(this, 0, 1)}),
           ]),
           m('div', {class: 'gridHbarCont col offset-s4 s' + String(hbarSize)}, m('hr', {class: 'gridHbar', id:'secondHBar'}))
 
@@ -59,7 +60,7 @@ const interaction = {
           m('div', {id: 'no', class: 'col offset-s3 s1'}),
 
           m('div', {id:'bottomItems', class: 'col offset-s4 s7 gridItems'}, [
-            m('div', {class: 'stampPoint stamped'}),
+            m('div', {class: 'stampPoint',id:'noChar' + 0 , onclick: stamp.bind(this, 0, 0)}),
           ]),
 
 
@@ -70,177 +71,27 @@ const interaction = {
   }
 };
 
-/*
-const controlArea = {
-  view: () => {
-    return m('div', { id: 'controlAreaBG2' }, [
-      m('div', { id: 'controlAreaTop2' }),
 
-      m(
-        'div',
-        { class: 'row valign-wrapper', id: 'propertyControlArea' },
-        state.showHelp
-          ? m(help, {
-              title: 'Title',
-              desc: [
-                'Lorem Ipsum et dono',
-                'This is the second page',
-                'this is the final page',
-              ],
-            })
-          : [
-              state.pickedDilemmas.length >= state.currentDilemma + 1
-                ? m('div', { class: 'pickedTopic col s4' }, [
-                    m(
-                      'h1',
-                      { class: 'topicTitle' },
-                      state.pickedDilemmas
-                        ? state.pickedDilemmas[state.currentDilemma].title
-                        : 'loading...'
-                    ),
-                    m(
-                      'p',
-                      { class: 'topicText' },
-                      state.pickedDilemmas
-                        ? state.pickedDilemmas[state.currentDilemma].description
-                        : 'loading...'
-                    ),
-                  ])
-                :  m('div', { class: 'col s6', id: 'greencheck' }),
+function stamp(col, value){
+  let target = event.target as HTMLTextAreaElement;
 
-              m('div', { class: 'propertySelection col s6' }, [
-                m('div', { class: 'row' }, [
-                  m('span', { class: 'col s4' }, 'TIME'),
-                  m('span', { class: 'col s4' }, 'INFORMATION'),
-                  m('span', { class: 'col s4' }, 'ACCORDANCE OF INTERESTS'),
-                ]),
-                m('div', { class: 'row' }, [
-                  m('div', { class: 'col s4 propertyCol' }, [
-                    m(
-                      'div',
-                      { class: 'propertyButtonCont col s12' },
-                      m(
-                        'button',
-                        {
-                          label: '+',
-                          id: '0true',
-                          class: 'propertyButtons col offset-s1 s10',
-                          onclick: propertyAdd.bind(this, 0, true),
-                        },
-                        '+'
-                      )
-                    ),
-                    m('hr', { class: 'propertyHr col s12' }),
-                    m(
-                      'div',
-                      { class: 'propertyButtonCont col s12' },
-                      m(
-                        'button',
-                        {
-                          label: '-',
-                          id: '0false',
-                          class: 'propertyButtons col offset-s1 s10',
-                          onclick: propertyAdd.bind(this, 0, false),
-                        },
-                        '-'
-                      )
-                    ),
-                  ]),
-                  m('div', { class: 'col s4 propertyCol' }, [
-                    m(
-                      'div',
-                      { class: 'propertyButtonCont col s12' },
-                      m(
-                        'button',
-                        {
-                          label: '+',
-                          id: '1true',
-                          class: 'propertyButtons col offset-s1 s10',
-                          onclick: propertyAdd.bind(this, 1, true),
-                        },
-                        '+'
-                      )
-                    ),
-                    m('hr', { class: 'propertyHr col s12' }),
-                    m(
-                      'div',
-                      { class: 'propertyButtonCont col s12' },
-                      m(
-                        'button',
-                        {
-                          label: '-',
-                          id: '1false',
-                          class: 'propertyButtons col offset-s1 s10',
-                          onclick: propertyAdd.bind(this, 1, false),
-                        },
-                        '-'
-                      )
-                    ),
-                  ]),
-                  m('div', { class: 'col s4 propertyCol' }, [
-                    m(
-                      'div',
-                      { class: 'propertyButtonCont col s12' },
-                      m(
-                        'button',
-                        {
-                          label: '+',
-                          id: '2true',
-                          class: 'propertyButtons col offset-s1 s10',
-                          onclick: propertyAdd.bind(this, 2, true),
-                        },
-                        '+'
-                      )
-                    ),
-                    m('hr', { class: 'propertyHr col s12' }),
-                    m(
-                      'div',
-                      { class: 'propertyButtonCont col s12' },
-                      m(
-                        'button',
-                        {
-                          label: '-',
-                          id: '2false',
-                          class: 'propertyButtons col offset-s1 s10',
-                          onclick: propertyAdd.bind(this, 2, false),
-                        },
-                        '-'
-                      )
-                    ),
-                  ]),
-                ]),
-              ]),
-
-              m('div', { id: 'trashMod2Cont' }, [
-                m(Button, {
-                  id: 'trashMod1Button',
-                  onclick: rejectPickedDilemma,
-                }),
-              ]),
-            ]
-      ),
-    ]);
-  },
-};
-
-function propertyAdd(pressed, value) {
-  propertyButtons[pressed] = true;
-  properties[pressed] = value;
-
-  const target = event.target as HTMLTextAreaElement;
-  target.className += ' propertyButtonsPressed';
-
-  document.getElementById(String(pressed) + String(!value)).className =
-    'propertyButtons col offset-s1 s10';
-
-  if (JSON.stringify(propertyButtons) === JSON.stringify([true, true, true])) {
-    state.pickedDilemmas[state.currentDilemma]['time'] = properties[0];
-    state.pickedDilemmas[state.currentDilemma]['info'] = properties[1];
-    state.pickedDilemmas[state.currentDilemma]['accordance'] = properties[2];
-
-    propertyButtons = [false, false, false];
-    state.currentDilemma += 1;
+  if(charaValue[col] == value){
+    target.classList.remove("stamped");
   }
+  else{
+    if(charaValue[col] != 2){
+      if (charaValue[col] == 1){
+        document.getElementById('yesChar' + col).classList.remove("stamped");
+      }
+      else{
+        document.getElementById('noChar' + col).classList.remove("stamped");
+      }
+    }
+    target.classList.add("stamped");
+  }
+  
+  charaCol[col] = true;
+  charaValue[col] = value;
 }
-*/
+
 export default MODULE2;
