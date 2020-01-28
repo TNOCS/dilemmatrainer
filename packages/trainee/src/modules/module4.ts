@@ -10,21 +10,19 @@ import { state } from '../global';
 import help from './components/help';
 import hud from './components/hud';
 
-let currentPhase = 0;
-
 const MODULE4 = {
   oninit: () => {
     state.showHelp = true;
+    state.currentStep = 0;
   },
   view: () => {
     return m('div', { class: 'container' }, [
-      m(displayArea),
-      m(controlAreaSolo),
-      m(hud, { done: '#!/selection' }),
+      m(hud, { done: '/selection' }),
     ]);
   },
 };
 
+/*
 const displayArea = {
   view: () => {
     return m('div', { class: 'row', id: 'displayleaflet' }, [
@@ -93,5 +91,6 @@ const controlAreaSolo = {
     ]);
   },
 };
+*/
 
 export default MODULE4;

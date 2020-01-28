@@ -23,7 +23,7 @@ const MODULE2 = {
   },
   view: () => {
     return m('div', { class: 'container' }, [
-      m(hud, { done: '/module3' }),
+      m(hud, { done: '/selection' }),
       m(interaction),
     ]);
   },

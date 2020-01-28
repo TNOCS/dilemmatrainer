@@ -15,10 +15,11 @@ const hud = {
             state.showHelp = !state.showHelp;
           },
         }),
-        m('div', {
-          id: 'docButton',
-          class: 'col s1 offset-s11',
-        })
+        
+        vnode.attrs.done == '/selection'? null
+        
+        
+        : null,
       ]),
 
       m('div', { id: 'arrowWrap' , class: 'row'}, [
