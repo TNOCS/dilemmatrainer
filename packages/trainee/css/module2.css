@@ -8,10 +8,10 @@
 }
 
 #dilemmaBG h5{
-    font-style: normal;
+    font-style: italic;
+    margin-top: 10px;
 }
 #dilemmaBG p{
-    text-align: center;
     font-size: 1.28em;
 }
 
@@ -23,9 +23,84 @@
     font-style: bold;
     font-weight: 500;
     letter-spacing: 0.0357143em;
+    text-align: center;
     
 }
 
+/* GRID start */
+
+.gridItems{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.gridVbar{
+    position: absolute;
+    width: 7px;
+    height: 257px;
+    margin: 0px;
+    background: #BEC4D9;
+    opacity: 0.6;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.gridHbarCont{
+    position: absolute;
+    z-index: -1;
+    margin-top: 30px;
+}
+
+.gridHbar{
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    border: 2px solid #BEC4D9;
+    margin-left: -10%;
+
+    opacity: 0.6;
+}
+
+#secondHBar, #thirdHBar{
+    margin-top: 30px;
+}
+
+#yes{
+    position: absolute;
+    background-image: url("../assets/yes.png");
+    height:60px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50%;;
+}
+
+#no{
+    position: absolute;
+    background-image: url("../assets/no.png");
+    height:60px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50%;;
+}
+
+.charaDis{
+    width: 100%;
+    text-align: center;
+}
+
+.stampPoint{
+    height: 60px;
+    width: 100%;
+    margin-top: -5px;
+}
+
+.stamped{
+    background-image: url("../assets/stamp.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 59px;
+}
+
+/* GRID end */
 
 /*text-transform: capitalize;
 #propertyControlArea{
@@ -90,4 +165,4 @@
         height: 70px;
     }
 }
-/*
+*/

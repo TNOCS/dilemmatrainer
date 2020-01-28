@@ -11,6 +11,8 @@ import hud from './components/hud';
 let propertyButtons: Array<boolean> = [false, false, false];
 let properties: Array<boolean> = [false, false, false];
 
+let hbarSize = 7;
+
 const MODULE2 = {
   oninit: () => {
     state.currentStep = 0;
@@ -29,16 +31,41 @@ const interaction = {
     return m('div', {class: 'interactionArea'}, [
       m('div', {class:'row'},[
         m('div', {class: 'col s10', id:'dilemmaBG'}, [
-          m('h5', {id: 'title', class:"flow-text"} , state.dilemmas[state.currentStep].title),
-          m('p', {id:'description', class:"flow-text"} ,state.dilemmas[state.currentStep].description)
+          m('p', {id:'description', class:"flow-text"} , 'desccription'), //state.dilemmas[state.currentStep].description
+          m('h5', {id: 'title', class:"flow-text"} , 'title?' ) //state.dilemmas[state.currentStep].title
         ])
       ]),
-      /*
+
       m('div', {class:'row'},[
-        m('div', {class:'row'},[]),
-        m('div', {class:'row'},[]),
-        m('div', {class:'row'},[]),
-      ])*/
+        m('div', {class:'row'},[
+          m('div', {id:'topItems', class: 'col offset-s4 s7 gridItems'}, [
+            m('div', {class: 'gridVbarCont'}, m('div', {class: 'gridVbar'})),
+            m('div', {class: 'charaDis'}, 'ICON/TITLE'),
+            m('div', {class: 'gridVbarCont'}, m('div', {class: 'gridVbar'})),
+          ]),
+
+          m('div', {class: 'gridHbarCont col offset-s4 s' + String(hbarSize)}, m('hr', {class: 'gridHbar', id:'firstHBar'}))
+        ]),
+        m('div', {class:'row', style:'margin-top: 30px'},[
+          m('div', {id: 'yes', class: 'col offset-s3 s1'}),
+
+          m('div', {id:'middleItems', class: 'col offset-s4 s7 gridItems'}, [
+            m('div', {class: 'stampPoint stamped'}),
+          ]),
+          m('div', {class: 'gridHbarCont col offset-s4 s' + String(hbarSize)}, m('hr', {class: 'gridHbar', id:'secondHBar'}))
+
+        ]),
+        m('div', {class:'row', style:'margin-top: 20px'},[
+          m('div', {id: 'no', class: 'col offset-s3 s1'}),
+
+          m('div', {id:'bottomItems', class: 'col offset-s4 s7 gridItems'}, [
+            m('div', {class: 'stampPoint stamped'}),
+          ]),
+
+
+          m('div', {class: 'gridHbarCont col offset-s4 s' + String(hbarSize)}, m('hr', {class: 'gridHbar', id:'thirdHBar'}))
+        ]),
+      ])
   ])
   }
 };
