@@ -6,6 +6,7 @@ dependencies:
   mithril: 2.0.4
   mithril-leaflet: 0.1.7_540248bce08b6daa8f39770dcc779455
   mithril-materialized: 0.16.0_f3d9df6f4766fd28b6cfb8072ccbc3ca
+  services: 0.0.3
 devDependencies:
   '@types/geojson': 7946.0.7
   '@types/leaflet': 1.5.7
@@ -14,7 +15,7 @@ devDependencies:
   '@types/mithril': 2.0.2
   cssnano: 4.1.10
   parcel-bundler: 1.12.4
-  typescript: 3.7.4
+  typescript: 3.7.5
 lockfileVersion: 5.1
 packages:
   /@babel/code-frame/7.5.5:
@@ -4560,6 +4561,15 @@ packages:
       node: '>= 0.8.0'
     resolution:
       integrity: sha512-JMrvUwE54emCYWlTI+hGrGv5I8dEwmco/00EvkzIIsR7MqrHonbD9pO2MOfFnpFntl7ecpZs+3mW+XbQZu9QCg==
+  /services/0.0.3:
+    dependencies:
+      underscore: 1.9.2
+      underscore.string: 3.3.5
+    dev: false
+    engines:
+      node: '>=0.4.9'
+    resolution:
+      integrity: sha1-M338romhcaEfv8FyG2liFmvsB2M=
   /set-blocking/2.0.0:
     dev: true
     resolution:
@@ -4694,7 +4704,6 @@ packages:
     resolution:
       integrity: sha512-NzNVhJDYpwceVVii8/Hu6DKfD2G+NrQHlS/V/qgv763EYudVwEcMQNxd2lh+0VrUByXN/oJkl5grOhYWvQUYiw==
   /sprintf-js/1.0.3:
-    dev: true
     resolution:
       integrity: sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
   /sshpk/1.16.1:
@@ -5055,13 +5064,13 @@ packages:
     dev: true
     resolution:
       integrity: sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
-  /typescript/3.7.4:
+  /typescript/3.7.5:
     dev: true
     engines:
       node: '>=4.2.0'
     hasBin: true
     resolution:
-      integrity: sha512-A25xv5XCtarLwXpcDNZzCGvW2D1S3/bACratYBx2sax8PefsFhlYmkQicKHvpYflFS8if4zne5zT5kpJ7pzuvw==
+      integrity: sha512-/P5lkRXkWHNAbcJIiHPfRoKqyd7bsyCma1hZNUGfn20qm64T6ZBlrzprymeu918H+mB/0rIg2gGK/BXkhhYgBw==
   /uncss/0.17.2:
     dependencies:
       commander: 2.20.3
@@ -5079,6 +5088,17 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-hu2HquwDItuGDem4YsJROdAD8SknmWtM24zwhQax6J1se8tPjV1cnwPKhtjodzBaUhaL8Zb3hlGdZ2WAUpbAOg==
+  /underscore.string/3.3.5:
+    dependencies:
+      sprintf-js: 1.0.3
+      util-deprecate: 1.0.2
+    dev: false
+    resolution:
+      integrity: sha512-g+dpmgn+XBneLmXXo+sGlW5xQEt4ErkS3mgeN2GFbremYeMBSJKr9Wf2KJplQVaiPY/f7FN6atosWYNm9ovrYg==
+  /underscore/1.9.2:
+    dev: false
+    resolution:
+      integrity: sha512-D39qtimx0c1fI3ya1Lnhk3E9nONswSKhnffBI0gME9C99fYOkNi04xs8K6pePLhvl1frbDemkaBQ5ikWllR2HQ==
   /unicode-canonical-property-names-ecmascript/1.0.4:
     dev: true
     engines:
@@ -5175,7 +5195,6 @@ packages:
     resolution:
       integrity: sha512-cwESVXlO3url9YWlFW/TA9cshCEhtu7IKJ/p5soJ/gGpj7vbvFrAY/eIioQ6Dw23KjZhYgiIo8HOs1nQ2vr/oQ==
   /util-deprecate/1.0.2:
-    dev: true
     resolution:
       integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
   /util.promisify/1.0.0:
@@ -5369,4 +5388,5 @@ specifiers:
   mithril-leaflet: ^0.1.7
   mithril-materialized: ^0.16.0
   parcel-bundler: ^1.12.4
-  typescript: ^3.7.4
+  services: 0.0.3
+  typescript: ^3.7.5

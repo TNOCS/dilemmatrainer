@@ -1,6 +1,21 @@
 dependencies:
+  after: 0.8.2
+  arraybuffer.slice: 0.0.7
+  backo2: 1.0.2
+  base64-arraybuffer: 0.2.0
   base64-js: 1.3.1
+  blob: 0.0.5
+  component-bind: 1.0.0
+  component-emitter: 1.3.0
+  component-inherit: 0.0.3
+  debug: 4.1.1
+  engine.io-client: 3.4.0
+  engine.io-parser: 2.2.0
   file-saver: 2.0.2
+  has-binary2: 1.0.3
+  has-cors: 1.1.0
+  indexof: 0.0.1
+  isarray: 2.0.5
   js-sha256: 0.9.0
   keycloak-js: 8.0.1
   leaflet: 1.6.0
@@ -12,7 +27,13 @@ dependencies:
   mithril-materialized: 0.16.0_f3d9df6f4766fd28b6cfb8072ccbc3ca
   mithril-stream: 2.0.0
   mithril-ui-form: 0.5.0_41e7f33714a8db2eab8931e703bc99bd
+  ms: 2.1.2
+  parseqs: 0.0.5
+  parseuri: 0.0.6
   socket.io-client: 2.3.0
+  socket.io-parser: 3.4.0
+  to-array: 0.1.4
+  yeast: 0.1.2
 devDependencies:
   '@types/file-saver': 2.0.1
   '@types/leaflet': 1.5.8
@@ -1241,6 +1262,12 @@ packages:
       node: '>= 0.6.0'
     resolution:
       integrity: sha1-c5JncZI7Whl0etZmqlzUv5xunOg=
+  /base64-arraybuffer/0.2.0:
+    dev: false
+    engines:
+      node: '>= 0.6.0'
+    resolution:
+      integrity: sha512-7emyCsu1/xiBXgQZrscw/8KPRT44I4Yq9Pe6EGs3aPRTsWuggML1/1DTuZUuIaJPIm1FTDUVXl4x/yW8s0kQDQ==
   /base64-js/1.3.1:
     resolution:
       integrity: sha512-mLQ4i2QO1ytvGWFWmcngKO//JXAQueZvwEKtjgQFM4jIK0kU+ytMfplL8j+n5mspOfjHwoAg+9yhb7BwAHm36g==
@@ -1643,7 +1670,6 @@ packages:
     resolution:
       integrity: sha1-E3kY1teCg/ffemt8WmPhQOaUJeY=
   /component-emitter/1.3.0:
-    dev: true
     resolution:
       integrity: sha512-Rd3se6QB+sO1TwqZjscQrurpEPIfO0/yYnSin6Q/rD3mOutHvUrCAhJub3r90uNb+SESBuE0QYoB90YdfatsRg==
   /component-inherit/0.0.3:
@@ -3090,6 +3116,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-o32U7ZzaLVmGXJ92/llu4fM4dB4=
+  /isarray/2.0.5:
+    dev: false
+    resolution:
+      integrity: sha512-xHjhDr3cNBK0BzdUJSPXZntQUx/mwMS5Rw4A7lPJ90XGAO6ISP/ePDNuo0vhqOZU+UD5JoodwCAAoZQd3FeAKw==
   /isexe/2.0.0:
     dev: true
     resolution:
@@ -3927,6 +3957,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-gCBKUNTbt3m/3G6+J3jZDkvOMgo=
+  /parseuri/0.0.6:
+    dev: false
+    resolution:
+      integrity: sha512-AUjen8sAkGgao7UyCX6Ahv0gIK2fABKmYjvP4xmy5JaKvcbTRueIqIPHLAfq30xJddqSE033IOMUSOMCcK3Sow==
   /parseurl/1.3.3:
     dev: true
     engines:
@@ -4956,6 +4990,14 @@ packages:
     dev: false
     resolution:
       integrity: sha512-hczmV6bDgdaEbVqhAeVMM/jfUfzuEZHsQg6eOmLgJht6G3mPKMxYm75w2+qhAQZ+4X+1+ATZ+QFKeOZD5riHng==
+  /socket.io-parser/3.4.0:
+    dependencies:
+      component-emitter: 1.2.1
+      debug: 4.1.1
+      isarray: 2.0.1
+    dev: false
+    resolution:
+      integrity: sha512-/G/VOI+3DBp0+DJKW4KesGnQkQPFmUCbA/oO2QGT6CWxU7hLGWqU3tyuzeSK/dqcyeHsQg1vTe9jiZI8GU9SCQ==
   /source-map-resolve/0.5.3:
     dependencies:
       atob: 2.1.2
@@ -5687,10 +5729,25 @@ specifiers:
   '@types/materialize-css': ^1.0.7
   '@types/mithril': ^2.0.2
   '@types/socket.io-client': ^1.4.32
+  after: ^0.8.2
+  arraybuffer.slice: ^0.0.7
   autoprefixer: ^9.7.4
+  backo2: ^1.0.2
+  base64-arraybuffer: ^0.2.0
   base64-js: ^1.3.1
+  blob: ^0.0.5
+  component-bind: ^1.0.0
+  component-emitter: ^1.3.0
+  component-inherit: ^0.0.3
   cssnano: ^4.1.10
+  debug: ^4.1.1
+  engine.io-client: ^3.4.0
+  engine.io-parser: ^2.2.0
   file-saver: ^2.0.2
+  has-binary2: ^1.0.3
+  has-cors: ^1.1.0
+  indexof: ^0.0.1
+  isarray: ^2.0.5
   js-sha256: ^0.9.0
   keycloak-js: ^8.0.1
   leaflet: ^1.6.0
@@ -5702,7 +5759,13 @@ specifiers:
   mithril-materialized: ^0.16.0
   mithril-stream: 2.0.0
   mithril-ui-form: ^0.5.0
+  ms: ^2.1.2
   parcel-bundler: ^1.12.4
+  parseqs: ^0.0.5
+  parseuri: ^0.0.6
   rimraf: ^3.0.0
   socket.io-client: ^2.3.0
+  socket.io-parser: ^3.4.0
+  to-array: ^0.1.4
   typescript: ^3.7.5
+  yeast: ^0.1.2
