@@ -24,9 +24,9 @@ dependencies:
   materialize-css: 1.0.0
   mithril: 2.0.4
   mithril-leaflet: 0.1.7_540248bce08b6daa8f39770dcc779455
-  mithril-materialized: 0.16.0_f3d9df6f4766fd28b6cfb8072ccbc3ca
+  mithril-materialized: 0.16.1_f3d9df6f4766fd28b6cfb8072ccbc3ca
   mithril-stream: 2.0.0
-  mithril-ui-form: 0.5.0_41e7f33714a8db2eab8931e703bc99bd
+  mithril-ui-form: 0.5.0_e7aaa12ac59af2eaa7ea791b802e2765
   ms: 2.1.2
   parseqs: 0.0.5
   parseuri: 0.0.6
@@ -3501,7 +3501,7 @@ packages:
       mithril: ^2.0.4
     resolution:
       integrity: sha512-8f56fJsglSmEpVAjH/4bpgcjXr587+r8ZttLet9gcOl6C78ZXrCwrz5twIo2NLqmLuLGv77vmKyzIf7XVuqoRw==
-  /mithril-materialized/0.16.0_f3d9df6f4766fd28b6cfb8072ccbc3ca:
+  /mithril-materialized/0.16.1_f3d9df6f4766fd28b6cfb8072ccbc3ca:
     dependencies:
       materialize-css: 1.0.0
       mithril: 2.0.4
@@ -3510,18 +3510,18 @@ packages:
       materialize-css: ^1.0.0
       mithril: ^2.0.4
     resolution:
-      integrity: sha512-exWUe1qMNNUu2sc0VDg06vtnYtcscFtenuzUAIAPPM7t69G7d4lvmvJpV57vNZKRpmfs16TQLBirWDSh9pNn8A==
+      integrity: sha512-Y6r+X5spyE5SiTAiyKN2hdXqyfIw+ZV2t8Qg4usD50royGK8KDA5kDN979tR9JZphsIr3PYif5FUz/TGl1baSQ==
   /mithril-stream/2.0.0:
     dev: false
     resolution:
       integrity: sha512-7anPud4n2FMGIXBQATVpFzclkddXHmJ1TzlqOP9STybk8JZYOPAD2otMYiMDc6sPrTNDY5S6GPDlYNIUY8Qs3Q==
-  /mithril-ui-form/0.5.0_41e7f33714a8db2eab8931e703bc99bd:
+  /mithril-ui-form/0.5.0_e7aaa12ac59af2eaa7ea791b802e2765:
     dependencies:
       leaflet: 1.6.0
       leaflet-draw: 1.0.4
       materialize-css: 1.0.0
       mithril: 2.0.4
-      mithril-materialized: 0.16.0_f3d9df6f4766fd28b6cfb8072ccbc3ca
+      mithril-materialized: 0.16.1_f3d9df6f4766fd28b6cfb8072ccbc3ca
       slimdown-js: 0.1.5
     dev: false
     peerDependencies:
@@ -5756,14 +5756,14 @@ specifiers:
   materialize-css: ^1.0.0
   mithril: ^2.0.4
   mithril-leaflet: ^0.1.7
-  mithril-materialized: ^0.16.0
+  mithril-materialized: ^0.16.1
   mithril-stream: 2.0.0
   mithril-ui-form: ^0.5.0
   ms: ^2.1.2
   parcel-bundler: ^1.12.4
   parseqs: ^0.0.5
   parseuri: ^0.0.6
-  rimraf: ^3.0.0
+  rimraf: ^3.0.1
   socket.io-client: ^2.3.0
   socket.io-parser: ^3.4.0
   to-array: ^0.1.4

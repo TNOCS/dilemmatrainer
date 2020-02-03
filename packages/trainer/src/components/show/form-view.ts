@@ -18,8 +18,8 @@ export const FormView: FactoryComponent = () => {
   return {
     oninit: () => {
       return new Promise(async (resolve, reject) => {
-        const event = await gameSvc.load(m.route.param('id')).catch(r => reject(r));
-        state.game = event ? deepCopy(event) : ({} as IGame);
+        const game = await gameSvc.load(m.route.param('id')).catch(r => reject(r));
+        state.game = game ? deepCopy(game) : ({} as IGame);
         state.loaded = true;
         resolve();
       });
@@ -83,6 +83,15 @@ export const FormView: FactoryComponent = () => {
                     iconName: 'edit',
                     className: 'right hide-on-small-only',
                     onclick: () => dashboardSvc.switchTo(Dashboards.EDIT, { id: game.$loki }),
+                  })
+                ),
+                m(
+                  'li',
+                  m(FlatButton, {
+                    label: 'Play game',
+                    iconName: 'play_arrow',
+                    className: 'right hide-on-small-only',
+                    onclick: () => dashboardSvc.switchTo(Dashboards.PLAY, { id: game.$loki }),
                   })
                 ),
                 m(

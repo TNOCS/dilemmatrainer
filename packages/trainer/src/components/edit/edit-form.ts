@@ -1,13 +1,10 @@
 import M from 'materialize-css';
-import m from 'mithril';
-import { FactoryComponent} from 'mithril';
+import m, { FactoryComponent} from 'mithril';
 import { Button, Chips, ModalPanel } from 'mithril-materialized';
 import { LayoutForm } from 'mithril-ui-form';
 import { IGame } from '../../../../common/src';
-import { IAppModel } from '../../services';
-import { gameSvc } from '../../services';
+import { Auth, gameSvc, IActions, IAppModel } from '../../services';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
-import { Auth } from '../../services/login-service';
 import { gameFormGenerator } from '../../template/form';
 import { capitalizeFirstLetter } from '../../utils';
 import { CircularSpinner } from '../ui/preloader';
@@ -20,7 +17,7 @@ const close = async (e?: UIEvent) => {
   }
 };
 
-export const EditForm: FactoryComponent<{ state: IAppModel, actions: any }> = () => {
+export const EditForm: FactoryComponent<{ state: IAppModel, actions: IActions }> = () => {
   const state = {
     loaded: false,
     isValid: false,

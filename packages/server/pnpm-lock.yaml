@@ -1,6 +1,6 @@
 dependencies:
   dotenv: 8.2.0
-  rest-easy-loki: 0.7.2
+  rest-easy-loki: 0.7.5
 devDependencies:
   '@types/koa': 2.11.0
   '@types/koa-compose': 3.2.5
@@ -70,7 +70,7 @@ packages:
   /@types/formidable/1.0.31:
     dependencies:
       '@types/events': 3.0.0
-      '@types/node': 13.1.6
+      '@types/node': 13.5.0
     dev: false
     resolution:
       integrity: sha512-dIhM5t8lRP0oWe2HF8MuPvdd1TpPTjhDMAqemcq6oIZQCBQTovhBAdTQ5L5veJB4pdQChadmHuxtB0YzqvfU3Q==
@@ -138,10 +138,10 @@ packages:
     resolution:
       integrity: sha512-E6Zn0rffhgd130zbCbAr/JdXfXkoOUFAKNs/rF8qnafSJ8KYaA/j3oz7dcwal+lYjLA7xvdd5J4wdYpCTlP8+w==
   /@types/node/13.1.6:
+    dev: true
     resolution:
       integrity: sha512-Jg1F+bmxcpENHP23sVKkNuU3uaxPnsBMW0cLjleiikFKomJQbsn0Cqk2yDvQArqzZN6ABfBkZ0To7pQ8sLdWDg==
   /@types/node/13.5.0:
-    dev: true
     resolution:
       integrity: sha512-Onhn+z72D2O2Pb2ql2xukJ55rglumsVo1H6Fmyi8mlU9SvKdBk/pUSUAiBY/d9bAOF7VVWajX3sths/+g6ZiAQ==
   /@types/range-parser/1.2.3:
@@ -923,7 +923,7 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha1-xL2p9e+y/OZSR4c6s2u02DT+Fvc=
-  /rest-easy-loki/0.7.2:
+  /rest-easy-loki/0.7.5:
     dependencies:
       '@koa/cors': 3.0.0
       command-line-args: 5.1.1
@@ -939,7 +939,7 @@ packages:
     dev: false
     hasBin: true
     resolution:
-      integrity: sha512-A2xsKU245oGyI8kZBOORCBIGdXX+2w0VCaooCLyh/Fomz6kr4H1H+17EQyQhAv6TAK3VLP8JFE8igrGop62Zqg==
+      integrity: sha512-CbvDQcgoJzFOv27X0FizjXENbNNNQX0m8/m4MaSeK+UusyUaEjdcw+zf1ag+wNlfmuVwq4q+aQf10PLu/kqmTg==
   /rfc6902/3.0.4:
     dev: false
     resolution:
@@ -1243,7 +1243,7 @@ specifiers:
   '@types/koa-static': ^4.0.1
   '@types/node': ^13.5.0
   dotenv: ^8.2.0
-  rest-easy-loki: ^0.7.2
+  rest-easy-loki: ^0.7.5
   rimraf: ^3.0.1
   tsc-watch: ^4.1.0
   typescript: ^3.7.5

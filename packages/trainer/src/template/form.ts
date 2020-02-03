@@ -106,7 +106,7 @@ export const gameFormGenerator = (game: Partial<IGame>): Form => {
           show: '!isMain',
           label: 'Group order',
           description:
-            'Main group is at level 0, the one above at +1, below -1',
+          'Main group is at level 0, the one above at +1, below -1',
           type: 'number',
           min: -2,
           max: 2,

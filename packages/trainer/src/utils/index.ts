@@ -30,7 +30,8 @@ export const uniqueId = () => {
   });
 };
 
-export const capitalizeFirstLetter = (s?: string) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : '');
+export const capitalizeFirstLetter = (s?: string) =>
+  s ? s.charAt(0).toUpperCase() + s.slice(1) : '';
 
 export const toLetters = (num: number): string => {
   const mod = num % 26;
@@ -49,14 +50,16 @@ export const targetFilter = (filterValue?: string) => {
     return () => true;
   }
   const fv = filterValue.toLowerCase().trim() as string;
-  return (content: { target?: string }) => content.target && content.target.indexOf(fv) >= 0;
+  return (content: { target?: string }) =>
+    content.target && content.target.indexOf(fv) >= 0;
 };
 
 /** Limit the length of a list using a filter */
 export const limitLength = (limit: number) => (_: any, i: number) => i < limit;
 
 /** Slice an array */
-export const slice = (from: number, to: number) => (_: any, i: number) => from <= i && i < to;
+export const slice = (from: number, to: number) => (_: any, i: number) =>
+  from <= i && i < to;
 
 /**
  * Convert strings like XmlHTTPRequest to Xml HTTP Request
@@ -70,18 +73,23 @@ export const unCamelCase = (str?: string) =>
         .replace(/^./, char => char.toUpperCase()) // uppercase the first character
     : '';
 
-export const deepEqual = <T extends { [key: string]: any }>(x?: T, y?: T): boolean => {
+export const deepEqual = <T extends { [key: string]: any }>(
+  x?: T,
+  y?: T
+): boolean => {
   const tx = typeof x;
   const ty = typeof y;
   return x && y && tx === 'object' && tx === ty
-    ? Object.keys(x).length === Object.keys(y).length && Object.keys(x).every(key => deepEqual(x[key], y[key]))
+    ? Object.keys(x).length === Object.keys(y).length &&
+        Object.keys(x).every(key => deepEqual(x[key], y[key]))
     : x === y;
 };
 
 /** Remove paragraphs <p> and </p> and the beginning and end of a string. */
 export const removeParagraphs = (s: string) => s.replace(/<\/?p>/g, '');
 
-export const removeHtml = (s: string) => s.replace(/<\/?[0-9a-zA-Z=\[\]_ \-"]+>/gm, '').replace(/&quot;/gi, '"');
+export const removeHtml = (s: string) =>
+  s.replace(/<\/?[0-9a-zA-Z=\[\]_ \-"]+>/gm, '').replace(/&quot;/gi, '"');
 
 /**
  * Join a list of items with a comma.
@@ -101,7 +109,10 @@ export const formatOptional = (
 };
 
 /** Print optional */
-export const p = (val: string | number | Date | boolean | undefined, output?: string) => (val ? output || val : '');
+export const p = (
+  val: string | number | Date | boolean | undefined,
+  output?: string
+) => (val ? output || val : '');
 
 /** Print a list: a, b and c */
 export const l = (val: undefined | string | string[]) => {
@@ -130,7 +141,9 @@ export const debounce = (func: (...args: any) => void, timeout: number) => {
 };
 
 export const padLeft = (str: string | number, ch = ' ', len = 2): string =>
-  str.toString().length >= len ? str.toString() : padLeft(ch + str.toString(), ch, len);
+  str.toString().length >= len
+    ? str.toString()
+    : padLeft(ch + str.toString(), ch, len);
 
 /**
  * Generate a sequence of numbers between from and to with step size: [from, to].
@@ -148,3 +161,7 @@ export const range = (from: number, to: number, step: number = 1) => {
   }
   return arr;
 };
+
+/** Return a random item from an array */
+export const randomItem = <T>(arr: T[]): T | undefined =>
+  arr.length === 0 ? undefined : arr[Math.floor(Math.random() * arr.length)];

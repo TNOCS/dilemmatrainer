@@ -20,7 +20,7 @@
     "materialize-css": "^1.0.0",
     "mithril": "^2.0.4",
     "mithril-leaflet": "^0.1.7",
-    "mithril-materialized": "^0.16.0",
+    "mithril-materialized": "^0.16.1",
     "services": "0.0.3"
   },
   "devDependencies": {

@@ -7,29 +7,38 @@ import { socketSvc } from './socket-service';
 
 class SessionService extends RestService<ISession> {
   constructor() {
-    super('games');
+    super('sessions');
   }
 
   public async load(id?: number | string) {
     const loadedSession = await super.load(id);
     if (this.current && this.current.$loki) {
-      socketSvc.off(`games/${this.current.$loki}`);
+      socketSvc.off(`${this.urlFragment}/${this.current.$loki}`);
     }
     if (loadedSession) {
       actions.updateSession(loadedSession);
-      socketSvc.on(`games/${loadedSession.$loki}`, (game?: ISession) => {
-        if (game && game.meta?.updated !== this.current.meta?.updated) {
-          this.current = game;
-          actions.updateSession(game);
-          M.toast({ html: 'Game updated' });
-        } else if (!game) {
-          this.current = {} as ISession;
-          actions.updateSession({} as ISession);
-          M.toast({ html: 'Game deleted' });
-          dashboardSvc.switchTo(Dashboards.HOME);
+      socketSvc.on(
+        `${this.urlFragment}/${loadedSession.$loki}`,
+        (session?: ISession) => {
+          console.log(JSON.stringify(session, null, 2));
+          if (session) {
+            if (
+              this.current.meta?.revision &&
+              session.meta?.revision !== this.current.meta.revision + 1
+            ) {
+              M.toast({ html: 'Session updated' });
+            }
+            this.current = session;
+            actions.updateSession(session);
+          } else if (!session) {
+            this.current = {} as ISession;
+            actions.updateSession({} as ISession);
+            M.toast({ html: 'Session deleted' });
+            dashboardSvc.switchTo(Dashboards.SEARCH);
+          }
+          m.redraw();
         }
-        m.redraw();
-      });
+      );
     }
     return loadedSession;
   }
@@ -47,20 +56,22 @@ class SessionService extends RestService<ISession> {
     return this.list;
   }
 
-  // public async loadFilteredList(): Promise<Array<Partial<IScenario>> | undefined> {
-  //   const filter = 'view?props=$loki,naam,kvk,locaties,owner,published,canEdit';
-  //   // http://localhost:3000/events/view?props=name,cmFunctions,incidentType,eventType
-  //   const result = await m.request<IScenario[]>({
-  //     method: 'GET',
-  //     url: this.baseUrl + filter,
-  //     withCredentials: this.withCredentials,
-  //   });
-  //   if (!result) {
-  //     console.warn('No result found at ' + this.baseUrl);
-  //   }
-  //   this.setList(result || []);
-  //   return this.list;
-  // }
+  public async loadActiveSessions(): Promise<
+    Array<Partial<ISession>> | undefined
+  > {
+    const filter = 'view?props=$loki,active,title';
+    // http://localhost:3000/sessions/view?props=$loki,active
+    const result = await m.request<ISession[]>({
+      method: 'GET',
+      url: this.baseUrl + filter,
+      withCredentials: this.withCredentials,
+    });
+    if (!result) {
+      console.warn('No result found at ' + this.baseUrl);
+    }
+    this.setList(result || []);
+    return this.list;
+  }
 }
 
 export const sessionSvc = new SessionService();

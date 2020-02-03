@@ -5,6 +5,7 @@ import { EditForm } from '../components/edit/edit-form';
 import { EventsList } from '../components/home/form-list';
 import { HomePage } from '../components/home/home-page';
 import { Layout } from '../components/layout';
+import { PlayPage } from '../components/play/play-page';
 import { FormView } from '../components/show/form-view';
 import { IDashboard } from '../models/dashboard';
 import { actions, states } from './';
@@ -15,6 +16,7 @@ export const enum Dashboards {
   HELP = 'HELP',
   READ = 'SHOW',
   EDIT = 'EDIT',
+  PLAY = 'PLAY',
   SEARCH = 'SEARCH',
   USER = 'USER',
 }
@@ -90,6 +92,14 @@ export const dashboardSvc: DashboardService = new DashboardService(Layout, [
     route: '/edit/:id',
     visible: false,
     component: EditForm,
+  },
+  {
+    id: Dashboards.PLAY,
+    title: 'PLAY',
+    icon: 'play_arrow',
+    route: '/play/:id/:sid',
+    visible: false,
+    component: PlayPage,
   },
   {
     id: Dashboards.HELP,

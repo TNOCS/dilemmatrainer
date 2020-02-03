@@ -3,9 +3,8 @@ import m from 'mithril';
 import { FlatButton, Icon } from 'mithril-materialized';
 import { IGame } from '../../../../common/src';
 import { Roles } from '../../models/roles';
+import { Auth, defaultRbtGame, gameSvc } from '../../services';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
-import { gameSvc } from '../../services/game-service';
-import { Auth } from '../../services/login-service';
 
 export const EventsList = () => {
   const sortByName:
@@ -64,53 +63,7 @@ export const EventsList = () => {
                 class: 'col s11 indigo darken-4 white-text',
                 style: 'margin: 1em;',
                 onclick: async () => {
-                  const scenario = await gameSvc.save({
-                    title: 'Nieuwe RBT game',
-                    owner: [Auth.email],
-                    published: false,
-                    groups: [
-                      { id: 'rbt', title: 'RBT', isMain: true },
-                      { id: 'ncc', title: 'NCC', level: 1 },
-                      { id: 'rot', title: 'ROT', level: -1 },
-                      { id: 'copi', title: 'COPI', level: -1 },
-                    ],
-                    roles: [
-                      { id: 'major', title: 'Burgemeester' },
-                      { id: 'dyke', title: 'Dijkgraaf' },
-                      { id: 'policeChief', title: 'Politiecommisaris' },
-                      { id: 'fireChief', title: 'Brandweercommandant' },
-                      { id: 'secretary', title: 'Secretaris' },
-                    ],
-                    characteristics: [
-                      {
-                        id: 'time',
-                        title: 'Hoge tijdsdruk',
-                        iconUrl: '/icons/hourglass.svg',
-                        values: [
-                          { id: 'yes', title: 'Ja' },
-                          { id: 'no', title: 'Nee' },
-                        ],
-                      },
-                      {
-                        id: 'uncertainty',
-                        title: 'Hoge onzekerheid',
-                        iconUrl: '/icons/uncertain.svg',
-                        values: [
-                          { id: 'yes', title: 'Ja' },
-                          { id: 'no', title: 'Nee' },
-                        ],
-                      },
-                      {
-                        id: 'conflicts',
-                        title: 'Tegenstrijdige belangen',
-                        iconUrl: '/icons/conflict.svg',
-                        values: [
-                          { id: 'yes', title: 'Ja' },
-                          { id: 'no', title: 'Nee' },
-                        ],
-                      },
-                    ],
-                  } as IGame);
+                  const scenario = await gameSvc.save(defaultRbtGame([Auth.email]));
                   if (scenario) {
                     dashboardSvc.switchTo(Dashboards.EDIT, {
                       id: scenario.$loki,
@@ -184,7 +137,9 @@ export const EventsList = () => {
                         'span.badge',
                         game.dilemmasModule && game.dilemmasModule.dilemmas
                           ? `${game.dilemmasModule.dilemmas.length} dilemma${
-                              game.dilemmasModule.dilemmas.length === 1 ? '' : 's'
+                              game.dilemmasModule.dilemmas.length === 1
+                                ? ''
+                                : 's'
                             }`
                           : '0 dilemmas'
                       ),

@@ -86,35 +86,35 @@
         "signature": "2c85b9fbfc285e9ee9a9dca0a65a54d1964d91041636b4b6642f2e67f5d59419"
       },
       "./src/models/content.ts": {
-        "version": "13a9e2f5439106257f9a098d4f5ab8741b2e156fbafa07618776ad4be30f5d70",
+        "version": "878f86dd5befb5291cf059fecc586176bcf7b8beae5f057194e08ab566380115",
         "signature": "2c07c619179324f02ebb81ed0648f48404e5c76422f1e3ae581f041c206e1d04"
       },
       "./src/models/claim.ts": {
-        "version": "2ec8e6f37c0b52316be4f5a822c82fbc227c7c8d6e37b9fb1a11a9f13fb19bc1",
-        "signature": "c1a34526300f62b7719ec8ee4fc3cb51cf7cc55af5aeaf06882d4513c4c5fb95"
+        "version": "545f89f75aa4c463038045a81be59885e26d37a26336d570e8bbd3d08e5e7415",
+        "signature": "9879e4e368a5983841d939545a52105e13b1fbf8d667fae17550e97c0cccd025"
       },
       "./src/models/characteristic.ts": {
-        "version": "ff3aabe1f9d5276d7301de71f89f8754c9b7bf1c67961ad97bf5592db29e21b3",
+        "version": "25cc5a864618de0a44a07454b249c5776cf58271f2fd30d9cea1bba4247746f0",
         "signature": "c8cbba931b56bc7dc62b17ae0affe5cc04e020809018db1025f6205d1a3b40fc"
       },
       "./src/models/dilemma.ts": {
-        "version": "b853c17b631de9843c7f387c03e53d0873d10af2488530a113dadfe781e2fdd9",
-        "signature": "d654520c7f4ac5531e3ca936a3671845e15cc76bfb42afeeafe4f2246fa0fcac"
+        "version": "5ed62244429e9e855c78e18aca23a07591476ad1e1fc37fc77a2ffe359b91ffa",
+        "signature": "32792e864a6fb609dc5a56259f98eb03ea33dbee2522b365923f0a7d0cf7ad4c"
       },
       "./src/models/role.ts": {
-        "version": "66db40450d507eb189002de092916a6d092c06790cb258906ba60c81a4752852",
+        "version": "4fd2e5c32b8bdbba1d23f691b353aa444a859b62ce403af49c2a8f9573abe067",
         "signature": "90b2010ca9194c906bb18259f765d7613b6f7e7dd3915ab3c9d3fdb8deabca8a"
       },
       "./src/models/group.ts": {
-        "version": "1e498162921c9fa30d268935068cc34dd9194d92cd4850301bff50856c0f3779",
+        "version": "1ae72c2e81872fce330221b5b14711206753cea01ca6874f0a7afa3768b4e8b5",
         "signature": "fe5056f9b00b4428d8c07443b743a546dd44c28c90b6f674549b8e40782c8ca5"
       },
       "./src/models/session.ts": {
-        "version": "aaa3b311a4fb10b198561728d3469d7ac1d717fc99a94a48ffe1c2f738721746",
-        "signature": "65fc2a3e32dd7886877635746543f708ad2bedd2984ed5c7684eed49e86b2893"
+        "version": "7fa430d567bde8edd5c80a6fb0c73086fc5a5c1d83aa70aa7f4eb3f4e69e8689",
+        "signature": "5d74758c2ad51ce0c6dba645e11d8b4b84eb4fbf9775c00ce4742376106d9770"
       },
       "./src/models/scenario-phase.ts": {
-        "version": "fcdc86471befe8c839866bb34a303c22b1c8081145c5dc62201f43db513ddac7",
+        "version": "925ac7061eaa59a11c118467f64e8079f45a4458605f3c2e42c48ab3a08da59e",
         "signature": "ba3496c271d831d52d05b1f00a95c3ca04719a1dd20615e5bb1e87460795dcb8"
       },
       "./src/models/work-agreement.ts": {
@@ -122,11 +122,11 @@
         "signature": "104567235d2acfd0259b03729747e325fdfbcaf5eb9de75808753af00ff474c4"
       },
       "./src/models/game.ts": {
-        "version": "9c19f6caccdc3d61a6d7f69e2ec739b2286a621960d645392546c4f3cb8eb41c",
-        "signature": "64c2fc04631f84afc9c19553e02016a80780b3f7ef7e9825cfeb34c05a9ae302"
+        "version": "1db73541a20fb870dceef64720256c07708fe19b489c3ffe13b65c34c6e4ea30",
+        "signature": "c3f2b02bf51e64cbbaf68a085ab81a72693b8286d9950e1cf84cb3cc73c813c3"
       },
       "./src/models/index.ts": {
-        "version": "c046b330d2864990ef0dc39fee01ebb50130c6288efd58d89065ef52aea86a22",
+        "version": "664a1d1536280c08a96319ce8edad2d64eb479a4bbb9a4af38acb3d88c1cf084",
         "signature": "c046b330d2864990ef0dc39fee01ebb50130c6288efd58d89065ef52aea86a22"
       },
       "./src/index.ts": {
@@ -168,8 +168,7 @@
         "./src/models/content.ts"
       ],
       "./src/models/dilemma.ts": [
-        "./src/models/characteristic.ts",
-        "./src/models/content.ts"
+        "./src/models/index.ts"
       ],
       "./src/models/role.ts": [
         "./src/models/content.ts"
@@ -192,10 +191,10 @@
         "./src/models/claim.ts",
         "./src/models/content.ts",
         "./src/models/dilemma.ts",
+        "./src/models/group.ts",
         "./src/models/role.ts",
         "./src/models/scenario-phase.ts",
-        "./src/models/work-agreement.ts",
-        "./src/models/group.ts"
+        "./src/models/work-agreement.ts"
       ],
       "./src/models/index.ts": [
         "./src/models/content.ts",
@@ -221,8 +220,7 @@
         "./src/models/content.ts"
       ],
       "./src/models/dilemma.ts": [
-        "./src/models/content.ts",
-        "./src/models/characteristic.ts"
+        "./src/models/index.ts"
       ],
       "./src/models/role.ts": [
         "./src/models/content.ts"
@@ -288,18 +286,18 @@
       "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2017.intl.d.ts",
       "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2017.typedarrays.d.ts",
       "./src/utils/index.ts",
-      "./src/models/work-agreement.ts",
-      "./src/index.ts",
       "./src/models/content.ts",
-      "./src/models/claim.ts",
       "./src/models/characteristic.ts",
-      "./src/models/dilemma.ts",
       "./src/models/role.ts",
-      "./src/models/group.ts",
+      "./src/models/work-agreement.ts",
+      "./src/models/claim.ts",
       "./src/models/session.ts",
+      "./src/models/dilemma.ts",
+      "./src/models/group.ts",
       "./src/models/scenario-phase.ts",
       "./src/models/game.ts",
-      "./src/models/index.ts"
+      "./src/models/index.ts",
+      "./src/index.ts"
     ]
   },
   "version": "3.7.4"

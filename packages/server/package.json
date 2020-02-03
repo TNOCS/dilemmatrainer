@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/erikvullings/dwang-in-de-zorg#readme",
   "dependencies": {
-    "rest-easy-loki": "^0.7.2",
+    "rest-easy-loki": "^0.7.5",
     "dotenv": "^8.2.0"
   },
   "devDependencies": {

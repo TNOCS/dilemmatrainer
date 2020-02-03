@@ -17,7 +17,7 @@ export class RestService<T extends ILokiObj> {
   }
 
   public getList() {
-    return this.list;
+    return this.list || [];
   }
 
   public getCurrent() {
@@ -30,6 +30,7 @@ export class RestService<T extends ILokiObj> {
 
   public async create(item: T, fd?: FormData) {
     try {
+      console.log(this.baseUrl);
       const result = await m.request<T>({
         method: 'POST',
         url: this.baseUrl,

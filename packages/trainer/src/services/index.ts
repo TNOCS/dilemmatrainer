@@ -1,3 +1,4 @@
+export * from './login-service';
 export * from './game-state';
 export * from './session-state';
 export * from './meiosis';

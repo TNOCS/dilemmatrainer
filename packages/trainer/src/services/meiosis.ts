@@ -13,9 +13,10 @@ export const appStateMgmt = {
   },
   actions: (us: UpdateStream) => {
     return {
-      search: (isSearching: boolean, searchQuery?: string) => us({ app: { isSearching, searchQuery }}),
+      search: (isSearching: boolean, searchQuery?: string) =>
+        us({ app: { isSearching, searchQuery } }),
     };
-  }
+  },
 };
 
 export interface IAppModel {
@@ -31,6 +32,12 @@ export interface IAppModel {
   };
 }
 
+export interface IActions {
+  updateGame: (g: IGame) => UpdateStream;
+  loadGame: (id?: number) => Promise<void>;
+  updateSession: (s: ISession) => UpdateStream;
+}
+
 export type ModelUpdateFunction =
   | Partial<IAppModel>
   | ((model: Partial<IAppModel>) => Partial<IAppModel>);
@@ -40,7 +47,7 @@ console.log('break');
 const app = {
   initial: Object.assign({}, appStateMgmt.initial, gameState.initial),
   actions: (us: UpdateStream) =>
-    Object.assign({}, gameState.actions(us), sessionState.actions(us)),
+    Object.assign({}, gameState.actions(us), sessionState.actions(us)) as IActions,
 };
 
 const update = Stream<ModelUpdateFunction>();

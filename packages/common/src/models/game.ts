@@ -2,10 +2,10 @@ import { ICharacteristic } from './characteristic';
 import { IClaim } from './claim';
 import { IContent } from './content';
 import { IDilemma } from './dilemma';
+import { IGroup } from './group';
 import { IRole } from './role';
 import { IScenarioPhase } from './scenario-phase';
 import { IWorkAgreement } from './work-agreement';
-import { IGroup } from './group';
 
 export interface ILokiObj {
   $loki?: number;
@@ -22,22 +22,22 @@ export interface IGameModule extends IContent {
   show?: boolean;
 }
 
-export interface IClaimsModule {
+export interface IClaimsModule extends IGameModule {
   /** Claims or 'vraagstukken' (module 1) */
   claims: IClaim[];
 }
 
-export interface IDilemmasModule {
+export interface IDilemmasModule extends IGameModule {
   /** Dilemmas (module 2) */
   dilemmas?: IDilemma[];
 }
 
-export interface IWorkAgreementsModule {
+export interface IWorkAgreementsModule extends IGameModule {
   /** Work agreements (module 3) */
   workAgreements?: IWorkAgreement[];
 }
 
-export interface IScenarioModule {
+export interface IScenarioModule extends IGameModule {
   /** Scenario phases (module 4) */
   scenarios: IScenarioPhase[];
 }

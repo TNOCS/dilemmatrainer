@@ -5,7 +5,7 @@ dependencies:
   materialize-css: 1.0.0
   mithril: 2.0.4
   mithril-leaflet: 0.1.7_540248bce08b6daa8f39770dcc779455
-  mithril-materialized: 0.16.0_f3d9df6f4766fd28b6cfb8072ccbc3ca
+  mithril-materialized: 0.16.1_f3d9df6f4766fd28b6cfb8072ccbc3ca
   services: 0.0.3
 devDependencies:
   '@types/geojson': 7946.0.7
@@ -3260,7 +3260,7 @@ packages:
       mithril: ^2.0.4
     resolution:
       integrity: sha512-8f56fJsglSmEpVAjH/4bpgcjXr587+r8ZttLet9gcOl6C78ZXrCwrz5twIo2NLqmLuLGv77vmKyzIf7XVuqoRw==
-  /mithril-materialized/0.16.0_f3d9df6f4766fd28b6cfb8072ccbc3ca:
+  /mithril-materialized/0.16.1_f3d9df6f4766fd28b6cfb8072ccbc3ca:
     dependencies:
       materialize-css: 1.0.0
       mithril: 2.0.4
@@ -3269,7 +3269,7 @@ packages:
       materialize-css: ^1.0.0
       mithril: ^2.0.4
     resolution:
-      integrity: sha512-exWUe1qMNNUu2sc0VDg06vtnYtcscFtenuzUAIAPPM7t69G7d4lvmvJpV57vNZKRpmfs16TQLBirWDSh9pNn8A==
+      integrity: sha512-Y6r+X5spyE5SiTAiyKN2hdXqyfIw+ZV2t8Qg4usD50royGK8KDA5kDN979tR9JZphsIr3PYif5FUz/TGl1baSQ==
   /mithril/2.0.4:
     dev: false
     hasBin: true
@@ -5386,7 +5386,7 @@ specifiers:
   materialize-css: ^1.0.0
   mithril: ^2.0.4
   mithril-leaflet: ^0.1.7
-  mithril-materialized: ^0.16.0
+  mithril-materialized: ^0.16.1
   parcel-bundler: ^1.12.4
   services: 0.0.3
   typescript: ^3.7.5
