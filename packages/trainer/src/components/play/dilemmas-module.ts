@@ -7,10 +7,11 @@ import {
   IDilemma,
   ISession,
 } from '../../../../common/src';
+import { apiService } from '../../app';
 import { IActions, IAppModel, UpdateStream } from '../../services/meiosis';
 import { sessionSvc } from '../../services/session-service';
 import { randomItem, range } from '../../utils/index';
-import { apiService } from '../../app';
+import { DecisionTypeView } from '../ui/decision-type-view';
 
 export const CharacteristicsView: FactoryComponent<{
   characteristics: ICharacteristic[];
@@ -25,38 +26,47 @@ export const CharacteristicsView: FactoryComponent<{
     view: ({ attrs: { characteristics, dilemma } }) => {
       const { answeredValues } = dilemma as IAnsweredDilemma;
       console.table(characteristics);
-      return m('table', [
+      return m(
+        'row',
         m(
-          'thead',
-          m('tr', [
-            m('th', 'Type'),
-            ...characteristics.map(c =>
-              m(
-                'th',
-                // c.title
-                c.iconUrl && c.iconUrl.length > 0
-                  ? m('img', { height: '30px', src: apiService() + c.iconUrl[0], alt: c.title })
-                  : c.title
-              )
+          '.col.s12',
+          m('table', [
+            m(
+              'thead',
+              m('tr', [
+                m('th', 'Type'),
+                ...characteristics.map(c =>
+                  m(
+                    'th',
+                    c.iconUrl && c.iconUrl.length > 0
+                      ? m('img', {
+                          height: '30px',
+                          src: apiService() + c.iconUrl[0],
+                          alt: c.title,
+                        })
+                      : c.title
+                  )
+                ),
+              ])
             ),
-          ])
-        ),
-        m('tbody', [
-          m('tr', [
-            m('td', 'Expected'),
-            ...characteristics.map(c =>
-              m('td', getValue(c, dilemma.characteristics[c.id]))
-            ),
-          ]),
-          answeredValues &&
-            m('tr', [
-              m('td', 'Answered'),
-              ...characteristics.map(c =>
-                m('td', getValue(c, answeredValues[c.id]))
-              ),
+            m('tbody', [
+              m('tr', [
+                m('td', 'Expected'),
+                ...characteristics.map(c =>
+                  m('td', getValue(c, dilemma.characteristics[c.id]))
+                ),
+              ]),
+              answeredValues &&
+                m('tr', [
+                  m('td', 'Answered'),
+                  ...characteristics.map(c =>
+                    m('td', getValue(c, answeredValues[c.id]))
+                  ),
+                ]),
             ]),
-        ]),
-      ]);
+          ])
+        )
+      );
     },
   };
 };
@@ -111,10 +121,10 @@ export const DilemmasModule: FactoryComponent<IDilemmasModule> = () => {
 
       const nextDilemma = () => {
         const id = nextId();
-        if (id && activeDilemma) {
+        if (id && dilemma) {
           session.activeDilemmaIndex = id;
           const answeredDilemma = {
-            ...activeDilemma,
+            ...dilemma,
             correct: false,
           } as IAnsweredDilemma;
           answeredDilemmas.push(answeredDilemma);
@@ -131,7 +141,7 @@ export const DilemmasModule: FactoryComponent<IDilemmasModule> = () => {
         session.activeDilemmaIndex = activeDilemmaIndex;
         save(session);
       }
-      const activeDilemma = activeDilemmaIndex
+      const dilemma = activeDilemmaIndex
         ? dilemmas[activeDilemmaIndex]
         : undefined;
       const score = answeredDilemmas.reduce(
@@ -139,14 +149,14 @@ export const DilemmasModule: FactoryComponent<IDilemmasModule> = () => {
         0
       );
       const l = answeredDilemmas.length;
-      return activeDilemma
+      return dilemma
         ? [
             m('h5', 'Active dilemma'),
-            m('p', [m('strong', 'Context: '), activeDilemma.description]),
-            m('p', [m('strong', 'Dilemma: '), activeDilemma.title]),
-            activeDilemma.notes &&
-              m('p', [m('strong', 'Notes: '), activeDilemma.notes]),
-            m(CharacteristicsView, { characteristics, dilemma: activeDilemma }),
+            m('p', [m('strong', 'Context: '), dilemma.description]),
+            m('p', [m('strong', 'Dilemma: '), dilemma.title]),
+            dilemma.notes && m('p', [m('strong', 'Notes: '), dilemma.notes]),
+            m(CharacteristicsView, { characteristics, dilemma }),
+            m(DecisionTypeView, { characteristics, dilemma }),
             m(
               'p',
               m(
@@ -188,7 +198,7 @@ export const DilemmasModule: FactoryComponent<IDilemmasModule> = () => {
                 )
               ),
             ]),
-            m('pre', JSON.stringify(activeDilemma, null, 2)),
+            m('pre', JSON.stringify(dilemma, null, 2)),
           ]
         : m(
             'p',
