@@ -1,6 +1,6 @@
 /** Play the claims (vraagstukken) module */
 import m, { Attributes, FactoryComponent } from 'mithril';
-import { FlatButton, Icon } from 'mithril-materialized';
+import { FlatButton, Icon, ModalPanel } from 'mithril-materialized';
 import {
   IAnsweredDilemma,
   ICharacteristic,
@@ -12,6 +12,7 @@ import { IActions, IAppModel, UpdateStream } from '../../services/meiosis';
 import { sessionSvc } from '../../services/session-service';
 import { randomItem, range } from '../../utils/index';
 import { DecisionTypeView } from '../ui/decision-type-view';
+import { SlimdownView } from 'mithril-ui-form';
 
 export const CharacteristicsView: FactoryComponent<{
   characteristics: ICharacteristic[];
@@ -25,7 +26,6 @@ export const CharacteristicsView: FactoryComponent<{
   return {
     view: ({ attrs: { characteristics, dilemma } }) => {
       const { answeredValues } = dilemma as IAnsweredDilemma;
-      console.table(characteristics);
       return m(
         'row',
         m(
@@ -107,7 +107,7 @@ export const DilemmasModule: FactoryComponent<IDilemmasModule> = () => {
       const save = saveSession(updateSession);
       const {
         characteristics = [],
-        dilemmasModule: { dilemmas = [] } = {},
+        dilemmasModule: { dilemmas = [], title = '', description = '', mapUrl = '', legendUrl = '' } = {},
       } = game;
       const { answeredDilemmas = [] } = session;
       const answeredDilemmasIds = answeredDilemmas.map(a => a.index);
@@ -149,61 +149,82 @@ export const DilemmasModule: FactoryComponent<IDilemmasModule> = () => {
         0
       );
       const l = answeredDilemmas.length;
-      return dilemma
-        ? [
-            m('h5', 'Active dilemma'),
-            m('p', [m('strong', 'Context: '), dilemma.description]),
-            m('p', [m('strong', 'Dilemma: '), dilemma.title]),
-            dilemma.notes && m('p', [m('strong', 'Notes: '), dilemma.notes]),
-            m(CharacteristicsView, { characteristics, dilemma }),
-            m(DecisionTypeView, { characteristics, dilemma }),
-            m(
-              'p',
+      return [
+        m('ul.inline', [
+          m('li', m(FlatButton, { iconName: 'info', modalId: 'show-info' })),
+          mapUrl && m('li', m(FlatButton, { iconName: 'map', modalId: 'show-map' })),
+        ]),
+        m(ModalPanel, {
+          id: 'show-info',
+          title,
+          fixedFooter: true,
+          description: m(SlimdownView, { md: description }),
+        }),
+        m(ModalPanel, {
+          id: 'show-map',
+          title: 'Map',
+          fixedFooter: true,
+          description: m('div', [
+            m('img', { href: apiService() + mapUrl, alt: 'Map of the area.' }),
+            m('img', { href: apiService() + legendUrl, alt: 'Legend' }),
+          ]),
+        }),
+        dilemma
+          ? [
+              m('h5', 'Active dilemma'),
+              m('p', [m('strong', 'Context: '), dilemma.description]),
+              m('p', [m('strong', 'Dilemma: '), dilemma.title]),
+              dilemma.notes && m('p', [m('strong', 'Notes: '), dilemma.notes]),
+              m(DecisionTypeView, { characteristics, dilemma, readonly: true }),
+              m(CharacteristicsView, { characteristics, dilemma }),
               m(
-                'strong',
-                `Current score is ${score} of ${l}${
-                  l ? ` (${Math.round((10 * score) / l) / 10})` : ''
-                }. ${dilemmas.length - l} dilemmas left.`
-              )
-            ),
-            m(
-              '.row.buttons',
-              m(FlatButton, {
-                iconName: 'navigate_next',
-                className: 'btn-large right',
-                iconClass: 'large',
-                onclick: nextDilemma,
-              })
-            ),
-            m('table.highlight', [
-              m(
-                'thead',
-                m('tr', [m('th', 'ID'), m('th', 'TITLE'), m('th', 'CORRECT')])
-              ),
-              m(
-                'tbody',
-                answeredDilemmas.reverse().map((c, i) =>
-                  m('tr', [
-                    m('td', l - i),
-                    m('td', c.title),
-                    m(
-                      'td',
-                      m(Icon, {
-                        iconName: c.correct
-                          ? 'check_box'
-                          : 'check_box_outline_blank',
-                      })
-                    ),
-                  ])
+                'p',
+                m(
+                  'strong',
+                  `Current score is ${score} of ${l}${
+                    l ? ` (${Math.round((10 * score) / l) / 10})` : ''
+                  }. ${dilemmas.length - l} dilemmas left.`
                 )
               ),
-            ]),
-            m('pre', JSON.stringify(dilemma, null, 2)),
-          ]
-        : m(
-            'p',
-            `There are no more dilemmas to answer. Your final score is ${score} of ${l}.`
-          );
+              m(
+                '.row.buttons',
+                m(FlatButton, {
+                  iconName: 'navigate_next',
+                  className: 'btn-large right',
+                  iconClass: 'large',
+                  onclick: nextDilemma,
+                })
+              ),
+              m('table.highlight', [
+                m(
+                  'thead',
+                  m('tr', [m('th', 'ID'), m('th', 'TITLE'), m('th', 'CORRECT')])
+                ),
+                m(
+                  'tbody',
+                  answeredDilemmas.reverse().map((c, i) =>
+                    m('tr', [
+                      m('td', l - i),
+                      m('td', c.title),
+                      m(
+                        'td',
+                        m(Icon, {
+                          iconName: c.correct
+                            ? 'check_box'
+                            : 'check_box_outline_blank',
+                        })
+                      ),
+                    ])
+                  )
+                ),
+              ]),
+              // m('pre', JSON.stringify(dilemma, null, 2)),
+            ]
+          : m(
+              'p',
+              `There are no more dilemmas to answer. Your final score is ${score} of ${l}.`
+            ),
+      ];
     },
   };
 };

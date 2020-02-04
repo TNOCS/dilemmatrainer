@@ -2,7 +2,7 @@ import { IContent } from './content';
 import { IDilemma } from './dilemma';
 
 export interface IScenarioPhase extends IContent {
-  dilemmas: IDilemma[];
+  dilemmas?: IDilemma[];
   mapUrl?: string;
   legendUrl?: string;
 

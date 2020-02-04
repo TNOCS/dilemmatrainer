@@ -114,16 +114,16 @@
         "signature": "5d74758c2ad51ce0c6dba645e11d8b4b84eb4fbf9775c00ce4742376106d9770"
       },
       "./src/models/scenario-phase.ts": {
-        "version": "925ac7061eaa59a11c118467f64e8079f45a4458605f3c2e42c48ab3a08da59e",
-        "signature": "ba3496c271d831d52d05b1f00a95c3ca04719a1dd20615e5bb1e87460795dcb8"
+        "version": "e3bf81b3b9e103042c91909c00a6c7601a33b5c9b2cf302165394f34e6d047af",
+        "signature": "bf29c184a0899b91869e8ef92fb26840e1c23187aed58b8b06d087df930440d6"
       },
       "./src/models/work-agreement.ts": {
         "version": "1b7c82cc7c02f4001eeb84cd53fa8b9dec7232e01305403ec5dc4087c8bbcb94",
         "signature": "104567235d2acfd0259b03729747e325fdfbcaf5eb9de75808753af00ff474c4"
       },
       "./src/models/game.ts": {
-        "version": "1db73541a20fb870dceef64720256c07708fe19b489c3ffe13b65c34c6e4ea30",
-        "signature": "c3f2b02bf51e64cbbaf68a085ab81a72693b8286d9950e1cf84cb3cc73c813c3"
+        "version": "c865342ce65d334b2720edc9cc4cc16728ce7188461214f8c3e048ec7ca1fa73",
+        "signature": "c8befb09151317e02f4b6125a8807ba90df09eda3db2bc3804700c201a3b4fe7"
       },
       "./src/models/index.ts": {
         "version": "664a1d1536280c08a96319ce8edad2d64eb479a4bbb9a4af38acb3d88c1cf084",
@@ -241,9 +241,8 @@
       "./src/models/game.ts": [
         "./src/models/content.ts",
         "./src/models/claim.ts",
-        "./src/models/dilemma.ts",
-        "./src/models/work-agreement.ts",
         "./src/models/scenario-phase.ts",
+        "./src/models/work-agreement.ts",
         "./src/models/characteristic.ts",
         "./src/models/role.ts",
         "./src/models/group.ts"
@@ -291,12 +290,25 @@
       "./src/models/characteristic.ts",
       "./src/models/role.ts",
       "./src/models/work-agreement.ts",
+      [
+        "./src/models/game.ts",
+        [
+          {
+            "file": "./src/models/game.ts",
+            "start": 124,
+            "length": 37,
+            "messageText": "'IDilemma' is declared but its value is never read.",
+            "category": 1,
+            "code": 6133,
+            "reportsUnnecessary": true
+          }
+        ]
+      ],
       "./src/models/dilemma.ts",
-      "./src/models/index.ts",
-      "./src/models/game.ts",
-      "./src/models/scenario-phase.ts",
       "./src/models/group.ts",
       "./src/models/session.ts",
+      "./src/models/scenario-phase.ts",
+      "./src/models/index.ts",
       "./src/index.ts"
     ]
   },

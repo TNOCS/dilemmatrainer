@@ -27,10 +27,7 @@ export interface IClaimsModule extends IGameModule {
   claims: IClaim[];
 }
 
-export interface IDilemmasModule extends IGameModule {
-  /** Dilemmas (module 2) */
-  dilemmas?: IDilemma[];
-}
+export interface IDilemmasModule extends IGameModule, IScenarioPhase {}
 
 export interface IWorkAgreementsModule extends IGameModule {
   /** Work agreements (module 3) */

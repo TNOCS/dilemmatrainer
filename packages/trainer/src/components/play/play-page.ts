@@ -230,7 +230,7 @@ export const PlayPage: FactoryComponent<{
                 activeModule === 'scenarios' && m('div', 'scenarios'),
               ]),
             ]),
-          game && m('pre', JSON.stringify(game, null, 2)),
+          // game && m('pre', JSON.stringify(game, null, 2)),
         ]),
         m(ModalPanel, {
           id: 'create-session',

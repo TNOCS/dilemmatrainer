@@ -22,15 +22,25 @@ export const DecisionTypeView: FactoryComponent<IDecisionTypeView> = () => {
         );
       const decisionModel = () => {
         const { characteristics: cv } = dilemma;
-        const decision = (cv['time'] === 'yes' ? 4 : 0) + (cv['uncertainty'] === 'yes' ? 2 : 0) + (cv['conflicts'] === 'yes' ? 1 : 0);
+        const decision =
+          (cv['time'] === 'yes' ? 4 : 0) +
+          (cv['uncertainty'] === 'yes' ? 2 : 0) +
+          (cv['conflicts'] === 'yes' ? 1 : 0);
         switch (decision) {
-          case 0: return { decision, label: 'Routinely'};
-          case 1: return { decision, label: 'Negociating'};
-          case 2: return { decision, label: 'Consultative'};
-          case 3: return { decision, label: 'Consultative & Negociating'};
-          case 4: return { decision, label: 'Hammer piece'};
-          case 5: return { decision, label: 'Authoritative'};
-          default: return { decision, label: 'Intuititive'};
+          case 0:
+            return { decision, label: 'Routine decision' };
+          case 1:
+            return { decision, label: 'Negociating decision' };
+          case 2:
+            return { decision, label: 'Consultative decision' };
+          case 3:
+            return { decision, label: 'Consultative & Negociating decision' };
+          case 4:
+            return { decision, label: 'Hammer piece' };
+          case 5:
+            return { decision, label: 'Authoritative decision' };
+          default:
+            return { decision, label: 'Intuititive decision' };
         }
       };
       const { decision: d, label } = decisionModel();
@@ -39,7 +49,7 @@ export const DecisionTypeView: FactoryComponent<IDecisionTypeView> = () => {
         return;
       }
       if (readonly) {
-        return m('p', label + ' decision making');
+        return m('p', [m('strong', 'Decision type: '), label + '.']);
       }
       return m(Select, {
         checkedId: d,
@@ -54,14 +64,14 @@ export const DecisionTypeView: FactoryComponent<IDecisionTypeView> = () => {
           { id: 6, label: 'Intuititive (no conflicts)' },
           { id: 7, label: 'Intuititive (with conflicts)' },
         ],
-        onchange: dec => {
-          const d = dec instanceof Array ? +dec[0] : +dec;
+        onchange: decision => {
+          const v = decision instanceof Array ? +decision[0] : +decision;
           dilemma.characteristics = {
-            time: d >= 4 ? 'yes' : 'no',
-            uncertainty: d - 4 >= 2 ? 'yes' : 'no',
-            conflicts: d - 6 >= 1 ? 'yes' : 'no',
+            time: v >= 4 ? 'yes' : 'no',
+            uncertainty: v - 4 >= 2 ? 'yes' : 'no',
+            conflicts: v - 6 >= 1 ? 'yes' : 'no',
           };
-        }
+        },
       });
     },
   };

@@ -198,7 +198,19 @@ li.clickable {
 
 /*Figuring out where this goes later*/
 
-.acceptDilemmaToggle, .acceptDilemmaToggle label{
+.acceptDilemmaToggle,
+.acceptDilemmaToggle label {
   margin-bottom: 5%;
   color: #1a237e;
+}
+
+ul.inline {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+ul.inline > li {
+  float: left;
 }
