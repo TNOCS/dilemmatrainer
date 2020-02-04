@@ -90,8 +90,8 @@
         "signature": "2c07c619179324f02ebb81ed0648f48404e5c76422f1e3ae581f041c206e1d04"
       },
       "./src/models/claim.ts": {
-        "version": "545f89f75aa4c463038045a81be59885e26d37a26336d570e8bbd3d08e5e7415",
-        "signature": "9879e4e368a5983841d939545a52105e13b1fbf8d667fae17550e97c0cccd025"
+        "version": "3d0f606fcbaf9d23bb27d6feeede470bd4ec6fb465378b4681569cad8c911fc8",
+        "signature": "59855a512359c902104f4afb11fe1328bb782cd6c4d406053ecdd625f89293a4"
       },
       "./src/models/characteristic.ts": {
         "version": "ade945880e313a97e34f0f8b11b2c05968c6a19aa1fb745611dbd4bab41e1882",
@@ -287,10 +287,10 @@
       "./node_modules/.pnpm/registry.npmjs.org/typescript/3.7.4/node_modules/typescript/lib/lib.es2017.typedarrays.d.ts",
       "./src/utils/index.ts",
       "./src/models/content.ts",
-      "./src/models/claim.ts",
+      "./src/models/characteristic.ts",
       "./src/models/role.ts",
       "./src/models/work-agreement.ts",
-      "./src/models/characteristic.ts",
+      "./src/models/claim.ts",
       "./src/models/index.ts",
       "./src/models/game.ts",
       "./src/models/dilemma.ts",

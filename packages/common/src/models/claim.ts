@@ -1,4 +1,4 @@
-import { IContent } from "./content";
+import { IContent } from './content';
 
 export interface ICorrect {
   /** Index of the answered item */
