@@ -11,6 +11,7 @@ import { IActions, IAppModel, sessionSvc, UpdateStream } from '../../services';
 import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
 import { CircularSpinner } from '../ui/preloader';
 import { ClaimsModule } from './claims-module';
+import { DilemmasModule } from './dilemmas-module';
 
 export const PlayPage: FactoryComponent<{
   state: IAppModel;
@@ -188,7 +189,8 @@ export const PlayPage: FactoryComponent<{
           ]
         ),
         m('.contentarea', [
-          session && typeof session.active === 'boolean' &&
+          session &&
+            typeof session.active === 'boolean' &&
             m('.row', [
               m('h5', `${session.active ? 'Active' : 'Stopped'} session`),
               m(TextInput, {
@@ -222,7 +224,8 @@ export const PlayPage: FactoryComponent<{
               m('.col.s12', [
                 activeModule === 'claims' &&
                   m(ClaimsModule, { state, actions }),
-                activeModule === 'dilemmas' && m('div', 'dilemmas'),
+                activeModule === 'dilemmas' &&
+                  m(DilemmasModule, { state, actions }),
                 activeModule === 'workAgreements' && m('div', 'workAgreements'),
                 activeModule === 'scenarios' && m('div', 'scenarios'),
               ]),
