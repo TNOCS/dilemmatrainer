@@ -110,8 +110,8 @@
         "signature": "fe5056f9b00b4428d8c07443b743a546dd44c28c90b6f674549b8e40782c8ca5"
       },
       "./src/models/session.ts": {
-        "version": "7fa430d567bde8edd5c80a6fb0c73086fc5a5c1d83aa70aa7f4eb3f4e69e8689",
-        "signature": "5d74758c2ad51ce0c6dba645e11d8b4b84eb4fbf9775c00ce4742376106d9770"
+        "version": "b30072f69d3948e3c1ed66d233695bf01f965127eaa48a0e98caeb76356de939",
+        "signature": "919a24c8b7676d305147b67065cb81998a9ba943b14450da86a5bf5450ae5e8e"
       },
       "./src/models/scenario-phase.ts": {
         "version": "e3bf81b3b9e103042c91909c00a6c7601a33b5c9b2cf302165394f34e6d047af",
@@ -290,6 +290,11 @@
       "./src/models/characteristic.ts",
       "./src/models/role.ts",
       "./src/models/work-agreement.ts",
+      "./src/models/session.ts",
+      "./src/models/index.ts",
+      "./src/models/dilemma.ts",
+      "./src/models/group.ts",
+      "./src/models/scenario-phase.ts",
       [
         "./src/models/game.ts",
         [
@@ -304,11 +309,6 @@
           }
         ]
       ],
-      "./src/models/dilemma.ts",
-      "./src/models/group.ts",
-      "./src/models/session.ts",
-      "./src/models/scenario-phase.ts",
-      "./src/models/index.ts",
       "./src/index.ts"
     ]
   },

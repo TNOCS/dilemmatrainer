@@ -17,5 +17,7 @@ export interface ISession extends ILokiObj, IContent {
   /** Results so far */
   answeredDilemmas: IAnsweredDilemma[];
   /** Index of the scenario that is currently active */
-  activeScenarioPhaseIndex: number;
+  activeScenarioIndex: number;
+  /** Index of the dilemma in the scenario that is currently active */
+  activeScenarioDilemmaIndex: { [scenarioIndex: number]: number };
 }

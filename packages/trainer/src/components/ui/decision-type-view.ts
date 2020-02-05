@@ -43,11 +43,11 @@ export const DecisionTypeView: FactoryComponent<IDecisionTypeView> = () => {
             return { decision, label: 'Intuititive decision' };
         }
       };
-      const { decision: d, label } = decisionModel();
-      console.log(d);
       if (!checkCharacteristics()) {
         return;
       }
+      const { decision: d, label } = decisionModel();
+      console.log(d);
       if (readonly) {
         return m('p', [m('strong', 'Decision type: '), label + '.']);
       }

@@ -165,8 +165,8 @@ export const DilemmasModule: FactoryComponent<IDilemmasModule> = () => {
           title: 'Map',
           fixedFooter: true,
           description: m('div', [
-            m('img', { href: apiService() + mapUrl, alt: 'Map of the area.' }),
-            m('img', { href: apiService() + legendUrl, alt: 'Legend' }),
+            m('img.responsive-img', { src: apiService() + mapUrl, alt: 'Map of the area.' }),
+            m('img.responsive-img', { src: apiService() + legendUrl, alt: 'Legend' }),
           ]),
         }),
         dilemma

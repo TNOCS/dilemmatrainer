@@ -12,6 +12,7 @@ import { Dashboards, dashboardSvc } from '../../services/dashboard-service';
 import { CircularSpinner } from '../ui/preloader';
 import { ClaimsModule } from './claims-module';
 import { DilemmasModule } from './dilemmas-module';
+import { ScenariosModule } from './scenarios-module';
 
 export const PlayPage: FactoryComponent<{
   state: IAppModel;
@@ -227,7 +228,8 @@ export const PlayPage: FactoryComponent<{
                 activeModule === 'dilemmas' &&
                   m(DilemmasModule, { state, actions }),
                 activeModule === 'workAgreements' && m('div', 'workAgreements'),
-                activeModule === 'scenarios' && m('div', 'scenarios'),
+                activeModule === 'scenarios' &&
+                  m(ScenariosModule, { state, actions }),
               ]),
             ]),
           // game && m('pre', JSON.stringify(game, null, 2)),
