@@ -135,35 +135,7 @@ export const ScenariosModule: FactoryComponent<IScenariosModule> = () => {
               },
             })
           ),
-          // m('table.highlight', [
-          //   m(
-          //     'thead',
-          //     m('tr', [m('th', 'ID'), m('th', 'TITLE'), m('th', 'CORRECT')])
-          //   ),
-          //   m(
-          //     'tbody',
-          //     answeredDilemmas.reverse().map((c, i) =>
-          //       m('tr', [
-          //         m('td', l - i),
-          //         m('td', c.title),
-          //         m(
-          //           'td',
-          //           m(Icon, {
-          //             iconName: c.correct
-          //               ? 'check_box'
-          //               : 'check_box_outline_blank',
-          //           })
-          //         ),
-          //       ])
-          //     )
-          //   ),
-          // ]),
-          // m('pre', JSON.stringify(dilemma, null, 2)),
         ],
-        // : m(
-        //     'p',
-        //     `There are no more dilemmas to answer. Your final score is ${score} of ${l}.`
-        //   ),
       ];
     },
   };

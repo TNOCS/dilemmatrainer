@@ -13,6 +13,7 @@ import { CircularSpinner } from '../ui/preloader';
 import { ClaimsModule } from './claims-module';
 import { DilemmasModule } from './dilemmas-module';
 import { ScenariosModule } from './scenarios-module';
+import { WorkAgreementsModule } from './work-agreements-module';
 
 export const PlayPage: FactoryComponent<{
   state: IAppModel;
@@ -94,7 +95,7 @@ export const PlayPage: FactoryComponent<{
           show: scenariosModule?.show,
         },
       ].filter(s => s.show);
-      console.log('Module: ' + session.activeModule);
+      // console.log('Module: ' + session.activeModule);
       return m('.row', [
         m(
           'ul#slide-out.sidenav.sidenav-fixed',
@@ -227,7 +228,8 @@ export const PlayPage: FactoryComponent<{
                   m(ClaimsModule, { state, actions }),
                 activeModule === 'dilemmas' &&
                   m(DilemmasModule, { state, actions }),
-                activeModule === 'workAgreements' && m('div', 'workAgreements'),
+                activeModule === 'workAgreements' &&
+                  m(WorkAgreementsModule, { state, actions }),
                 activeModule === 'scenarios' &&
                   m(ScenariosModule, { state, actions }),
               ]),

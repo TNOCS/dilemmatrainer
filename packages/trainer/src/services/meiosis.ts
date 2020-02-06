@@ -43,7 +43,6 @@ export type ModelUpdateFunction =
   | ((model: Partial<IAppModel>) => Partial<IAppModel>);
 export type UpdateStream = Stream<ModelUpdateFunction>;
 
-console.log('break');
 const app = {
   initial: Object.assign({}, appStateMgmt.initial, gameState.initial),
   actions: (us: UpdateStream) =>

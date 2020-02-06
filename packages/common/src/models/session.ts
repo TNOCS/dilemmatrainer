@@ -1,4 +1,5 @@
 import { IAnsweredClaim, IAnsweredDilemma, IContent, ILokiObj } from '.';
+import { IWorkAgreement } from './work-agreement';
 
 /** Game session */
 export interface ISession extends ILokiObj, IContent {
@@ -12,6 +13,8 @@ export interface ISession extends ILokiObj, IContent {
   activeClaimIndex: number;
   /** Results so far */
   answeredClaims: IAnsweredClaim[];
+  /** Finally made work agreements */
+  workAgreements: IWorkAgreement[];
   /** Index of the dilemma that is currently active */
   activeDilemmaIndex: number;
   /** Results so far */

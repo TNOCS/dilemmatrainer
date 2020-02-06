@@ -20,7 +20,7 @@ class SessionService extends RestService<ISession> {
       socketSvc.on(
         `${this.urlFragment}/${loadedSession.$loki}`,
         (session?: ISession) => {
-          console.log(JSON.stringify(session, null, 2));
+          // console.log(JSON.stringify(session, null, 2));
           if (session) {
             if (
               this.current.meta?.revision &&
