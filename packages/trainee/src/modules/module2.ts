@@ -18,7 +18,7 @@ let hbarSize = 7;
 const MODULE2 = {
   oninit: () => {
     state.currentStep = 0;
-    state.showHelp = false;
+    state.showHelp = true;
     setupCharas();
   },
   view: () => {
@@ -32,53 +32,68 @@ const MODULE2 = {
 const interaction = {
   view: () => {
     return m('div', {class: 'interactionArea'}, [
-      m('div', {class:'row'},[
-        m('div', {class: 'col s10', id:'dilemmaBG'}, [
-          m('p', {id:'description', class:"flow-text"} , state.dilemmas[state.currentStep].description),
-          m('h5', {id: 'title', class:"flow-text"} , state.dilemmas[state.currentStep].title)
-        ])
-      ]),
+      state.showHelp ? 
+        m(help, {
+            title: 'Module 2',
+            desc: [
+              'You will be presented with a dilemma, in the form of a context followed by a question.',
+              'Under the dilemma you will see a grid with a couple of characteristics.',
+              'In this grid, mark if the characteristics apply to the current dilemma.'
+            ],
+          })
+      : 
+        state.dilemmas.length >= state.currentStep + 1 ?
+          m('div', [
+            m('div', {class:'row'},[
+              m('div', {class: 'col s10', id:'dilemmaBG'}, [
+                m('p', {id:'description', class:"flow-text"} , state.dilemmas[state.currentStep].description),
+                m('h5', {id: 'title', class:"flow-text"} , state.dilemmas[state.currentStep].title)
+              ])
+            ]),
 
-      m('div', {class:'row', id:'grid'},[
-        m('div', {class:'row'},[
-          m('div', {id:'topItems', class: 'col offset-s4 s7 gridItems'}, [
-            m('div', {class: 'gridVbarCont'}, m('div', {class: 'gridVbar'})),
+            m('div', {class:'row', id:'grid'},[
+              m('div', {class:'row'},[
+                m('div', {id:'topItems', class: 'col offset-s4 s7 gridItems'}, [
+                  m('div', {class: 'gridVbarCont'}, m('div', {class: 'gridVbar'})),
 
-            charaNames.map( (char, i) => {
-              return  [
-                m('div', {class: 'charaDis'}, charaNames[i]), 
-                m('div', {class: 'gridVbarCont'},
-                m('div', {class: 'gridVbar'})
-                )]
-            })
-          ]),
+                  charaNames.map( (char, i) => {
+                    return  [
+                      m('div', {class: 'charaDis'}, charaNames[i]), 
+                      m('div', {class: 'gridVbarCont'},
+                      m('div', {class: 'gridVbar'})
+                      )]
+                  })
+                ]),
 
-          m('div', {class: 'gridHbarCont col offset-s4 s' + String(hbarSize)}, m('hr', {class: 'gridHbar', id:'firstHBar'}))
-        ]),
-        m('div', {class:'row', style:'margin-top: 30px'},[
-          m('div', {id: 'yes', class: 'col offset-s3 s1'}),
+                m('div', {class: 'gridHbarCont col offset-s4 s' + String(hbarSize)}, m('hr', {class: 'gridHbar', id:'firstHBar'}))
+              ]),
+              m('div', {class:'row', style:'margin-top: 30px'},[
+                m('div', {id: 'yes', class: 'col offset-s3 s1'}),
 
-          m('div', {id:'middleItems', class: 'col offset-s4 s7 gridItems'}, [
-            charaNames.map( (char, i) => {
-              return  m('div', {class: 'stampPoint', id:'yesChar' + i , onclick: stamp.bind(this, i, 1)})
-            })
-          ]),
-          m('div', {class: 'gridHbarCont col offset-s4 s' + String(hbarSize)}, m('hr', {class: 'gridHbar', id:'secondHBar'}))
+                m('div', {id:'middleItems', class: 'col offset-s4 s7 gridItems'}, [
+                  charaNames.map( (char, i) => {
+                    return  m('div', {class: 'stampPoint', id:'yesChar' + i , onclick: stamp.bind(this, i, 1)})
+                  })
+                ]),
+                m('div', {class: 'gridHbarCont col offset-s4 s' + String(hbarSize)}, m('hr', {class: 'gridHbar', id:'secondHBar'}))
 
-        ]),
-        m('div', {class:'row', style:'margin-top: 20px'},[
-          m('div', {id: 'no', class: 'col offset-s3 s1'}),
+              ]),
+              m('div', {class:'row', style:'margin-top: 20px'},[
+                m('div', {id: 'no', class: 'col offset-s3 s1'}),
 
-          m('div', {id:'bottomItems', class: 'col offset-s4 s7 gridItems'}, [
-            charaNames.map( (char, i) => {
-              return  m('div', {class: 'stampPoint', id:'noChar' + i , onclick: stamp.bind(this, i, 0)})
-            })
-          ]),
+                m('div', {id:'bottomItems', class: 'col offset-s4 s7 gridItems'}, [
+                  charaNames.map( (char, i) => {
+                    return  m('div', {class: 'stampPoint', id:'noChar' + i , onclick: stamp.bind(this, i, 0)})
+                  })
+                ]),
 
 
-          m('div', {class: 'gridHbarCont col offset-s4 s' + String(hbarSize)}, m('hr', {class: 'gridHbar', id:'thirdHBar'}))
-        ]),
-      ])
+                m('div', {class: 'gridHbarCont col offset-s4 s' + String(hbarSize)}, m('hr', {class: 'gridHbar', id:'thirdHBar'}))
+              ]),
+            ])
+          ])
+        :
+          m('div', [m.route.set('/selection')])
   ])
   }
 };
@@ -105,9 +120,6 @@ function stamp(col, value){
     target.classList.add("stamped");
     charaCol[col] = true;
   }
-  
-  console.log('col: ' + col);
-  console.log('value: '+ value);
 
   if(charaValue[col] == value){
     charaValue[col] = 2;
@@ -119,17 +131,16 @@ function stamp(col, value){
 
 
   if (charaCol.every( (i) => {return i} )){
-     if (state.dilemmas.length >= state.currentStep + 1) {
+    state.currentStep += 1;
+    if (state.dilemmas.length >= state.currentStep + 1) { //prepare next dilemma 
       let stamped = document.getElementsByClassName('stamped');
 
       while(stamped.length) {  //because shrinking classList
         stamped[0].classList.remove("stamped");
       }
-  
-      state.currentStep += 1;
       setupCharas()
     }
-  else{
+    else{ 
       m.route.set('/selection');
     }
   }

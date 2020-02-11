@@ -86,7 +86,7 @@ const interaction = {
               ]),
             ])
           : 
-            m.route.set('/module2')
+          m('div', [m.route.set('/module2')])
     ])
   }
 }
