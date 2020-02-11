@@ -101,12 +101,21 @@ function stamp(col, value){
       }
     }
 
+
     target.classList.add("stamped");
     charaCol[col] = true;
   }
   
+  console.log('col: ' + col);
+  console.log('value: '+ value);
+
+  if(charaValue[col] == value){
+    charaValue[col] = 2;
+  }
+  else{
+    charaValue[col] = value;
+  }
   
-  charaValue[col] = value;
 
 
   if (charaCol.every( (i) => {return i} )){
