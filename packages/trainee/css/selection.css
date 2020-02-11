@@ -19,3 +19,12 @@
 .collection-item a{
     visibility: hidden;
 } 
+
+.collection-item p h1{
+    font-size: 1em;
+    font-weight: bold;
+} 
+
+.collection-item p ol{
+    margin-bottom: 20px;
+} 
