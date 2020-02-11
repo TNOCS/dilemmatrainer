@@ -1,4 +1,5 @@
 import m from 'mithril';
+import marky from 'marky-markdown' ;
 import 'materialize-css/dist/css/materialize.min.css';
 import 'material-icons/iconfont/material-icons.css';
 import { state, sessionSvc } from './global';
@@ -34,8 +35,8 @@ const SELECTION = {
               items: state.roles.map(role => {
                 return {
                   title: role.title,
-                  content: role.description,
                   id: role.id,
+                  content: marky(String(role.description)),
                   onclick: setRole,
                 };
               }),
@@ -65,10 +66,10 @@ function getGames() {
 }
 
 function setGame(game) {
-  state.claims = game.claims;
+  state.claims = game.claimsModule.claims;
   state.groups = game.groups;
-  state.dilemmas = game.dilemmas;
-  state.phases = game.phases;
+  state.dilemmas = game.dilemmasModule.dilemmas;
+  state.scenarios = game.scenariosModule.scenarios;
   state.roles = game.roles;
 }
 

@@ -9,10 +9,10 @@ export const state = {
     title: '',
     description: '',
   },
-  phases: [],
-  claims: [],
   groups: [],
+  claims: [],
   dilemmas: [],
+  scenarios: [],
   assigned: [],
   currentStep: 0
 };
