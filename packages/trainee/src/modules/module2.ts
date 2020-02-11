@@ -6,11 +6,11 @@ import { state } from '../global';
 
 import help from './components/help';
 import hud from './components/hud';
-import { compose } from 'mithril-materialized';
 
 let charaCol: Array<boolean> = [];
-let charaValue: Array<number> = [];
+let charaValue: Array<number> = []; //charaValue 0 = false, 1 = true,  2 = undefined
 let charaNames: Array<string> = [];
+let charaIcons: Array<string> = [];
 let charaResults: any[] = [];
 
 let hbarSize = 7;
@@ -18,7 +18,7 @@ let hbarSize = 7;
 const MODULE2 = {
   oninit: () => {
     state.currentStep = 0;
-    state.showHelp = true;
+    state.showHelp = false;
     setupCharas();
   },
   view: () => {
@@ -45,7 +45,11 @@ const interaction = {
             m('div', {class: 'gridVbarCont'}, m('div', {class: 'gridVbar'})),
 
             charaNames.map( (char, i) => {
-              return  [m('div', {class: 'charaDis'}, charaNames[i]), m('div', {class: 'gridVbarCont'}, m('div', {class: 'gridVbar'}))]
+              return  [
+                m('div', {class: 'charaDis'}, charaNames[i]), 
+                m('div', {class: 'gridVbarCont'},
+                m('div', {class: 'gridVbar'})
+                )]
             })
           ]),
 
@@ -96,6 +100,7 @@ function stamp(col, value){
         document.getElementById('noChar' + col).classList.remove("stamped");
       }
     }
+
     target.classList.add("stamped");
     charaCol[col] = true;
   }
@@ -125,14 +130,16 @@ function setupCharas(){
   charaCol = [];
   charaValue = [];
   charaNames = [];
+  charaIcons = [];
   charaResults = [];
 
-  for (let char in state.dilemmas[state.currentStep].characteristics){
+  charaNames = state.charas.map(chara=>{
     charaCol.push(false);
     charaValue.push(2);
-  }
+    charaResults.push()
+    return chara.title
+  });
 
-  charaNames = Object.keys(state.dilemmas[state.currentStep].characteristics);
   charaResults = charaNames.map((char) => state.dilemmas[state.currentStep].characteristics[char]);
 }
 

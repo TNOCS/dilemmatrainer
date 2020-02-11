@@ -69,6 +69,7 @@ function setGame(game) {
   state.claims = game.claimsModule.claims;
   state.groups = game.groups;
   state.dilemmas = game.dilemmasModule.dilemmas;
+  state.charas = game.characteristics;
   state.scenarios = game.scenariosModule.scenarios;
   state.roles = game.roles;
 }

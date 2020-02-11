@@ -12,6 +12,7 @@ export const state = {
   groups: [],
   claims: [],
   dilemmas: [],
+  charas: [],
   scenarios: [],
   assigned: [],
   currentStep: 0
