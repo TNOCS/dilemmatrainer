@@ -1,3 +1,4 @@
+export { gameSvc } from './services/scenario-service';
 export { sessionSvc } from './services/session-service';
 
 export const state = {

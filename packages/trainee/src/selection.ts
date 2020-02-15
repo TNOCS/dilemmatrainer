@@ -2,7 +2,7 @@ import m from 'mithril';
 import marky from 'marky-markdown' ;
 import 'materialize-css/dist/css/materialize.min.css';
 import 'material-icons/iconfont/material-icons.css';
-import { state, sessionSvc } from './global';
+import { state, gameSvc, sessionSvc } from './global';
 
 import { Button, Collection, CollectionMode } from 'mithril-materialized';
 
@@ -57,7 +57,7 @@ const SELECTION = {
 };
 
 function getGames() {
-  sessionSvc
+  gameSvc
     .loadList()
     .then(res => {
       games = res;
@@ -66,6 +66,7 @@ function getGames() {
 }
 
 function setGame(game) {
+  sessionSvc.create(game)
   state.claims = game.claimsModule.claims;
   state.groups = game.groups;
   state.dilemmas = game.dilemmasModule.dilemmas;
