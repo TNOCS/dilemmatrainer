@@ -66,7 +66,12 @@ function getGames() {
 }
 
 function setGame(game) {
-  sessionSvc.create(game)
+  sessionSvc
+    .loadList()
+    .then(res => {
+      console.log(res)
+    })
+    .catch(error => console.log(error));
   state.claims = game.claimsModule.claims;
   state.groups = game.groups;
   state.dilemmas = game.dilemmasModule.dilemmas;

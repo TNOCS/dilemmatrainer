@@ -4,7 +4,7 @@ import { RestService } from './rest-service';
 
 class SessionService extends RestService<Partial<ISession>> {
   constructor() {
-    super('session');
+    super('sessions');
   }
 
   public async loadList(): Promise<Array<Partial<ISession>> | undefined> {
