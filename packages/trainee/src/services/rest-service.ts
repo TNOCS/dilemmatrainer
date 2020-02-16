@@ -51,8 +51,8 @@ export class RestService<T extends { $loki?: number }> {
     try {
       await m
         .request({
-          method: 'PUT',
-          url: this.baseUrl + this.loki,
+          method: 'PATCH',
+          url: this.baseUrl + String(this.loki),
           body: fd || item,
           withCredentials: this.withCredentials,
         })
