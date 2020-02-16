@@ -3,7 +3,6 @@ import 'materialize-css/dist/css/materialize.min.css';
 import m from 'mithril';
 import { state, sessionSvc } from '../global';
 
-import { Button } from 'mithril-materialized';
 import dilemmaReflection from './components/dilemma-reflection';
 import help from './components/help';
 import hud from './components/hud';
@@ -100,36 +99,6 @@ function selectOtherOrg(org){
     }
   }
 }
-
-
-/*
-
-const controlAreaSolo = {
-  view: () => {
-    return state.roles.length < 2
-      ? 
-            m('div', { id: 'usersCont' }, [
-              state.roles.map(role => {
-                return m(Button, {
-                  class: 'userButton',
-                  label: role.title,
-                  onclick: sortDilemma.bind(this, role),
-                  style: 'background-color: #BEC4D9; height: 80px;',
-                });
-              }),
-            ]),
-
-
-function sortDilemma(role) {
-  if (!state.showHelp) {
-    state.dilemmas[state.currentDilemma]['accepted'] = true;
-    state.dilemmas[state.currentDilemma]['assignedTo'] = role;
-    if (state.dilemmas.length >= state.currentDilemma + 1) {
-      state.reflecting = true;
-    }
-  }
-}
-*/
 
 //score circle in the top right.
 

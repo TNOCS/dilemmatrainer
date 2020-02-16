@@ -2,7 +2,7 @@ import m from 'mithril';
 import marky from 'marky-markdown' ;
 import 'materialize-css/dist/css/materialize.min.css';
 import 'material-icons/iconfont/material-icons.css';
-import { state, gameSvc, sessionSvc } from './global';
+import { state, session, gameSvc, sessionSvc } from './global';
 
 import { Button, Collection, CollectionMode } from 'mithril-materialized';
 
@@ -86,17 +86,7 @@ function setRole(e) {
 
 function setSession(){ //change depending on single/multiplayer
   sessionSvc.clearAllSessions();
-  sessionSvc.create({
-    active: true,
-    activeModule: "claims",
-    activeClaimIndex: 0,
-    answeredClaims: [],
-    workAgreements: [],
-    activeDilemmaIndex: 0,
-    answeredDilemmas: [],
-    activeScenarioIndex: 0,
-    activeScenarioDilemmaIndex: { 0: 0 }
-  })
+  sessionSvc.create(new Object(session));
 }
 
 export default SELECTION;

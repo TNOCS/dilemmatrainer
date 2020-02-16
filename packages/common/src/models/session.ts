@@ -9,18 +9,14 @@ export interface ISession extends ILokiObj, IContent {
   gameId: number;
   /** Active module */
   activeModule: 'claims' | 'dilemmas' | 'workAgreements' | 'scenarios';
-  /** Index of the claim that is currently active */
-  activeClaimIndex: number;
+  /** Index of the claim/dilemma/scenario that is currently active */
+  activeStepIndex: number;
   /** Results so far */
   answeredClaims: IAnsweredClaim[];
   /** Finally made work agreements */
   workAgreements: IWorkAgreement[];
-  /** Index of the dilemma that is currently active */
-  activeDilemmaIndex: number;
   /** Results so far */
   answeredDilemmas: IAnsweredDilemma[];
-  /** Index of the scenario that is currently active */
-  activeScenarioIndex: number;
   /** Index of the dilemma in the scenario that is currently active */
-  activeScenarioDilemmaIndex: { [scenarioIndex: number]: number };
+  activeScenarioDilemmaIndex: { [activeStepIndex: number]: number };
 }

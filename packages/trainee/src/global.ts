@@ -1,7 +1,7 @@
 export { gameSvc } from './services/scenario-service';
 export { sessionSvc } from './services/session-service';
 
-export const state = {
+export var state = {
   showHelp: true,
   reflecting: false,
   roles: [],
@@ -16,8 +16,20 @@ export const state = {
   charas: [],
   scenarios: [],
   assigned: [],
-  currentStep: 0
+  currentStep: 0,
 };
+
+export var session = {
+  active: true,
+  activeModule: "claims",
+  activeClaimIndex: 0,
+  answeredClaims: [],
+  workAgreements: [],
+  activeDilemmaIndex: 0,
+  answeredDilemmas: [],
+  activeScenarioIndex: 0,
+  activeScenarioDilemmaIndex: { 0: 0 }
+} 
 
 /*
 export const getPickedDilemmas = () => {
