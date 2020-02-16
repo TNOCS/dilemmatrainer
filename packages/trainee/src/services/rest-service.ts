@@ -11,6 +11,7 @@ export class RestService<T extends { $loki?: number }> {
   protected filteredList: T[] = [];
   protected baseUrl: string;
   protected withCredentials = false;
+  protected loki:number;
 
   constructor(protected urlFragment: string) {
     this.baseUrl = this.createBaseUrl();
@@ -38,6 +39,7 @@ export class RestService<T extends { $loki?: number }> {
         withCredentials: this.withCredentials,
       });
       this.setCurrent(result);
+      this.loki = result.$loki;
       this.addItemToList(this.current);
       return this.current;
     } catch (err) {
@@ -50,7 +52,7 @@ export class RestService<T extends { $loki?: number }> {
       await m
         .request({
           method: 'PUT',
-          url: this.baseUrl + item.$loki,
+          url: this.baseUrl + this.loki,
           body: fd || item,
           withCredentials: this.withCredentials,
         })
@@ -71,7 +73,6 @@ export class RestService<T extends { $loki?: number }> {
         url: this.baseUrl + id,
         withCredentials: this.withCredentials,
       });
-      log(`Deleted with id: ${id}.`);
       this.removeItemFromList(id);
     } catch (err) {
       return error(err.message);

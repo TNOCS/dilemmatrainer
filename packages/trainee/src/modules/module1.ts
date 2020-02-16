@@ -1,7 +1,7 @@
 import 'material-icons/iconfont/material-icons.css';
 import 'materialize-css/dist/css/materialize.min.css';
 import m from 'mithril';
-import { state, sessionSvc } from '../global';
+import { state, session, sessionSvc } from '../global';
 
 import dilemmaReflection from './components/dilemma-reflection';
 import help from './components/help';
@@ -9,7 +9,8 @@ import hud from './components/hud';
 
 const MODULE1 = {
   oninit: () => {
-    state.currentStep = 0;
+    session.activeStepIndex = 0;
+    session.send();
   },
   view: () => {
     return m('div', { class: 'container' }, [
@@ -33,7 +34,7 @@ const interaction = {
             ],
           })
       : 
-          state.claims.length >= state.currentStep + 1 ?
+          state.claims.length >= session.activeStepIndex  + 1 ?
             m('div', [
               m('div', {class: 'row'}, [
                 m('div', {class: 'col offset-s1 s7', id:'upORGrow'}, [
@@ -55,7 +56,7 @@ const interaction = {
 
               m('div', {class: 'row valign-wrapper'}, [
                 m('div', {id:'claimBG', class: 'col offset-s1 s7 valign-wrapper'}, [
-                  m('p', {class: 'center-align'} , state.claims[state.currentStep].title )
+                  m('p', {class: 'center-align'} , state.claims[session.activeStepIndex].title )
                 ]),
                 m('div', {
                   id: 'rightArrow',
@@ -93,9 +94,10 @@ const interaction = {
 function selectOtherOrg(org){
   if (!state.showHelp) {
     //state.claims[state.currentStep]["assignedTo"] = org.id;
-    if (state.claims.length >= state.currentStep + 1) {
+    if (state.claims.length >= session.activeStepIndex  + 1) {
       //state.reflecting = true;
-      state.currentStep += 1;
+      session.activeStepIndex += 1;
+      session.send()
     }
   }
 }

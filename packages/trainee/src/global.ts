@@ -14,21 +14,20 @@ export var state = {
   claims: [],
   dilemmas: [],
   charas: [],
-  scenarios: [],
-  assigned: [],
-  currentStep: 0,
+  scenarios: []
 };
 
 export var session = {
   active: true,
   activeModule: "claims",
-  activeClaimIndex: 0,
+  activeStepIndex: 0,
   answeredClaims: [],
   workAgreements: [],
-  activeDilemmaIndex: 0,
   answeredDilemmas: [],
-  activeScenarioIndex: 0,
-  activeScenarioDilemmaIndex: { 0: 0 }
+  activeScenarioDilemmaIndex: { activeStepIndex: 0 },
+  send: () => {
+    this.sessionSvc.update(session)
+  }
 } 
 
 /*
