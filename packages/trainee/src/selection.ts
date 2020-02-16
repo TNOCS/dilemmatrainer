@@ -66,13 +66,14 @@ function getGames() {
 }
 
 function setGame(game) {
-  clearSessions()
   state.claims = game.claimsModule.claims;
   state.groups = game.groups;
   state.dilemmas = game.dilemmasModule.dilemmas;
   state.charas = game.characteristics;
   state.scenarios = game.scenariosModule.scenarios;
   state.roles = game.roles;
+
+  setSession();
 }
 
 function setRole(e) {
@@ -83,8 +84,19 @@ function setRole(e) {
   m.route.set('module1');
 }
 
-function setSession(game){
-
+function setSession(){ //change depending on single/multiplayer
+  sessionSvc.clearAllSessions();
+  sessionSvc.create({
+    active: true,
+    activeModule: "claims",
+    activeClaimIndex: 0,
+    answeredClaims: [],
+    workAgreements: [],
+    activeDilemmaIndex: 0,
+    answeredDilemmas: [],
+    activeScenarioIndex: 0,
+    activeScenarioDilemmaIndex: { 0: 0 }
+  })
 }
 
 export default SELECTION;
