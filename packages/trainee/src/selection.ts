@@ -66,12 +66,7 @@ function getGames() {
 }
 
 function setGame(game) {
-  sessionSvc
-    .loadList()
-    .then(res => {
-      console.log(res)
-    })
-    .catch(error => console.log(error));
+  clearSessions()
   state.claims = game.claimsModule.claims;
   state.groups = game.groups;
   state.dilemmas = game.dilemmasModule.dilemmas;
@@ -86,6 +81,10 @@ function setRole(e) {
   state.userRole.description = e.content;
 
   m.route.set('module1');
+}
+
+function setSession(game){
+
 }
 
 export default SELECTION;

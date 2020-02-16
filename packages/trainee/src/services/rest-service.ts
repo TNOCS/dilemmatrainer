@@ -47,7 +47,6 @@ export class RestService<T extends { $loki?: number }> {
 
   public async update(item: T, fd?: FormData) {
     try {
-      console.debug('put');
       await m
         .request({
           method: 'PUT',
@@ -137,6 +136,17 @@ export class RestService<T extends { $loki?: number }> {
   public new(item?: T) {
     this.setCurrent(item || ({} as T));
     return this.current;
+  }
+
+  public clearAllSessions(){
+    this
+      .loadList()
+      .then(res => {
+        res.forEach(session => {
+          this.delete(session.$loki)
+        });
+      })
+      .catch(error => console.log(error));
   }
 
   protected setList(value: T[]) {
