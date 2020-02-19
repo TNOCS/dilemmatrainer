@@ -60,6 +60,7 @@ hr {
   position: fixed;
   width: 100%;
   z-index: 1;
+  pointer-events: none;
 }
 
 #helpButton {
@@ -69,6 +70,7 @@ hr {
   background-position: center;
   background-size: 50%;
   cursor: pointer;
+  pointer-events: auto;
 }
 
 #docButton {
@@ -78,6 +80,7 @@ hr {
   background-position: center;
   background-size: 50%;
   cursor: pointer;
+  pointer-events: auto;
 }
 
 #backArrow {
@@ -88,6 +91,7 @@ hr {
   position: fixed;
   bottom: 20px;
   cursor: pointer;
+  pointer-events: auto;
 }
 
 #nextArrow {
@@ -99,6 +103,7 @@ hr {
   position: fixed;
   bottom: 20px;
   cursor: pointer;
+  pointer-events: auto;
 }
 
 /*HUD end*/

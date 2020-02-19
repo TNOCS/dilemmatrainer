@@ -1,7 +1,7 @@
 import 'material-icons/iconfont/material-icons.css';
 import 'materialize-css/dist/css/materialize.min.css';
 import m from 'mithril';
-import { state, session, sessionSvc } from '../global';
+import { state, session } from '../global';
 
 import dilemmaReflection from './components/dilemma-reflection';
 import help from './components/help';

@@ -2,7 +2,7 @@ import 'material-icons/iconfont/material-icons.css';
 import 'materialize-css/dist/css/materialize.min.css';
 import m from 'mithril';
 
-import { state } from '../global';
+import { state, session } from '../global';
 
 import help from './components/help';
 import hud from './components/hud';
@@ -17,13 +17,13 @@ let hbarSize = 7;
 
 const MODULE2 = {
   oninit: () => {
-    state.currentStep = 0;
+    session.activeStepIndex = 0;
     state.showHelp = true;
     setupCharas();
   },
   view: () => {
     return m('div', { class: 'container' }, [
-      m(hud, { done: '/selection' }),
+      m(hud, { done: '/module3' }),
       m(interaction),
     ]);
   },
@@ -42,12 +42,12 @@ const interaction = {
             ],
           })
       : 
-        state.dilemmas.length >= state.currentStep + 1 ?
+        state.dilemmas.length >= session.activeStepIndex + 1 ?
           m('div', [
             m('div', {class:'row'},[
               m('div', {class: 'col s10', id:'dilemmaBG'}, [
-                m('p', {id:'description', class:"flow-text"} , state.dilemmas[state.currentStep].description),
-                m('h5', {id: 'title', class:"flow-text"} , state.dilemmas[state.currentStep].title)
+                m('p', {id:'description', class:"flow-text"} , state.dilemmas[session.activeStepIndex].description),
+                m('h5', {id: 'title', class:"flow-text"} , state.dilemmas[session.activeStepIndex].title)
               ])
             ]),
 
@@ -131,8 +131,8 @@ function stamp(col, value){
 
 
   if (charaCol.every( (i) => {return i} )){
-    state.currentStep += 1;
-    if (state.dilemmas.length >= state.currentStep + 1) { //prepare next dilemma 
+    session.activeStepIndex += 1;
+    if (state.dilemmas.length >= session.activeStepIndex + 1) { //prepare next dilemma 
       let stamped = document.getElementsByClassName('stamped');
 
       while(stamped.length) {  //because shrinking classList
@@ -160,7 +160,7 @@ function setupCharas(){
     return chara.title
   });
 
-  charaResults = charaNames.map((char) => state.dilemmas[state.currentStep].characteristics[char]);
+  charaResults = charaNames.map((char) => state.dilemmas[session.activeStepIndex].characteristics[char]);
 }
 
 export default MODULE2;

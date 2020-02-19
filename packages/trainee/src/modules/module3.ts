@@ -3,30 +3,25 @@ import 'materialize-css/dist/css/materialize.min.css';
 import m from 'mithril';
 import { state } from "../global";
 
-import { TextArea } from "mithril-materialized";
 import hud from "./components/hud";
 import help from "./components/help";
 
-var propertyButtons: Array<boolean> = [false, false, false];
-var properties: Array<boolean> = [false, false, false];
-
 const MODULE3 = {
   oninit: () => {
-    state.showHelp = true;
+    state.showHelp = false;
   },
   view: () => {
     return m("div", { class: "container" }, [
-      m(controlArea),
-      m(hud, { done: "#!/module4" })
+      m(hud, { done: "#!/module4" }),
+      m(interaction)
     ]);
   }
 };
 
-const controlArea = {
-  view: () => {
-    return m("div", { id: "controlAreaBG2" }, [
-      m("div", { id: "controlAreaTop2" }),
 
+const interaction = {
+  view: () => {
+    return m('div', {class: 'interactionArea'}, [
       m(
         "div",
         { class: "row" },
@@ -41,28 +36,20 @@ const controlArea = {
             })
           : [
               m("div", { class: "agreements col s10 offset-s1" }, [
-                m("div", { class: "row" }, [
-                  m("span", { class: "col s4" }, [
-                    m("p", "AGREEMENT"),
-                    m("p", "1"),
-                    m(TextArea, { maxLength: 200 })
-                  ]),
-                  m("span", { class: "col s4" }, [
-                    m("p", "AGREEMENT"),
-                    m("p", "2"),
-                    m(TextArea, { maxLength: 200 })
-                  ]),
-                  m("span", { class: "col s4" }, [
-                    m("p", "AGREEMENT"),
-                    m("p", "3"),
-                    m(TextArea, { maxLength: 200 })
-                  ])
-                ])
+                  m('div', {class: 'col s10'}, 
+                    m('textarea', {maxlength:200, rows:"4", cols:"50"})
+                  ),
+                  m('div', {class: 'col s10'},
+                    m('textarea', {maxlength:200, rows:"4", cols:"50"})
+                  ),
+                  m('div', {class: 'col s10'},
+                    m('textarea', {maxlength:200, rows:"4", cols:"50"})
+                  )
               ])
             ]
       )
-    ]);
+    ])
   }
-};
+}
 
 export default MODULE3;
