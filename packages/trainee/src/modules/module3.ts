@@ -1,18 +1,18 @@
 import 'material-icons/iconfont/material-icons.css';
 import 'materialize-css/dist/css/materialize.min.css';
 import m from 'mithril';
-import { state } from "../global";
+import { state, session } from "../global";
 
 import hud from "./components/hud";
 import help from "./components/help";
 
 const MODULE3 = {
   oninit: () => {
-    state.showHelp = false;
+    state.showHelp = true;
   },
   view: () => {
     return m("div", { class: "container" }, [
-      m(hud, { done: "#!/module4" }),
+      m(hud, { done: sendAgreements}),
       m(interaction)
     ]);
   }
@@ -29,27 +29,30 @@ const interaction = {
           ? m(help, {
               title: "Title",
               desc: [
-                "Lorem Ipsum et dono",
-                "This is the second page",
-                "this is the final page"
+                "Bespreek en voer 3 werkafspraken in.",
               ]
             })
           : [
-              m("div", { class: "agreements col s10 offset-s1" }, [
-                  m('div', {class: 'col s10'}, 
-                    m('textarea', {maxlength:200, rows:"4", cols:"50"})
+              m("div", { class: "agreements col s8 offset-s2" }, [
+                  m('div', {class: 'row textareaWrap'}, 
+                    m('textarea', {class: 'col s10 offset-s1', maxlength:200})
                   ),
-                  m('div', {class: 'col s10'},
-                    m('textarea', {maxlength:200, rows:"4", cols:"50"})
+                  m('div', {class: 'row textareaWrap'},
+                    m('textarea', {class: 'col s10 offset-s1', maxlength:200})
                   ),
-                  m('div', {class: 'col s10'},
-                    m('textarea', {maxlength:200, rows:"4", cols:"50"})
+                  m('div', {class: 'row textareaWrap'},
+                    m('textarea', {class: 'col s10 offset-s1', maxlength:200})
                   )
               ])
             ]
       )
     ])
   }
+}
+
+
+function sendAgreements(org){
+  return "#!/selections"
 }
 
 export default MODULE3;
