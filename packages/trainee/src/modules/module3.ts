@@ -29,7 +29,7 @@ const interaction = {
           ? m(help, {
               title: "Title",
               desc: [
-                "Bespreek en voer 3 werkafspraken in.",
+                "Discuss and enter 3 work agreements.",
               ]
             })
           : [
