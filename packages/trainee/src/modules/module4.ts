@@ -4,7 +4,6 @@ import 'material-icons/iconfont/material-icons.css';
 import 'materialize-css/dist/css/materialize.min.css';
 import m from 'mithril';
 import { LeafletMap } from 'mithril-leaflet';
-import { Button } from 'mithril-materialized';
 import { state } from '../global';
 
 import help from './components/help';
@@ -13,14 +12,36 @@ import hud from './components/hud';
 const MODULE4 = {
   oninit: () => {
     state.showHelp = true;
-    state.currentStep = 0;
   },
   view: () => {
-    return m('div', { class: 'container' }, [
-      m(hud, { done: '/selection' }),
+    return m("div", { class: "container" }, [
+      m(hud, { done: "#!/selections"}),
+      m(interaction)
     ]);
-  },
+  }
 };
+
+
+const interaction = {
+  view: () => {
+    return m('div', {class: 'interactionArea'}, [
+      m(
+        "div",
+        { class: "row" },
+        state.showHelp
+          ? m(help, {
+              title: "Title",
+              desc: [
+                "Map stuff",
+              ]
+            })
+          : [
+
+            ]
+      )
+    ])
+  }
+}
 
 /*
 const displayArea = {

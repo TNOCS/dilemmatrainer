@@ -18,6 +18,7 @@ export var state = {
 };
 
 export var session = {
+  api: this.sessionSvc.trainerAPI,
   active: true,
   activeModule: "claims",
   activeStepIndex: 0,
@@ -26,7 +27,10 @@ export var session = {
   answeredDilemmas: [],
   activeScenarioDilemmaIndex: { activeStepIndex: 0 },
   send: () => {
-    this.sessionSvc.update(session)
+    let sessionSend = session;
+    delete sessionSend.api;
+    delete sessionSend.send;
+    this.sessionSvc.update(sessionSend);
   }
 } 
 

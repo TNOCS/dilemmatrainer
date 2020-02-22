@@ -12,6 +12,7 @@ export class RestService<T extends { $loki?: number }> {
   protected baseUrl: string;
   protected withCredentials = false;
   protected loki:number;
+  protected meta: any;
 
   constructor(protected urlFragment: string) {
     this.baseUrl = this.createBaseUrl();
@@ -48,12 +49,14 @@ export class RestService<T extends { $loki?: number }> {
   }
 
   public async update(item: T, fd?: FormData) {
+    item.$loki = this.loki;
+    console.log(item);
     try {
       await m
         .request({
-          method: 'PATCH',
+          method: 'PUT',
           url: this.baseUrl + String(this.loki),
-          body: fd || item,
+          body: fd ||  JSON.stringify(item),
           withCredentials: this.withCredentials,
         })
         .catch(e => console.error(e));

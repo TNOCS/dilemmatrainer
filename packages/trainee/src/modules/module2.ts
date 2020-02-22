@@ -156,7 +156,20 @@ function setupCharas(){
   charaNames = state.charas.map(chara=>{
     charaCol.push(false);
     charaValue.push(2);
-    charaResults.push()
+    charaResults.push();
+
+    let icon = chara.iconUrl;
+    if (icon){
+      if (typeof(icon) == 'string'){
+        charaIcons.push(icon);
+      }
+      else{
+        charaIcons.push(icon[0]);
+      }
+    }
+    else{
+      charaIcons.push(null)
+    }
     return chara.title
   });
 
