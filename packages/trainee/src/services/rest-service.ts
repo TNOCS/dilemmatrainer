@@ -50,17 +50,15 @@ export class RestService<T extends { $loki?: number }> {
 
   public async update(item: T, fd?: FormData) {
     item.$loki = this.loki;
-    console.log(item);
     try {
       await m
         .request({
           method: 'PUT',
           url: this.baseUrl + String(this.loki),
-          body: fd ||  JSON.stringify(item),
+          body: fd || item,
           withCredentials: this.withCredentials,
         })
-        .catch(e => console.error(e));
-      // this.setCurrent(data);
+        /*.catch(e => console.error(e));*/
       this.current = item;
       this.updateItemInList(item);
       return this.current;

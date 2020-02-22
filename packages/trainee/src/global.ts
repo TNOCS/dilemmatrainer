@@ -27,9 +27,15 @@ export var session = {
   answeredDilemmas: [],
   activeScenarioDilemmaIndex: { activeStepIndex: 0 },
   send: () => {
-    let sessionSend = session;
-    delete sessionSend.api;
-    delete sessionSend.send;
+    let sessionSend = {
+      active: session.active,
+      activeModule: session.activeModule,
+      activeStepIndex: session.activeStepIndex,
+      answeredClaims: session.answeredClaims,
+      workAgreements: session.workAgreements,
+      answeredDilemmas: session.answeredDilemmas,
+      activeScenarioDilemmaIndex: session.activeScenarioDilemmaIndex,
+    }
     this.sessionSvc.update(sessionSend);
   }
 } 

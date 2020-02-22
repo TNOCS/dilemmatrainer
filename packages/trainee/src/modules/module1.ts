@@ -94,9 +94,10 @@ const interaction = {
 function selectOtherOrg(org){
   if (!state.showHelp) {
     //state.claims[state.currentStep]["assignedTo"] = org.id;
-    if (state.claims.length >= session.activeStepIndex  + 1) {
+    if (state.claims.length >= session.activeStepIndex + 1) {
       //state.reflecting = true;
       session.activeStepIndex += 1;
+      console.log(session);
       session.send()
     }
   }
