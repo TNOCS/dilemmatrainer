@@ -1,7 +1,6 @@
 import { ICharacteristic } from './characteristic';
 import { IClaim } from './claim';
 import { IContent } from './content';
-import { IDilemma } from './dilemma';
 import { IGroup } from './group';
 import { IRole } from './role';
 import { IScenarioPhase } from './scenario-phase';
