@@ -1,14 +1,10 @@
 import 'material-icons/iconfont/material-icons.css';
 import 'materialize-css/dist/css/materialize.min.css';
 import m from 'mithril';
-import { state } from "../global";
+import { state, session } from "../global";
 
-import { TextArea } from "mithril-materialized";
 import hud from "./components/hud";
 import help from "./components/help";
-
-var propertyButtons: Array<boolean> = [false, false, false];
-var properties: Array<boolean> = [false, false, false];
 
 const MODULE3 = {
   oninit: () => {
@@ -16,17 +12,16 @@ const MODULE3 = {
   },
   view: () => {
     return m("div", { class: "container" }, [
-      m(controlArea),
-      m(hud, { done: "#!/module4" })
+      m(hud, { done: sendAgreements}),
+      m(interaction)
     ]);
   }
 };
 
-const controlArea = {
-  view: () => {
-    return m("div", { id: "controlAreaBG2" }, [
-      m("div", { id: "controlAreaTop2" }),
 
+const interaction = {
+  view: () => {
+    return m('div', {class: 'interactionArea'}, [
       m(
         "div",
         { class: "row" },
@@ -34,35 +29,30 @@ const controlArea = {
           ? m(help, {
               title: "Title",
               desc: [
-                "Lorem Ipsum et dono",
-                "This is the second page",
-                "this is the final page"
+                "Discuss and enter 3 work agreements.",
               ]
             })
           : [
-              m("div", { class: "agreements col s10 offset-s1" }, [
-                m("div", { class: "row" }, [
-                  m("span", { class: "col s4" }, [
-                    m("p", "AGREEMENT"),
-                    m("p", "1"),
-                    m(TextArea, { maxLength: 200 })
-                  ]),
-                  m("span", { class: "col s4" }, [
-                    m("p", "AGREEMENT"),
-                    m("p", "2"),
-                    m(TextArea, { maxLength: 200 })
-                  ]),
-                  m("span", { class: "col s4" }, [
-                    m("p", "AGREEMENT"),
-                    m("p", "3"),
-                    m(TextArea, { maxLength: 200 })
-                  ])
-                ])
+              m("div", { class: "agreements col s8 offset-s2" }, [
+                  m('div', {class: 'row textareaWrap'}, 
+                    m('textarea', {class: 'col s10 offset-s1', maxlength:200})
+                  ),
+                  m('div', {class: 'row textareaWrap'},
+                    m('textarea', {class: 'col s10 offset-s1', maxlength:200})
+                  ),
+                  m('div', {class: 'row textareaWrap'},
+                    m('textarea', {class: 'col s10 offset-s1', maxlength:200})
+                  )
               ])
             ]
       )
-    ]);
+    ])
   }
-};
+}
+
+
+function sendAgreements(org){
+  return "#!/selections"
+}
 
 export default MODULE3;

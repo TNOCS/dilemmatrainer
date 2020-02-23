@@ -24,6 +24,9 @@
   },
   "homepage": "https://github.com/erikvullings/dilemmatrainer#readme",
   "devDependencies": {
-    "typescript": "^3.7.4"
+    "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "m": "^1.5.6"
   }
 }

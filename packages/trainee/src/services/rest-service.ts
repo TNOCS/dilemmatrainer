@@ -11,6 +11,8 @@ export class RestService<T extends { $loki?: number }> {
   protected filteredList: T[] = [];
   protected baseUrl: string;
   protected withCredentials = false;
+  protected loki:number;
+  protected meta: any;
 
   constructor(protected urlFragment: string) {
     this.baseUrl = this.createBaseUrl();
@@ -38,6 +40,7 @@ export class RestService<T extends { $loki?: number }> {
         withCredentials: this.withCredentials,
       });
       this.setCurrent(result);
+      this.loki = result.$loki;
       this.addItemToList(this.current);
       return this.current;
     } catch (err) {
@@ -46,17 +49,16 @@ export class RestService<T extends { $loki?: number }> {
   }
 
   public async update(item: T, fd?: FormData) {
+    item.$loki = this.loki;
     try {
-      console.debug('put');
       await m
         .request({
           method: 'PUT',
-          url: this.baseUrl + item.$loki,
+          url: this.baseUrl + String(this.loki),
           body: fd || item,
           withCredentials: this.withCredentials,
         })
-        .catch(e => console.error(e));
-      // this.setCurrent(data);
+        /*.catch(e => console.error(e));*/
       this.current = item;
       this.updateItemInList(item);
       return this.current;
@@ -72,7 +74,6 @@ export class RestService<T extends { $loki?: number }> {
         url: this.baseUrl + id,
         withCredentials: this.withCredentials,
       });
-      log(`Deleted with id: ${id}.`);
       this.removeItemFromList(id);
     } catch (err) {
       return error(err.message);
@@ -137,6 +138,17 @@ export class RestService<T extends { $loki?: number }> {
   public new(item?: T) {
     this.setCurrent(item || ({} as T));
     return this.current;
+  }
+
+  public clearAllSessions(){
+    this
+      .loadList()
+      .then(res => {
+        res.forEach(session => {
+          this.delete(session.$loki)
+        });
+      })
+      .catch(error => console.log(error));
   }
 
   protected setList(value: T[]) {

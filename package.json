@@ -35,6 +35,9 @@
   },
   "homepage": "https://github.com/erikvullings/dwang-in-de-zorg#readme",
   "devDependencies": {
-    "pnpm": "^4.7.1"
+    "pnpm": "^4.9.3"
+  },
+  "dependencies": {
+    "m": "^1.5.6"
   }
 }

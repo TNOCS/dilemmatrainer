@@ -1,6 +1,7 @@
+export { gameSvc } from './services/scenario-service';
 export { sessionSvc } from './services/session-service';
 
-export const state = {
+export var state = {
   showHelp: true,
   reflecting: false,
   roles: [],
@@ -9,13 +10,35 @@ export const state = {
     title: '',
     description: '',
   },
-  phases: [],
-  claims: [],
   groups: [],
+  claims: [],
   dilemmas: [],
-  assigned: [],
-  currentStep: 0
+  charas: [],
+  scenarios: []
 };
+
+export var session = {
+  api: this.sessionSvc.trainerAPI,
+  active: true,
+  activeModule: "claims",
+  activeStepIndex: 0,
+  answeredClaims: [],
+  workAgreements: [],
+  answeredDilemmas: [],
+  activeScenarioDilemmaIndex: { activeStepIndex: 0 },
+  send: () => {
+    let sessionSend = {
+      active: session.active,
+      activeModule: session.activeModule,
+      activeStepIndex: session.activeStepIndex,
+      answeredClaims: session.answeredClaims,
+      workAgreements: session.workAgreements,
+      answeredDilemmas: session.answeredDilemmas,
+      activeScenarioDilemmaIndex: session.activeScenarioDilemmaIndex,
+    }
+    this.sessionSvc.update(sessionSend);
+  }
+} 
 
 /*
 export const getPickedDilemmas = () => {

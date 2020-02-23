@@ -4,7 +4,7 @@ import { RestService } from './rest-service';
 
 class SessionService extends RestService<Partial<ISession>> {
   constructor() {
-    super('games');
+    super('sessions');
   }
 
   public async loadList(): Promise<Array<Partial<ISession>> | undefined> {
@@ -16,6 +16,7 @@ class SessionService extends RestService<Partial<ISession>> {
     if (!result) {
       console.warn('No result found at ' + this.baseUrl);
     }
+    console.log(result)
     this.setList(result || []);
     return this.list;
   }
