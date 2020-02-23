@@ -1,8 +1,8 @@
-import m from 'mithril';
-import marky from 'marky-markdown' ;
-import 'materialize-css/dist/css/materialize.min.css';
+import marked from 'marked' ;
 import 'material-icons/iconfont/material-icons.css';
-import { state, session, gameSvc, sessionSvc } from './global';
+import 'materialize-css/dist/css/materialize.min.css';
+import m from 'mithril';
+import { gameSvc, session, sessionSvc, state } from './global';
 
 import { Button, Collection, CollectionMode } from 'mithril-materialized';
 
@@ -36,7 +36,7 @@ const SELECTION = {
                 return {
                   title: role.title,
                   id: role.id,
-                  content: marky(String(role.description)),
+                  content: marked.parse(String(role.description)),
                   onclick: setRole,
                 };
               }),
@@ -84,7 +84,7 @@ function setRole(e) {
   m.route.set('module1');
 }
 
-function setSession(){ //change depending on single/multiplayer
+function setSession() { // change depending on single/multiplayer
   sessionSvc.clearAllSessions();
   sessionSvc.create(new Object(session));
 }
