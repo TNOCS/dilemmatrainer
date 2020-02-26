@@ -13,7 +13,6 @@ const MODULE1 = {
   oninit: () => {
     state.session.activeStepIndex = 0;
     updateSession();
-    // session.send();
   },
   view: () => {
     return m('div', { class: 'container' }, [
@@ -22,7 +21,6 @@ const MODULE1 = {
     ]);
   },
 };
-
 
 const interaction = {
   view: () => {
@@ -120,7 +118,13 @@ const interaction = {
               ]),
             ]),
           ])
-        : m('div', [m.route.set('/module2')]),
+        : m('.valign-wrapper', m(
+            'h3.center-align',
+            `End of the claims module. You have ${state.session.answeredClaims.reduce(
+              (acc, cur) => acc + (cur.correct ? 1 : 0),
+              0
+            )} of ${state.session.answeredClaims.length} correct.`
+          )),
     ]);
   },
 };
