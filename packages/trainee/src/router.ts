@@ -5,7 +5,7 @@ import module4 from './modules/module4';
 import selection from './selection';
 
 const router = {
-  '/selection': selection,
+  '/': selection,
   '/module1': module1,
   '/module2': module2,
   '/module3': module3,
