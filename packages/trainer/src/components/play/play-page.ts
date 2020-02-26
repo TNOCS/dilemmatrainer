@@ -64,7 +64,7 @@ export const PlayPage: FactoryComponent<{
       }
       const save = saveSession(updateSession);
       const { activeModule } = session;
-      const gameId = game.$loki;
+      const gameId = game.$loki as number;
       const openSessions = sessionSvc.getList().filter(s => s.active);
       const closedSessions = sessionSvc.getList().filter(s => !s.active);
       const {
@@ -260,6 +260,7 @@ export const PlayPage: FactoryComponent<{
               iconName: 'create',
               disabled: !newSession.title,
               onclick: async () => {
+                newSession.gameId = gameId;
                 newSession.active = true;
                 sessionSvc.create(newSession);
                 newSession = {} as ISession;

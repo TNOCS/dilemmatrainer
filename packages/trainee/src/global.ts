@@ -1,44 +1,55 @@
-export { gameSvc } from './services/scenario-service';
+export { gameSvc } from './services/game-service';
+import { ISession } from '../../common/src';
+import {
+  ICharacteristic,
+  IClaim,
+  IDilemma,
+  IGroup,
+  IRole,
+  IScenarioPhase,
+} from '../../common/src';
 export { sessionSvc } from './services/session-service';
 
-export var state = {
+export const state = {
   showHelp: true,
   reflecting: false,
-  roles: [],
+  roles: [] as IRole[],
   userRole: {
     id: '',
     title: '',
     description: '',
-  },
-  groups: [],
-  claims: [],
-  dilemmas: [],
-  charas: [],
-  scenarios: []
+  } as IRole,
+  groups: [] as IGroup[],
+  claims: [] as IClaim[],
+  dilemmas: [] as IDilemma[],
+  charas: [] as ICharacteristic[],
+  scenarios: [] as IScenarioPhase[],
+  session: undefined as Partial<ISession>,
 };
 
-export var session = {
-  api: this.sessionSvc.trainerAPI,
-  active: true,
-  activeModule: "claims",
-  activeStepIndex: 0,
-  answeredClaims: [],
-  workAgreements: [],
-  answeredDilemmas: [],
-  activeScenarioDilemmaIndex: { activeStepIndex: 0 },
-  send: () => {
-    let sessionSend = {
-      active: session.active,
-      activeModule: session.activeModule,
-      activeStepIndex: session.activeStepIndex,
-      answeredClaims: session.answeredClaims,
-      workAgreements: session.workAgreements,
-      answeredDilemmas: session.answeredDilemmas,
-      activeScenarioDilemmaIndex: session.activeScenarioDilemmaIndex,
-    }
-    this.sessionSvc.update(sessionSend);
-  }
-} 
+// export const session = {
+//   api: sessionSvc.trainerAPI,
+//   active: true,
+//   gameId: -1,
+//   activeModule: 'claims',
+//   activeStepIndex: 0,
+//   answeredClaims: [],
+//   workAgreements: [],
+//   answeredDilemmas: [],
+//   activeScenarioDilemmaIndex: { activeStepIndex: 0 },
+//   send: () => {
+//     const sessionSend = {
+//       active: session.active,
+//       activeModule: session.activeModule,
+//       activeStepIndex: session.activeStepIndex,
+//       answeredClaims: session.answeredClaims,
+//       workAgreements: session.workAgreements,
+//       answeredDilemmas: session.answeredDilemmas,
+//       activeScenarioDilemmaIndex: session.activeScenarioDilemmaIndex,
+//     };
+//     sessionSvc.update(sessionSend);
+//   },
+// } as Partial<ISession>;
 
 /*
 export const getPickedDilemmas = () => {
@@ -61,4 +72,4 @@ export const rejectPickedDilemma = () => {
 };
 */
 
-//shift + alt + F
+// shift + alt + F

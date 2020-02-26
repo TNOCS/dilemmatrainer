@@ -1,22 +1,23 @@
 import m from 'mithril';
+import { ILokiObj } from '../../../common/src/models/game';
 
 const log = console.log;
 const error = console.error;
-const trainerAPI = 'http://localhost:3030/api'
+// const trainerAPI: 'http://localhost:3030/api';
 
 // export class RestService<T extends IBaseModel> {
-export class RestService<T extends { $loki?: number }> {
+export class RestService<T extends ILokiObj> {
+  public trainerAPI = 'http://localhost:3030/api';
   protected current: T = {} as T;
   protected list: T[] = [];
   protected filteredList: T[] = [];
   protected baseUrl: string;
   protected withCredentials = false;
-  protected loki:number;
+  protected loki: number;
   protected meta: any;
 
   constructor(protected urlFragment: string) {
     this.baseUrl = this.createBaseUrl();
-
   }
 
   public getList() {
@@ -49,16 +50,14 @@ export class RestService<T extends { $loki?: number }> {
   }
 
   public async update(item: T, fd?: FormData) {
-    item.$loki = this.loki;
     try {
-      await m
-        .request({
-          method: 'PUT',
-          url: this.baseUrl + String(this.loki),
-          body: fd || item,
-          withCredentials: this.withCredentials,
-        })
-        /*.catch(e => console.error(e));*/
+      await m.request({
+        method: 'PUT',
+        url: this.baseUrl + item.$loki,
+        body: fd || item,
+        withCredentials: this.withCredentials,
+      });
+      /*.catch(e => console.error(e));*/
       this.current = item;
       this.updateItemInList(item);
       return this.current;
@@ -98,7 +97,7 @@ export class RestService<T extends { $loki?: number }> {
     if (!result) {
       console.warn('No result found at ' + this.baseUrl);
     }
-    this.setCurrent(result || {} as T);
+    this.setCurrent(result || ({} as T));
     this.updateItemInList(this.current);
     return this.current;
   }
@@ -140,15 +139,14 @@ export class RestService<T extends { $loki?: number }> {
     return this.current;
   }
 
-  public clearAllSessions(){
-    this
-      .loadList()
+  public clearAllSessions() {
+    this.loadList()
       .then(res => {
         res.forEach(session => {
-          this.delete(session.$loki)
+          this.delete(session.$loki);
         });
       })
-      .catch(error => console.log(error));
+      .catch(err => console.log(err));
   }
 
   protected setList(value: T[]) {
@@ -160,7 +158,7 @@ export class RestService<T extends { $loki?: number }> {
   // }
   /** Create the base URL, either using the apiService or the apiDevService */
   protected createBaseUrl(): string {
-    return `${trainerAPI}/${this.urlFragment}/`;
+    return `${this.trainerAPI}/${this.urlFragment}/`;
   }
 
   private setCurrent(value: T) {

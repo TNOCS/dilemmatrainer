@@ -1,11 +1,11 @@
 import m, { Attributes, FactoryComponent } from 'mithril';
 import { LayoutForm } from 'mithril-ui-form';
 // import { labelResolver } from 'mithril-ui-form';
-import { IGame } from '../../../common/src';
+import { ISession } from '../../../common/src';
 import { gameFormGenerator } from '../template/form';
 
 export interface IFormattedEvent extends Attributes {
-  game: Partial<IGame>;
+  game: Partial<ISession>;
   filterValue?: string;
 }
 

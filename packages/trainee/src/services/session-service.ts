@@ -16,7 +16,7 @@ class SessionService extends RestService<Partial<ISession>> {
     if (!result) {
       console.warn('No result found at ' + this.baseUrl);
     }
-    console.log(result)
+    console.log(result);
     this.setList(result || []);
     return this.list;
   }

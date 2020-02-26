@@ -1,17 +1,15 @@
-import marked from 'marked' ;
+// import marked from 'marked';
 import 'material-icons/iconfont/material-icons.css';
 import 'materialize-css/dist/css/materialize.min.css';
 import m from 'mithril';
-import { gameSvc, session, sessionSvc, state } from './global';
-
 import { Button, Collection, CollectionMode } from 'mithril-materialized';
+import { IRole, ISession } from '../../common/src';
+import { gameSvc, sessionSvc, state } from './global';
 
-let games: any = [];
+let sessions: Array<Partial<ISession>> = [];
 
 const SELECTION = {
-  oninit: () => {
-    getGames();
-  },
+  oninit: () => getSessions(),
   view: () => {
     return m('div', { class: 'container' }, [
       m('div', { class: 'row' }, [
@@ -21,10 +19,10 @@ const SELECTION = {
               header: 'Select a Scenario',
               class: 'col s6 offset-s3',
               mode: CollectionMode.LINKS,
-              items: games.map(game => {
+              items: sessions.map(ses => {
                 return {
-                  title: game.title,
-                  onclick: setGame.bind(this, game),
+                  title: ses.title,
+                  onclick: () => setGame(ses),
                 };
               }),
             })
@@ -36,8 +34,8 @@ const SELECTION = {
                 return {
                   title: role.title,
                   id: role.id,
-                  content: marked.parse(String(role.description)),
-                  onclick: setRole,
+                  // content: marked.parse(String(role.description)),
+                  onclick: () => setRole(role),
                 };
               }),
             }),
@@ -56,37 +54,42 @@ const SELECTION = {
   },
 };
 
-function getGames() {
-  gameSvc
+function getSessions() {
+  sessionSvc
     .loadList()
     .then(res => {
-      games = res;
+      sessions = res;
+      console.log(res);
     })
     .catch(error => console.log(error));
 }
 
-function setGame(game) {
-  state.claims = game.claimsModule.claims;
-  state.groups = game.groups;
-  state.dilemmas = game.dilemmasModule.dilemmas;
-  state.charas = game.characteristics;
-  state.scenarios = game.scenariosModule.scenarios;
-  state.roles = game.roles;
+const setGame = async (s: Partial<ISession>) => {
+  if (s.gameId) {
+    state.session = s;
+    const game = await gameSvc.load(s.gameId);
+    state.claims = game.claimsModule.claims;
+    state.groups = game.groups;
+    state.dilemmas = game.dilemmasModule.dilemmas;
+    state.charas = game.characteristics;
+    state.scenarios = game.scenariosModule.scenarios;
+    state.roles = game.roles;
+    // setSession(s);
+  }
+};
 
-  setSession();
-}
-
-function setRole(e) {
-  state.userRole.id = e.id;
-  state.userRole.title = e.title;
-  state.userRole.description = e.content;
+function setRole(e: IRole) {
+  // state.userRole.id = e.id;
+  // state.userRole.title = e.title;
+  // state.userRole.description = e.description;
 
   m.route.set('module1');
 }
 
-function setSession() { // change depending on single/multiplayer
-  sessionSvc.clearAllSessions();
-  sessionSvc.create(new Object(session));
-}
+// function setSession(s: Partial<ISession>) {
+//   // change depending on single/multiplayer
+//   sessionSvc.clearAllSessions();
+//   sessionSvc.create(new Object(session));
+// }
 
 export default SELECTION;
