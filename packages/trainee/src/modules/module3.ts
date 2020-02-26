@@ -1,6 +1,5 @@
-import 'material-icons/iconfont/material-icons.css';
-import 'materialize-css/dist/css/materialize.min.css';
 import m from 'mithril';
+import '../../css/module3.css';
 import { state } from '../global';
 import help from './components/help';
 import hud from './components/hud';

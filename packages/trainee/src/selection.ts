@@ -4,6 +4,7 @@ import 'materialize-css/dist/css/materialize.min.css';
 import m from 'mithril';
 import { Button, Collection, CollectionMode } from 'mithril-materialized';
 import { IRole, ISession } from '../../common/src';
+import '../css/selection.css';
 import { gameSvc, sessionSvc, state } from './global';
 
 let sessions: Array<Partial<ISession>> = [];

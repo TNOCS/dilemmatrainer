@@ -4,7 +4,7 @@ import m, { Component } from 'mithril';
 import { state } from '../../global';
 
 const hud: Component<{ done: string; }> = {
-  view: vnode => {
+  view: ({ attrs: { done }}) => {
     return m('div', { id: 'hud' }, [
       m('div', { id: 'rightBar', class: 'row' }, [
         m('div', {
@@ -14,8 +14,6 @@ const hud: Component<{ done: string; }> = {
             state.showHelp = !state.showHelp;
           },
         }),
-
-        vnode.attrs.done === '/selection' ? null : null,
       ]),
 
       m('div', { id: 'arrowWrap', class: 'row' }, [
@@ -24,9 +22,9 @@ const hud: Component<{ done: string; }> = {
           class: 'col s1',
           onclick: back,
         }),
-        m(m.route.Link, {
-          class: 'col offset-s11 s1',
-          href: vnode.attrs.done,
+        done && m(m.route.Link, {
+          class: 'col offset-s10 s2',
+          href: done,
           id: 'nextArrow',
         }),
       ]),

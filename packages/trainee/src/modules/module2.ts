@@ -1,9 +1,6 @@
-import 'material-icons/iconfont/material-icons.css';
-import 'materialize-css/dist/css/materialize.min.css';
 import m from 'mithril';
-
-import { state } from '../global';
-
+import '../../css/module2.css';
+import { state, gameSvc } from '../global';
 import help from './components/help';
 import hud from './components/hud';
 import { ScenarioInfo } from './components/scenario-info';
@@ -37,6 +34,7 @@ const MODULE2 = {
 };
 
 const interaction = {
+  oninit: () => state.session.activeStepIndex = 0,
   view: () => {
     return m('.interactionArea', [
       state.showHelp
@@ -53,95 +51,70 @@ const interaction = {
         ? m(ScenarioInfo, { scenario: state.dilemmasModule })
         : state.dilemmas.length >= state.session.activeStepIndex + 1
         ? m('div', [
-            m('div', { class: 'row' }, [
-              m('div', { class: 'col s10', id: 'dilemmaBG' }, [
+            m('.row', [
+              m('.col.s10#dilemmaBG', [
                 m(
-                  'p',
-                  { id: 'description', class: 'flow-text' },
+                  'p.flow-text#description',
                   state.dilemmas[state.session.activeStepIndex].description
                 ),
                 m(
-                  'h5',
-                  { id: 'title', class: 'flow-text' },
+                  'h5.flow-text#title',
                   state.dilemmas[state.session.activeStepIndex].title
                 ),
               ]),
             ]),
 
-            m('div', { class: 'row', id: 'grid' }, [
-              m('div', { class: 'row' }, [
-                m(
-                  'div',
-                  { id: 'topItems', class: 'col offset-s4 s7 gridItems' },
-                  [
-                    m(
-                      'div',
-                      { class: 'gridVbarCont' },
-                      m('div', { class: 'gridVbar' })
-                    ),
+            m('row[id=grid]', [
+              m('.row', [
+                m('.col.offset-s4.s7.gridItems#topItems', [
+                  m('.gridVbarCont', m('.gridVbar')),
 
-                    charaNames.map((char, i) => {
-                      return [
-                        m('div', { class: 'charaDis' }, charaNames[i]),
-                        m(
-                          'div',
-                          { class: 'gridVbarCont' },
-                          m('div', { class: 'gridVbar' })
-                        ),
-                      ];
-                    }),
-                  ]
-                ),
+                  charaNames.map((name, i) => {
+                    return [
+                      m('.charaDis', name),
+                      charaIcons[i] && m('img[height=50]', { src: gameSvc.trainerAPI.replace('/api', '') + charaIcons[i] }),
+                      m('.gridVbarCont', m('.gridVbar')),
+                    ];
+                  }),
+                ]),
 
                 m(
                   'div',
-                  { class: 'gridHbarCont col offset-s4 s' + String(hbarSize) },
-                  m('hr', { class: 'gridHbar', id: 'firstHBar' })
+                  { class: 'gridHbarCont col offset-s4 s' + hbarSize },
+                  m('hr.gridHbar#firstHBar')
                 ),
               ]),
-              m('div', { class: 'row', style: 'margin-top: 30px' }, [
-                m('div', { id: 'yes', class: 'col offset-s3 s1' }),
-
-                m(
-                  'div',
-                  { id: 'middleItems', class: 'col offset-s4 s7 gridItems' },
-                  [
-                    charaNames.map((char, i) => {
-                      return m('div', {
-                        class: 'stampPoint',
-                        id: 'yesChar' + i,
-                        onclick: stamp.bind(this, i, 1),
-                      });
-                    }),
-                  ]
-                ),
+              m('.row', { style: 'margin-top: 30px' }, [
+                m('.col.offset-s3.s1[id=yes]'),
+                m('.col.offset-s4.s7.gridItems#middleItems', [
+                  charaNames.map((char, i) => {
+                    return m('.stampPoint', {
+                      id: 'yesChar' + i,
+                      onclick: stamp.bind(this, i, 1),
+                    });
+                  }),
+                ]),
                 m(
                   'div',
                   { class: 'gridHbarCont col offset-s4 s' + String(hbarSize) },
-                  m('hr', { class: 'gridHbar', id: 'secondHBar' })
+                  m('hr.gridHbar#secondHBar')
                 ),
               ]),
-              m('div', { class: 'row', style: 'margin-top: 20px' }, [
-                m('div', { id: 'no', class: 'col offset-s3 s1' }),
-
-                m(
-                  'div',
-                  { id: 'bottomItems', class: 'col offset-s4 s7 gridItems' },
-                  [
-                    charaNames.map((char, i) => {
-                      return m('div', {
-                        class: 'stampPoint',
-                        id: 'noChar' + i,
-                        onclick: stamp.bind(this, i, 0),
-                      });
-                    }),
-                  ]
-                ),
+              m('.row', { style: 'margin-top: 20px' }, [
+                m('.col.offset-s3.s1[id=no]'),
+                m('.col.offset-s4.s7.gridItems#bottomItems', [
+                  charaNames.map((char, i) => {
+                    return m('.stampPoint', {
+                      id: 'noChar' + i,
+                      onclick: stamp.bind(this, i, 0),
+                    });
+                  }),
+                ]),
 
                 m(
                   'div',
                   { class: 'gridHbarCont col offset-s4 s' + String(hbarSize) },
-                  m('hr', { class: 'gridHbar', id: 'thirdHBar' })
+                  m('hr.gridHbar#thirdHBar')
                 ),
               ]),
             ]),

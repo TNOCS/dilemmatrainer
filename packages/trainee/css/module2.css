@@ -1,7 +1,7 @@
 #dilemmaBG{
     background-color: #7F7DBB;
     border-radius: 70px;
-    height: 323px;
+    height: 50vh;
     margin-left: 4.17%;
     margin-top: 17px;
 }
@@ -15,8 +15,7 @@
 }
 
 #dilemmaBG p, #dilemmaBG h5{
-    margin-left: 4%;
-    margin-top: 20px;
+    margin: 20px 4%;
     color: #FBFAF9;
     font-family: 'Montserrat', sans-serif;
     font-style: bold;

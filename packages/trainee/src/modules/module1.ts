@@ -1,7 +1,6 @@
-import 'material-icons/iconfont/material-icons.css';
-import 'materialize-css/dist/css/materialize.min.css';
 import m from 'mithril';
 import { IAnsweredClaim, IGroup } from '../../../common/src';
+import '../../css/module1.css';
 import { sessionSvc, state } from '../global';
 // import dilemmaReflection from './components/dilemma-reflection';
 import help from './components/help';
@@ -37,55 +36,41 @@ const interaction = {
           })
         : state.claims.length >= state.session.activeStepIndex + 1
         ? m('div', [
-            m('div', { class: 'row' }, [
-              m('div', { class: 'col offset-s1 s7', id: 'upORGrow' }, [
+            m('.row', [
+              m('.col.offset-s1.s7[id=upORGrow]', [
                 state.groups.map(group => {
                   if (group.level === 1) {
-                    return m('div', { class: 'upORG' }, [
+                    return m('.upORG', [
                       m(
-                        'div',
+                        '.orgBG.valign-wrapper',
                         {
-                          class: 'orgBG valign-wrapper',
                           onclick: () => selectOtherOrg(group),
                         },
-                        [m('p', { class: 'center-align' }, group.title)]
+                        [m('p.center-align', group.title)]
                       ),
-                      m('div', {
-                        class: 'upArrow',
-                      }),
+                      m('.upArrow'),
                     ]);
                   }
                 }),
               ]),
             ]),
 
-            m('div', { class: 'row valign-wrapper' }, [
+            m('.row.valign-wrapper', [
+              m('.col.offset-s1.s7.valign-wrapper[id=claimBG]', [
+                m(
+                  'p.center-align',
+                  state.claims[state.session.activeStepIndex].title
+                ),
+              ]),
+              m('.col.s2[id=rightArrow]'),
               m(
-                'div',
-                { id: 'claimBG', class: 'col offset-s1 s7 valign-wrapper' },
-                [
-                  m(
-                    'p',
-                    { class: 'center-align' },
-                    state.claims[state.session.activeStepIndex].title
-                  ),
-                ]
-              ),
-              m('div', {
-                id: 'rightArrow',
-                class: 'col s2',
-              }),
-              m(
-                'div',
+                '.orgBG.valign-wrapper[id=usOrg]',
                 {
-                  class: 'orgBG valign-wrapper',
-                  id: 'usOrg',
                   onclick: () => selectOtherOrg(mainGroup),
                 },
                 [
                   m(
-                    'p',
-                    { class: 'center-align' },
+                    'p.center-align',
                     state.groups.map(group => {
                       if (group.isMain) {
                         return group.title;
@@ -96,21 +81,18 @@ const interaction = {
               ),
             ]),
 
-            m('div', { class: 'row' }, [
-              m('div', { class: 'col offset-s1 s7', id: 'downORGrow' }, [
+            m('.row', [
+              m('.col.offset-s1.s7[id=downORGrow]', [
                 state.groups.map(group => {
                   if (group.level === -1) {
-                    return m('div', { class: 'upORG' }, [
-                      m('div', {
-                        class: 'downArrow',
-                      }),
+                    return m('.upORG', [
+                      m('.downArrow'),
                       m(
-                        'div',
+                        '.orgBG.valign-wrapper',
                         {
-                          class: 'orgBG valign-wrapper',
                           onclick: () => selectOtherOrg(group),
                         },
-                        [m('p', { class: 'center-align' }, group.title)]
+                        [m('p.center-align', group.title)]
                       ),
                     ]);
                   }
@@ -118,13 +100,16 @@ const interaction = {
               ]),
             ]),
           ])
-        : m('.valign-wrapper', m(
-            'h3.center-align',
-            `End of the claims module. You have ${state.session.answeredClaims.reduce(
-              (acc, cur) => acc + (cur.correct ? 1 : 0),
-              0
-            )} of ${state.session.answeredClaims.length} correct.`
-          )),
+        : m(
+            '.valign-wrapper',
+            m(
+              'h3.center-align',
+              `End of the claims module. You have ${state.session.answeredClaims.reduce(
+                (acc, cur) => acc + (cur.correct ? 1 : 0),
+                0
+              )} of ${state.session.answeredClaims.length} correct.`
+            )
+          ),
     ]);
   },
 };
