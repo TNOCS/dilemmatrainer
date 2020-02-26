@@ -6,6 +6,7 @@ import { state } from '../global';
 
 import help from './components/help';
 import hud from './components/hud';
+import { ScenarioInfo } from './components/scenario-info';
 
 let charaCol: boolean[] = [];
 let charaValue: number[] = []; // charaValue 0 = false, 1 = true,  2 = undefined
@@ -22,8 +23,14 @@ const MODULE2 = {
     setupCharas();
   },
   view: () => {
-    return m('div', { class: 'container' }, [
-      m(hud, { done: '/module3' }),
+    return m('.container', [
+      m(hud, {
+        done: state.workAgreementsModule.show
+          ? '/module3'
+          : state.scenariosModule.show
+          ? '/module4'
+          : '',
+      }),
       m(interaction),
     ]);
   },
@@ -31,16 +38,19 @@ const MODULE2 = {
 
 const interaction = {
   view: () => {
-    return m('div', { class: 'interactionArea' }, [
+    return m('.interactionArea', [
       state.showHelp
         ? m(help, {
-            title: 'Module 2',
+            title: 'Dilemmas',
             desc: [
-              'You will be presented with a dilemma, in the form of a context followed by a question.',
-              'Under the dilemma you will see a grid with a couple of characteristics.',
-              'In this grid, mark if the characteristics apply to the current dilemma.',
+              'You will be presented with a dilemma, where a dilemma is defined by its context followed by a question.',
+              'Under the dilemma you will see a table with the following characteristics: ' +
+                state.charas.map(c => c.title?.toLowerCase()).join(', ') +
+                '. Mark the characteristics that apply to the current dilemma.',
             ],
           })
+        : state.showScenario
+        ? m(ScenarioInfo, { scenario: state.dilemmasModule })
         : state.dilemmas.length >= state.session.activeStepIndex + 1
         ? m('div', [
             m('div', { class: 'row' }, [
