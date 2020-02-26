@@ -1,22 +1,20 @@
 import 'material-icons/iconfont/material-icons.css';
 import 'materialize-css/dist/css/materialize.min.css';
-import m from 'mithril';
+import m, { Component } from 'mithril';
 
 import { state } from '../../global';
 
-let pages: string[] = [];
 let currentPage: number = 0;
 let currentPageText: string;
 let helpCard: any;
 let cardActions;
 
-const help = {
-  view: vnode => {
-    pages = vnode.attrs.desc;
+const help: Component<{ title: string; desc: string[] }> = {
+  view: ({ attrs: { desc: pages, title } }) => {
     currentPageText = pages[currentPage];
 
     const visP = pages.length > 2 && currentPage !== 0 ? 'visible' : 'hidden';
-    const visN = pages.length > 2 && currentPage !== pages.length - 1 ? true : false;
+    const visN = pages.length > 2 && currentPage !== pages.length - 1;
 
     if (visN) {
       cardActions = [
@@ -67,10 +65,11 @@ const help = {
       currentPage = 0;
     } else {
       helpCard = m(
-        'div',{ class: 'row valign-wrapper', id: 'help' },
+        'div',
+        { class: 'row valign-wrapper', id: 'help' },
         m('div', { class: 'card col s8 offset-s2' }, [
           m('div', { class: 'card-content' }, [
-            m('h6', { class: 'card-title' }, vnode.attrs.title),
+            m('h6', { class: 'card-title' }, title),
             m('p', { class: 'card-info' }, currentPageText),
           ]),
           m('div', { class: 'card-action' }, cardActions),
