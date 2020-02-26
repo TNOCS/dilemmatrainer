@@ -58,7 +58,7 @@ function getSessions() {
   sessionSvc
     .loadList()
     .then(res => {
-      sessions = res;
+      sessions = res.filter(s => s.active);
       console.log(res);
     })
     .catch(error => console.log(error));
