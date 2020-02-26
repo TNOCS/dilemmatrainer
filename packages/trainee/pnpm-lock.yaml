@@ -1,18 +1,14 @@
 dependencies:
-  leaflet: 1.6.0
-  leaflet-draw: 1.0.4
   m: 1.5.6
   marked: 0.8.0
   material-icons: 0.3.1
   materialize-css: 1.0.0
   mithril: 2.0.4
-  mithril-leaflet: 0.1.7_540248bce08b6daa8f39770dcc779455
+  mithril-leaflet: 0.1.7_mithril@2.0.4
   mithril-materialized: 0.16.1_f3d9df6f4766fd28b6cfb8072ccbc3ca
   services: 0.0.3
 devDependencies:
   '@types/geojson': 7946.0.7
-  '@types/leaflet': 1.5.8
-  '@types/leaflet-draw': 1.0.1
   '@types/marked': 0.3.0
   '@types/materialize-css': 1.0.7
   '@types/mithril': 2.0.2
@@ -934,18 +930,6 @@ packages:
     dev: true
     resolution:
       integrity: sha512-UKoof2mnV/X1/Ix2g+V2Ny5sgHjV8nK/UJbiYxuo4zPwzGyFlZ/mp4KaePb2VqQrqJctmcDQNA57buU84/2uIw==
-  /@types/leaflet-draw/1.0.1:
-    dependencies:
-      '@types/leaflet': 1.5.8
-    dev: true
-    resolution:
-      integrity: sha512-/urwtXkpvv7rtre5A6plvXHSUDmFvDrwqpQRKseBCC2bIhIhBtMDf+plqQmi0vhvSk0Pqgk8qH1rtC8EVxPdmg==
-  /@types/leaflet/1.5.8:
-    dependencies:
-      '@types/geojson': 7946.0.7
-    dev: true
-    resolution:
-      integrity: sha512-qpi5n4LmwenUFZ+VZ7ytRgHK+ZAclIvloL2zoKCmmj244WD2hBcLbUZ6Szvajfe3sIkSYEJ8WZ1p9VYl8tRsMA==
   /@types/marked/0.3.0:
     dev: true
     resolution:
@@ -3126,14 +3110,6 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
-  /leaflet-draw/1.0.4:
-    dev: false
-    resolution:
-      integrity: sha512-rsQ6saQO5ST5Aj6XRFylr5zvarWgzWnrg46zQ1MEOEIHsppdC/8hnN8qMoFvACsPvTioAuysya/TVtog15tyAQ==
-  /leaflet/1.6.0:
-    dev: false
-    resolution:
-      integrity: sha512-CPkhyqWUKZKFJ6K8umN5/D2wrJ2+/8UIpXppY7QDnUZW5bZL5+SEI2J7GBpwh4LIupOKqbNSQXgqmrEJopHVNQ==
   /leven/3.1.0:
     dev: true
     engines:
@@ -3342,10 +3318,8 @@ packages:
     dev: true
     resolution:
       integrity: sha1-o1AIsg9BOD7sH7kU9M1d95omQoQ=
-  /mithril-leaflet/0.1.7_540248bce08b6daa8f39770dcc779455:
+  /mithril-leaflet/0.1.7_mithril@2.0.4:
     dependencies:
-      leaflet: 1.6.0
-      leaflet-draw: 1.0.4
       mithril: 2.0.4
     dev: false
     peerDependencies:
@@ -5481,14 +5455,10 @@ packages:
       integrity: sha512-/4ld+4VV5RnrynMhPZJ/ZpOCGSCeghMykZ3BhdFBDa9Wy/RH6uEGNWDJog+aUlq+9OM1CFTgtYRW5Is1Po9NOA==
 specifiers:
   '@types/geojson': ^7946.0.7
-  '@types/leaflet': ^1.5.8
-  '@types/leaflet-draw': ^1.0.1
   '@types/marked': ^0.3.0
   '@types/materialize-css': ^1.0.7
   '@types/mithril': ^2.0.2
   cssnano: ^4.1.10
-  leaflet: ^1.6.0
-  leaflet-draw: ^1.0.4
   m: ^1.5.6
   marked: ^0.8.0
   material-icons: ^0.3.1
