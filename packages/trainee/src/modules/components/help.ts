@@ -1,7 +1,4 @@
-import 'material-icons/iconfont/material-icons.css';
-import 'materialize-css/dist/css/materialize.min.css';
 import m, { Component } from 'mithril';
-
 import { state } from '../../global';
 
 let currentPage: number = 0;
@@ -13,8 +10,8 @@ const help: Component<{ title: string; desc: string[] }> = {
   view: ({ attrs: { desc: pages, title } }) => {
     currentPageText = pages[currentPage];
 
-    const visP = pages.length > 2 && currentPage !== 0 ? 'visible' : 'hidden';
-    const visN = pages.length > 2 && currentPage !== pages.length - 1;
+    const visP = pages.length > 1 && currentPage !== 0 ? 'visible' : 'hidden';
+    const visN = pages.length > 1 && currentPage !== pages.length - 1;
 
     if (visN) {
       cardActions = [
@@ -49,10 +46,11 @@ const help: Component<{ title: string; desc: string[] }> = {
           'a',
           {
             style: 'color:#4E77A0; float:right;',
-            onclick: e => {
+            onclick: (e: UIEvent) => {
               e.preventDefault();
               currentPage = 0;
               state.showHelp = false;
+              state.showScenario = true;
             },
           },
           'START'
