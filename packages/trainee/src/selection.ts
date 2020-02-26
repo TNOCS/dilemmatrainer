@@ -68,21 +68,23 @@ const setGame = async (s: Partial<ISession>) => {
   if (s.gameId) {
     state.session = s;
     const game = await gameSvc.load(s.gameId);
-    state.claims = game.claimsModule.claims;
     state.groups = game.groups;
-    state.dilemmas = game.dilemmasModule.dilemmas;
     state.charas = game.characteristics;
-    state.scenarios = game.scenariosModule.scenarios;
     state.roles = game.roles;
-    // setSession(s);
+    state.claims = game.claimsModule && game.claimsModule.show ? game.claimsModule.claims : [];
+    state.dilemmas = game.dilemmasModule && game.dilemmasModule.show ? game.dilemmasModule.dilemmas : [];
+    state.claimsModule = game.claimsModule;
+    state.dilemmasModule = game.dilemmasModule;
+    state.workAgreementsModule = game.workAgreementsModule;
+    state.scenariosModule = game.scenariosModule;
+    state.scenarios = game.scenariosModule && game.scenariosModule.show ? game.scenariosModule.scenarios : [];
   }
 };
 
 function setRole(e: IRole) {
-  // state.userRole.id = e.id;
-  // state.userRole.title = e.title;
-  // state.userRole.description = e.description;
-
+  state.userRole.id = e.id;
+  state.userRole.title = e.title;
+  state.userRole.description = e.description;
   m.route.set('module1');
 }
 

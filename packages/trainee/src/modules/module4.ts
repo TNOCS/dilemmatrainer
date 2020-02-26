@@ -1,47 +1,39 @@
-import { Feature, Geometry } from 'geojson';
-import { FeatureGroup, geoJSON, LatLngExpression, LeafletEvent } from 'leaflet';
 import 'material-icons/iconfont/material-icons.css';
 import 'materialize-css/dist/css/materialize.min.css';
-import m from 'mithril';
-import { LeafletMap } from 'mithril-leaflet';
+import m, { Component } from 'mithril';
 import { state } from '../global';
-
 import help from './components/help';
 import hud from './components/hud';
 
-const MODULE4 = {
-  oninit: () => {
-    state.showHelp = true;
-  },
+const MODULE4: Component = {
+  oninit: () => (state.showHelp = true),
   view: () => {
-    return m("div", { class: "container" }, [
-      m(hud, { done: "#!/selections"}),
-      m(interaction)
+    return m('div', { class: 'container' }, [
+      m(hud, { done: '/selection' }),
+      m(interaction),
     ]);
-  }
+  },
 };
 
-
-const interaction = {
+const interaction: Component = {
   view: () => {
-    return m('div', {class: 'interactionArea'}, [
+    return m('.interactionArea', [
       m(
-        "div",
-        { class: "row" },
+        '.row',
         state.showHelp
           ? m(help, {
-              title: "Title",
+              title: 'Title',
               desc: [
-                "Map stuff",
-              ]
+                `You will be presented with a scenario.
+                Each scenario has several dilemmas, and each dilemma is defined by its context followed by a question.
+                Discuss together how you want to handle the dilemma and defend your decision.`,
+              ],
             })
-          : [
-
-            ]
-      )
-    ])
-  }
-}
+          : []
+      ),
+    ]);
+  },
+};
 
 /*
 const displayArea = {

@@ -1,17 +1,22 @@
 export { gameSvc } from './services/game-service';
-import { ISession } from '../../common/src';
 import {
   ICharacteristic,
   IClaim,
+  IClaimsModule,
   IDilemma,
+  IDilemmasModule,
   IGroup,
   IRole,
+  IScenarioModule,
   IScenarioPhase,
+  ISession,
+  IWorkAgreementsModule,
 } from '../../common/src';
 export { sessionSvc } from './services/session-service';
 
 export const state = {
   showHelp: true,
+  showScenario: false,
   reflecting: false,
   roles: [] as IRole[],
   userRole: {
@@ -22,6 +27,10 @@ export const state = {
   groups: [] as IGroup[],
   claims: [] as IClaim[],
   dilemmas: [] as IDilemma[],
+  dilemmasModule: undefined as IDilemmasModule,
+  workAgreementsModule: undefined as IWorkAgreementsModule,
+  claimsModule: undefined as IClaimsModule,
+  scenariosModule: undefined as IScenarioModule,
   charas: [] as ICharacteristic[],
   scenarios: [] as IScenarioPhase[],
   session: undefined as Partial<ISession>,
