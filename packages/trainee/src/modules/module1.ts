@@ -10,6 +10,7 @@ const updateSession = () => sessionSvc.update(state.session);
 
 const MODULE1 = {
   oninit: () => {
+    state.session.activeModule = 'claims';
     state.session.activeStepIndex = 0;
     updateSession();
   },
@@ -29,8 +30,7 @@ const interaction = {
         ? m(help, {
             title: 'Claims',
             desc: [
-              'Each turn you will see a claim.',
-              'Select the organisation which you think is responsible for handling this claim.',
+              'Each turn you will see a claim. Select the organisation which you think is responsible for handling this claim.',
               'Your organization is to the right of the claim. Organisations above you in the hierarchy, are above the claim. Organisations below you in the hierarchy, are below the claim.',
             ],
           })

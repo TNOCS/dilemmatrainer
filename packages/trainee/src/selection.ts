@@ -12,45 +12,51 @@ let sessions: Array<Partial<ISession>> = [];
 const SELECTION = {
   oninit: () => getSessions(),
   view: () => {
-    return m('div', { class: 'container' }, [
-      m('div', { class: 'row' }, [
-        // Collection doesn't work well with valign-wrapper
-        JSON.stringify(state.roles) === JSON.stringify([])
-          ? m(Collection, {
-              header: 'Select a Scenario',
-              class: 'col s6 offset-s3',
-              mode: CollectionMode.LINKS,
-              items: sessions.map(ses => {
-                return {
-                  title: ses.title,
-                  onclick: () => setGame(ses),
-                };
-              }),
-            })
-          : m(Collection, {
-              header: 'Select your role',
-              class: 'col s6 offset-s3',
-              mode: CollectionMode.AVATAR,
-              items: state.roles.map(role => {
-                return {
-                  title: role.title,
-                  id: role.id,
-                  // content: marked.parse(String(role.description)),
-                  onclick: () => setRole(role),
-                };
-              }),
-            }),
-      ]),
+    return m('.container', [
       m(
-        'div',
-        { class: 'row' },
-        m(Button, {
-          label: 'Back',
-          onclick: () => (state.roles = []),
-          class: 'col s1 offset-s3',
-          style: 'background-color: #4E77A0',
+        '.row',
+        m(Collection, {
+          header: 'Select a Scenario',
+          class: 'col s6 offset-s3',
+          mode: CollectionMode.LINKS,
+          items: sessions.map(ses => ({
+            title: ses.title,
+            onclick: () => setGame(ses),
+          })),
         })
       ),
+      // Collection doesn't work well with valign-wrapper
+      // JSON.stringify(state.roles) === JSON.stringify([])
+      //   ? m(Collection, {
+      //       header: 'Select a Scenario',
+      //       class: 'col s6 offset-s3',
+      //       mode: CollectionMode.LINKS,
+      //       items: sessions.map(ses => ({
+      //         title: ses.title,
+      //         onclick: () => setGame(ses),
+      //       })),
+      //     })
+      //   : m(Collection, {
+      //       header: 'Select your role',
+      //       class: 'col s6 offset-s3',
+      //       mode: CollectionMode.AVATAR,
+      //       items: state.roles.map(role => ({
+      //         title: role.title,
+      //         id: role.id,
+      //         // content: marked.parse(String(role.description)),
+      //         onclick: () => setRole(role),
+      //       })),
+      //     }),
+      // ]),
+      // m(
+      //   '.row',
+      //   m(Button, {
+      //     label: 'Back',
+      //     onclick: () => (state.roles = []),
+      //     class: 'col s1 offset-s3',
+      //     style: 'background-color: #4E77A0',
+      //   })
+      // ),
     ]);
   },
 };
@@ -72,13 +78,23 @@ const setGame = async (s: Partial<ISession>) => {
     state.groups = game.groups;
     state.charas = game.characteristics;
     state.roles = game.roles;
-    state.claims = game.claimsModule && game.claimsModule.show ? game.claimsModule.claims : [];
-    state.dilemmas = game.dilemmasModule && game.dilemmasModule.show ? game.dilemmasModule.dilemmas : [];
+    state.claims =
+      game.claimsModule && game.claimsModule.show
+        ? game.claimsModule.claims
+        : [];
+    state.dilemmas =
+      game.dilemmasModule && game.dilemmasModule.show
+        ? game.dilemmasModule.dilemmas
+        : [];
     state.claimsModule = game.claimsModule;
     state.dilemmasModule = game.dilemmasModule;
     state.workAgreementsModule = game.workAgreementsModule;
     state.scenariosModule = game.scenariosModule;
-    state.scenarios = game.scenariosModule && game.scenariosModule.show ? game.scenariosModule.scenarios : [];
+    state.scenarios =
+      game.scenariosModule && game.scenariosModule.show
+        ? game.scenariosModule.scenarios
+        : [];
+    m.route.set('module1');
   }
 };
 

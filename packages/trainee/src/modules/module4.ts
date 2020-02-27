@@ -10,7 +10,12 @@ import { ScenarioInfo } from './components/scenario-info';
 const updateSession = () => sessionSvc.update(state.session);
 
 const MODULE4: Component = {
-  oninit: () => (state.showHelp = true),
+  oninit: () => {
+    state.session.activeModule = 'scenarios';
+    state.session.activeStepIndex = 0;
+    state.showHelp = true;
+    updateSession();
+  },
   view: () => {
     return m('div', { class: 'container' }, [
       m(hud, { done: '' }),
@@ -50,6 +55,7 @@ const interaction: Component = {
           : state.showScenario
           ? scenario && m(ScenarioInfo, { scenario })
           : dilemma && [
+              m('.row', m('.col.s12', m('h4', scenario.title))),
               m(
                 '.row',
                 m('.col.s12#dilemmaBG', [
@@ -72,6 +78,7 @@ const interaction: Component = {
                       className: 'right',
                       label: 'Next dilemma',
                       iconName: 'navigate_next',
+                      iconClass: 'right',
                       onclick: () =>
                         nextDilemma(scenarioIndex, dilemmaIndex, scenario),
                     }),
@@ -94,6 +101,7 @@ const nextDilemma = (
     const activeStepIndex = scenarioIndex + 1;
     state.session.activeStepIndex = activeStepIndex;
     state.session.activeScenarioDilemmaIndex[activeStepIndex] = 0;
+    state.showScenario = true;
   }
   updateSession();
 };

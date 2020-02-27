@@ -51,6 +51,14 @@ hr {
   background-color: #4e77a0;
 }
 
+i.material-icons.large {
+  font-size: 6em;
+}
+
+i.material-icons.medium {
+  font-size: 4em;
+}
+
 .interactionArea{
   height: 100%;
 }
@@ -71,6 +79,12 @@ hr {
   background-size: 50%;
   cursor: pointer;
   pointer-events: auto;
+}
+
+#showScenario {
+  cursor: pointer;
+  pointer-events: auto;
+  color: gray;
 }
 
 #docButton {

@@ -1,12 +1,17 @@
 import m from 'mithril';
 import '../../css/module3.css';
-import { state } from '../global';
+import { sessionSvc, state } from '../global';
 import help from './components/help';
 import hud from './components/hud';
 
+const updateSession = () => sessionSvc.update(state.session);
+
 const MODULE3 = {
   oninit: () => {
+    state.session.activeModule = 'workAgreements';
+    state.session.activeStepIndex = 0;
     state.showHelp = true;
+    updateSession();
   },
   view: () => {
     return m('div', { class: 'container' }, [

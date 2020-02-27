@@ -1,6 +1,6 @@
 import m from 'mithril';
 import '../../css/module2.css';
-import { state, gameSvc } from '../global';
+import { gameSvc, sessionSvc, state } from '../global';
 import help from './components/help';
 import hud from './components/hud';
 import { ScenarioInfo } from './components/scenario-info';
@@ -13,11 +13,15 @@ let charaResults: any[] = [];
 
 const hbarSize = 7;
 
+const updateSession = () => sessionSvc.update(state.session);
+
 const MODULE2 = {
   oninit: () => {
+    state.session.activeModule = 'dilemmas';
     state.session.activeStepIndex = 0;
     state.showHelp = true;
     setupCharas();
+    updateSession();
   },
   view: () => {
     return m('.container', [
